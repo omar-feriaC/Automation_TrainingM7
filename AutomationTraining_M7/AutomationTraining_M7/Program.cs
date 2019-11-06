@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,13 @@ namespace AutomationTraining_M7
     {
         static void Main(string[] args)
         {
+            IWebDriver driver;
+            driver.Url = "http://wwww.google.com";
+
             Console.WriteLine("Hello World");
             Console.ReadKey();
+
+            
         }
     }
 }
