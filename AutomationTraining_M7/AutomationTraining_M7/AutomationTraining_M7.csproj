@@ -91,7 +91,6 @@
     <Content Include="Exercise\Juan Lopez.txt" />
     <Content Include="Exercise\Kevin Maldonado.txt" />
     <Content Include="Exercise\Luis Esperon.txt" />
-    <Content Include="Exercise\Mauricio Guillermo.txt" />
     <Content Include="Exercise\Rodrigo Dominguez.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
