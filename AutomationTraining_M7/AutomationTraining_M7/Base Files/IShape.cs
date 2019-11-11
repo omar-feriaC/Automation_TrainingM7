@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationTraining_M7.Base_Files
-{
-
+namespace AutomationTraining_M7.Base_Files {
+    
 }
