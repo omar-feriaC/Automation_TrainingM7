@@ -1,0 +1,3 @@
+Shape1: Trapezium
+Shape2: Ellipsoid
+NuGet : Microsoft.Data.Odata

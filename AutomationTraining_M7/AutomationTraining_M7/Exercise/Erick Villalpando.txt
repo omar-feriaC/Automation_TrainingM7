@@ -1,0 +1,3 @@
+Shape1: Ellipse
+Shape2: Sphere
+NuGet : WindowsAzure.Storage
