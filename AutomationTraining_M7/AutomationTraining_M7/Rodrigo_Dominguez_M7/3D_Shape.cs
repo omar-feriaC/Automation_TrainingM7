@@ -10,11 +10,28 @@ namespace AutomationTraining_M7.Rodrigo_Dominguez_M7 {
         public string Name;
         public double BaseArea;
         public double BasePerimeter;
+        public double Height;
+        public double Base;
+        public double HeightFigure;
 
         public void DisplayInfo()
         {
             Console.WriteLine(this.Volume);
         }
+
+        public void CalculateVolume()
+        {
+            this.BaseArea = this.Base * this.Height;
+            this.Volume = this.BaseArea * this.HeightFigure;
+        }
+
+        public void SetValues(double Height, double HeightFigure, double Base)
+        {
+            this.Height = Height;
+            this.HeightFigure = HeightFigure;
+            this.Base = Base;
+        }
+        
 
         public _3D_Shape()
         {
