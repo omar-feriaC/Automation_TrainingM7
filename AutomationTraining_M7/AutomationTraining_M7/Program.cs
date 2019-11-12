@@ -1,4 +1,5 @@
 ﻿using AutomationTraining_M7.Base_Files;
+using AutomationTraining_M7.Carlos_Paz_M7_Excercise;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
@@ -35,6 +36,17 @@ namespace AutomationTraining_M7
             
 
             //Console.ReadKey();*/
+            Pentagon pentagon = new Pentagon();
+
+            pentagon.processData();
+            pentagon.calculateArea();
+
+            Console.WriteLine();
+
+            Pentaedrom pentaedrom = new Pentaedrom();
+
+            pentaedrom.processData();
+            pentaedrom.calculateVolume();
 
 
         }
