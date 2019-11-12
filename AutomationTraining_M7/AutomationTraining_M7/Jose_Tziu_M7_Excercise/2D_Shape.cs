@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Jose_Tziu_M7_Excercise
 {
-    class _2D_Shape:_3D_Shape
+    class _2D_Shape:IShape
     {
         public string Name { get; set; }
         public double Area { get; set; }
@@ -18,9 +18,9 @@ namespace AutomationTraining_M7.Jose_Tziu_M7_Excercise
             Perimeter = 0;
         }
 
-        public void DisplayInfo()
+        public void DisplayInfo(IShape shape)
         {
-            Console.WriteLine();
+            Console.WriteLine($@"Name: ");
         }
     }
 }

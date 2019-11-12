@@ -22,14 +22,14 @@ namespace AutomationTraining_M7.Jose_Tziu_M7_Excercise
             Radius = r;
         }
 
-        void CalculateArea()
+        public double CalculateArea()
         {
-            Area = 3.1416 * Radius * Radius;
+            return Area = 3.1416 * Radius * Radius;
         }
 
-        void CalculatePerimeter(double r)
+        public double  CalculatePerimeter()
         {
-            Perimeter = 2 * 3.1416 * Radius;
+            return Perimeter = 2 * 3.1416 * Radius;
         }
     }
 }

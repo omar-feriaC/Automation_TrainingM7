@@ -16,7 +16,7 @@ namespace AutomationTraining_M7.Jose_Tziu_M7_Excercise
             Name = "Cone";
             Radius = 0;
             Height = 0;
-            BaseArea = 0;
+            Area = 0;
             Volume = 0;
         }
 
@@ -26,19 +26,19 @@ namespace AutomationTraining_M7.Jose_Tziu_M7_Excercise
             Height = h;
         }
 
-        public void CalculateBaseArea()
+        public double CalculateBaseArea()
         {
-            BaseArea = 3.1416 * Radius * Radius;
+            return 3.1416 * Radius * Radius;
         }
 
-        public void CalculateVolume()
+        public double CalculateVolume()
         {
-            Volume = (Height / 3) * 3.1416 * Radius * Radius;
+            return Volume = (Height / 3) * 3.1416 * Radius * Radius;
         }
 
-        public void CalculatePerimeter()
+        public double CalculatePerimeter()
         {
-            Perimeter = (1 / 3) * 3.1416 * Radius * Radius * Height;
+            return Perimeter = 0.333 * 3.1416 * Radius * Radius * Height;
         }
     }
 }

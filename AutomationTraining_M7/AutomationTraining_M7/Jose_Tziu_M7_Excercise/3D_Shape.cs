@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Jose_Tziu_M7_Excercise
 {
-    class _3D_Shape
+    class _3D_Shape : IShape
     {
         public string Name { get; set; }
-        public double BaseArea { get; set; }
+        public double Area { get; set; }
         public double Perimeter { get; set; }
         public double Volume { get; set; }
 
-        public void DisplayInfo()
+        public void DisplayInfo(IShape shape)
         {
 
         }
@@ -21,7 +21,7 @@ namespace AutomationTraining_M7.Jose_Tziu_M7_Excercise
         public _3D_Shape()
         {
             Name = "undefined.";
-            BaseArea = 0;
+            Area = 0;
             Perimeter = 0;
             Volume = 0;
         }
