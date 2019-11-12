@@ -19,7 +19,12 @@ namespace AutomationTraining_M7.Test_Cases
             FnSendkeyAndClear(By.Name("password"), ConfigurationManager.AppSettings.Get("password"));
         }
 
+<<<<<<< HEAD
         [Test, Order(1)]
+=======
+        [Test]
+
+>>>>>>> 81de5c5241be248217465bbd38ca49ff7756d72f
         public void TestLogin2()
         {
             FnSendkeyAndClear(By.XPath("//*[@name='userName']"), ConfigurationManager.AppSettings.Get("username2"));
