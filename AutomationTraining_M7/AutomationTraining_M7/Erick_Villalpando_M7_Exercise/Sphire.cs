@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Erick_Villalpando_M7_Exercise
 {
-    class Sphire
+     class Sphire:_3D_Shape
     {
+
+
     }
 }

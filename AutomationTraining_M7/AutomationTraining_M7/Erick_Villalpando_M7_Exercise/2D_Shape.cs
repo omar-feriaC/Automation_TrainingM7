@@ -7,7 +7,13 @@ using System.Threading.Tasks;
 namespace AutomationTraining_M7.Erick_Villalpando_M7_Exercise
 {
 
-class _2D_Shape
+    public interface IShape {
+        double Area();
+        double Perimeter();
+        double Volumen();
+    }
+
+public class _2D_Shape
 {
     public string Name;
     public double Area;

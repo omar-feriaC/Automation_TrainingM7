@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Erick_Villalpando_M7_Exercise
 {
-    class _3D_Shape
+    public class _3D_Shape
     {
         public double Volume;
         public string Name;

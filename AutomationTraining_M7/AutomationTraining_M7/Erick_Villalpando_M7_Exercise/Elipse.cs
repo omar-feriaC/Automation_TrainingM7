@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Erick_Villalpando_M7_Exercise
 {
-    class Elipse
+    public class Elipse:_2D_Shape
     {
+        
+
     }
 }
