@@ -9,25 +9,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationTraining_M7
-{
-    class Program : BaseTest
-    {
+namespace AutomationTraining_M7 {
+    class Program {
         static void Main(string[] args)
         {
-            Triangle x = new Triangle();
-            Prism y = new Prism();
-            x.SetValues(3.3, 2.2, 3, 4, 5);
+            Triangle x = new Triangle(3.3, 2.2, 3, 4, 5, "triangulin");
+            Prism y = new Prism(5.5, 3, 4, "prismon");
+
+            //Triangle x = new Triangle();
+            //Prism y = new Prism();
+
+            //x.Triangle(3.3, 2.2, 3, 4, 5, "triangulin");
             x.CalculatePerimeter();
             x.CalculateArea();
-            y.SetValues(5.5, 3, 4);
+            //y.Prism(5.5, 3, 4, "prismon");
             y.CalculateVolume();
             x.DisplayInfo();
             y.DisplayInfo();
             Console.ReadKey();
-            //I did not had time to write something, I had to attend some client emails, I am very sorry about it.
-            //I can retake this if needed.
-            
+
         }
     }
 }

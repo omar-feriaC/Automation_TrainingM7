@@ -1,43 +1,30 @@
-﻿using System;
+﻿using AutomationTraining_M7.Base_Files;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Rodrigo_Dominguez_M7 {
-    class _3D_Shape {
-        public double Volume;
-        public string Name;
-        public double BaseArea;
-        public double BasePerimeter;
-        public double Height;
-        public double Base;
-        public double HeightFigure;
+    class _3D_Shape : IShape {
+
+        public string Name { get; set; }
+        public double Area { get; set; }
+        public double Perimeter { get; set; }
+        public double Volume { get; set; }
 
         public void DisplayInfo()
         {
+            Console.WriteLine(this.Name);
             Console.WriteLine(this.Volume);
-        }
-
-        public void CalculateVolume()
-        {
-            this.BaseArea = this.Base * this.Height;
-            this.Volume = this.BaseArea * this.HeightFigure;
-        }
-
-        public void SetValues(double Height, double HeightFigure, double Base)
-        {
-            this.Height = Height;
-            this.HeightFigure = HeightFigure;
-            this.Base = Base;
         }
         
 
         public _3D_Shape()
         {
             this.Name = "undefined";
-            this.BaseArea = 0.0;
-            this.BasePerimeter = 0.0;
+            this.Area = 0.0;
+            this.Perimeter = 0.0;
             this.Volume = 0.0;
         }
     }
