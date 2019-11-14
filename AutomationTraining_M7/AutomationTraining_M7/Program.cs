@@ -26,6 +26,7 @@ namespace AutomationTraining_M7 {
             y.CalculateVolume();
             x.DisplayInfo();
             y.DisplayInfo();
+            Console.Write("yupi");
             Console.ReadKey();
 
         }
