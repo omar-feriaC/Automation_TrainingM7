@@ -70,7 +70,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Exercise\" />
     <Folder Include="Page Objects\" />
     <Folder Include="Reporting\" />
   </ItemGroup>
