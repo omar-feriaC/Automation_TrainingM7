@@ -18,9 +18,10 @@ namespace AutomationTraining_M7.M7_Review
         }
 
         //Methods
-        public new void fnDisplayInfo()
+        public virtual new void fnDisplayInfo()
         {
             base.fnDisplayInfo();
+            Console.WriteLine("SHAPE 3D");
             Console.WriteLine("Volume: " + dblVolume);
         }
     }

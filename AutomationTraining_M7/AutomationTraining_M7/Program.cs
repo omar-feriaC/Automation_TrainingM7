@@ -15,13 +15,36 @@ namespace AutomationTraining_M7
     {
         static void Main(string[] args)
         {
-            Shape2D objS2D = new Shape2D();
-            objS2D.fnDisplayInfo();
 
-            Console.WriteLine("**********************");
+            Pyramid objPyramid = new Pyramid(3,3,2);
+            //objPyramid.fnCalculatePerimeter();
+            //objPyramid.fnCalculateArea();
+            //objPyramid.fnCalculateVolume();
+            objPyramid.fnDisplayInfo();
+            Console.WriteLine("* Interface **********************");
+            //IShape objPyramidI = objPyramid;
+            IShape objPyramidI = new Pyramid(3, 5, 2); ;
+            objPyramidI.fnDisplayInfo();
+            Console.WriteLine("* Shape 2D**********************");
+            Shape2D objPyramid2D = objPyramid;
+            objPyramid2D.fnDisplayInfo();
+            Console.WriteLine("* Shape 3D**********************");
+            Shape3D objPyramid3d = objPyramid;
+            objPyramid3d.fnDisplayInfo();
+            //IShape objPyramid2 = objPyramid;
 
-            Shape3D objS3D = new Shape3D();
-            objS3D.fnDisplayInfo();
+
+
+
+            //Console.WriteLine("**********************");
+
+            //Shape2D objS2D = new Shape2D();
+            //objS2D.fnDisplayInfo();
+
+            //Console.WriteLine("**********************");
+
+            //Shape3D objS3D = new Shape3D();
+            //objS3D.fnDisplayInfo();
 
             Console.ReadKey();
         }
