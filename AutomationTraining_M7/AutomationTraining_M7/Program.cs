@@ -7,36 +7,19 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutomationTraining_M7.Jose_Tziu_M7_Excercise;
 
 namespace AutomationTraining_M7
 {
-    class Program : BaseTest
+    class Program : _2D_Shape
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Input Radius:");
+            double radius = Convert.ToDouble(Console.ReadLine());
 
-            /*FnSendkeyAndClear(By.Name("userName"), ConfigurationManager.AppSettings.Get("username"));
-            FnSendkeyAndClear(By.Name("password"), ConfigurationManager.AppSettings.Get("password"));
-
-            FnSendkeyAndClear(By.XPath("//*[@name='userName']"), ConfigurationManager.AppSettings.Get("username2"));
-            FnSendkeyAndClear(By.XPath("//*[@name='password']"), ConfigurationManager.AppSettings.Get("password2"));
-
-            driver.FindElement(By.Name("login")).Click();
-            driver.FindElement(By.Name("login"));
-
-
-            IList<IWebElement> ElementList = driver.FindElements(By.XPath("//a"));
-            foreach (IWebElement el in ElementList)
-            {
-                //el.Click();
-                el.GetAttribute("href");
-            }
-
-            
-
-            //Console.ReadKey();*/
-
-
+            Console.WriteLine("Input Height:");
+            double height = Convert.ToDouble(Console.ReadLine());
         }
     }
 }
