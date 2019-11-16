@@ -59,12 +59,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base Files\BaseTest.cs" />
-    <Compile Include="Base Files\IShape.cs" />
-    <Compile Include="Jose_Tziu_M7_Excercise\2D_Shape.cs" />
-    <Compile Include="Jose_Tziu_M7_Excercise\3D_Shape.cs" />
-    <Compile Include="Jose_Tziu_M7_Excercise\Circle.cs" />
-    <Compile Include="Jose_Tziu_M7_Excercise\Cone.cs" />
-    <Compile Include="Jose_Tziu_M7_Excercise\IShape.cs" />
+    <Compile Include="Edmundo_Sainz_M7_Excercise\Cls_2D_Shape.cs" />
+    <Compile Include="Edmundo_Sainz_M7_Excercise\Cls_3D_Shape.cs" />
+    <Compile Include="Edmundo_Sainz_M7_Excercise\IShape.cs" />
+    <Compile Include="Edmundo_Sainz_M7_Excercise\Pyramid.cs" />
+    <Compile Include="Edmundo_Sainz_M7_Excercise\Rectangle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test Cases\Prueba1.cs" />
@@ -76,7 +75,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Juan_Lopez_M7_Excercise\" />
     <Folder Include="Page Objects\" />
     <Folder Include="Reporting\" />
   </ItemGroup>
@@ -90,7 +88,6 @@
     <Content Include="Exercise\Erick Villalpando.txt" />
     <Content Include="Exercise\Hector Castillo.txt" />
     <Content Include="Exercise\Hugo Vidal.txt" />
-    <Content Include="Exercise\IShape.cls" />
     <Content Include="Exercise\Jesus Sanchez.txt" />
     <Content Include="Exercise\Jose Novelo.txt" />
     <Content Include="Exercise\Jose Tziu.txt" />
