@@ -10,14 +10,13 @@ namespace AutomationTraining_M7.Rodrigo_Dominguez_M7 {
         public string Name { get; set; }
         public double Area { get; set; }
         public double Perimeter { get; set; }
-        public double Volume { get; set; }
 
 
-        public void DisplayInfo()
+        public virtual new void DisplayInfo()
         {
-            Console.WriteLine(this.Name);
-            Console.WriteLine(this.Area);
-            Console.WriteLine(this.Perimeter);
+            Console.WriteLine("Name: " + this.Name);
+            Console.WriteLine("Area: " + this.Area);
+            Console.WriteLine("Perimeter: " + this.Perimeter);
         }
 
         public _2D_Shape()

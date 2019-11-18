@@ -13,20 +13,10 @@ namespace AutomationTraining_M7 {
     class Program {
         static void Main(string[] args)
         {
-            Triangle x = new Triangle(3.3, 2.2, 3, 4, 5, "triangulin");
-            Prism y = new Prism(5.5, 3, 4, "prismon");
-
-            //Triangle x = new Triangle();
-            //Prism y = new Prism();
-
-            //x.Triangle(3.3, 2.2, 3, 4, 5, "triangulin");
-            x.CalculatePerimeter();
-            x.CalculateArea();
-            //y.Prism(5.5, 3, 4, "prismon");
-            y.CalculateVolume();
+            Triangle x = new Triangle(3.3, 2.2, 3, 4, 5, "TriangleTest");
+            Prism y = new Prism(5.5, 4, "PrismTest");
             x.DisplayInfo();
             y.DisplayInfo();
-            Console.Write("yupi");
             Console.ReadKey();
 
         }

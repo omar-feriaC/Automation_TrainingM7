@@ -14,7 +14,12 @@ namespace AutomationTraining_M7.Rodrigo_Dominguez_M7 {
 
         public Triangle()
         {
-            
+            Name = "Triangle";
+            this.Base = 0;
+            this.Height = 0;
+            this.SideA = 0;
+            this.SideB = 0;
+            this.SideC = 0;
         }
         public Triangle(double Base, double Height, double Sidea, double Sideb, double Sidec, string Name)
         {
@@ -34,6 +39,13 @@ namespace AutomationTraining_M7.Rodrigo_Dominguez_M7 {
         public void CalculateArea()
         {
             this.Area = (this.Base * this.Height) / 2;
+        }
+
+        public override void DisplayInfo()
+        {
+            CalculatePerimeter();
+            CalculateArea();
+            base.DisplayInfo(); 
         }
     }
 }

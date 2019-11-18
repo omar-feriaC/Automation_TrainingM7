@@ -6,25 +6,19 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Rodrigo_Dominguez_M7 {
-    class _3D_Shape : IShape {
+    class _3D_Shape : _2D_Shape {
 
-        public string Name { get; set; }
-        public double Area { get; set; }
-        public double Perimeter { get; set; }
         public double Volume { get; set; }
 
-        public void DisplayInfo()
+        public virtual new void DisplayInfo()
         {
-            Console.WriteLine(this.Name);
-            Console.WriteLine(this.Volume);
+            base.DisplayInfo();
+            Console.WriteLine("Volume: " + this.Volume);
         }
         
 
         public _3D_Shape()
         {
-            this.Name = "undefined";
-            this.Area = 0.0;
-            this.Perimeter = 0.0;
             this.Volume = 0.0;
         }
     }

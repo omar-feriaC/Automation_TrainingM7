@@ -9,26 +9,30 @@ namespace AutomationTraining_M7.Rodrigo_Dominguez_M7 {
 
         public double BaseArea;
         public double Height;
-        public double Base;
-        public double HeightFigure;
 
         public void CalculateVolume()
         {
-            this.BaseArea = this.Base * this.Height;
-            this.Volume = this.BaseArea * this.HeightFigure;
+            this.Volume = this.BaseArea * this.Height;
         }
 
-        public Prism(double Height, double HeightFigure, double Base, string Name)
+        public override void DisplayInfo()
+        {
+            CalculateVolume();
+            base.DisplayInfo();
+        }
+
+        public Prism(double Height, double BaseArea, string Name)
         {
             this.Height = Height;
-            this.HeightFigure = HeightFigure;
-            this.Base = Base;
+            this.BaseArea = BaseArea;
             this.Name = Name;
         }
 
         public Prism()
         {
-
+            Name = "Prism";
+            BaseArea = 0;
+            Height = 0;
         }
     }
 }
