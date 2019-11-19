@@ -1,4 +1,5 @@
 ﻿using AutomationTraining_M7.Base_Files;
+using AutomationTraining_M7.M7_Exercise2;
 using AutomationTraining_M7.M7_Review;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -15,8 +16,7 @@ namespace AutomationTraining_M7
     {
         static void Main(string[] args)
         {
-
-            Pyramid objPyramid = new Pyramid(3,3,2);
+            /*Pyramid objPyramid = new Pyramid(3,3,2);
             //objPyramid.fnCalculatePerimeter();
             //objPyramid.fnCalculateArea();
             //objPyramid.fnCalculateVolume();
@@ -44,7 +44,7 @@ namespace AutomationTraining_M7
             //Console.WriteLine("**********************");
 
             //Shape3D objS3D = new Shape3D();
-            //objS3D.fnDisplayInfo();
+            //objS3D.fnDisplayInfo();*/
 
             Console.ReadKey();
         }
