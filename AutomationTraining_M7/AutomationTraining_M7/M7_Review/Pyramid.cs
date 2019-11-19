@@ -27,9 +27,6 @@ namespace AutomationTraining_M7.M7_Review
             dblLenght = pdbllenght;
             dblWidth = pdblwidth;
             dblHeight = pdblheight;
-            fnCalculatePerimeter();
-            fnCalculateArea();
-            fnCalculateVolume();
         }
         //Method to calculate area 
         public void fnCalculateArea()
@@ -48,13 +45,13 @@ namespace AutomationTraining_M7.M7_Review
             dblVolume = (dblArea * dblHeight) / 3;
         }
         //Method to diaplay information
-        public override void fnDisplayInfo()
+        public new void fnDisplayInfo()
         {
             fnCalculatePerimeter();
             fnCalculateArea();
             fnCalculateVolume();
-            Console.WriteLine("PYRAMID");
             base.fnDisplayInfo();
         }
+
     }
 }
