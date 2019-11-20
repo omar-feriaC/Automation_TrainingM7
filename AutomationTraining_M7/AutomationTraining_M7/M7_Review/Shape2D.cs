@@ -29,7 +29,5 @@ namespace AutomationTraining_M7.M7_Review
             Console.WriteLine("Area: " + dblArea);
             Console.WriteLine("Perimeter: " + dblPerimeter);
         }
-
-
     }
 }
