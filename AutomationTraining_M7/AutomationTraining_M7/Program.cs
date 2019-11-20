@@ -1,4 +1,5 @@
 ﻿using AutomationTraining_M7.Base_Files;
+using AutomationTraining_M7.Luis_Esperon_M7_Excercise;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
@@ -8,35 +9,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace AutomationTraining_M7
 {
-    class Program : BaseTest
+    class Program : Shape2D
     {
         static void Main(string[] args)
         {
 
-            /*FnSendkeyAndClear(By.Name("userName"), ConfigurationManager.AppSettings.Get("username"));
-            FnSendkeyAndClear(By.Name("password"), ConfigurationManager.AppSettings.Get("password"));
-
-            FnSendkeyAndClear(By.XPath("//*[@name='userName']"), ConfigurationManager.AppSettings.Get("username2"));
-            FnSendkeyAndClear(By.XPath("//*[@name='password']"), ConfigurationManager.AppSettings.Get("password2"));
-
-            driver.FindElement(By.Name("login")).Click();
-            driver.FindElement(By.Name("login"));
+            Shape2D objS2D = new Shape2D();
+            objS2D.fnDisplayInfo();
 
 
-            IList<IWebElement> ElementList = driver.FindElements(By.XPath("//a"));
-            foreach (IWebElement el in ElementList)
-            {
-                //el.Click();
-                el.GetAttribute("href");
-            }
+            Console.WriteLine("********************");
 
+            Shape3D objS3D = new Shape3D();
+            objS3D.fnDisplayInfo();
+
+
+            Console.WriteLine("********************");
+
+            Pentagon objPentagon1 = new Pentagon(5, 10);
+
+            objPentagon1.fnDisplayInfo();
+
+            Console.ReadKey();
             
-
-            //Console.ReadKey();*/
-
-
         }
     }
 }
