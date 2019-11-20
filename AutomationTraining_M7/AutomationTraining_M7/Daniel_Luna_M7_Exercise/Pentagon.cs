@@ -26,13 +26,13 @@ namespace AutomationTraining_M7.Daniel_Luna_M7_Exercise
             dblApotem = pdblApotem;
         }
 
-        private double fnCalcPerimeter() 
+        public double fnCalcPerimeter() 
         {
             dblPerimeter = dblSide * 5;
             return dblPerimeter;
         }
 
-        private double fnCalcArea() 
+        public double fnCalcArea() 
         {
             dblArea = (fnCalcPerimeter() * dblApotem) / 2;
             return dblArea;

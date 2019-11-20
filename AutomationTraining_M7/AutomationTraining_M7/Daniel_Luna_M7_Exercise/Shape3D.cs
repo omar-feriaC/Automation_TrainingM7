@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Daniel_Luna_M7_Exercise
 {
-    class Shape3D : Shape2D
+    class Shape3D : Shape2D, IShape
     {
         //Attributes
         public double dblVolume { get; set; }

@@ -28,13 +28,13 @@ namespace AutomationTraining_M7.Daniel_Luna_M7_Exercise
                         
         }
 
-        private double fnCalcArea()
+        public double fnCalcArea()
         {
             dblArea = (dblPi * (dblRadius * dblRadius));
             return dblArea;
         }
 
-        private double fnCalcVolume()
+        public double fnCalcVolume()
         {
             dblVolume = (fnCalcArea()/3*dblHeight);
             return dblVolume;

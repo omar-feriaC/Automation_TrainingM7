@@ -25,7 +25,19 @@ namespace AutomationTraining_M7
             objCone1.fnDisplayInfo();
 
             Console.ReadKey();
+
             
+            Console.WriteLine("**********************");
+
+            IShape objPentagon2 = new Pentagon(5, 10);
+            //IShape objCone2 = new Cone(4, 4);
+
+            
+            objPentagon2.fnDisplayInfo();
+            //objCone2.fnDisplayInfo();
+
+            Console.ReadKey();
+
         }
     }
 }
