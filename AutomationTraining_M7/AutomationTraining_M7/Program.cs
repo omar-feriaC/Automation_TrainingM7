@@ -1,4 +1,5 @@
 ﻿using AutomationTraining_M7.Base_Files;
+using AutomationTraining_M7.Hector_Castillo_M7_Excercise;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
@@ -7,19 +8,34 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AutomationTraining_M7.Jose_Tziu_M7_Excercise;
 
-namespace AutomationTraining_M7
+namespace AutomationTraining_M7.Hector_Castillo_M7_Excercise
 {
-    class Program : _2D_Shape
+    class Program 
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Input Radius:");
-            double radius = Convert.ToDouble(Console.ReadLine());
+            Hexagon objHexagon1 = new Hexagon(10, 5);
+            objHexagon1.fnDisplayInfo2();
 
-            Console.WriteLine("Input Height:");
-            double height = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("*******************************");
+
+            Console.ReadKey();
+
+            Cylinder objCylinder1 = new Cylinder(5, 4);
+            objCylinder1.fnDisplayInfo();
+            
+            Console.WriteLine("*******************************");
+
+            Console.ReadKey();
+            //IShape objHexagon2 = new Hexagon(5, 10);
+            // IShape objCylinder2 = new Cylinder(2, 2);
+
+            // objHexagon2.fnDisplayInfo();
+            //objCylinder2.fnDisplayInfo();
+
+            Console.ReadKey();
+
         }
     }
 }
