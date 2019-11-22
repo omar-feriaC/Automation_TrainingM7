@@ -31,8 +31,8 @@ namespace AutomationTraining_M7.DannyBeltran_M7_Final
         public void FnDisplayInfo()
         {
             Console.WriteLine("==========SALARY EMPLOYEE==========");
-            Console.WriteLine(IntID);
-            Console.WriteLine(StrName);
+            Console.WriteLine("Employee ID: " + IntID);
+            Console.WriteLine("Employee Name: " + StrName);
             Console.WriteLine("Salary: " + FnCalculatePayroll());
             Console.WriteLine("===================================");
         }

@@ -26,9 +26,9 @@ namespace AutomationTraining_M7
 
         public new void FnDisplayInfo()
         {
-            Console.WriteLine("==========COMISSION EMPLOYEE==========");
-            Console.WriteLine(IntID);
-            Console.WriteLine(StrName);
+            Console.WriteLine("========COMISSION EMPLOYEE=========");
+            Console.WriteLine("Employee ID: " + IntID);
+            Console.WriteLine("Employee Name: " + StrName);
             Console.WriteLine("Salary: " + FnCalculatePayroll());
             //FnDisplayInfo();
             Console.WriteLine("===================================");
