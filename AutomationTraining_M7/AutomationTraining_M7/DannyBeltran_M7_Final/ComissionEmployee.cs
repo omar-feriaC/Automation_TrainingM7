@@ -30,7 +30,6 @@ namespace AutomationTraining_M7
             Console.WriteLine("Employee ID: " + IntID);
             Console.WriteLine("Employee Name: " + StrName);
             Console.WriteLine("Salary: " + FnCalculatePayroll());
-            //FnDisplayInfo();
             Console.WriteLine("===================================");
         }
     }
