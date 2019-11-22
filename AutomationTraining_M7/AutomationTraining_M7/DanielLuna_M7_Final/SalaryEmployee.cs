@@ -11,7 +11,6 @@ namespace AutomationTraining_M7.DanielLuna_M7_Final
         public int intWeeklySalary { get; set; }
         public int intID { get ; set; }
         public string strName { get ; set ; }
-        public double dblPayroll { get; set; }
         public double dblComPayroll { get; set; }
 
         public SalaryEmployee()
@@ -19,6 +18,7 @@ namespace AutomationTraining_M7.DanielLuna_M7_Final
             intWeeklySalary = 0;
             intID = 0;
             strName = "Undefined";
+            
         }
 
         public SalaryEmployee(int pintWeeklySalary, int pintID, string pstrName) 

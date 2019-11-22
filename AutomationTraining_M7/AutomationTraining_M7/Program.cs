@@ -14,18 +14,18 @@ namespace AutomationTraining_M7.DanielLuna_M7_Final
     {
         static void Main(string[] args)
         {
-            SalaryEmployee objSalaryEmployee1 = new SalaryEmployee(2000, 0001, "Daniel");
+            SalaryEmployee objSalaryEmployee1 = new SalaryEmployee(2000, 1001, "Daniel");
             objSalaryEmployee1.fnDisplayInfo();
 
             Console.WriteLine("**********************");
 
-            HourlyEmployee objHourlyEmployee1 = new HourlyEmployee(40, 10);
+            HourlyEmployee objHourlyEmployee1 = new HourlyEmployee(40, 50, 1001, "Daniel");
             objHourlyEmployee1.fnCalculatePayroll();
             objHourlyEmployee1.fnDisplayInfo();
 
             Console.WriteLine("**********************");
 
-            CommissionEmployee objCommission1 = new CommissionEmployee(500, 2000, 0001, "Daniel", 10);
+            CommissionEmployee objCommission1 = new CommissionEmployee(500, 2000, 1001, "Daniel");
             objCommission1.fnCalculatePayroll();
             objCommission1.fnDisplayInfo();
 

@@ -10,8 +10,6 @@ namespace AutomationTraining_M7.DanielLuna_M7_Final
     {
         int intID { get; set; }
         string strName { get; set; }
-        double dblPayroll { get; set; }
-        double dblComPayroll { get; set; }
         void fnDisplayInfo();
     }
 }
