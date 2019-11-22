@@ -22,7 +22,7 @@ namespace AutomationTraining_M7.M7_Review
         }
         
         //Methods
-        public virtual void fnDisplayInfo()
+        public void fnDisplayInfo()
         {
             Console.WriteLine("SHAPE 2D");
             Console.WriteLine("Name: " + strName);

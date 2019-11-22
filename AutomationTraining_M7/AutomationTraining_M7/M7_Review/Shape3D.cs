@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.M7_Review
 {
-    class Shape3D : Shape2D, IShape
+    class Shape3D : Shape2D
     {
         //Attributes
         public double dblVolume { get; set; }
@@ -18,7 +18,8 @@ namespace AutomationTraining_M7.M7_Review
         }
 
         //Methods
-        public virtual new void fnDisplayInfo()
+        //public virtual new void fnDisplayInfo()
+        public new void fnDisplayInfo()
         {
             base.fnDisplayInfo();
             Console.WriteLine("SHAPE 3D");

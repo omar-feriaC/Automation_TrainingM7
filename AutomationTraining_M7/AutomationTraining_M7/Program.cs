@@ -15,13 +15,22 @@ namespace AutomationTraining_M7
     {
         static void Main(string[] args)
         {
+            IShape objPyramid = new Pyramid(3, 3, 2);
+            objPyramid.fnDisplayInfo();
+            Console.WriteLine();
+
+            IShape objPentagon2 = new Pentagon(5, 10);
+            objPentagon2.fnDisplayInfo();
+            Console.WriteLine();
+
             //Pyramid objPyramid = new Pyramid(3,3,2);
             //objPyramid.fnDisplayInfo();
+            //Console.WriteLine();
 
-            //Console.WriteLine("* Interface **********************");
-            //IShape objPyramidI = objPyramid;
-            //IShape objPyramidI2 = new Pyramid(3, 5, 2);
-            //objPyramidI.fnDisplayInfo();
+            Console.WriteLine("* Interface **********************");
+            IShape objPyramidI = objPyramid;
+            IShape objPyramidI2 = new Pyramid(3, 5, 2);
+            objPyramidI.fnDisplayInfo();
             //objPyramidI2.fnDisplayInfo();
 
             //Console.ReadLine();

@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Base Files\BaseTest.cs" />
     <Compile Include="M7_Review\IShape.cs" />
+    <Compile Include="M7_Review\Pentagon.cs" />
     <Compile Include="M7_Review\Pyramid.cs" />
     <Compile Include="M7_Review\Shape2D.cs" />
     <Compile Include="M7_Review\Shape3D.cs" />

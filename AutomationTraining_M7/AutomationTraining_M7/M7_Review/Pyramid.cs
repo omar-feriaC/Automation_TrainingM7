@@ -27,6 +27,9 @@ namespace AutomationTraining_M7.M7_Review
             dblLenght = pdbllenght;
             dblWidth = pdblwidth;
             dblHeight = pdblheight;
+            fnCalculateArea();
+            fnCalculatePerimeter();
+            fnCalculateVolume();
         }
         //Method to calculate area 
         public void fnCalculateArea()
@@ -47,9 +50,9 @@ namespace AutomationTraining_M7.M7_Review
         //Method to diaplay information
         public new void fnDisplayInfo()
         {
-            fnCalculatePerimeter();
-            fnCalculateArea();
-            fnCalculateVolume();
+            //fnCalculatePerimeter();
+            //fnCalculateArea();
+            //fnCalculateVolume();
             base.fnDisplayInfo();
         }
 
