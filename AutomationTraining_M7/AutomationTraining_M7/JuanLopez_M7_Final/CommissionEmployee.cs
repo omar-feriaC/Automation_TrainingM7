@@ -27,9 +27,8 @@ namespace AutomationTraining_M7.JuanLopez_M7_Final
         public new void fnDisplayInfo()
         {
             base.fnDisplayInfo();
-            Console.WriteLine("Commission: " + intComPayroll);
-            Console.WriteLine("ID: " + intId);
-            
+            Console.WriteLine("Commission: " + intCommission);
+            Console.WriteLine("Commission Payroll: " + intComPayroll);
         }
     }
 }
