@@ -20,7 +20,7 @@ namespace AutomationTraining_M7
 
         public new int FnCalculatePayroll()
         {
-            IntPayroll = base.FnCalculatePayroll() - IntComission;
+            IntPayroll = base.FnCalculatePayroll() + IntComission;
             return IntPayroll;
         }
 
