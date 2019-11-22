@@ -1,4 +1,5 @@
 ﻿using AutomationTraining_M7.Base_Files;
+using AutomationTraining_M7.MauricioGuillermo_M7_Final;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
@@ -14,7 +15,16 @@ namespace AutomationTraining_M7
     {
         static void Main(string[] args)
         {
+            SalaryEmployee salempl = new SalaryEmployee();
+            salempl.fnDisplayInfo();
+            CommissionEmployee comempl = new CommissionEmployee(12,"Mauricio",50,10 );
+            comempl.fnDisplayInfo();
+            HourlyEmployee hrempl = new HourlyEmployee();
+            hrempl.fnDisplayInfo();
+        
+
             Console.ReadKey();
+
 
         }
     }
