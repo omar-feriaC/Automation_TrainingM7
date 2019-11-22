@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.DannyBeltran_M7_Final
 {
-    class HourlyEmployee
+    class HourlyEmployee : IPayrollCalculator
     {
         public int IntHoursWorked { get; set; }
         public int IntHoursRate { get; set; }
