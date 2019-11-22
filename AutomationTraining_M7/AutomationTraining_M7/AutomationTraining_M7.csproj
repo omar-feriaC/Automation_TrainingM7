@@ -59,7 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base Files\BaseTest.cs" />
-    <Compile Include="DanielLuna_M7_Final\IPayrollCalculator.cs" />
+    <Compile Include="JoseNovelo_M7_Final\ComissionEmployee.cs" />
+    <Compile Include="JoseNovelo_M7_Final\HourlyEmployee.cs" />
+    <Compile Include="JoseNovelo_M7_Final\IPayrollCalculator.cs" />
+    <Compile Include="JoseNovelo_M7_Final\SalaryEmployee.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test Cases\Prueba1.cs" />
