@@ -1,4 +1,5 @@
 ﻿using AutomationTraining_M7.Base_Files;
+using AutomationTraining_M7.KevinMaldonado_M7_Final;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
@@ -14,7 +15,20 @@ namespace AutomationTraining_M7
     {
         static void Main(string[] args)
         {
+
+
+            SalaryEmployee objSE = new SalaryEmployee();
+            objSE.fnDisplayInfo();
+
+            Console.WriteLine("********");
+
+            CommisionEmployee objCE = new CommisionEmployee();
+
+
+
+         
             Console.ReadKey();
+           
 
         }
     }
