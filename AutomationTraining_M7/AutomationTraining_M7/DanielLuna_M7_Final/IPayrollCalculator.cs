@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 namespace AutomationTraining_M7.DanielLuna_M7_Final
 {
     interface IPayrollCalculator
-    { test
+    {
+        int intID { get; set; }
+        string strName { get; set; }
+        double dblPayroll { get; set; }
+        double dblComPayroll { get; set; }
+        void fnDisplayInfo();
     }
 }
