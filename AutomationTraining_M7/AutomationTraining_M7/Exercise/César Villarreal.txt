@@ -1,3 +1,0 @@
-Shape1: Square
-Shape2: Prism
-NuGet : Microsoft.Extensions.DependencyInjection

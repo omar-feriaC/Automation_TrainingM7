@@ -1,10 +1,6 @@
 ﻿
-using AutomationTraining_M7.Luis_Esperon_M7_Excercise;
-using NUnit.Framework;
-using OpenQA.Selenium;
+using AutomationTraining_M7.LuisEsperon_M7_Final;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,36 +13,27 @@ namespace AutomationTraining_M7
         static void Main(string[] args)
         {
 
-            Console.WriteLine("**********2D Class********");
 
-            Shape2D objS2D = new Shape2D();
-            objS2D.fnDisplayInfo();
+            Console.WriteLine("**********Salary********");
 
-
-            Console.WriteLine("*********3D Class**********");
-
-            Shape3D objS3D = new Shape3D();
-            objS3D.fnDisplayInfo();
+            SalaryEmployee obj1 = new SalaryEmployee(777, "JohnDoe", 1000);
+            obj1.fnDisplayInfo();
 
 
-            Console.WriteLine("*********PENTAGON Class**********");
+            Console.WriteLine("*********Salary+Commission**********");
 
-            Pentagon objPentagon1 = new Pentagon(5, 10);
-
-            objPentagon1.fnDisplayInfo();
-
-            Console.WriteLine("*********RHOMBOID Class*********");
-
-            Rhomboid objRhomboid1 = new Rhomboid(2, 3, 2, 4);
-
-            objRhomboid1.fnDisplayInfo();
+            CommissionEmployee obj3 = new CommissionEmployee(500, obj1.dbSalaryPayroll);
+            obj3.fnDisplayInfo();
 
 
-            Console.WriteLine("*********PENTAHEDROM Class*********");
+            Console.WriteLine("*********Hourly Payroll**********");
 
-            Pentahedrom objPentahedrom1= new Pentahedrom(3,5,6);
+            HourlyEmployee obj2 = new HourlyEmployee(40,5);
+            obj2.fnDisplayInfo();
 
-             objPentahedrom1.fnDisplayInfo();
+
+           
+           
 
             Console.ReadKey();
             

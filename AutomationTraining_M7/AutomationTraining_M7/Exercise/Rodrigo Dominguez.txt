@@ -1,3 +1,0 @@
-Shape1: Triangle
-Shape2: Prism
-NuGet : Microsoft.ApplicationInsights

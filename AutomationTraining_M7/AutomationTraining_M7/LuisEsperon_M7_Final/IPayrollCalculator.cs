@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationTraining_M7.Luis_Esperon_M7_Excercise
+namespace AutomationTraining_M7.LuisEsperon_M7_Final
 {
-    interface IShape
+    interface IPayrollCalculator
     {
-
-        double dblArea { get; set; }
-        double dblPerimeter { get; set; }
+        //Attributes
+        int intId { get; set; }
         string strName { get; set; }
+
+        //Methods
         void fnDisplayInfo();
 
     }

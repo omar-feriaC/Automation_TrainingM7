@@ -1,3 +1,0 @@
-Shape1: Triangl
-Shape2: Cube
-NuGet : Microsoft.Extensions.Logging

@@ -1,3 +1,0 @@
-Shape1: Rhomboid
-Shape2: Pentaedrom
-NuGet : Microsoft.AspNet.Mvc

@@ -1,3 +1,0 @@
-Shape1: Diamond
-Shape2: Tetraedrom
-NuGet : jQuery
