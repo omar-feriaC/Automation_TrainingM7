@@ -16,7 +16,7 @@ namespace AutomationTraining_M7
         static void Main(string[] args)
         {
             SalaryEmployee SEmployee = new SalaryEmployee(1, "Benito Juarez", 1000);
-            HourlyEmployee HEmployee = new HourlyEmployee(2, "Miguel Hidalgo", 80, 10);
+            HourlyEmployee HEmployee = new HourlyEmployee(2, "Miguel Hidalgo", 80, 30);
             ComissionEmployee CEmployee = new ComissionEmployee(3, "Danny Beltran", 1000, 200);
 
             SEmployee.FnDisplayInfo();
