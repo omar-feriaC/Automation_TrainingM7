@@ -21,7 +21,7 @@ namespace AutomationTraining_M7.DanielLuna_M7_Final
 
         public new void fnCalculatePayroll() 
         {
-            dblComPayroll = dblPayroll + dblComPayroll;
+            dblComPayroll = dblPayroll + intCommission;
         }
 
         public new void fnDisplayInfo()
