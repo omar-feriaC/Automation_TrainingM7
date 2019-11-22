@@ -58,6 +58,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlejandroVillarreal_M7_Final\ComissionEmployee.cs" />
+    <Compile Include="AlejandroVillarreal_M7_Final\HourlyEmployee.cs" />
+    <Compile Include="AlejandroVillarreal_M7_Final\IPayRollCalculator.cs" />
+    <Compile Include="AlejandroVillarreal_M7_Final\SalaryEmployee.cs" />
     <Compile Include="Base Files\BaseTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

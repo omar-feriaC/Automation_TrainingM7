@@ -1,4 +1,5 @@
-﻿using AutomationTraining_M7.Base_Files;
+﻿using AutomationTraining_M7.AlejandroVillarreal_M7_Final;
+using AutomationTraining_M7.Base_Files;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
@@ -14,6 +15,10 @@ namespace AutomationTraining_M7
     {
         static void Main(string[] args)
         {
+            HourlyEmployee objHourlyEmployee = new HourlyEmployee();
+            objHourlyEmployee.fnDisplayInfo();
+
+
             Console.ReadKey();
 
         }
