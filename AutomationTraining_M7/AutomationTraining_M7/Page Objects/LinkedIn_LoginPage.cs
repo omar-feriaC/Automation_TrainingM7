@@ -25,7 +25,77 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
         /*IWEBELEMEMT OBJECTS*/
-        private static IWebElement objUserName => _objDriver.FindElement(By.Id(""));
+        private static IWebElement objUserNameTxt => _objDriver.FindElement(By.Id("STR_USERNAME_TEXT"));
+        private static IWebElement objPasswordTxt => _objDriver.FindElement(By.Id("STR_PASSWORD_TEXT"));
+        private static IWebElement objSignInBtn => _objDriver.FindElement(By.XPath("STR_SIGNIN_BTN"));
+
+
+
+        /*METHODS*/
+        //User Name Txt
+        private static IWebElement GetUserNameField ()
+        {
+
+
+
+            return objUserNameTxt;
+
+        }
+
+        public static void fnEnterUserName(string pstrUserName)
+        {
+
+
+            objUserNameTxt.Clear();
+            objUserNameTxt.SendKeys(pstrUserName);
+
+        }
+
+
+        //Password Txt
+        private static IWebElement GetPassword()
+        {
+            return objPasswordTxt;
+        }
+
+
+        public static void fnEnterPassword(string pstrPassWord)
+        {
+
+
+            objPasswordTxt.Clear();
+            objPasswordTxt.SendKeys(pstrPassWord);
+
+        }
+
+
+
+
+        //SignIn Button
+
+        private static IWebElement GetSignInButton()
+        {
+
+
+            return objSignInBtn;
+
+        }
+
+
+        public static void fnClickSignInButton()
+        {
+
+
+            objSignInBtn.Click();
+          
+
+        }
+
+
+
 
     }
+
+
+
 }
