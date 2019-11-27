@@ -1,4 +1,5 @@
 ﻿using AutomationTraining_M7.Base_Files;
+using AutomationTraining_M7.Page_Objects;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
