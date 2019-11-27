@@ -1,4 +1,5 @@
 ﻿using AutomationTraining_M7.Base_Files;
+using AutomationTraining_M7.Page_Objects;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
@@ -14,6 +15,13 @@ namespace AutomationTraining_M7
     {
         static void Main(string[] args)
         {
+            LinkedIn_LoginPage objLogin = new LinkedIn_LoginPage(driver);
+            LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
+            LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
+            LinkedIn_LoginPage.fnClickSignInButton();
+
+
+
             Console.ReadKey();
 
         }
