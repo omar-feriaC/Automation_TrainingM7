@@ -43,13 +43,13 @@ namespace AutomationTraining_M7.Base_Files
         }
 
         /*Clear and Send text to specific field*/
-        public static void FnSendkeyAndClear(By by, string pstrText)
+       /* public static void FnSendkeyAndClear(By by, string pstrText)
         {
             driver.FindElement(by).Clear();
             driver.FindElement(by).SendKeys(pstrText);
         }
 
-
+        */
 
 
     }
