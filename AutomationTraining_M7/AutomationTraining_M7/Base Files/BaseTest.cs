@@ -34,6 +34,7 @@ namespace AutomationTraining_M7.Base_Files
             driver.Url = strBrowserName;
         }
 
+       
         [TearDown]
         /*Close the browser and quit the selenium instance*/
         public static void AfterTest()
@@ -41,6 +42,7 @@ namespace AutomationTraining_M7.Base_Files
             driver.Close();
             driver.Quit();
         }
+        
 
         /*Clear and Send text to specific field*/
         public static void FnSendkeyAndClear(By by, string pstrText)
