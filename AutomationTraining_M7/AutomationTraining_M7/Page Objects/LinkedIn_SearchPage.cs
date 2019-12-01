@@ -18,6 +18,9 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_PEOPLE_BTN = "//span[text()='People']";
         readonly static string STR_ALLFILTERS_BTN = "//span[text()='All Filters']";
         readonly static string STR_MEXICO_CHCBX = "//label[text()='Mexico']";
+        readonly static string STR_ENGLISH_CHCBX = "//label[text()='English']";
+        readonly static string STR_SPANISH_CHCBX = "//label[text()='Spanish']";
+        readonly static string STR_APPLYFILTERS_BTN = "//button[@data-control-name ='all_filters_apply']";
 
         /*CONSTRUCTOR*/
         public LinkedIn_SearchPage(IWebDriver pobjDriver)
@@ -32,7 +35,10 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objPeopleButton => _objDriver2.FindElement(By.XPath(STR_PEOPLE_BTN));
         private static IWebElement objAllFiltersButton => _objDriver2.FindElement(By.XPath(STR_ALLFILTERS_BTN));
         private static IWebElement objMexicoChcbx => _objDriver2.FindElement(By.XPath(STR_MEXICO_CHCBX));
-        
+        private static IWebElement objEnglishChcbx => _objDriver2.FindElement(By.XPath(STR_ENGLISH_CHCBX));
+        private static IWebElement objSpanishChcbx => _objDriver2.FindElement(By.XPath(STR_SPANISH_CHCBX));
+        private static IWebElement objApplyAllFiltersButton => _objDriver2.FindElement(By.XPath(STR_APPLYFILTERS_BTN));
+
 
         /*METHODS*/
         //Search Field
@@ -86,7 +92,42 @@ namespace AutomationTraining_M7.Page_Objects
 
         }
 
+        //English Checkbox
+        private IWebElement GetEnglishCheckbox()
+        {
+            return objEnglishChcbx;
+        }
 
+        public static void fnClickEnglishCheckbox()
+        {
+            objEnglishChcbx.Click();
+
+        }
+
+        //Spanish Checkbox
+        private IWebElement GetSpanishCheckbox()
+        {
+            return objSpanishChcbx;
+        }
+
+        public static void fnClickSpanishCheckbox()
+        {
+            objSpanishChcbx.Click();
+
+        }
+
+
+        //Apply All Filters Button
+        private IWebElement GetApplyAllFiltersButton()
+        {
+            return objApplyAllFiltersButton;
+        }
+
+        public static void fnApplyAllFiltersButton()
+        {
+            objApplyAllFiltersButton.Click();
+
+        }
 
     }
 }
