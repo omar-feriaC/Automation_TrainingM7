@@ -15,6 +15,9 @@ namespace AutomationTraining_M7.Page_Objects
         /*LOCATORS FOR EACH ELEMENT*/
  
         readonly static string STR_SEARCH_FIELD = "//input[@class = 'search-global-typeahead__input']";
+        readonly static string STR_PEOPLE_BTN = "//span[text()='People']";
+        readonly static string STR_ALLFILTERS_BTN = "//span[text()='All Filters']";
+        readonly static string STR_MEXICO_CHCBX = "//label[text()='Mexico']";
 
         /*CONSTRUCTOR*/
         public LinkedIn_SearchPage(IWebDriver pobjDriver)
@@ -26,6 +29,10 @@ namespace AutomationTraining_M7.Page_Objects
 
         /*IWEBELEMEMT OBJECTS*/
         private static IWebElement objSearchField => _objDriver2.FindElement(By.XPath(STR_SEARCH_FIELD));
+        private static IWebElement objPeopleButton => _objDriver2.FindElement(By.XPath(STR_PEOPLE_BTN));
+        private static IWebElement objAllFiltersButton => _objDriver2.FindElement(By.XPath(STR_ALLFILTERS_BTN));
+        private static IWebElement objMexicoChcbx => _objDriver2.FindElement(By.XPath(STR_MEXICO_CHCBX));
+        
 
         /*METHODS*/
         //Search Field
@@ -40,6 +47,46 @@ namespace AutomationTraining_M7.Page_Objects
             objSearchField.SendKeys(pstrInfo);
             objSearchField.SendKeys(Keys.Enter);
         }
+
+        //People Button
+        private IWebElement GetPeopleButton()
+        {
+            return objPeopleButton;
+        }
+
+        public static void fnClickPeopleButton()
+        {
+            objPeopleButton.Click();
+            
+        }
+
+
+        //All Filters Button
+        private IWebElement GetAllFiltersButton()
+        {
+            return objAllFiltersButton;
+        }
+
+        public static void fnClickAllFiltersButton()
+        {
+            objAllFiltersButton.Click();
+
+        }
+
+
+        //Mexico Checkbox
+        private IWebElement GetMexicoCheckbox()
+        {
+            return objMexicoChcbx;
+        }
+
+        public static void fnClickMexicoCheckbox()
+        {
+            objMexicoChcbx.Click();
+
+        }
+
+
 
     }
 }

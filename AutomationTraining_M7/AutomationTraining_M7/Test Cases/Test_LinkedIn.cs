@@ -46,10 +46,45 @@ namespace AutomationTraining_M7.Test_Cases
 
             LinkedIn_SearchPage.fnSendInfo("4th Source");
 
-            //Giving some time for the results to load
+            //Giving some time for the results and People button to load
+            Task.Delay(10000).Wait();
+
+
+            //Verifying that Initial Search executed successfully by checking if the filter bar is present or not
+            Boolean isPresent = driver.FindElements(By.XPath("//div[contains(@class,'search-filters-bar')]")).Count() > 0;
+            Assert.AreEqual(true, isPresent);
+           
+
+            LinkedIn_SearchPage.fnClickPeopleButton();
+
+            //Giving some time for the page to reload
+            Task.Delay(10000).Wait();
+
+            // Verifying that People Filter was selected by checking if the filter Jobs dissapeared
+            Boolean isPresent2 = driver.FindElements(By.XPath("//button[contains(@aria-label,'View only Jobs results')]")).Count() > 0;
+            Assert.AreEqual(false, isPresent2);
+            
+
+            LinkedIn_SearchPage.fnClickAllFiltersButton();
+
+            //Giving some time for the page to reload
             Task.Delay(5000).Wait();
 
-            
+            // Verifying that All Filter was selected by checking if the "All People Filters" 
+            Boolean isPresent3 = driver.FindElements(By.XPath("//h2[@id='advanced-facets-modal-header']")).Count() > 0;
+            Assert.AreEqual(true, isPresent3);
+
+
+            LinkedIn_SearchPage.fnClickMexicoCheckbox();
+
+
+            //Giving some time for the page to reload
+            Task.Delay(5000).Wait();
+
+            // Verifying that Mexico Checkbox was selected by checking if the counter of checked options is enabled
+            Boolean isPresent4 = driver.FindElements(By.XPath("//span[@class='search-advanced-facets__selected-counts mv0 ml1']")).Count() > 0;
+            Assert.AreEqual(true, isPresent4);
+
 
         }
     }
