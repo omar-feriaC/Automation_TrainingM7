@@ -14,7 +14,7 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebDriver _ObjSrcDriver;
 
         /*LOCATORS FOR EACH ELEMENT*/
-        readonly static string STR_CAPTCHA_CLK = "////span[@id='recaptcha-anchor']";
+        readonly static string STR_CAPTCHA_CLK = "//div[@class='recaptcha-checkbox-border']";
         readonly static string STR_SEARCH_TEXT = "//input[@placeholder='Search' or @placeholder='Buscar']";
         readonly static string STR_SEARCH_BTN = "//div[@class='search-global-typeahead__controls']";
         readonly static string STR_PEOPLE_BTN = "//button[span[text()='People' or text()='Gente']]";
