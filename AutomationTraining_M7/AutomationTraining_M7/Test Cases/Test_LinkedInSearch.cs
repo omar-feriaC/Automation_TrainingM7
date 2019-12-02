@@ -70,12 +70,18 @@ namespace AutomationTraining_M7.Test_Cases
             //*****Step 6*****//
             LinkedIn_SearchPage.fnClickEnglishCheckbox();
 
+            //Giving some time for the page to reload
+            Task.Delay(5000).Wait();
+
             // Verifying that English Checkbox was selected by checking if the counter of checked options is enabled and equal to 2
             Boolean isPresent5 = driver.FindElements(By.XPath("//span[@class= 'search-advanced-facets__selected-counts mv0 ml1' and text() ='2']")).Count > 0;
             Assert.AreEqual(true, isPresent5);
 
 
             LinkedIn_SearchPage.fnClickSpanishCheckbox();
+
+            //Giving some time for the page to reload
+            Task.Delay(5000).Wait();
 
             // Verifying that English Checkbox was selected by checking if the counter of checked options is enabled and equal to 3
             Boolean isPresent6 = driver.FindElements(By.XPath("//span[@class= 'search-advanced-facets__selected-counts mv0 ml1' and text() ='3']")).Count > 0;
