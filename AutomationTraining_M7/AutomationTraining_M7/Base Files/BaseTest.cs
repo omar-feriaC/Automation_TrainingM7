@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -48,9 +49,5 @@ namespace AutomationTraining_M7.Base_Files
             driver.FindElement(by).Clear();
             driver.FindElement(by).SendKeys(pstrText);
         }
-
-
-
-
     }
 }
