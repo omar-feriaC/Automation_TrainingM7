@@ -38,6 +38,28 @@ namespace AutomationTraining_M7.Test_Cases
             Thread.Sleep(5000);
             LinkedIn_SearchPage.fnSelectAllFilters();
             Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnGetRegionMx();
+            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnLanguageEng();
+            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnLanguageEsp();
+            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnClickApplyBtn();
+            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search2"));
+            LinkedIn_SearchPage.fnClickSearchBtn();
+            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search3"));
+            LinkedIn_SearchPage.fnClickSearchBtn();
+            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search4"));
+            LinkedIn_SearchPage.fnClickSearchBtn();
+            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search5"));
+            LinkedIn_SearchPage.fnClickSearchBtn();
+            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search6"));
+            LinkedIn_SearchPage.fnClickSearchBtn();
 
 
         }
