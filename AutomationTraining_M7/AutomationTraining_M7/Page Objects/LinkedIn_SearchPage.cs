@@ -14,8 +14,8 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebDriver _ObjSrcDriver;
 
         /*LOCATORS FOR EACH ELEMENT*/
-        readonly static string STR_SEARCH_TEXT = "//input[@placeholder='Search']";
-        readonly static string STR_SEARCH_BTN = "//input[@placeholder='Search']";
+        readonly static string STR_SEARCH_TEXT = "//input[@placeholder='Search' or @placeholder='Buscar']";
+        readonly static string STR_SEARCH_BTN = "//div[@class='search-global-typeahead__controls']";
         readonly static string STR_PEOPLE_BTN = "//button[span[text()='People' or text()='Gente']]";
         readonly static string STR_ALLFILTERS_BTN = "//button[span[text()='All Filters' or text()='Todos los Filtros']]";
         readonly static string STR_REGIONMX_CB = "//input[@id='sf-geoRegion-mx:0']";
