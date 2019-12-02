@@ -19,9 +19,9 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_SEARCH_BTN = "//div[@class='search-global-typeahead__controls']";
         readonly static string STR_PEOPLE_BTN = "//button[span[text()='People' or text()='Gente']]";
         readonly static string STR_ALLFILTERS_BTN = "//button[span[text()='All Filters' or text()='Todos los filtros']]";
-        readonly static string STR_REGIONMX_CB = "//input[@id='sf-geoRegion-mx:0']";
-        readonly static string STR_LANG_ENG_CB = "//input[@id='sf-profileLanguage-en']";
-        readonly static string STR_LANG_ESP_CB = "//input[@id='sf-profileLanguage-es']";
+        readonly static string STR_REGIONMX_CB = "//label[text()='Mexico']";
+        readonly static string STR_LANG_ENG_CB = "//label[text()='English' or text()='Ingles']";
+        readonly static string STR_LANG_ESP_CB = "//label[text()='Spanish' or text()='Español']";
         readonly static string STR_APPLY_BTN = "//button[@data-control-name='all_filters_apply']";
 
         /*CONSTRUCTOR*/
