@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Base_Files
 {
-    class BaseTest
+    class LinkedIn_LoginPage
     {
         //**************************************************
         //*                V A R I A B L E S

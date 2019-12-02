@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Test_Cases
 {
-    class Prueba1 : BaseTest 
+    class Prueba1 : Base_Files.LinkedIn_LoginPage 
     {
         [Test, Order(0)]
         public void TestLogin1()

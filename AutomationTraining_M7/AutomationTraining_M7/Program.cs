@@ -12,15 +12,15 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7
 {
-    class Program : BaseTest
+    class Program : Base_Files.LinkedIn_LoginPage
     {
         static void Main(string[] args)
         {
             SetUp();
-            LinkedIn_LoginPage objLogin = new LinkedIn_LoginPage(driver);
-            LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
-            LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
-            LinkedIn_LoginPage.fnClickSignInButton();
+            Page_Objects.LinkedIn_LoginPage objLogin = new Page_Objects.LinkedIn_LoginPage(driver);
+            Page_Objects.LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
+            Page_Objects.LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
+            Page_Objects.LinkedIn_LoginPage.fnClickSignInButton();
 
             /*
             SalaryEmployee objSalary = new SalaryEmployee(0, "Carlos Ruiz", 100.10);

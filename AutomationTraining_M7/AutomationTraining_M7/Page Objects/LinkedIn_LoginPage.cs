@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Page_Objects
 {
-    class LinkedIn_LoginPage : BaseTest
+    class LinkedIn_LoginPage : Base_Files.LinkedIn_LoginPage
     {
         /*DRIVER REFERENCE FOR POM*/
         private static IWebDriver _objDriver;
