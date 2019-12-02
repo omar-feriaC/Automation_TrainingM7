@@ -64,12 +64,14 @@
     <Compile Include="FinalM7\IPayrollCalculator.cs" />
     <Compile Include="FinalM7\SalaryEmployee.cs" />
     <Compile Include="Page Objects\LinkedIn_LoginPage.cs" />
+    <Compile Include="Page Objects\LinkedIn_LoginPageTziu.cs" />
     <Compile Include="Page Objects\LinkedIn_SearchPage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test Cases\Prueba1.cs" />
     <Compile Include="Test Cases\Test_LinkedIn.cs" />
     <Compile Include="Test Cases\Test_LinkedInSearch.cs" />
+    <Compile Include="Test Cases\Test_LinkedIn_Login.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
