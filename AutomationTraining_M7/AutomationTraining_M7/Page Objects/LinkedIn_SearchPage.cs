@@ -14,10 +14,11 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebDriver _ObjSrcDriver;
 
         /*LOCATORS FOR EACH ELEMENT*/
+        readonly static string STR_CAPTCHA_CLK = "////span[@id='recaptcha-anchor']";
         readonly static string STR_SEARCH_TEXT = "//input[@placeholder='Search' or @placeholder='Buscar']";
         readonly static string STR_SEARCH_BTN = "//div[@class='search-global-typeahead__controls']";
         readonly static string STR_PEOPLE_BTN = "//button[span[text()='People' or text()='Gente']]";
-        readonly static string STR_ALLFILTERS_BTN = "//button[span[text()='All Filters' or text()='Todos los Filtros']]";
+        readonly static string STR_ALLFILTERS_BTN = "//button[span[text()='All Filters' or text()='Todos los filtros']]";
         readonly static string STR_REGIONMX_CB = "//input[@id='sf-geoRegion-mx:0']";
         readonly static string STR_LANG_ENG_CB = "//input[@id='sf-profileLanguage-en']";
         readonly static string STR_LANG_ESP_CB = "//input[@id='sf-profileLanguage-es']";
@@ -30,6 +31,7 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
         /*IWEBELEMEMT OBJECTS*/
+        private static IWebElement objCaptcha => _ObjSrcDriver.FindElement(By.XPath(STR_CAPTCHA_CLK));
         private static IWebElement objSearchText => _ObjSrcDriver.FindElement(By.XPath(STR_SEARCH_TEXT));
         private static IWebElement objSearchBtn => _ObjSrcDriver.FindElement(By.XPath(STR_SEARCH_BTN));
         private static IWebElement objPeopleBtn => _ObjSrcDriver.FindElement(By.XPath(STR_PEOPLE_BTN));
@@ -40,6 +42,17 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objApplyBtn => _ObjSrcDriver.FindElement(By.XPath(STR_APPLY_BTN));
 
         /*METHODS*/
+        //Captcha
+        private IWebElement GetCaptcha() 
+        {
+            return objCaptcha;
+        }
+
+        public static void fnClickCaptcha() 
+        {
+            objCaptcha.Click();
+        }
+
         //Search Txt
         private IWebElement GetSearchField()
         {

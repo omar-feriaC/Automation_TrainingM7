@@ -25,13 +25,19 @@ namespace AutomationTraining_M7.Test_Cases
             LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
             LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
             LinkedIn_LoginPage.fnClickSignInButton();
-            Thread.Sleep(8000);
+            Thread.Sleep(5000);
 
+            LinkedIn_SearchPage.fnClickCaptcha();
+            Thread.Sleep(5000);
             objSearch = new LinkedIn_SearchPage(driver);
             LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search1"));
             LinkedIn_SearchPage.fnClickSearchBtn();
             Thread.Sleep(5000);
-           
+            LinkedIn_SearchPage.fnSelectPeople();
+            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnSelectAllFilters();
+            Thread.Sleep(5000);
+
 
         }
 
