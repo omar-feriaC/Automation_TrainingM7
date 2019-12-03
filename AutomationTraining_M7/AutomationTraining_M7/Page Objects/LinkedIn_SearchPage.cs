@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutomationTraining_M7.Base_Files;
+using OpenQA.Selenium.Support.UI;
 
 namespace AutomationTraining_M7.Page_Objects
 {
@@ -16,10 +17,10 @@ namespace AutomationTraining_M7.Page_Objects
         /*ELEMENT LOCATORS*/
         readonly static string strSearchBoxXpath = "//input[contains(@class,'search-global-typeahead__input')]";
         readonly static string strSearchBtnXpath = "//button[contains(@class,'search-global-typeahead__button')]";
-        readonly static string strPeopleButtonId = "ember6499";
-        readonly static string strPeopleFilterDropDownId = "ember5164";
-        readonly static string strPeopleFilterDropDownContentsXpath = "//*[@id='ember5164']/artdeco-dropdown-content/div/ul/li";
-        readonly static string strAllFiltersButtonId = "ember5322";
+        readonly static string strPeopleButtonXpath = "//*[@aria-label='View only People results']";
+        readonly static string strPeopleFilterDropDownXpath = "//*[text()='People']/ancestor::artdeco-dropdown";
+        readonly static string strPeopleFilterDropDownContentsXpath = $"{strPeopleFilterDropDownXpath}//*[@class='search-vertical-filter__dropdown-list-item']/*";
+        readonly static string strAllFiltersButtonXpath = "//button[@data-control-name='all_filters']";
 
         public LinkedIn_SearchPage(IWebDriver pobjDriver)
         {
@@ -29,10 +30,10 @@ namespace AutomationTraining_M7.Page_Objects
         /*PAGE ELEMENT OBJECTS*/
         private static IWebElement objSearchBoxInput => _objDriver.FindElement(By.XPath(strSearchBoxXpath));
         private static IWebElement objSearchButton => _objDriver.FindElement(By.XPath(strSearchBtnXpath));
-        private static IWebElement objPeopleButton => _objDriver.FindElement(By.Id(strPeopleButtonId));
-        private static IWebElement objPeopleFilterDropDown => _objDriver.FindElement(By.Id(strPeopleFilterDropDownId));
+        private static IWebElement objPeopleButton => _objDriver.FindElement(By.XPath(strPeopleButtonXpath));
+        private static IWebElement objPeopleFilterDropDown => _objDriver.FindElement(By.XPath(strPeopleFilterDropDownXpath));
         private static IList<IWebElement> lstPeopleFilterDropDown => _objDriver.FindElements(By.XPath(strPeopleFilterDropDownContentsXpath));
-        private static IWebElement objAllFiltersButton => _objDriver.FindElement(By.Id(strAllFiltersButtonId));
+        private static IWebElement objAllFiltersButton => _objDriver.FindElement(By.Id(strAllFiltersButtonXpath));
 
         /*METHODS*/
         //Get page elements
@@ -44,17 +45,21 @@ namespace AutomationTraining_M7.Page_Objects
         {
             return objSearchButton;
         }
-        private IWebElement GetPeopleButton()
+        public IWebElement GetPeopleButton()
         {
             return objPeopleButton;
         }
-        private IWebElement GetPeopleFilterButton()
+        public IWebElement GetPeopleFilterButton()
         {
             return objPeopleFilterDropDown;
         }
-        private IList<IWebElement> GetPeopleFilterContents()
+        public IList<IWebElement> GetPeopleFilterContents()
         {
             return lstPeopleFilterDropDown;
+        }
+        public IWebElement GetPeopleFilterIndexContent(int index)
+        {
+            return lstPeopleFilterDropDown[index];
         }
         private IWebElement GetAllFiltersButton()
         {
@@ -93,9 +98,9 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
         //Select the option from drop down
-        public void fnSelectDropDownOption(int iIndex)
+        public void fnSelectDropDownOption(int index)
         {
-            lstPeopleFilterDropDown[iIndex].Click();
+            lstPeopleFilterDropDown[index].Click();
         }
     }
 }
