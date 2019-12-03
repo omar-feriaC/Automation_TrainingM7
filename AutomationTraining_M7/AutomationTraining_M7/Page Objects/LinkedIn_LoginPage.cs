@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Page_Objects
 {
-    class LinkedIn_LoginPage : BaseTest
+    class LinkedIn_LoginPage
     {
         /*DRIVER REFERENCE FOR POM*/
         private static IWebDriver _objDriver;
@@ -25,7 +25,45 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
         /*IWEBELEMEMT OBJECTS*/
-        private static IWebElement objUserName => _objDriver.FindElement(By.Id(""));
+        private static IWebElement ObjUserNameTxt => _objDriver.FindElement(By.Id(STR_USERNAME_TEXT));
+        private static IWebElement objPasswordTxt => _objDriver.FindElement(By.Id(STR_PASSWORD_TEXT));
+        private static IWebElement objSignInBtn => _objDriver.FindElement(By.XPath(STR_SIGNIN_BTN));
 
+        public static IWebDriver objDriver { get => _objDriver; set => _objDriver = value; }
+
+        /*METHODS*/
+        /*Username*/
+        private static IWebElement GetUsernameField() 
+        {
+            return ObjUserNameTxt;
+        }
+
+        public static void fnEnterUsername(string strUsername)
+        {
+            ObjUserNameTxt.Clear();
+            ObjUserNameTxt.SendKeys(strUsername);
+        }
+        /*Password*/
+        private static IWebElement GetPassword()
+        {
+            return objPasswordTxt;
+        }
+
+        public static void fnEnterPassword(string strPassword)
+        {
+            objPasswordTxt.Clear();
+            objPasswordTxt.SendKeys(strPassword);
+        }
+        /*Sign in*/
+        private static IWebElement GetSignInBtn()
+        {
+            return objSignInBtn;
+        }
+
+        public static void fnClickSignInButton()
+        {
+            objSignInBtn.Click();
+        }
+        /**/
     }
 }

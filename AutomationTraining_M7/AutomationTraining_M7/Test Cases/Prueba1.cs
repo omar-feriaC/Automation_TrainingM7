@@ -1,4 +1,5 @@
 ﻿using AutomationTraining_M7.Base_Files;
+using AutomationTraining_M7.Page_Objects;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
@@ -15,6 +16,9 @@ namespace AutomationTraining_M7.Test_Cases
         [Test, Order(0)]
         public void TestLogin1()
         {
+            
+            //LinkedIn_LoginPage obj_LILP = new LinkedIn_LoginPage(driver);
+            //obj_LILP.GetPassword().Click();
             FnSendkeyAndClear(By.Name("userName"), ConfigurationManager.AppSettings.Get("username"));
             FnSendkeyAndClear(By.Name("password"), ConfigurationManager.AppSettings.Get("password"));
         }
