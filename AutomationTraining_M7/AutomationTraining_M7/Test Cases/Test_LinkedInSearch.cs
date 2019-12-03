@@ -16,8 +16,7 @@ namespace AutomationTraining_M7.Test_Cases
     {
         //LinkedIn_LoginPage objLogin; -- DELETE
         public WebDriverWait _driverWait;
-        LinkedIn_SearchPage objSearch;
-
+      
         [Test]
         public void Search_LinkedIn()
         {
@@ -26,7 +25,6 @@ namespace AutomationTraining_M7.Test_Cases
             string[] arrLanguages = { "Spanish", "English" };
 
             //Step# 1 .- Log In 
-            objSearch = new LinkedIn_SearchPage(driver);
             Login_LinkedIn();
 
             //Step# 2 .- Verify if captcha exist
@@ -51,27 +49,7 @@ namespace AutomationTraining_M7.Test_Cases
                 }
             }
 
-            //Step# 3 .- Set Filters
-            LinkedIn_SearchPage.fnEnterSearchText("Java");
-            LinkedIn_SearchPage.fnClickSearchBtn();
-            LinkedIn_SearchPage.fnSelectPeople();
-            Thread.Sleep(5000);
-            LinkedIn_SearchPage.fnSelectAllFilters();
-            Thread.Sleep(5000);
-            LinkedIn_SearchPage.fnGetRegionMx();
-            Thread.Sleep(5000);
-            LinkedIn_SearchPage.fnLanguageEng();
-            Thread.Sleep(5000);
-            LinkedIn_SearchPage.fnLanguageEsp();
-            Thread.Sleep(5000);
-            LinkedIn_SearchPage.fnClickApplyBtn();
-
-            //Step# 4 .- Search Elements
-            foreach (string strvalue in arrTechnologies)
-            {
-                LinkedIn_SearchPage.fnEnterSearchText(strvalue);
-                LinkedIn_SearchPage.fnClickSearchBtn();
-            }
+    
 
 
         }
