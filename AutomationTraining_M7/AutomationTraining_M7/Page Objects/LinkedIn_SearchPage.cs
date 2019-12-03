@@ -15,11 +15,11 @@ namespace AutomationTraining_M7.Page_Objects
 
         /*Locators for each element*/
         readonly static string STR_SEARCH_TEXT = "//input[@placeholder='Search' or @placeholder='Buscar']";
-        readonly static string STR_SEARCH_BTN = "//input[@class=search-global-typeahead__controls";
+        readonly static string STR_SEARCH_BTN = "//div[@class='search-global-typeahead__controls']";
         readonly static string STR_PEOPLE_BTN = "//span[text()='People' or text()='Gente']";
         readonly static string STR_ALLFILTERS_BTN = "//button[span[text()='All Filters' or text()='Todos los filtros']]";
-        readonly static string STR_REGIONMEX_CB = "//label[text()='Mexico']";
-        readonly static string STR_LANG_ENG_CB = "//label[text()='Ingles' or text()='English']";
+        readonly static string STR_REGIONMEX_CB = "//label[text()='México' or text()='Mexico']";
+        readonly static string STR_LANG_ENG_CB = "//label[text()='Inglés' or text()='English']";
         readonly static string STR_LANG_ESP_CB = "//label[text()='Español' or text()='Spanish']";
         readonly static string STR_APPLY_BTN = "//button[@data-control-name='all_filters_apply']";
 
@@ -72,7 +72,7 @@ namespace AutomationTraining_M7.Page_Objects
             return objPeopleBtn;
         }
 
-        private static void fnClickPeopleBtn()
+        public static void fnClickPeopleBtn()
         {
             objPeopleBtn.Click();
         }
@@ -83,7 +83,7 @@ namespace AutomationTraining_M7.Page_Objects
             return objAllFiltersBtn;
         }
 
-        private static void fnClickAllFiltersBtn()
+        public static void fnClickAllFiltersBtn()
         {
             objAllFiltersBtn.Click();
         }
@@ -94,7 +94,7 @@ namespace AutomationTraining_M7.Page_Objects
             return objRegionMexCb;
         }
 
-        private static void fnClickRegionMexCb()
+        public static void fnClickRegionMexCb()
         {
             objRegionMexCb.Click();
         }
@@ -105,7 +105,7 @@ namespace AutomationTraining_M7.Page_Objects
             return objLangEngCb;
         }
 
-        private static void fnClickLangEngCb()
+        public static void fnClickLangEngCb()
         {
             objLangEngCb.Click();
         }
@@ -116,7 +116,7 @@ namespace AutomationTraining_M7.Page_Objects
             return objLangEspCb;
         }
 
-        private static void fnClickLangEspCb()
+        public static void fnClickLangEspCb()
         {
             objLangEspCb.Click();
         }
@@ -127,7 +127,7 @@ namespace AutomationTraining_M7.Page_Objects
             return objApplyBtn;
         }
 
-        private static void fnClickApplyBtn()
+        public static void fnClickApplyBtn()
         {
             objApplyBtn.Click();
         }

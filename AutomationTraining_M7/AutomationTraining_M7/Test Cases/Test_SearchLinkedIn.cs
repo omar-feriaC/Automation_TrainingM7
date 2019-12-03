@@ -25,7 +25,41 @@ namespace AutomationTraining_M7.Test_Cases
             LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
             LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
             LinkedIn_LoginPage.fnClickSignInButton();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
+            objSearch = new LinkedIn_SearchPage(driver);
+
+            LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search1"));
+            LinkedIn_SearchPage.fnClickSearchButton();
+            Thread.Sleep(5000);
+
+            LinkedIn_SearchPage.fnClickPeopleBtn();
+            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnClickAllFiltersBtn();
+            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnClickRegionMexCb();
+            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnClickLangEngCb();
+            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnClickLangEspCb();
+            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnClickApplyBtn();
+            Thread.Sleep(5000);
+
+            LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search2"));
+            LinkedIn_SearchPage.fnClickSearchButton();
+            Thread.Sleep(5000);
+
+            LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search3"));
+            LinkedIn_SearchPage.fnClickSearchButton();
+            Thread.Sleep(5000);
+
+            LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search4"));
+            LinkedIn_SearchPage.fnClickSearchButton();
+            Thread.Sleep(5000);
+
+            LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search5"));
+            LinkedIn_SearchPage.fnClickSearchButton();
+            Thread.Sleep(5000);
 
         }
     }
