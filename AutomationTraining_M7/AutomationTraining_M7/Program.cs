@@ -15,6 +15,8 @@ namespace AutomationTraining_M7
     {
         static void Main(string[] args)
         {
+            SetUp();
+
             /*
             SalaryEmployee objSalary = new SalaryEmployee(0, "Carlos Ruiz", 100.10);
             HourlyEmployee objHourly = new HourlyEmployee(1, "Cesar Padilla", 5, 10.5);
