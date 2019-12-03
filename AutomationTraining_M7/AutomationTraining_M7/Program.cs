@@ -32,6 +32,8 @@ namespace AutomationTraining_M7
             objComm.fnDisplayInfo();
             */
 
+            Console.WriteLine("Test");
+
             Console.ReadKey();
 
         }
