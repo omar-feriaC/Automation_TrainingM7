@@ -23,7 +23,7 @@ namespace AutomationTraining_M7.Test_Cases
         {
             //VARIABLES
             string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol" };
-
+            string[] arrLanguages = { "Spanish", "English" };
 
             //Step# 1 .- Log In 
             objSearch = new LinkedIn_SearchPage(driver);
