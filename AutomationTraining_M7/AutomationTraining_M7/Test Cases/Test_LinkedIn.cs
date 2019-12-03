@@ -25,7 +25,7 @@ namespace AutomationTraining_M7.Test_Cases
             
             //Assert.AreEqual(true, driver.Title.Contains("Login,"), "Title not mach");
             //Assert.AreEqual(driver.Title, "AnotherTitle");
-            Assert.AreNotEqual(true, driver.Title.Contains("Login"), "Title not match");
+            //Assert.AreNotEqual(true, driver.Title.Contains("Login"), "Title not match");
             //Assert.IsTrue(driver.Title.Contains("LinkedIn"));
         }
     }

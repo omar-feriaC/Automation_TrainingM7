@@ -16,10 +16,10 @@ namespace AutomationTraining_M7.Page_Objects
         /*LOCATORS FOR EACH ELEMENT*/
         readonly static string STR_SEARCHBOX_TEXT = "//input[@class = 'search-global-typeahead__input']";
         readonly static string STR_PEOPLE_BTN = "//span[text()='People']";
-        readonly static string STR_ALLFILTERS_BTN = "//span[text()='All Filders']";
-        readonly static string STR_MEXICO_CHK = "//label[text()='Mexico']";
-        readonly static string STR_SPANISH_CHK = "//label[text()='Emglish']";
-        readonly static string STR_ENGLISH_CHK = "//label[text()='Spanish']";
+        readonly static string STR_ALLFILTERS_BTN = "//span[text()='All Filters']";
+        readonly static string STR_MEXICO_CHK = "//label[text()='Mexico' or text()='México']";
+        readonly static string STR_SPANISH_CHK = "//label[text()='Spanish' or text()='Español']";
+        readonly static string STR_ENGLISH_CHK = "//label[text()='English' or text()='Inglés']";
 
 
         /*CONSTRUCTOR*/

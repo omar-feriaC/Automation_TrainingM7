@@ -23,15 +23,21 @@ namespace AutomationTraining_M7.Test_Cases
         {
             Login_LinkedIn();
             objSearch = new LinkedIn_SearchPage(driver);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(120);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             LinkedIn_SearchPage.fnSearchText("Amazon");
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            /*
             LinkedIn_SearchPage.fnClickPeopleButton();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             LinkedIn_SearchPage.fnSelectAllFilltersButton();
-            LinkedIn_SearchPage.fnSelectMexicoCheckbox();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);      
+            
+            //LinkedIn_SearchPage.fnSelectMexicoCheckbox();
+            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);            
             LinkedIn_SearchPage.fnSelectSpanishCheckbox();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            /*
             LinkedIn_SearchPage.fnSelectEnglishCheckbox();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             */
         }
     }
