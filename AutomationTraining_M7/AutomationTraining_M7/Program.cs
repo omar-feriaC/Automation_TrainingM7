@@ -1,5 +1,6 @@
 ﻿using AutomationTraining_M7.Base_Files;
 using AutomationTraining_M7.Carlos_Paz_M7_Final;
+using AutomationTraining_M7.Page_Objects;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
@@ -11,10 +12,12 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7
 {
-    class Program : BaseTest
+    class Program
     {
         static void Main(string[] args)
         {
+
+            /*
             Console.WriteLine("Hourly Employee");
             HourlyEmployee hourly = new HourlyEmployee(1, "Roberto", 40, 50);
             hourly.fnDisplayInfo();
@@ -34,6 +37,11 @@ namespace AutomationTraining_M7
             Console.WriteLine();
 
             Console.WriteLine("Press any key to close");
+            */
+
+
+       //     LinkedIn_LoginPage objLogin = new LinkedIn_LoginPage();
+
 
             Console.ReadKey();
 
