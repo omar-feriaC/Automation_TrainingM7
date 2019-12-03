@@ -10,7 +10,7 @@ namespace AutomationTraining_M7.Page_Objects
 {
     class LinkedIn_SearchPage : BaseTest
     {
-
+        //3)
         /*LOCATORS FOR EACH ELEMENT*/
         private static IWebDriver _ObjSrcDriver;
         readonly static string STR_CAPTCHA_CLK = "//div[@class='recaptcha-checkbox-checkmark']";
