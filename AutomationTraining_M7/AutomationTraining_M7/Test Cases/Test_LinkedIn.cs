@@ -1,6 +1,8 @@
 ﻿using AutomationTraining_M7.Base_Files;
 using AutomationTraining_M7.Page_Objects;
 using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -22,14 +24,6 @@ namespace AutomationTraining_M7.Test_Cases
             LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
             LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
             LinkedIn_LoginPage.fnClickSignInButton();
-            
-            //Assert.AreEqual(true, driver.Title.Contains("Login,"), "Title not mach");
-            //Assert.AreEqual(driver.Title, "AnotherTitle");
-            Assert.AreNotEqual(true, driver.Title.Contains("Login"), "Title not mach");
-            //Assert.IsTrue(driver.Title.Contains("LinkedIn"));
         }
-
-
-
     }
 }
