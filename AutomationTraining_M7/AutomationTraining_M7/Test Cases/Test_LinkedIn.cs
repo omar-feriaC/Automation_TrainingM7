@@ -2,6 +2,7 @@
 using AutomationTraining_M7.Page_Objects;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -17,6 +18,7 @@ namespace AutomationTraining_M7.Test_Cases
         private const string XpathToFind = "x";
         LinkedIn_LoginPage objLILP;
         LinkedIn_SearchPage objLISP;
+        public WebDriverWait _driverWait;
         [Test, Order(0)]
         public void Login_LinkedIn()
         {
@@ -28,7 +30,7 @@ namespace AutomationTraining_M7.Test_Cases
             LinkedIn_LoginPage.fnEnterUsername(ConfigurationManager.AppSettings.Get("userLinkedIn"));
             LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("passwordLinkedIn"));
             LinkedIn_LoginPage.fnClickSignInButton();
-            Thread.Sleep(5000);
+            Thread.Sleep(3000);
             Assert.AreNotEqual(true, driver.Title.Contains("Login"), "Title does not match");
             Assert.IsTrue(driver.Title.Contains("LinkedIn"));
 
@@ -36,13 +38,17 @@ namespace AutomationTraining_M7.Test_Cases
         [Test, Order(1)]
         public void SearchLinkedIn()
         {
+
+            string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol" };
+            string[] arrLanguages = { "Spanish", "English" };
+
             driver.Url = ConfigurationManager.AppSettings.Get("urlLinkedIn");
             objLILP = new LinkedIn_LoginPage(driver);
             //Login
             LinkedIn_LoginPage.fnEnterUsername(ConfigurationManager.AppSettings.Get("userLinkedIn"));
             LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("passwordLinkedIn"));
             LinkedIn_LoginPage.fnClickSignInButton();
-            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnWaitPage();
             Assert.AreNotEqual(true, driver.Title.Contains("Login"), "Title does not match");
             Assert.IsTrue(driver.Title.Contains("LinkedIn"));
             //Initialize Search driver
@@ -50,19 +56,25 @@ namespace AutomationTraining_M7.Test_Cases
             //Search
             LinkedIn_SearchPage.fnEnterSearchCriteria(ConfigurationManager.AppSettings.Get("serchCriteria"));
             LinkedIn_SearchPage.fnClickSearchButton();
-            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnWaitPage();
             //Assert.IsTrue(driver.Title.Contains("search/results"));
             LinkedIn_SearchPage.fnClickPeopleButton();
-            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnWaitPage();
             //INSERT Assert.something here
             LinkedIn_SearchPage.fnClickAllFiltersButton();
-            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnWaitPage();
             //INSERT Assert.something here
             LinkedIn_SearchPage.fnClickMexicoCheckbox();
             LinkedIn_SearchPage.fnClickSpanishCheckbox();
             LinkedIn_SearchPage.fnClickEnglishCheckbox();
             LinkedIn_SearchPage.fnClickApplyFiltersButton();
-            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnWaitPage();
+
+            foreach (string strvalue in arrTechnologies)
+            {
+                LinkedIn_SearchPage.fnEnterSearchCriteria(strvalue);
+                LinkedIn_SearchPage.fnClickSearchButton();
+            }
 
         }
         

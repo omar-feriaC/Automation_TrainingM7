@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Page_Objects
@@ -14,13 +15,12 @@ namespace AutomationTraining_M7.Page_Objects
 
         /*LOCATORS FOR EACH ELEMENT*/
         readonly static string STR_SEARCH_TEXT = "search-global-typeahead__input";
-        //readonly static string STR_PASSWORD_TEXT = "password";
-        readonly static string STR_SEARCH_BTN = "search-typeahead-v2__button search-global-typeahead__button";
+        readonly static string STR_SEARCH_BTN = "//div[@class='search-global-typeahead__controls']";
         readonly static string STR_PEOPLE_BTN = "//button[span[text()='People' or text()='Gente']]";
         readonly static string STR_ALLFILTERS_BTN = "//button[span[text()='All Filters' or text()='Todos los Filtros']]";
-        readonly static string STR_MEXICO_CHKBOX = "//label[text()='Mexico']";
-        readonly static string STR_SPANISH_CHKBOX = "//input[@ value = 'es']";
-        readonly static string STR_ENGLISH_CHKBOX = "//input[@ value = 'en']";
+        readonly static string STR_MEXICO_CHKBOX = "//label[text()='Mexico' or text()='México']";
+        readonly static string STR_SPANISH_CHKBOX = "//label[text()='Spanish' or text()='Español']";
+        readonly static string STR_ENGLISH_CHKBOX = "//label[text()='English' or text()='Ingles']";
         readonly static string STR_APPLYFILTERS_BTN = "//button[@data-control-name='all_filters_apply']";
 
         /*CONSTRUCTOR*/
@@ -31,7 +31,7 @@ namespace AutomationTraining_M7.Page_Objects
 
         /*IWEBELEMEMT OBJECTS*/
         private static IWebElement ObjSearchTxt => _objDriver.FindElement(By.ClassName(STR_SEARCH_TEXT));
-        private static IWebElement objSearchBtn => _objDriver.FindElement(By.ClassName(STR_SEARCH_BTN));
+        private static IWebElement objSearchBtn => _objDriver.FindElement(By.XPath(STR_SEARCH_BTN));
         private static IWebElement objPeopleBtn => _objDriver.FindElement(By.XPath(STR_PEOPLE_BTN));
         private static IWebElement objAllFiltersBtn => _objDriver.FindElement(By.XPath(STR_ALLFILTERS_BTN));
         private static IWebElement objMexicoChkbox => _objDriver.FindElement(By.XPath(STR_MEXICO_CHKBOX));
@@ -60,7 +60,7 @@ namespace AutomationTraining_M7.Page_Objects
 
         public static void fnClickSearchButton()
         {
-            ObjSearchTxt.Click();
+            objSearchBtn.Click();
         }
         /*Filter People button*/
         private static IWebElement GetPeopleBtn()
@@ -121,6 +121,11 @@ namespace AutomationTraining_M7.Page_Objects
         internal static void fnClickApplyFiltersButton()
         {
             objApplyFiltersBtn.Click();
+        }
+        //Wait
+        internal static void fnWaitPage()
+        {
+            Thread.Sleep(3000);
         }
     }
 }
