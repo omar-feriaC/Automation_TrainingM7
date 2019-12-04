@@ -74,9 +74,10 @@ namespace AutomationTraining_M7.Test_Cases
             Assert.AreEqual(true, isPresent4);
 
 
-            LinkedIn_SearchPage.fnClickItalyCheckbox();
 
-            //Giving some time for the page to reload
+            LinkedIn_SearchPage.fnAddCountryField("Italy");
+
+            //Giving some time for the country checkbox to Load
             Task.Delay(5000).Wait();
 
 
@@ -111,7 +112,7 @@ namespace AutomationTraining_M7.Test_Cases
             Task.Delay(5000).Wait();
 
             // Verifying that All Filters were applied by checking if the Main Page Filter has Mexico Selected
-            Boolean isPresent8 = driver.FindElements(By.XPath("//span[@class='artdeco-button__text' and text()='Mexico']")).Count > 0;
+            Boolean isPresent8 = driver.FindElements(By.XPath("//span[@class='artdeco-button__text' and text()='Locations (2)']")).Count > 0;
             Assert.AreEqual(true, isPresent8);
 
 
@@ -123,6 +124,19 @@ namespace AutomationTraining_M7.Test_Cases
             foreach (string strtech in arrTechnologies)
             {
                 LinkedIn_SearchPage.fnSearchTechnologies(strtech);
+                Task.Delay(5000).Wait();
+
+                Console.WriteLine("************************************************* ");
+
+                String Name = driver.FindElement(By.XPath("//span[@class = 'actor-name']")).Text;
+                Console.WriteLine("Name: " +Name);
+
+                String Title = driver.FindElement(By.XPath("//p[@class = 'subline-level-1 t-14 t-black t-normal search-result__truncate']")).Text;
+                Console.WriteLine("Title: " + Title);
+
+                String Location = driver.FindElement(By.XPath("//p[@class = 'subline-level-2 t-12 t-black--light t-normal search-result__truncate']")).Text;
+                Console.WriteLine("Location: " + Location);
+
             }
 
 

@@ -20,10 +20,12 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_PEOPLE_BTN = "//span[text()='People'or text()='Gente']";
         readonly static string STR_ALLFILTERS_BTN = "//span[text()='All Filters'or text()='Todos los filtros']";
         readonly static string STR_MEXICO_CHCBX = "//label[text()='Mexico' or text()='México']";
-        readonly static string STR_ITALY_CHCBX = "//label[text()='Italy']";
+        readonly static string STR_ADD_COUNTRY_FIELD = "//input[@aria-label ='Add a country/region']";
         readonly static string STR_ENGLISH_CHCBX = "//label[text()='English']";
         readonly static string STR_SPANISH_CHCBX = "//label[text()='Spanish']";
         readonly static string STR_APPLYFILTERS_BTN = "//button[@data-control-name ='all_filters_apply']";
+
+     
 
         /*CONSTRUCTOR*/
         public LinkedIn_SearchPage(IWebDriver pobjDriver)
@@ -38,7 +40,7 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objPeopleButton => _objDriver.FindElement(By.XPath(STR_PEOPLE_BTN));
         private static IWebElement objAllFiltersButton => _objDriver.FindElement(By.XPath(STR_ALLFILTERS_BTN));
         private static IWebElement objMexicoChcbx => _objDriver.FindElement(By.XPath(STR_MEXICO_CHCBX));
-        private static IWebElement objItalyChcbx => _objDriver.FindElement(By.XPath(STR_ITALY_CHCBX));
+        private static IWebElement objAddCountryField => _objDriver.FindElement(By.XPath(STR_ADD_COUNTRY_FIELD));
         private static IWebElement objEnglishChcbx => _objDriver.FindElement(By.XPath(STR_ENGLISH_CHCBX));
         private static IWebElement objSpanishChcbx => _objDriver.FindElement(By.XPath(STR_SPANISH_CHCBX));
         private static IWebElement objApplyAllFiltersButton => _objDriver.FindElement(By.XPath(STR_APPLYFILTERS_BTN));
@@ -98,17 +100,25 @@ namespace AutomationTraining_M7.Page_Objects
 
         }
 
-        //Italy Checkbox
-        private IWebElement GetItalyCheckbox()
+
+        //Add Country Field
+        private IWebElement GetAddCountryField()
         {
-            return objItalyChcbx;
+            return objAddCountryField;
         }
 
-        public static void fnClickItalyCheckbox()
+        public static void fnAddCountryField(string pstrCountry)
         {
-            objItalyChcbx.Click();
+            objAddCountryField.Click();
+            objAddCountryField.SendKeys(pstrCountry);
+            Task.Delay(5000).Wait();
+            objAddCountryField.SendKeys(Keys.ArrowDown);
+            objAddCountryField.SendKeys(Keys.Enter);
 
         }
+
+
+    
 
         //English Checkbox
         private IWebElement GetEnglishCheckbox()
@@ -173,6 +183,7 @@ namespace AutomationTraining_M7.Page_Objects
            
             objSearchField.Clear();
             objSearchField.SendKeys(pstrSearchTech);
+            objSearchField.SendKeys(Keys.Enter);
         }
     }
 }
