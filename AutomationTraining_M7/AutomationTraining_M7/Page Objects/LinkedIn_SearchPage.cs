@@ -23,6 +23,7 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_LANG_ESP_CB = "//label[text()='Spanish' or text()='Español']";
         readonly static string STR_REGIONMX_CB = "//label[text()='Mexico' or text()='México']";
 
+
         /*CONSTRUCTOR*/
         public LinkedIn_SearchPage(IWebDriver pobjSrcDriver)
         {
