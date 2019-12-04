@@ -1,6 +1,6 @@
-﻿using AutomationTraining_M7.Page_Objects;
+﻿using AutomationTraining_M7.Base_Files;
+using AutomationTraining_M7.Page_Objects;
 using NUnit.Framework;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -12,67 +12,58 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Test_Cases
 {
-    class Test_LinkedInSearch : Test_LinkedIn
+    class Test_SearchLinkedIn : BaseTest
     {
-        //LinkedIn_LoginPage objLogin; -- DELETE
-        public WebDriverWait _driverWait;
+        LinkedIn_LoginPage objLogin;
         LinkedIn_SearchPage objSearch;
 
         [Test]
         public void Search_LinkedIn()
         {
-            //VARIABLES
-            string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol" };
-            string[] arrLanguages = { "Spanish", "English" };
+            objLogin = new LinkedIn_LoginPage(driver);
+            Assert.AreEqual(true, driver.Title.Contains("Login"), "Title not match");
+            LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
+            LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
+            LinkedIn_LoginPage.fnClickSignInButton();
 
-            //Step# 1 .- Log In 
             objSearch = new LinkedIn_SearchPage(driver);
-            Login_LinkedIn();
 
-            //Step# 2 .- Verify if captcha exist
-            if (driver.Title.Contains("Verification") | driver.Title.Contains("Verificación"))
-            {
-                //Switch to Iframe(0)
-                driver.SwitchTo().DefaultContent();
-                driver.SwitchTo().Frame(driver.FindElement(By.Id("captcha-internal")));
-                //Switch to Iframe that contains captcha.
-                IWebElement objCheckbox;
-                List<IWebElement> frames = new List<IWebElement>(driver.FindElements(By.TagName("iframe")));
-                for (int i = 0; i < frames.Count - 1; i++)
-                {
-                    if (frames[i].GetAttribute("role").ToString() == "presentation" | frames[i].GetAttribute("role").ToString() != "")
-                    {
-                        driver.SwitchTo().Frame(i);
-                        _driverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 60));
-                        objCheckbox = _driverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[@role='checkbox']")));
-                        if (objCheckbox.Enabled) { objCheckbox.Click(); }
-                        
-                    }
-                }
-            }
+            LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search1"));
+            LinkedIn_SearchPage.fnClickSearchButton();
+            Thread.Sleep(5000);
 
-            //Step# 3 .- Set Filters
-            LinkedIn_SearchPage.fnEnterSearchText("Java");
-            LinkedIn_SearchPage.fnClickSearchBtn();
-            LinkedIn_SearchPage.fnSelectPeople();
+            LinkedIn_SearchPage.fnClickPeopleBtn();
             Thread.Sleep(5000);
-            LinkedIn_SearchPage.fnSelectAllFilters();
+            LinkedIn_SearchPage.fnClickAllFiltersBtn();
             Thread.Sleep(5000);
-            LinkedIn_SearchPage.fnGetRegionMx();
+            //Region Mexico
+            LinkedIn_SearchPage.fnClickRegionMexCb();
             Thread.Sleep(5000);
-            LinkedIn_SearchPage.fnLanguageEng();
+            //Region Italy
+            LinkedIn_SearchPage.fnClickRegionItaCb();
             Thread.Sleep(5000);
-            LinkedIn_SearchPage.fnLanguageEsp();
+            LinkedIn_SearchPage.fnClickLangEspCb();
+            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnClickLangEngCb();
             Thread.Sleep(5000);
             LinkedIn_SearchPage.fnClickApplyBtn();
+            Thread.Sleep(5000);
 
-            //Step# 4 .- Search Elements
-            foreach (string strvalue in arrTechnologies)
-            {
-                LinkedIn_SearchPage.fnEnterSearchText(strvalue);
-                LinkedIn_SearchPage.fnClickSearchBtn();
-            }
+            LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search2"));
+            LinkedIn_SearchPage.fnClickSearchButton();
+            Thread.Sleep(5000);
 
+            LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search3"));
+            LinkedIn_SearchPage.fnClickSearchButton();
+            Thread.Sleep(5000);
+
+            LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search4"));
+            LinkedIn_SearchPage.fnClickSearchButton();
+            Thread.Sleep(5000);
+
+            LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search5"));
+            LinkedIn_SearchPage.fnClickSearchButton();
+            Thread.Sleep(5000);
 
         }
     }
