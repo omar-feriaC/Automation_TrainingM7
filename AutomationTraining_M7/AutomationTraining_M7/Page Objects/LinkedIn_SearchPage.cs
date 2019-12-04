@@ -15,15 +15,13 @@ namespace AutomationTraining_M7.Page_Objects
 
         /*LOCATORS FOR EACH ELEMENT*/
         readonly static string STR_SEARCH_TXTBOX = "//input[@placeholder='Buscar' OR @placeholder='Search']";
-        //readonly static string STR_SEARCH_TEXT    = "Jose";
         readonly static string STR_PEOPLE_FILTER = "//span[text()='Gente' OR span[text()='People']";
         readonly static string STR_ALL_FILTER_BTN = "//span[text()='Todos los filtros' OR text()='All Filters']";
-        // readonly static string STR_LOCATION_BTN   = "//span[text()='Ubicaciones' OR span[text()='Location']";
         readonly static string STR_COUNTRY_BTN = "//label[text()='México' OR text()='Mexico']";
-        //"//span[@class='search-s-facet-value__name t-14 t-black--light t-normal']" +
-        //"[text()='México'OR text()='Mexico']";
         readonly static string STR_LANGUAGE_BTN = "//label[text()='Español' OR text()='Spanish' OR text()='Inglés' OR text()='English']";
         readonly static string STR_APPLY_BTN = "//button[@id='ember1456']//span[text()='Aplicar' OR //span[text()='Apply']";
+        readonly static string STR_CAPTCHA_CLK = "//div[@class='recaptcha-checkbox-checkmark']";
+        readonly static string STR_COUNTRY2_TXTBOX = "//div[@id='ember3402']//input[@placeholder='Añadir un país o región']";
         //  //input[@placeholder='Buscar'] -- cuadro buscar, aqui escribo cualquier cosa y doy enter
         // //span[text()='Gente'] -- primer filtro, darle click
         // //span[text()='Todos los filtros'] -- opcion "todos los filtros", darle click
@@ -47,6 +45,7 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objCountry => _objDriver.FindElement(By.XPath(STR_COUNTRY_BTN));
         private static IWebElement objLanguage => _objDriver.FindElement(By.XPath(STR_LANGUAGE_BTN));
         private static IWebElement objApply => _objDriver.FindElement(By.XPath(STR_APPLY_BTN));
+        private static IWebElement objCountry2 => objCountry2.FindElement(By.XPath(STR_COUNTRY2_TXTBOX));
 
         /*METHODS*/
         //Search textbox 
@@ -110,6 +109,21 @@ namespace AutomationTraining_M7.Page_Objects
             //objCountry.SendKeys(Keys.Enter);
         }
 
+        //Search for Italy
+        private IWebElement GetItaly()
+        {
+            return objCountry2;
+        }
+
+        public static void fnGetItaly(string pstrItaly)
+        {
+            objCountry2.Click();
+            objCountry2.Clear();
+            objCountry2.SendKeys(pstrItaly);
+            objCountry2.SendKeys(Keys.ArrowDown);
+            objCountry2.SendKeys(Keys.Enter);
+        }
+
         // Click Spanish and English
         private IWebElement GetLanguage()
         {
@@ -121,6 +135,16 @@ namespace AutomationTraining_M7.Page_Objects
             objLanguage.Click();
         }
 
+        // Apply Filters
+        private IWebElement GetApply()
+        {
+            return objApply;
+        }
+
+        public static void fnGetApply()
+        {
+            objApply.Click();
+        }
 
 
     }
