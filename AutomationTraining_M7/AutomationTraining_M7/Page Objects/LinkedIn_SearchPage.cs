@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using AutomationTraining_M7.Base_Files;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,17 +8,19 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Page_Objects
 {
-    class LinkedIn_SearchPage
+    class LinkedIn_SearchPage : BaseTest
     {
+
         /*DRIVER REFERENCE FOR POM*/
-        private static IWebDriver _objDriver2;
+        private static IWebDriver _objDriver;
 
         /*LOCATORS FOR EACH ELEMENT*/
- 
+
         readonly static string STR_SEARCH_FIELD = "//input[@class = 'search-global-typeahead__input']";
-        readonly static string STR_PEOPLE_BTN = "//span[text()='People']";
-        readonly static string STR_ALLFILTERS_BTN = "//span[text()='All Filters']";
-        readonly static string STR_MEXICO_CHCBX = "//label[text()='Mexico']";
+        readonly static string STR_PEOPLE_BTN = "//span[text()='People'or text()='Gente']";
+        readonly static string STR_ALLFILTERS_BTN = "//span[text()='All Filters'or text()='Todos los filtros']";
+        readonly static string STR_MEXICO_CHCBX = "//label[text()='Mexico' or text()='México']";
+        readonly static string STR_ITALY_CHCBX = "//label[text()='Italy']";
         readonly static string STR_ENGLISH_CHCBX = "//label[text()='English']";
         readonly static string STR_SPANISH_CHCBX = "//label[text()='Spanish']";
         readonly static string STR_APPLYFILTERS_BTN = "//button[@data-control-name ='all_filters_apply']";
@@ -25,20 +28,21 @@ namespace AutomationTraining_M7.Page_Objects
         /*CONSTRUCTOR*/
         public LinkedIn_SearchPage(IWebDriver pobjDriver)
         {
-            _objDriver2 = pobjDriver;
+            _objDriver = pobjDriver;
         }
 
 
 
         /*IWEBELEMEMT OBJECTS*/
-        private static IWebElement objSearchField => _objDriver2.FindElement(By.XPath(STR_SEARCH_FIELD));
-        private static IWebElement objPeopleButton => _objDriver2.FindElement(By.XPath(STR_PEOPLE_BTN));
-        private static IWebElement objAllFiltersButton => _objDriver2.FindElement(By.XPath(STR_ALLFILTERS_BTN));
-        private static IWebElement objMexicoChcbx => _objDriver2.FindElement(By.XPath(STR_MEXICO_CHCBX));
-        private static IWebElement objEnglishChcbx => _objDriver2.FindElement(By.XPath(STR_ENGLISH_CHCBX));
-        private static IWebElement objSpanishChcbx => _objDriver2.FindElement(By.XPath(STR_SPANISH_CHCBX));
-        private static IWebElement objApplyAllFiltersButton => _objDriver2.FindElement(By.XPath(STR_APPLYFILTERS_BTN));
-
+        private static IWebElement objSearchField => _objDriver.FindElement(By.XPath(STR_SEARCH_FIELD));
+        private static IWebElement objPeopleButton => _objDriver.FindElement(By.XPath(STR_PEOPLE_BTN));
+        private static IWebElement objAllFiltersButton => _objDriver.FindElement(By.XPath(STR_ALLFILTERS_BTN));
+        private static IWebElement objMexicoChcbx => _objDriver.FindElement(By.XPath(STR_MEXICO_CHCBX));
+        private static IWebElement objItalyChcbx => _objDriver.FindElement(By.XPath(STR_ITALY_CHCBX));
+        private static IWebElement objEnglishChcbx => _objDriver.FindElement(By.XPath(STR_ENGLISH_CHCBX));
+        private static IWebElement objSpanishChcbx => _objDriver.FindElement(By.XPath(STR_SPANISH_CHCBX));
+        private static IWebElement objApplyAllFiltersButton => _objDriver.FindElement(By.XPath(STR_APPLYFILTERS_BTN));
+        
 
         /*METHODS*/
         //Search Field
@@ -80,6 +84,8 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
 
+    
+
         //Mexico Checkbox
         private IWebElement GetMexicoCheckbox()
         {
@@ -89,6 +95,18 @@ namespace AutomationTraining_M7.Page_Objects
         public static void fnClickMexicoCheckbox()
         {
             objMexicoChcbx.Click();
+
+        }
+
+        //Italy Checkbox
+        private IWebElement GetItalyCheckbox()
+        {
+            return objItalyChcbx;
+        }
+
+        public static void fnClickItalyCheckbox()
+        {
+            objItalyChcbx.Click();
 
         }
 
@@ -116,6 +134,24 @@ namespace AutomationTraining_M7.Page_Objects
 
         }
 
+        public static void fnSelectandClickLanguage(string pstrlanguage)
+        {
+            string strlanguage = pstrlanguage;
+
+            if (strlanguage == "Spanish")
+            {
+
+                objSpanishChcbx.Click();
+            }
+
+            if (strlanguage == "English")
+            {
+
+                objEnglishChcbx.Click();
+            }
+
+
+        }
 
         //Apply All Filters Button
         private IWebElement GetApplyAllFiltersButton()
@@ -129,6 +165,15 @@ namespace AutomationTraining_M7.Page_Objects
 
         }
 
+
+
+
+        public static void fnSearchTechnologies(string pstrSearchTech)
+        {
+           
+            objSearchField.Clear();
+            objSearchField.SendKeys(pstrSearchTech);
+        }
     }
 }
  

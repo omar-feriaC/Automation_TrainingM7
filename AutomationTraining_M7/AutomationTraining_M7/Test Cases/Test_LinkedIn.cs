@@ -25,9 +25,10 @@ namespace AutomationTraining_M7.Test_Cases
             Assert.AreEqual(true, driver.Title.Contains("Login"), "Login page was not displayed");
 
             LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
+           
             LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
+            
             LinkedIn_LoginPage.fnClickSignInButton();
-
 
             //Verifying the Log in was successful by checking if the feed page opened
             Assert.AreEqual("https://www.linkedin.com/feed/", driver.Url);
