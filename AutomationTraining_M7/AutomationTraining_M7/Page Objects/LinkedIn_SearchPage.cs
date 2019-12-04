@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenQA.Selenium.Support.UI;
 
 namespace AutomationTraining_M7.Page_Objects
 {
@@ -22,7 +23,7 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_LANG_ENG_CB = "//label[text()='Inglés' or text()='English']";
         readonly static string STR_LANG_ESP_CB = "//label[text()='Español' or text()='Spanish']";
         readonly static string STR_APPLY_BTN = "//button[@data-control-name='all_filters_apply']";
-
+        readonly static string STR_REGIONADD_TEXT = "//input[@placeholder='Añadir un país o región'][@aria-label='Añadir un país o región']";
         readonly static string STR_REGIONITA_CB = "//label[text()='Italia' or text()='Italy']";
 
         /*Constructor*/
@@ -41,6 +42,7 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objLangEspCb => _objDriver.FindElement(By.XPath(STR_LANG_ESP_CB));
         private static IWebElement objApplyBtn => _objDriver.FindElement(By.XPath(STR_APPLY_BTN));
 
+        private static IWebElement objRegionAddTxt => _objDriver.FindElement(By.XPath(STR_REGIONADD_TEXT));
         private static IWebElement objRegionItaCb => _objDriver.FindElement(By.XPath(STR_REGIONITA_CB));
 
         /*Methods*/
@@ -137,16 +139,22 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
         /* ***************************************************************** */
-        //Region Italy checkbox
-        private static IWebElement fnGetRegionItaCb()
+        //Select Region Italy 
+        private static IWebElement fnGetRegionTxt()
         {
-            return objRegionItaCb;
+            return objRegionAddTxt;
         }
 
-        public static void fnClickRegionItaCb()
+        public static void fnClickRegionTxt(string pstrAddRegion)
         {
-            objRegionItaCb.Click();
+            objRegionAddTxt.Click();
+            objRegionAddTxt.Clear();
+            objRegionAddTxt.SendKeys(pstrAddRegion);
+            objRegionAddTxt.SendKeys(Keys.ArrowDown);
+            objRegionAddTxt.SendKeys(Keys.Enter);
         }
+
+
 
     }
 
