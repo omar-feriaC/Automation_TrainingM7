@@ -10,17 +10,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationTraining_M7
-{
-    class Program : BaseTest
-    {
+namespace AutomationTraining_M7 {
+    class Program : BaseTest {
         static void Main(string[] args)
         {
-            SetUp();
-            LinkedIn_LoginPage objLogin = new LinkedIn_LoginPage(driver);
-            LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
-            LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
-            LinkedIn_LoginPage.fnClickSignInButton();
+            //Setup();
+            //linkedin_loginpage objlogin = new linkedin_loginpage(driver);
+            //linkedin_loginpage.fnenterusername(configurationmanager.appsettings.get("username"));
+            //linkedin_loginpage.fnenterpassword(configurationmanager.appsettings.get("password"));
+            //linkedin_loginpage.fnclicksigninbutton();
 
             /*
             SalaryEmployee objSalary = new SalaryEmployee(0, "Carlos Ruiz", 100.10);
