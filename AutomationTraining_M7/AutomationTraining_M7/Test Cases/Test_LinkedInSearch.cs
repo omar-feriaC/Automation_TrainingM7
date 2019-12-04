@@ -15,8 +15,9 @@ namespace AutomationTraining_M7.Test_Cases
     class Test_LinkedInSearch : Test_LinkedIn
     {
         //LinkedIn_LoginPage objLogin; -- DELETE
+        LinkedIn_SearchPage objSearch;
         public WebDriverWait _driverWait;
-      
+
         [Test]
         public void Search_LinkedIn()
         {
@@ -44,14 +45,35 @@ namespace AutomationTraining_M7.Test_Cases
                         _driverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 60));
                         objCheckbox = _driverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[@role='checkbox']")));
                         if (objCheckbox.Enabled) { objCheckbox.Click(); }
-                        
+
                     }
                 }
             }
 
-    
+            //_driverWait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            _driverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 60));
+            objSearch = new LinkedIn_SearchPage(driver);
+            
+            
+            //start interacting with the page elements
+            
+            _driverWait.Until(driver => driver.FindElement(By.XPath("//input[@class = 'search-global-typeahead__input']")));
+            LinkedIn_SearchPage.fnSearchText("Amazon");
 
+            _driverWait.Until(driver => driver.FindElement(By.XPath("//span[text()='People']")));
+            LinkedIn_SearchPage.fnClickPeopleButton();
 
+            _driverWait.Until(driver => driver.FindElement(By.XPath("//span[text()='All Filters' or text()='Todos los Filtros']")));            
+            LinkedIn_SearchPage.fnSelectAllFilltersButton();
+
+            _driverWait.Until(driver => driver.FindElement(By.XPath("//label[text()='Mexico' or text()='México']")));            
+            LinkedIn_SearchPage.fnSelectMexicoCheckbox();
+
+            _driverWait.Until(driver => driver.FindElement(By.XPath("//label[text()='Spanish' or text()='Español']")));
+            LinkedIn_SearchPage.fnSelectSpanishCheckbox();
+
+            _driverWait.Until(driver => driver.FindElement(By.XPath("//label[text()='English' or text()='Inglés']")));
+            LinkedIn_SearchPage.fnSelectEnglishCheckbox();                   
         }
     }
 }
