@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,7 +36,14 @@ namespace AutomationTraining_M7.Page_Objects
         {
             return objUserNameTxt;
         }
-
+        public static IWebDriver fnDefaultLogIN(IWebDriver pdriver)
+        {
+            _objDriver = pdriver;
+            fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
+            fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
+            fnClickSignInButton();
+            return _objDriver;
+        }
         public static void fnEnterUserName(string pstrUserName)
         {
             objUserNameTxt.Clear();

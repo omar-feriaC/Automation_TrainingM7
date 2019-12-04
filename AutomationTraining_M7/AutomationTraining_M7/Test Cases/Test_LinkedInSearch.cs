@@ -48,8 +48,21 @@ namespace AutomationTraining_M7.Test_Cases
                     }
                 }
             }
+            LinkedIn_SearchPage objLinkedIn_SearchPage = new LinkedIn_SearchPage();
+            objLinkedIn_SearchPage.fnGetSearch("Random");
+            objLinkedIn_SearchPage.fnPeopelFilterClick();
+            objLinkedIn_SearchPage.fnAllFiltersClick();
+            objLinkedIn_SearchPage.fnChecks();
+            foreach (string ln in arrLanguages) {
+                objLinkedIn_SearchPage.fnLanguajecheck(ln);
+            }
+            foreach (string tch in arrTechnologies)
+            {
+                objLinkedIn_SearchPage.fnGetSearch(tch);
+                objLinkedIn_SearchPage.print();
+            }
 
-    
+
 
 
         }
