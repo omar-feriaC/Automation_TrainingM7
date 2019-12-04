@@ -1,0 +1,48 @@
+﻿using AutomationTraining_M7.Base_Files;
+using AutomationTraining_M7.Page_Objects;
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+
+namespace AutomationTraining_M7.Test_Cases
+{
+    class M8_LinkedInSearch : Test_LinkedIn
+    {
+        LinkedIn_SearchT objSearch;
+
+        [Test]
+        public void Search_LinkedIn()
+        {
+            Login_LinkedIn();
+
+            
+            objSearch = new LinkedIn_SearchT(driver);
+            LinkedIn_SearchT.fnEnterSearchValue("Test");
+            
+
+            
+            LinkedIn_SearchT.fnClickPeopleButton();
+           
+            
+            LinkedIn_SearchT.fnClickAllFiltersButton();
+            
+            
+
+            LinkedIn_SearchT.fnClickLocationButton();
+            
+            LinkedIn_SearchT.fnClickLanguageButton1();
+
+            objSearch = new LinkedIn_SearchT(driver);
+            LinkedIn_SearchT.fnEnterLocationValue("Italy");
+            
+            LinkedIn_SearchT.fnClickApplyButton();
+            
+        }
+    }
+}

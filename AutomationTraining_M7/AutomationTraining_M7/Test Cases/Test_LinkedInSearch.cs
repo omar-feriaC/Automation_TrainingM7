@@ -17,6 +17,7 @@ namespace AutomationTraining_M7.Test_Cases
         //LinkedIn_LoginPage objLogin; -- DELETE
         public WebDriverWait _driverWait;
         LinkedIn_SearchPage objSearch;
+        
 
         [Test]
         public void Search_LinkedIn()
@@ -74,6 +75,10 @@ namespace AutomationTraining_M7.Test_Cases
             }
 
 
+
+
         }
+
+        
     }
 }
