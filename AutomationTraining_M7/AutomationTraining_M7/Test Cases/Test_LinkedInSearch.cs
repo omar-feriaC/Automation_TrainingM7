@@ -39,12 +39,14 @@ namespace AutomationTraining_M7.Test_Cases
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='People' or text()='Gente']")));
 
             LinkedIn_SearchPage.fnClickPeopleBtn();
-            wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[span[text()='All Filters' or text()='Todos los filtros']]")));
+            Thread.Sleep(5000);
+            //wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
+            //wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[span[text()='All Filters' or text()='Todos los filtros']]")));
 
             LinkedIn_SearchPage.fnClickAllFiltersBtn();
-            wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//label[text()='México' or text()='Mexico']")));
+            Thread.Sleep(5000);
+            // wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
+            //wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//label[text()='México' or text()='Mexico']")));
 
             //Region Mexico
             LinkedIn_SearchPage.fnClickRegionMexCb();
