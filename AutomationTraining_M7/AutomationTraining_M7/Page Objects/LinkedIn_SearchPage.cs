@@ -19,12 +19,16 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_SEARCH_BTN = "//div[@class='search-global-typeahead__controls']";
         readonly static string STR_PEOPLE_BTN = "//span[text()='People' or text()='Gente']";
         readonly static string STR_ALLFILTERS_BTN = "//button[span[text()='All Filters' or text()='Todos los filtros']]";
-        readonly static string STR_REGIONMEX_CB = "//label[text()='México' or text()='Mexico']";        
+        //readonly static string STR_REGIONMEX_CB = readonly static string STR_REGIONMEX_CB = "//label[text()='México' or text()='Mexico']"; 
+        readonly static string STR_REGIONMEX_TEXT = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'México']";
+        readonly static string STR_REGIONADD_TEXT = "//input[@placeholder='Añadir un país o región']";
+        readonly static string STR_REGIONITA_TEXT = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy']";
+       //readonly static string STR_REGIONENTERMX_CLK = "";
+
         readonly static string STR_LANG_ENG_CB = "//label[text()='Inglés' or text()='English']";
         readonly static string STR_LANG_ESP_CB = "//label[text()='Español' or text()='Spanish']";
         readonly static string STR_APPLY_BTN = "//button[@data-control-name='all_filters_apply']";
-        readonly static string STR_REGIONADD_TEXT = "//input[@placeholder='Añadir un país o región'][@aria-label='Añadir un país o región']";
-        readonly static string STR_REGIONITA_CB = "//label[text()='Italia' or text()='Italy']";
+        
 
         /*Constructor*/
         public LinkedIn_SearchPage(IWebDriver pobjSearchDriver)
@@ -37,13 +41,14 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objSearchBtn => _objDriver.FindElement(By.XPath(STR_SEARCH_BTN));
         private static IWebElement objPeopleBtn => _objDriver.FindElement(By.XPath(STR_PEOPLE_BTN));
         private static IWebElement objAllFiltersBtn => _objDriver.FindElement(By.XPath(STR_ALLFILTERS_BTN));
-        private static IWebElement objRegionMexCb => _objDriver.FindElement(By.XPath(STR_REGIONMEX_CB));
+        private static IWebElement objRegionAddTxt => _objDriver.FindElement(By.XPath(STR_REGIONADD_TEXT));
+        private static IWebElement objRegionMexTxt => _objDriver.FindElement(By.XPath(STR_REGIONMEX_TEXT));
+        private static IWebElement objRegionItaTxt => _objDriver.FindElement(By.XPath(STR_REGIONITA_TEXT));
         private static IWebElement objLangEngCb => _objDriver.FindElement(By.XPath(STR_LANG_ENG_CB));
         private static IWebElement objLangEspCb => _objDriver.FindElement(By.XPath(STR_LANG_ESP_CB));
         private static IWebElement objApplyBtn => _objDriver.FindElement(By.XPath(STR_APPLY_BTN));
-
-        private static IWebElement objRegionAddTxt => _objDriver.FindElement(By.XPath(STR_REGIONADD_TEXT));
-        private static IWebElement objRegionItaCb => _objDriver.FindElement(By.XPath(STR_REGIONITA_CB));
+       
+        
 
         /*Methods*/
         //Search Text
@@ -94,17 +99,68 @@ namespace AutomationTraining_M7.Page_Objects
             objAllFiltersBtn.Click();
         }
 
-        //Region Mexico checkbox
-        private static IWebElement fnGetRegionMexCb()
+        /* //Region Mexico checkbox
+         private static IWebElement fnGetRegionMexCb()
+         {
+             return objRegionMexCb;
+         }
+
+         public static void fnClickRegionMexCb()
+         {
+             objRegionMexCb.Click();
+         }
+         */
+        /* ***************************************************************** */
+        //Select Region Mexico 
+        private static IWebElement fnGetRegionTxt()
         {
-            return objRegionMexCb;
+            return objRegionAddTxt;
         }
 
-        public static void fnClickRegionMexCb()
+        public static void fnAddRegionMexTxt(string pstrAddRegionMx)
         {
-            objRegionMexCb.Click();
+            objRegionAddTxt.SendKeys(pstrAddRegionMx);
         }
 
+        /*  ********************************************************************* */
+        //Enter Mexico
+        private static IWebElement EnterRegionMexText()
+        {
+            return objRegionMexTxt;
+        }
+
+        public static void fnEnterRegionMexText()
+        {
+            objRegionMexTxt.Click();
+        }
+
+               /* ***************************************************************** */
+        //Select Region Italy         
+        public static void fnAddRegionItaTxt(string pstrAddRegionIta)
+        {
+            
+            objRegionAddTxt.Clear();
+            objRegionAddTxt.SendKeys(pstrAddRegionIta);
+           
+        }
+        public static void fnClickRegIta()
+        {
+            objRegionItaTxt.Click();
+        }
+
+        /*  ********************************************************************* */
+        //Enter Italy
+        private static IWebElement EnterRegionMItaText()
+        {
+            return objRegionItaTxt;
+        }
+
+        public static void fnEnterRegionMItaText()
+        {
+            objRegionItaTxt.Click();
+        }
+
+        /* *********************************************************************** */
         // Language English checkbox
         private static IWebElement fnGetLangEngCb()
         {
@@ -138,22 +194,7 @@ namespace AutomationTraining_M7.Page_Objects
             objApplyBtn.Click();
         }
 
-        /* ***************************************************************** */
-        //Select Region Italy 
-        private static IWebElement fnGetRegionTxt()
-        {
-            return objRegionAddTxt;
-        }
-
-        public static void fnClickRegionTxt(string pstrAddRegion)
-        {
-            objRegionAddTxt.Click();
-            objRegionAddTxt.Clear();
-            objRegionAddTxt.SendKeys(pstrAddRegion);
-            objRegionAddTxt.SendKeys(Keys.ArrowDown);
-            objRegionAddTxt.SendKeys(Keys.Enter);
-        }
-
+      
 
 
     }

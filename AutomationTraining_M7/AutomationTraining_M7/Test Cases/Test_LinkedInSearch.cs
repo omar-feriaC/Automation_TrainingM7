@@ -33,32 +33,36 @@ namespace AutomationTraining_M7.Test_Cases
             objSearch = new LinkedIn_SearchPage(driver);
 
             LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search1"));
-            LinkedIn_SearchPage.fnClickSearchButton();
-            //Webdriver wait
+            LinkedIn_SearchPage.fnClickSearchButton();           
             wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='People' or text()='Gente']")));
 
             LinkedIn_SearchPage.fnClickPeopleBtn();
-            Thread.Sleep(5000);
-            //wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
-            //wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[span[text()='All Filters' or text()='Todos los filtros']]")));
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@class='search-vertical-filter__dropdown-trigger-text mr1'][text()='Gente']")));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[span[text()='All Filters' or text()='Todos los filtros']]")));
 
             LinkedIn_SearchPage.fnClickAllFiltersBtn();
-            Thread.Sleep(5000);
-            // wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
-            //wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//label[text()='México' or text()='Mexico']")));
-
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("//input[@placeholder='Añadir un país o región'][@aria-label='Añadir un país o región']")));
+            
             //Region Mexico
-            LinkedIn_SearchPage.fnClickRegionMexCb();
-            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnAddRegionMexTxt(ConfigurationManager.AppSettings.Get("regionMMx"));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'México']")));
+            LinkedIn_SearchPage.fnEnterRegionMexText();
+            // driver.FindElement(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'México']")).Click();
+            
+
             //Region Italy
-            LinkedIn_SearchPage.fnClickRegionTxt(ConfigurationManager.AppSettings.Get("region"));
-            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnAddRegionItaTxt(ConfigurationManager.AppSettings.Get("regionIta"));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy']")));
+            LinkedIn_SearchPage.fnEnterRegionMItaText();
+           
 
             LinkedIn_SearchPage.fnClickLangEspCb();
             Thread.Sleep(5000);
+
             LinkedIn_SearchPage.fnClickLangEngCb();
             Thread.Sleep(5000);
+
             LinkedIn_SearchPage.fnClickApplyBtn();
             Thread.Sleep(5000);
 
