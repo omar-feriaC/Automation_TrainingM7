@@ -17,20 +17,10 @@ namespace AutomationTraining_M7
         static void Main(string[] args)
         {
             SetUp();
-            LinkedIn_LoginPage objLogin = new LinkedIn_LoginPage(driver);
-            LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
-            LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
-            LinkedIn_LoginPage.fnClickSignInButton();
-
-            /*
-            SalaryEmployee objSalary = new SalaryEmployee(0, "Carlos Ruiz", 100.10);
-            HourlyEmployee objHourly = new HourlyEmployee(1, "Cesar Padilla", 5, 10.5);
-            CommissionEmployee objComm = new CommissionEmployee(2, "Omar Feria", 1000, 500.30);
-
-            objSalary.fnDisplayInfo();
-            objHourly.fnDisplayInfo();
-            objComm.fnDisplayInfo();
-            */
+            Linkedin_LoginPage objLogin = new Linkedin_LoginPage(driver);
+            Linkedin_LoginPage.FnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
+            Linkedin_LoginPage.FnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
+            Linkedin_LoginPage.fnClickSingInButton();
 
             Console.ReadKey();
 
