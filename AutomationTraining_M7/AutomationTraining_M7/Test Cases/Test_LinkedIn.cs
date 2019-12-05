@@ -3,6 +3,7 @@ using AutomationTraining_M7.Page_Objects;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -15,6 +16,7 @@ namespace AutomationTraining_M7.Test_Cases
 {
     class Test_LinkedIn : BaseTest
     {
+        WebDriverWait wait;
         private const string XpathToFind = "x";
         LinkedIn_LoginPage objLILP;
         LinkedIn_SearchPage objLISP;
@@ -38,6 +40,9 @@ namespace AutomationTraining_M7.Test_Cases
         [Test, Order(1)]
         public void SearchLinkedIn()
         {
+            wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
+            wait.Until(ExpectedConditions.TitleContains(""));
+            //wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[@role='checkbox']")));
 
             string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol" };
             string[] arrLanguages = { "Spanish", "English" };
@@ -57,7 +62,7 @@ namespace AutomationTraining_M7.Test_Cases
             LinkedIn_SearchPage.fnEnterSearchCriteria(ConfigurationManager.AppSettings.Get("serchCriteria"));
             LinkedIn_SearchPage.fnClickSearchButton();
             LinkedIn_SearchPage.fnWaitPage();
-            //Assert.IsTrue(driver.Title.Contains("search/results"));
+            /*//Assert.IsTrue(driver.Title.Contains("search/results"));
             LinkedIn_SearchPage.fnClickPeopleButton();
             LinkedIn_SearchPage.fnWaitPage();
             //INSERT Assert.something here
@@ -69,13 +74,22 @@ namespace AutomationTraining_M7.Test_Cases
             LinkedIn_SearchPage.fnClickEnglishCheckbox();
             LinkedIn_SearchPage.fnClickApplyFiltersButton();
             LinkedIn_SearchPage.fnWaitPage();
-
+            */
             foreach (string strvalue in arrTechnologies)
             {
                 LinkedIn_SearchPage.fnEnterSearchCriteria(strvalue);
+                LinkedIn_SearchPage.fnWaitPage();
                 LinkedIn_SearchPage.fnClickSearchButton();
+                LinkedIn_SearchPage.fnWaitPage();
             }
 
+            foreach (string strvalue in arrLanguages)
+            {
+                LinkedIn_SearchPage.fnEnterSearchCriteria(strvalue);
+                LinkedIn_SearchPage.fnWaitPage();
+                LinkedIn_SearchPage.fnClickSearchButton();
+                LinkedIn_SearchPage.fnWaitPage();
+            }
         }
         
 
