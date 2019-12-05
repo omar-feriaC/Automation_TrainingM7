@@ -27,7 +27,11 @@ namespace AutomationTraining_M7.Test_Cases
 
             //Step# 1 .- Log In 
             objSearch = new LinkedIn_SearchPage(driver);
-            Login_LinkedIn();
+            LinkedIn_LoginPage objLogin = new LinkedIn_LoginPage(driver);
+            Assert.AreEqual(true, driver.Title.Contains("Login"), "Title not mach");
+            LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
+            LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
+            LinkedIn_LoginPage.fnClickSignInButton();
 
             //Step# 2 .- Verify if captcha exist
             if (driver.Title.Contains("Verification") | driver.Title.Contains("Verificación"))
