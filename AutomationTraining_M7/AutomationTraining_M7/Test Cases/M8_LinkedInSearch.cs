@@ -28,21 +28,24 @@ namespace AutomationTraining_M7.Test_Cases
             
             objSearch = new LinkedIn_SearchT(driver);
             LinkedIn_SearchT.fnEnterSearchValue("Test");
-            Task.Delay(2500).Wait();
+            Task.Delay(3000).Wait();
             LinkedIn_SearchT.fnClickPeopleButton();
-            Task.Delay(2500).Wait();
-
+            Task.Delay(3000).Wait();
             LinkedIn_SearchT.fnClickAllFiltersButton();
-            Task.Delay(2500).Wait();
+            Task.Delay(3000).Wait();
             LinkedIn_SearchT.fnClickLocationButton();
-            Task.Delay(2500).Wait();
+            Task.Delay(3000).Wait();
             LinkedIn_SearchT.fnClickLanguageButton1();
-            Task.Delay(2500).Wait();
+            Task.Delay(3000).Wait();
             LinkedIn_SearchT.fnEnterLocationValue("Italy");
-            Task.Delay(2500).Wait();
+            Task.Delay(3000).Wait();
             LinkedIn_SearchT.fnClickApplyButton();
-            Task.Delay(2500).Wait();
-            LinkedIn_SearchT.fnEnterSearchValue(arrTechnologies[0]);
+            Task.Delay(3000).Wait();
+            foreach (string strtechnologies in arrTechnologies)
+            {
+                LinkedIn_SearchT.fnEnterSearchValue(strtechnologies);
+            }
+                
             
                 
             

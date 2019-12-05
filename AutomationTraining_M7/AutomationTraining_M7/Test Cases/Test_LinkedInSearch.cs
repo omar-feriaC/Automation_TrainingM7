@@ -17,7 +17,7 @@ namespace AutomationTraining_M7.Test_Cases
         //LinkedIn_LoginPage objLogin; -- DELETE
         public WebDriverWait _driverWait;
         LinkedIn_SearchPage objSearch;
-        
+
 
         [Test]
         public void Search_LinkedIn()
@@ -47,7 +47,7 @@ namespace AutomationTraining_M7.Test_Cases
                         _driverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 60));
                         objCheckbox = _driverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[@role='checkbox']")));
                         if (objCheckbox.Enabled) { objCheckbox.Click(); }
-                        
+
                     }
                 }
             }
@@ -79,5 +79,5 @@ namespace AutomationTraining_M7.Test_Cases
 
         }
 
-        
+    }    
 }

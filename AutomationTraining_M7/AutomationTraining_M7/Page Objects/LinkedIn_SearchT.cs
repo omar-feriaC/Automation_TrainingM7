@@ -51,6 +51,7 @@ namespace AutomationTraining_M7.Page_Objects
             objSearchField.Clear();
             objSearchField.SendKeys(pstrSearchValue);
             objSearchField.SendKeys(Keys.Return);
+            Task.Delay(2000).Wait();
 
         }
         
@@ -93,6 +94,7 @@ namespace AutomationTraining_M7.Page_Objects
         {
             objLocationField.Clear();
             objLocationField.SendKeys(pstrLocationValue);
+            Task.Delay(2000).Wait();
             objLocationField.SendKeys(Keys.Down);
             objLocationField.SendKeys(Keys.Return);
 
