@@ -31,15 +31,10 @@ namespace AutomationTraining_M7.Test_Cases
 
             //Step# 1 .- Log In 
             Login_LinkedIn();
-            Thread.Sleep(1000);
             LinkedIn_SearchPage.fnSearch("x");
-            Thread.Sleep(1000);
             LinkedIn_SearchPage.fnSelectGente();
-            Thread.Sleep(1000);
             LinkedIn_SearchPage.fnSelectFilters();
-            Thread.Sleep(1000);
             LinkedIn_SearchPage.fnSelectCountry();
-            Thread.Sleep(1000);
             LinkedIn_SearchPage.fnAplicar();
 
 
