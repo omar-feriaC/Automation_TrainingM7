@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using SeleniumExtras.WaitHelpers;
 
 namespace AutomationTraining_M7.Test_Cases
 {
@@ -16,9 +17,11 @@ namespace AutomationTraining_M7.Test_Cases
     {
         //LinkedIn_LoginPage objLogin; -- DELETE
         public WebDriverWait _driverWait;
-      
+        LinkedIn_SearchPage objSearch;
+
         [Test]
         public void Search_LinkedIn()
+
         {
             //VARIABLES
             string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol" };
@@ -49,13 +52,116 @@ namespace AutomationTraining_M7.Test_Cases
                 }
             }
 
-            LinkedIn_SearchPage.fnClickPeopleButton();
-            Thread.Sleep(5000);
-            LinkedIn_SearchPage.fnClickAllFiltersButton();
-            Thread.Sleep(5000);
-    
+            objSearch = new LinkedIn_SearchPage(driver);
+
+            //*****Step 3*****//
+            LinkedIn_SearchPage.fnEnterSearchText("Alejandro");
+
+
+            //usar wait for an element
+             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            
+
+
+            //IWebElement element = wait.Until(driver => driver.FindElement(By.Name("Teto a buscar")));
+
+            
+
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[span[text()='People' or text()='Gente']]")));
+            //*****Step 4*****//
+            LinkedIn_SearchPage.fnSelectPeople();
+
+            
+            //*****Step 5*****//
+            Thread.Sleep(7000);
+            LinkedIn_SearchPage.fnSelectAllFilters();
+
+            //Giving some time for the page to reload
+            
+            Thread.Sleep(7000);
+            // Verifying that All Filter was selected by checking if the "All People Filters" Header is displayed
+            //Boolean isPresent3 = driver.FindElements(By.XPath("//h2[@id='advanced-facets-modal-header' and text()='All people filters']")).Count() > 0;
+            //Assert.AreEqual(true, isPresent3);
+
+            //Click en dropdown de ubicaciones para desplegar mexico
+            //LinkedIn_Search.fnGetClickUbicacionesButton();
+            //Task.Delay(5000).Wait();
+
+
+            //*****Step 6*****//
+            LinkedIn_SearchPage.fnGetRegionMx();
+            Thread.Sleep(3000);
+            LinkedIn_SearchPage.fnEnterSearchTextIt("Ital");
+            Thread.Sleep(7000);
+
+
+
+            //     var mySelectElm = driver.FindElement(By.Id("mySelectID"));
+            //     var mySelect = new SelectElement(mySelectElm);
+            //     selectElement.SelectByValue("Value");
+
+
+
+            //*****Step 7*****//
+            //LinkedIn_SearchPage.fnLanguageEng();
+            Thread.Sleep(7000);
+            //Giving some time for the page to reload
+            //Task.Delay(5000).Wait();
+
+
+
+            //******Step 8****//
+            LinkedIn_SearchPage.fnLanguageEsp();
+            Thread.Sleep(7000);
+            //Giving some time for the page to reload
+            //Task.Delay(5000).Wait();
+
+
+
+
+            //*****Step 9*****//
+            LinkedIn_SearchPage.fnClickApplyBtn();
+            Thread.Sleep(7000);
+            //Giving some time for the page to reload
+            
+
+            
+
+
+            //*****Step 10*****//
+            LinkedIn_SearchPage.fnEnterSearchText("Selenium");
+
+            //Giving some time for the results and People button to load
+            Thread.Sleep(7000);
+
+
+
+            //*****Step 11*****//
+            LinkedIn_SearchPage.fnEnterSearchText("Java");
+
+            //Giving some time for the results and People button to load
+            Thread.Sleep(7000);
+
+
+            LinkedIn_SearchPage.fnEnterSearchText("Python");
+
+            //Giving some time for the results and People button to load
+            Thread.Sleep(7000);
+
+
+            LinkedIn_SearchPage.fnEnterSearchText("Delphi");
+
+            //Giving some time for the results and People button to load
+            Thread.Sleep(7000);
+
+
+            LinkedIn_SearchPage.fnEnterSearchText("Ruby");
+
+            //Giving some time for the results and People button to load
+            Thread.Sleep(7000);
 
 
         }
     }
 }
+
