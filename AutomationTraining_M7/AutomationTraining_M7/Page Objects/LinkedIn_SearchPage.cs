@@ -16,10 +16,8 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string strSearchBox = "//input[@placeholder='Buscar' or @placeholder='Search']";
         readonly static string strPeopelFilter = "//button[span[text()='Gente' or text()='People']]";
         //readonly static string strCheckMX = "//input[@id='sf-geoRegion-mx:0']";
-        readonly static string strCheckMX = "//input[contains(@id,'-mx:')]";
-        //readonly static string strCheckIt = "//input[@id='sf-geoRegion-it:1136']";
-        readonly static string strCheckIt = "//input[@placeholder='Añadir un país o región' or @placeholder='Add country or region']";
-        readonly static string strApplicarFiltros = "//button[span[(text()='Aplicar' or text()='Apply') and @data-control-name='all_filters_apply']]";
+        readonly static string strCheckMX = "//input[@placeholder='Añadir un país o región' or @placeholder='Add country or region']";
+        readonly static string strApplicarFiltros = "//button[@data-control-name='all_filters_apply']";
         readonly static string strAllFiltersBtn = "//button[span[text()='Todos los filtros' or text()='All filters']]";
         readonly static string strName = "//spam[@class='actor-name']";
         readonly static string strRole = "//spam[@dir='ltr']";
@@ -32,7 +30,6 @@ namespace AutomationTraining_M7.Page_Objects
      
         private static IWebElement objPeopelFilter;// => _driver.FindElement(By.XPath(strPeopelFilter));
         private static IWebElement objCheckMX;// => _driver.FindElement(By.XPath(strCheckMX));
-        private static IWebElement objCheckIt;// => _driver.FindElement(By.XPath(strCheckIt));
         private static IWebElement objApplicarFiltros;// => _driver.FindElement(By.XPath(strApplicarFiltros));
         private static IWebElement objAllFiltersBtn;// => _driver.FindElement(By.XPath(strAllFiltersBtn));
         //LiLinkedIn_LoginPage(driver);
