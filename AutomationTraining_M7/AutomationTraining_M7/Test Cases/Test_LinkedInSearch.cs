@@ -63,17 +63,27 @@ namespace AutomationTraining_M7.Test_Cases
             _driverWait.Until(driver => driver.FindElement(By.XPath("//span[text()='People']")));
             LinkedIn_SearchPage.fnClickPeopleButton();
 
-            _driverWait.Until(driver => driver.FindElement(By.XPath("//span[text()='All Filters' or text()='Todos los Filtros']")));            
+            _driverWait.Until(driver => driver.FindElement(By.XPath("//span[text()='Connections']")));            
             LinkedIn_SearchPage.fnSelectAllFilltersButton();
 
             _driverWait.Until(driver => driver.FindElement(By.XPath("//label[text()='Mexico' or text()='México']")));            
             LinkedIn_SearchPage.fnSelectMexicoCheckbox();
 
-            _driverWait.Until(driver => driver.FindElement(By.XPath("//label[text()='Spanish' or text()='Español']")));
-            LinkedIn_SearchPage.fnSelectSpanishCheckbox();
+            //_driverWait.Until(driver => driver.FindElement(By.XPath("//label[text()='Spanish' or text()='Español']")));
+            //LinkedIn_SearchPage.fnSelectSpanishCheckbox();
 
-            _driverWait.Until(driver => driver.FindElement(By.XPath("//label[text()='English' or text()='Inglés']")));
-            LinkedIn_SearchPage.fnSelectEnglishCheckbox();                   
+            //_driverWait.Until(driver => driver.FindElement(By.XPath("//label[text()='English' or text()='Inglés']")));
+            //LinkedIn_SearchPage.fnSelectEnglishCheckbox();
+
+            //_driverWait.Until(driver => driver.FindElement(By.XPath("//label[text()='English' or text()='Inglés']")));
+            LinkedIn_SearchPage.fnSearchLocations("Italy");
+
+            for (int x=0;x< arrLanguages.Length; x++)
+            {
+                string lang = arrLanguages[x];
+                LinkedIn_SearchPage.fnSelectLanguage(lang);
+            }
+            LinkedIn_SearchPage.fnClickApplyFiltersButton();
         }
     }
 }
