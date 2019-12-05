@@ -38,8 +38,8 @@ namespace AutomationTraining_M7.Base_Files
         /*Close the browser and quit the selenium instance*/
         public static void AfterTest()
         {
-            //driver.Close();
-            //driver.Quit();
+            driver.Close();
+            driver.Quit();
         }
 
         /*Clear and Send text to specific field*/
@@ -48,9 +48,5 @@ namespace AutomationTraining_M7.Base_Files
             driver.FindElement(by).Clear();
             driver.FindElement(by).SendKeys(pstrText);
         }
-
-
-
-
     }
 }

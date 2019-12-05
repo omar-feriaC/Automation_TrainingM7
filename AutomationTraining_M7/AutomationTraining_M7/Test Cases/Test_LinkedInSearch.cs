@@ -22,7 +22,7 @@ namespace AutomationTraining_M7.Test_Cases
         public void Search_LinkedIn()
         {
             //VARIABLES
-            string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol" };
+            string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol", "Ruby", "SQL", "Android", "iOS" };
             string[] arrLanguages = { "Spanish", "English" };
 
             //Step# 1 .- Log In 
@@ -63,7 +63,7 @@ namespace AutomationTraining_M7.Test_Cases
             _driverWait.Until(driver => driver.FindElement(By.XPath("//span[text()='People']")));
             LinkedIn_SearchPage.fnClickPeopleButton();
 
-            _driverWait.Until(driver => driver.FindElement(By.XPath("//span[text()='Connections']")));            
+            _driverWait.Until(driver => driver.FindElement(By.XPath("//button[@class='search-s-facet__button artdeco-button artdeco-button--muted artdeco-button--icon-right artdeco-button--2 artdeco-button--secondary ember-view'] //span[text()='Connections' or text()='Conexiones']"))); ////span[text()='Connections']
             LinkedIn_SearchPage.fnSelectAllFilltersButton();
 
             _driverWait.Until(driver => driver.FindElement(By.XPath("//label[text()='Mexico' or text()='México']")));            
@@ -84,6 +84,19 @@ namespace AutomationTraining_M7.Test_Cases
                 LinkedIn_SearchPage.fnSelectLanguage(lang);
             }
             LinkedIn_SearchPage.fnClickApplyFiltersButton();
+            Thread.Sleep(3000);
+
+            for (int y = 0; y < arrTechnologies.Length; y++)
+            {
+                string technology = arrTechnologies[y];
+                Console.WriteLine("=== LinkedIn result for " + technology + " ===");                
+                LinkedIn_SearchPage.fnSearchText(technology);
+                Thread.Sleep(3000);
+                Console.WriteLine("Name: " + LinkedIn_SearchPage.GetNameSpan().Text);
+                Console.WriteLine("Role: " + LinkedIn_SearchPage.GetRoleSpan().Text);
+                Console.WriteLine("LinkedIn URL: " + LinkedIn_SearchPage.GetUrlA().GetAttribute("href"));
+                Console.WriteLine("==========================");
+            }
         }
     }
 }
