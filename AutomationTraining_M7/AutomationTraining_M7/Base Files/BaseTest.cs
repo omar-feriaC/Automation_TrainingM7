@@ -27,7 +27,7 @@ namespace AutomationTraining_M7.Base_Files
         //**************************************************
         
         [SetUp]
-        /*Initialize the driver and indicates the url*/
+        /*Initialize the driver and indicates the url*, que hacer antes de inicializar la ejecucion*/
         public static void SetUp()
         {
             driver = new ChromeDriver();
