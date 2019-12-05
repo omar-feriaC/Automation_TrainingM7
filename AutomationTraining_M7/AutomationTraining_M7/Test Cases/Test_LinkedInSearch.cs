@@ -48,7 +48,7 @@ namespace AutomationTraining_M7.Test_Cases
                     }
                 }
             }
-            LinkedIn_SearchPage objLinkedIn_SearchPage = new LinkedIn_SearchPage();
+            LinkedIn_SearchPage objLinkedIn_SearchPage = new LinkedIn_SearchPage(driver);
             objLinkedIn_SearchPage.fnGetSearch("Random");
             objLinkedIn_SearchPage.fnPeopelFilterClick();
             objLinkedIn_SearchPage.fnAllFiltersClick();
@@ -56,15 +56,12 @@ namespace AutomationTraining_M7.Test_Cases
             foreach (string ln in arrLanguages) {
                 objLinkedIn_SearchPage.fnLanguajecheck(ln);
             }
+            objLinkedIn_SearchPage.fnApply();
             foreach (string tch in arrTechnologies)
             {
                 objLinkedIn_SearchPage.fnGetSearch(tch);
-                objLinkedIn_SearchPage.print();
+                objLinkedIn_SearchPage.print(tch);
             }
-
-
-
-
         }
     }
 }
