@@ -17,9 +17,9 @@ namespace AutomationTraining_M7.Page_Objects
         /*LOCATORS FOR EACH ELEMENT*/
 
         readonly static string STR_SEARCH_FIELD = "//input[@class = 'search-global-typeahead__input']";
-        readonly static string STR_PEOPLE_BTN = "//span[text()='People'or text()='Gente']";
-        readonly static string STR_ALLFILTERS_BTN = "//span[text()='All Filters'or text()='Todos los filtros']";
-        readonly static string STR_MEXICO_CHCBX = "//label[text()='Mexico' or text()='México']";
+        public readonly static string STR_PEOPLE_BTN = "//span[text()='People'or text()='Gente']";
+        public readonly static string STR_ALLFILTERS_BTN = "//span[text()='All Filters'or text()='Todos los filtros']";
+        public  readonly static string STR_MEXICO_CHCBX = "//label[text()='Mexico' or text()='México']";
         readonly static string STR_ADD_COUNTRY_FIELD = "//input[@aria-label ='Add a country/region']";
         readonly static string STR_ENGLISH_CHCBX = "//label[text()='English']";
         readonly static string STR_SPANISH_CHCBX = "//label[text()='Spanish']";
@@ -61,7 +61,7 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
         //People Button
-        private IWebElement GetPeopleButton()
+        public  IWebElement GetPeopleButton()
         {
             return objPeopleButton;
         }
@@ -111,7 +111,7 @@ namespace AutomationTraining_M7.Page_Objects
         {
             objAddCountryField.Click();
             objAddCountryField.SendKeys(pstrCountry);
-            Task.Delay(5000).Wait();
+            Task.Delay(4000).Wait();
             objAddCountryField.SendKeys(Keys.ArrowDown);
             objAddCountryField.SendKeys(Keys.Enter);
 
@@ -184,6 +184,7 @@ namespace AutomationTraining_M7.Page_Objects
             objSearchField.Clear();
             objSearchField.SendKeys(pstrSearchTech);
             objSearchField.SendKeys(Keys.Enter);
+           
         }
     }
 }
