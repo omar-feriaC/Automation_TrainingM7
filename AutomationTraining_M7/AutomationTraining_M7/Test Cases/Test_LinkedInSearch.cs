@@ -1,4 +1,4 @@
-﻿using AutomationTraining_M7.Page_Objects;
+using AutomationTraining_M7.Page_Objects;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -12,30 +12,27 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Test_Cases
 {
-    class Test_LinkedInSearch : Test_LinkedIn
+    class Test_LinkedInSearch : Test_LinkdIn
     {
-        //LinkedIn_LoginPage objLogin; -- DELETE
-        public WebDriverWait _driverWait;
+        public WebDriverWait _DriverWait;
         LinkedIn_SearchPage objSearch;
 
         [Test]
-        public void Search_LinkedIn()
+        public void Search_LinkIn()
         {
-            //VARIABLES
-            string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol" };
-            string[] arrLanguages = { "Spanish", "English" };
+            //Variables technologies
+            string[] arrTechnologies = { "Cobol", "Java", "C#", "Pega", "C++" };
+            string[] arrLanguage = { "English", "Spanish" };
 
-            //Step# 1 .- Log In 
+            //Log In
             objSearch = new LinkedIn_SearchPage(driver);
             Login_LinkedIn();
 
-            //Step# 2 .- Verify if captcha exist
-            if (driver.Title.Contains("Verification") | driver.Title.Contains("Verificación"))
+            //Captcha
+            if (driver.Title.Contains("Verification"))
             {
-                //Switch to Iframe(0)
                 driver.SwitchTo().DefaultContent();
                 driver.SwitchTo().Frame(driver.FindElement(By.Id("captcha-internal")));
-                //Switch to Iframe that contains captcha.
                 IWebElement objCheckbox;
                 List<IWebElement> frames = new List<IWebElement>(driver.FindElements(By.TagName("iframe")));
                 for (int i = 0; i < frames.Count - 1; i++)
@@ -43,37 +40,34 @@ namespace AutomationTraining_M7.Test_Cases
                     if (frames[i].GetAttribute("role").ToString() == "presentation" | frames[i].GetAttribute("role").ToString() != "")
                     {
                         driver.SwitchTo().Frame(i);
-                        _driverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 60));
-                        objCheckbox = _driverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[@role='checkbox']")));
+                        _DriverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 60));
+                        objCheckbox = _DriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[@role='checkbox']")));
                         if (objCheckbox.Enabled) { objCheckbox.Click(); }
-                        
+
                     }
                 }
             }
+            // Set Filters
+            LinkedIn_SearchPage.FnEnterSearchText("Jesus");
+            Thread.Sleep(6000);
+            LinkedIn_SearchPage.FnClickSearchBtn();
+            Thread.Sleep(6000);
+            LinkedIn_SearchPage.FnSelectAllFilters();
+            Thread.Sleep(6000);
+            LinkedIn_SearchPage.FnGetRegionMx();
+            Thread.Sleep(6000);
+            LinkedIn_SearchPage.FnLanguageEng();
+            Thread.Sleep(6000);
+            LinkedIn_SearchPage.FnLanguageEsp();
+            Thread.Sleep(6000);
+            LinkedIn_SearchPage.FnClickApplyBtn();
 
-            //Step# 3 .- Set Filters
-            LinkedIn_SearchPage.fnEnterSearchText("Java");
-            LinkedIn_SearchPage.fnClickSearchBtn();
-            LinkedIn_SearchPage.fnSelectPeople();
-            Thread.Sleep(5000);
-            LinkedIn_SearchPage.fnSelectAllFilters();
-            Thread.Sleep(5000);
-            LinkedIn_SearchPage.fnGetRegionMx();
-            Thread.Sleep(5000);
-            LinkedIn_SearchPage.fnLanguageEng();
-            Thread.Sleep(5000);
-            LinkedIn_SearchPage.fnLanguageEsp();
-            Thread.Sleep(5000);
-            LinkedIn_SearchPage.fnClickApplyBtn();
-
-            //Step# 4 .- Search Elements
-            foreach (string strvalue in arrTechnologies)
+            //Elements
+            foreach (string strValue in arrTechnologies)
             {
-                LinkedIn_SearchPage.fnEnterSearchText(strvalue);
-                LinkedIn_SearchPage.fnClickSearchBtn();
+                LinkedIn_SearchPage.FnEnterSearchText(strValue);
+                LinkedIn_SearchPage.FnClickSearchBtn();
             }
-
-
         }
     }
 }
