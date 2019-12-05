@@ -31,17 +31,19 @@ namespace AutomationTraining_M7.Test_Cases
             driver.Manage().Window.Maximize();
             Login_LinkedIn();
 
+            //First search
             objSearch = new LinkedIn_SearchPage(driver);
             LinkedIn_SearchPage.fnEnterSearchText("Testing");
             LinkedIn_SearchPage.fnClickSearchBtn();
             wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[span[text()='People' or text()='Gente']]")));
 
-            
+            //Selecting People button
             LinkedIn_SearchPage.fnSelectPeople();
             wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@class='search-vertical-filter__dropdown-trigger-text mr1'][text()='People']")));
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[span[text()='All Filters' or text()='Todos los filtros']]")));
 
+            //Locations selection
             LinkedIn_SearchPage.fnSelectAllFilters();
             wait.Until(ExpectedConditions.ElementExists(By.XPath("//input[@placeholder='Add a country/region'][@aria-label='Add a country/region']")));
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//label[text()='Mexico' or text()='México']")));
@@ -50,12 +52,14 @@ namespace AutomationTraining_M7.Test_Cases
             wait.Until(ExpectedConditions.ElementExists(By.XPath("//div[@class='basic-typeahead__triggered-content search-s-add-facet__typeahead-tray']")));
             LinkedIn_SearchPage.fnSelectItaly();
 
+            //Entering Languages
             foreach(string language in arrLanguages) 
             {
-                
+                LinkedIn_SearchPage.fnSelectLanguage(language);
             }
-            
-            //LinkedIn_SearchPage.fnSelectItaly();
+
+            //Apply the Filters
+            LinkedIn_SearchPage.fnClickApplyBtn();
 
 
 

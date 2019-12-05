@@ -170,5 +170,11 @@ namespace AutomationTraining_M7.Page_Objects
         {
             objSelectITalyDD.Click();
         }
+
+        public static void fnSelectLanguage(string pstrLanguage)
+        {
+            IWebElement objLanguageOption = _ObjSrcDriver.FindElement(By.XPath($"//*[text()='{pstrLanguage}']"));
+            objLanguageOption.Click();
+        }
     }
 }
