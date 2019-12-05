@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,42 +17,98 @@ namespace AutomationTraining_M7.Test_Cases
     {
         //LinkedIn_LoginPage objLogin; -- DELETE
         public WebDriverWait _driverWait;
+        LinkedIn_SearchPage pgSearch;
       
         [Test]
         public void Search_LinkedIn()
         {
-            //VARIABLES
-            string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol" };
-            string[] arrLanguages = { "Spanish", "English" };
-
-            //Step# 1 .- Log In 
-            Login_LinkedIn();
-
-            //Step# 2 .- Verify if captcha exist
-            if (driver.Title.Contains("Verification") | driver.Title.Contains("Verificación"))
+            try
             {
-                //Switch to Iframe(0)
-                driver.SwitchTo().DefaultContent();
-                driver.SwitchTo().Frame(driver.FindElement(By.Id("captcha-internal")));
-                //Switch to Iframe that contains captcha.
-                IWebElement objCheckbox;
-                List<IWebElement> frames = new List<IWebElement>(driver.FindElements(By.TagName("iframe")));
-                for (int i = 0; i < frames.Count - 1; i++)
+                //VARIABLES
+                string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol" };
+                string[] arrLanguages = { "Spanish", "English" };
+
+                //Step# 1 .- Log In 
+                Login_LinkedIn();
+
+                //Step# 2 .- Verify if captcha exist
+                if (driver.Title.Contains("Verification") | driver.Title.Contains("Verificación"))
                 {
-                    if (frames[i].GetAttribute("role").ToString() == "presentation" | frames[i].GetAttribute("role").ToString() != "")
+                    //Switch to Iframe(0)
+                    driver.SwitchTo().DefaultContent();
+                    driver.SwitchTo().Frame(driver.FindElement(By.Id("captcha-internal")));
+                    //Switch to Iframe that contains captcha.
+                    IWebElement objCheckbox;
+                    List<IWebElement> frames = new List<IWebElement>(driver.FindElements(By.TagName("iframe")));
+                    for (int i = 0; i < frames.Count - 1; i++)
                     {
-                        driver.SwitchTo().Frame(i);
-                        _driverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 60));
-                        objCheckbox = _driverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[@role='checkbox']")));
-                        if (objCheckbox.Enabled) { objCheckbox.Click(); }
-                        
+                        if (frames[i].GetAttribute("role").ToString() == "presentation" | frames[i].GetAttribute("role").ToString() != "")
+                        {
+                            driver.SwitchTo().Frame(i);
+                            _driverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 60));
+                            objCheckbox = _driverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[@role='checkbox']")));
+                            if (objCheckbox.Enabled) { objCheckbox.Click(); }
+
+                        }
                     }
                 }
+
+                //Step# 3 .- Select the filter for People or Gente
+                pgSearch = new LinkedIn_SearchPage(driver);
+                _driverWait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
+
+                pgSearch.fnEnterSearchText("Python");
+                pgSearch.fnClickSearchButton();
+                _driverWait.Until(ElementExists => pgSearch.GetPeopleButton()); //Wait for the 'People' or 'Gente' button to appear.
+                pgSearch.fnClickPeopleButton(); //Click the 'People' or 'Gente' button.
+
+                //Step#4 .- Select the option for 'All Filter' or 'Todos los filtros'
+                _driverWait.Until(PageChanges => driver.Url.Contains("people"));
+                _driverWait.Until(ElementExists => pgSearch.GetAllFiltersButton());
+                pgSearch.fnClickAllFiltersButton();
+
+                //Step#5 .- Select options for: 'Mexico' or 'México', and 'Italy'; in the location box.
+                pgSearch.fnEnterLocationText("Mexico");
+                _driverWait.Until(OptionAppears => pgSearch.GetMexicoOption());
+                pgSearch.fnClickMexicoOption();
+
+                pgSearch.fnEnterLocationText("Italy");
+                _driverWait.Until(OptionAppears => pgSearch.GetItalyOption());
+                pgSearch.fnClickItayOption();
+
+                //Step#6 .- Select the profile language
+                foreach(string language in arrLanguages)
+                {
+                    pgSearch.fnSelectProfileLanguate(language); //This will fail when the language is set to spanish because there is no item in the list for the languages in spanish
+                }
+
+                //Step#7 .- Apply the filters
+                pgSearch.fnClickApplyButton();
+
+                //Step#8 .- Perform search for each techonlogy provided in the arrTechnologies array.
+                foreach (string technology in arrTechnologies)
+                {
+                    pgSearch.fnEnterSearchText(technology);
+                    pgSearch.fnClickSearchButton();
+                    _driverWait.Until(PageChanges => driver.Url.Contains(technology));
+                    string Name = "Get name";//Can't select any results! Can't get any information from the search.
+                    string Role = "Get role";
+                    string ProfileURL = "Get URL";
+                    Console.WriteLine($@"Name:{Name}
+                                         Role:{Role}
+                                         Profile URL:{ProfileURL}");
+                }
+
+
             }
+            catch(Exception x)
+            {
+                Console.WriteLine(x.Message);
+            }
+            finally
+            {
 
-    
-
-
+            }
         }
     }
 }
