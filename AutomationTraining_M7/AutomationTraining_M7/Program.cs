@@ -22,6 +22,10 @@ namespace AutomationTraining_M7
             LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
             LinkedIn_LoginPage.fnClickSignInButton();
 
+            LinkedIn_SearchPage objSearch = new LinkedIn_SearchPage(driver);
+            LinkedIn_SearchPage.fnEnterSearch("Jose Luis");
+
+
             /*
             SalaryEmployee objSalary = new SalaryEmployee(0, "Carlos Ruiz", 100.10);
             HourlyEmployee objHourly = new HourlyEmployee(1, "Cesar Padilla", 5, 10.5);
