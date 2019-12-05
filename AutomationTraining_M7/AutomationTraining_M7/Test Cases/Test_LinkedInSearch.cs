@@ -1,4 +1,5 @@
-﻿using AutomationTraining_M7.Page_Objects;
+﻿using AutomationTraining_M7.Base_Files;
+using AutomationTraining_M7.Page_Objects;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -14,7 +15,7 @@ namespace AutomationTraining_M7.Test_Cases
 {
     class Test_LinkedInSearch : Test_LinkedIn
     {
-        //LinkedIn_LoginPage objLogin; -- DELETE
+        LinkedIn_SearchPage objLogin; //-- DELETE
         public WebDriverWait _driverWait;
       
         [Test]
@@ -48,9 +49,15 @@ namespace AutomationTraining_M7.Test_Cases
                     }
                 }
             }
-
-    
-
+            objLogin = new LinkedIn_SearchPage(driver);
+            //Thread.Sleep(TimeSpan.FromSeconds(10));
+            Utils.AssertIsPresent(LinkedIn_SearchPage.searchTxt);
+            LinkedIn_SearchPage.fnSearchField("Juan");
+            //LinkedIn_SearchPage.searchTxt.SendKeys(Keys.Enter);
+            Utils.AssertIsPresent(LinkedIn_SearchPage.genteBtn);
+            //Thread.Sleep(TimeSpan.FromSeconds(10));
+            LinkedIn_SearchPage.fnClickGente();
+            
 
         }
     }

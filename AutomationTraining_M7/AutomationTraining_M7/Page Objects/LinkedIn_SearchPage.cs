@@ -10,30 +10,46 @@ namespace AutomationTraining_M7.Page_Objects
 {
     class LinkedIn_SearchPage : BaseTest
     {
-        public string SEARCH_TEXTFIELD = "//input[@placeholder='Buscar']";
-        public string GENTE_BUTTON = "//span[text()='Gente']";
-        public string TOODSFILTROS_BUTTON = "//span[text()='Todos los filtros']";
-        public string UBICACION_CHECKBOX = "//label[text()='México']";
-        public string IDIOMAen_CHECKBOX = "/html[1]/body[1]/div[4]/div[1]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[7]/form[1]/div[1]/fieldset[1]/ol[1]/li[2]/label[1]";
-        public string IDIOMAes_CHECKBOX = "//label[text()='Español']";
-        public string APLICAR_BUTTON = "//button[@id='ember1980']//span[text()='Aplicar']";
+        public static string SEARCH_TEXTFIELD = "search-global-typeahead__input";
+        public static string GENTE_BUTTON = "//span[text()='People']";
+        public static string TOODSFILTROS_BUTTON = "//span[text()='Todos los filtros']";
+        public static string UBICACION_CHECKBOX = "//label[text()='México']";
+        public static string IDIOMAen_CHECKBOX = "/html[1]/body[1]/div[4]/div[1]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[7]/form[1]/div[1]/fieldset[1]/ol[1]/li[2]/label[1]";
+        public static string IDIOMAes_CHECKBOX = "//label[text()='Español']";
+        public static string APLICAR_BUTTON = "//button[@id='ember1980']//span[text()='Aplicar']";
 
-        private IWebDriver _driver;
+        private static IWebDriver _objDriver;
 
-        public LinkedIn_SearchPage(IWebDriver driver)
+        //public  LinkedIn_SearchPage(IWebDriver driver)
+        //{
+
+        //    this._driver = driver;
+        //}
+        public LinkedIn_SearchPage(IWebDriver pobjDriver)
         {
-
-            this._driver = driver;
+            _objDriver = pobjDriver;
         }
 
         //Define Properties
-       public IWebElement searchTxt => _driver.FindElement(By.XPath(SEARCH_TEXTFIELD));
-        public IWebElement genteBtn => _driver.FindElement(By.XPath(GENTE_BUTTON));
-        public IWebElement filtrosBtn => _driver.FindElement(By.XPath(TOODSFILTROS_BUTTON));
-        public IWebElement ubicacionChBtn => _driver.FindElement(By.XPath(UBICACION_CHECKBOX));
-        public IWebElement idiomaEnChBtn => _driver.FindElement(By.XPath(IDIOMAen_CHECKBOX));
-        public IWebElement aplicarBtn => _driver.FindElement(By.XPath(APLICAR_BUTTON));
+        public static IWebElement searchTxt => _objDriver.FindElement(By.ClassName(SEARCH_TEXTFIELD));
+        public static IWebElement genteBtn => _objDriver.FindElement(By.XPath(GENTE_BUTTON));
+        public static  IWebElement filtrosBtn => _objDriver.FindElement(By.XPath(TOODSFILTROS_BUTTON));
+        public static IWebElement ubicacionChBtn => _objDriver.FindElement(By.XPath(UBICACION_CHECKBOX));
+        public static IWebElement idiomaEnChBtn => _objDriver.FindElement(By.XPath(IDIOMAen_CHECKBOX));
+        public static IWebElement aplicarBtn => _objDriver.FindElement(By.XPath(APLICAR_BUTTON));
 
+        //
+        public static void fnSearchField(string strSearchString)
+        {
+            searchTxt.SendKeys(strSearchString);
+
+
+        }
+        
+        public static void fnClickGente()
+        {
+            genteBtn.Click();
+        }
 
     }
 }
