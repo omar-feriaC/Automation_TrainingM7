@@ -53,13 +53,9 @@ namespace AutomationTraining_M7.Test_Cases
             LinkedIn_SearchPage.FnClickSearchBtn();
             Thread.Sleep(6000);
             LinkedIn_SearchPage.FnSelectAllFilters();
-            Thread.Sleep(6000);
             LinkedIn_SearchPage.FnGetRegionMx();
-            Thread.Sleep(6000);
             LinkedIn_SearchPage.FnLanguageEng();
-            Thread.Sleep(6000);
             LinkedIn_SearchPage.FnLanguageEsp();
-            Thread.Sleep(6000);
             LinkedIn_SearchPage.FnClickApplyBtn();
 
             //Elements
