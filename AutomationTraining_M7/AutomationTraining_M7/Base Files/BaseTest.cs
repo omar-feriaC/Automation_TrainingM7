@@ -1,4 +1,3 @@
-﻿
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -16,7 +15,7 @@ namespace AutomationTraining_M7.Base_Files
         //**************************************************
         //*                V A R I A B L E S
         //**************************************************
-        
+
         /*Webdriver Intance*/
         public static IWebDriver driver;
         /*URL for Webdriver*/
@@ -25,7 +24,7 @@ namespace AutomationTraining_M7.Base_Files
         //**************************************************
         //                  M E T H O D S 
         //**************************************************
-        
+
         [SetUp]
         /*Initialize the driver and indicates the url*/
         public static void SetUp()
@@ -48,9 +47,6 @@ namespace AutomationTraining_M7.Base_Files
             driver.FindElement(by).Clear();
             driver.FindElement(by).SendKeys(pstrText);
         }
-
-
-
 
     }
 }
