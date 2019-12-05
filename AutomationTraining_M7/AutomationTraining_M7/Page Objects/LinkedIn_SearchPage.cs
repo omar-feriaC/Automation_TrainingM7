@@ -158,6 +158,7 @@ namespace AutomationTraining_M7.Page_Objects
             objAddCountryTxt.Click();
             objAddCountryTxt.Clear();
             objAddCountryTxt.SendKeys(pstrAddCountry);
+            objAddCountryTxt.SendKeys(Keys.ArrowDown);
             objAddCountryTxt.SendKeys(Keys.Enter);
         }
 

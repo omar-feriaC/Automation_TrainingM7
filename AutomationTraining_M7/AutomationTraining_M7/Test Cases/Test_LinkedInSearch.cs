@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -26,20 +27,24 @@ namespace AutomationTraining_M7.Test_Cases
             string[] arrLanguages = { "Spanish", "English" };
 
             //Step# 1 .- Log In 
+            driver.Manage().Window.Maximize();
             Login_LinkedIn();
 
             objSearch = new LinkedIn_SearchPage(driver);
             LinkedIn_SearchPage.fnEnterSearchText("Testing");
             LinkedIn_SearchPage.fnClickSearchBtn();
-            _driverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
+            WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
+            wait.Until( ExpectedConditions.ElementToBeClickable(By.XPath("//button[span[text()='People' or text()='Gente']]")));
             LinkedIn_SearchPage.fnSelectPeople();
-            _driverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
+            //WebDriverWait wait2 = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[span[text()='All Filters' or text()='Todos los filtros']]")));
             LinkedIn_SearchPage.fnSelectAllFilters();
-            _driverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
+            LinkedIn_SearchPage.fnSelectAllFilters();
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//label[text()='Mexico' or text()='México']")));
             LinkedIn_SearchPage.fnGetRegionMx();
-            _driverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
             LinkedIn_SearchPage.fnAddCountry("Italy");
-            LinkedIn_SearchPage.fnSelectItaly();
+            
+            //LinkedIn_SearchPage.fnSelectItaly();
 
 
 
