@@ -12,10 +12,10 @@ namespace AutomationTraining_M7.Page_Objects
     {
         private static IWebDriver _objDriver;
 
-        readonly static string STR_SEARCH_FIELD = "//input[@placeholder='Buscar']";
-        readonly static string STR_PEOPLE_FILTER = "//span[text()='Gente']";
-        readonly static string STR_ALL_FILTERS = "//span[text()='Todos los filtros']";
-        readonly static string STR_LOCATION_FILTER = "//label[text()='México']";
+        readonly static string STR_SEARCH_FIELD = "//input[@placeholder='Search' or @placeholder='Buscar']";
+        readonly static string STR_PEOPLE_FILTER = "//span[text()='Gente' or text()='People']";
+        readonly static string STR_ALL_FILTERS = "//span[text()='Todos los filtros' or text()='All Filters']";
+        readonly static string STR_LOCATION_FILTER = "//label[text()='México' or text()='Mexico']";
         readonly static string STR_LOCATION_FILTER2 = "//input[@placeholder='Añadir un país o región']";
         readonly static string STR_LANGUAGE_FILTER1 = "//label[text()='Inglés']";
         readonly static string STR_LANGUAGE_FILTER2 = "//label[text()='Español']";
@@ -53,10 +53,7 @@ namespace AutomationTraining_M7.Page_Objects
             objSearchField.SendKeys(Keys.Return);
 
         }
-
-
-
-
+        
         private IWebElement GetPeopleFilter()
         {
             return objPeopleFilter;
@@ -94,9 +91,10 @@ namespace AutomationTraining_M7.Page_Objects
 
         public static void fnEnterLocationValue(string pstrLocationValue)
         {
-            objSearchField.Clear();
-            objSearchField.SendKeys(pstrLocationValue);
-            objSearchField.SendKeys(Keys.Return);
+            objLocationField.Clear();
+            objLocationField.SendKeys(pstrLocationValue);
+            objLocationField.SendKeys(Keys.Down);
+            objLocationField.SendKeys(Keys.Return);
 
         }
 
@@ -110,15 +108,7 @@ namespace AutomationTraining_M7.Page_Objects
             objLanguageFilter1.Click();
         }
 
-        private IWebElement GetLanguageButton2()
-        {
-            return objLanguageFilter2;
-        }
-
-        public static void fnClickLanguageButton2()
-        {
-            objLanguageFilter2.Click();
-        }
+        
 
 
         private IWebElement GetApplyButton()

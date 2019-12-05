@@ -21,15 +21,17 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_ALLFILTERS_BTN = "//button[span[text()='All Filters' or text()='Todos los filtros']]";
         readonly static string STR_LANG_ENG_CB = "//label[text()='English' or text()='Ingles']";
         readonly static string STR_LANG_ESP_CB = "//label[text()='Spanish' or text()='Español']";
+       
+        readonly static string STR_ARRPROFILE_TECH = "//label[text()='English' or text()='Ingles']";
         readonly static string STR_REGIONMX_CB = "//label[text()='Mexico' or text()='México']";
 
-        /*CONSTRUCTOR*/
+        //CONSTRUCTOR
         public LinkedIn_SearchPage(IWebDriver pobjSrcDriver)
         {
             _ObjSrcDriver = pobjSrcDriver;
         }
 
-        /*IWEBELEMEMT OBJECTS*/
+        //IWEBELEMEMT OBJECTS
         private static IWebElement objCaptcha => _ObjSrcDriver.FindElement(By.XPath(STR_CAPTCHA_CLK));
         private static IWebElement objSearchText => _ObjSrcDriver.FindElement(By.XPath(STR_SEARCH_TEXT));
         private static IWebElement objSearchBtn => _ObjSrcDriver.FindElement(By.XPath(STR_SEARCH_BTN));
@@ -41,7 +43,7 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objApplyBtn => _ObjSrcDriver.FindElement(By.XPath(STR_APPLY_BTN));
 
 
-        /*METHODS*/
+        //METHODS
         //Captcha
         private IWebElement GetCaptcha()
         {
@@ -142,6 +144,7 @@ namespace AutomationTraining_M7.Page_Objects
         {
             objApplyBtn.Click();
         }
-
+        
+        
     }
 }
