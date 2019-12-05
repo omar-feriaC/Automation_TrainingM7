@@ -62,7 +62,7 @@ namespace AutomationTraining_M7.Test_Cases
             LinkedIn_SearchPage.fnEnterSearchCriteria(ConfigurationManager.AppSettings.Get("serchCriteria"));
             LinkedIn_SearchPage.fnClickSearchButton();
             LinkedIn_SearchPage.fnWaitPage();
-            /*//Assert.IsTrue(driver.Title.Contains("search/results"));
+            //Assert.IsTrue(driver.Title.Contains("search/results"));
             LinkedIn_SearchPage.fnClickPeopleButton();
             LinkedIn_SearchPage.fnWaitPage();
             //INSERT Assert.something here
@@ -74,7 +74,7 @@ namespace AutomationTraining_M7.Test_Cases
             LinkedIn_SearchPage.fnClickEnglishCheckbox();
             LinkedIn_SearchPage.fnClickApplyFiltersButton();
             LinkedIn_SearchPage.fnWaitPage();
-            */
+            
             foreach (string strvalue in arrTechnologies)
             {
                 LinkedIn_SearchPage.fnEnterSearchCriteria(strvalue);
