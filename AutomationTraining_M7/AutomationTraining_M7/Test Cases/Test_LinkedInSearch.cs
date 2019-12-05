@@ -3,6 +3,7 @@ using AutomationTraining_M7.Page_Objects;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -53,11 +54,23 @@ namespace AutomationTraining_M7.Test_Cases
             //Thread.Sleep(TimeSpan.FromSeconds(10));
             Utils.AssertIsPresent(LinkedIn_SearchPage.searchTxt);
             LinkedIn_SearchPage.fnSearchField("Juan");
-            //LinkedIn_SearchPage.searchTxt.SendKeys(Keys.Enter);
+            LinkedIn_SearchPage.searchTxt.SendKeys(Keys.Enter);
             Utils.AssertIsPresent(LinkedIn_SearchPage.genteBtn);
             //Thread.Sleep(TimeSpan.FromSeconds(10));
             LinkedIn_SearchPage.fnClickGente();
-            
+            Utils.AssertIsPresent(LinkedIn_SearchPage.filtrosBtn);
+            LinkedIn_SearchPage.fnClickAllFilters();
+            Utils.AssertIsPresent(LinkedIn_SearchPage.ubicacionChBtn);
+            LinkedIn_SearchPage.fnClickMexico();
+            LinkedIn_SearchPage.fnAddCountryField("Italy");
+            Utils.AssertIsPresent(LinkedIn_SearchPage.idiomaEnChBtn);
+            LinkedIn_SearchPage.fnClickEnglish();
+
+            foreach (string strlanguage in arrLanguages)
+            {
+                LinkedIn_SearchPage.fnSelectandClickLanguage(strlanguage);
+            }
+
 
         }
     }

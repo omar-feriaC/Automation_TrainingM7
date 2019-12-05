@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Page_Objects
@@ -11,12 +12,14 @@ namespace AutomationTraining_M7.Page_Objects
     class LinkedIn_SearchPage : BaseTest
     {
         public static string SEARCH_TEXTFIELD = "search-global-typeahead__input";
-        public static string GENTE_BUTTON = "//span[text()='People']";
-        public static string TOODSFILTROS_BUTTON = "//span[text()='Todos los filtros']";
-        public static string UBICACION_CHECKBOX = "//label[text()='México']";
-        public static string IDIOMAen_CHECKBOX = "/html[1]/body[1]/div[4]/div[1]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[7]/form[1]/div[1]/fieldset[1]/ol[1]/li[2]/label[1]";
+        public static string GENTE_BUTTON = "//span[text()='People'or text()='Gente']";
+        public static string TOODSFILTROS_BUTTON = "//span[text()='All Filters'or text()='Todos los filtros']"
+        public static string UBICACION_CHECKBOX = "//label[text()='Mexico' or text()='México']";
+        public static string IDIOMAen_CHECKBOX = "//label[text()='English']";
         public static string IDIOMAes_CHECKBOX = "//label[text()='Español']";
-        public static string APLICAR_BUTTON = "//button[@id='ember1980']//span[text()='Aplicar']";
+        public static string APLICAR_BUTTON = "//button[@data-control-name ='all_filters_apply']";
+        public static string ADDCOUNTRY_TextFIELD = "//input[@aria-label ='Add a country/region']";
+
 
         private static IWebDriver _objDriver;
 
@@ -33,10 +36,12 @@ namespace AutomationTraining_M7.Page_Objects
         //Define Properties
         public static IWebElement searchTxt => _objDriver.FindElement(By.ClassName(SEARCH_TEXTFIELD));
         public static IWebElement genteBtn => _objDriver.FindElement(By.XPath(GENTE_BUTTON));
-        public static  IWebElement filtrosBtn => _objDriver.FindElement(By.XPath(TOODSFILTROS_BUTTON));
+        public static IWebElement filtrosBtn => _objDriver.FindElement(By.XPath(TOODSFILTROS_BUTTON));
         public static IWebElement ubicacionChBtn => _objDriver.FindElement(By.XPath(UBICACION_CHECKBOX));
         public static IWebElement idiomaEnChBtn => _objDriver.FindElement(By.XPath(IDIOMAen_CHECKBOX));
         public static IWebElement aplicarBtn => _objDriver.FindElement(By.XPath(APLICAR_BUTTON));
+        public static IWebElement idiomaEsChBtn => _objDriver.FindElement(By.XPath(IDIOMAes_CHECKBOX));
+        public static IWebElement AddCountry => _objDriver.FindElement(By.XPath(ADDCOUNTRY_TextFIELD));
 
         //
         public static void fnSearchField(string strSearchString)
@@ -45,11 +50,37 @@ namespace AutomationTraining_M7.Page_Objects
 
 
         }
-        
+
         public static void fnClickGente()
         {
             genteBtn.Click();
         }
 
+        public static void fnClickAllFilters()
+        {
+            filtrosBtn.Click();
+        }
+        public static void fnClickMexico()
+        {
+            ubicacionChBtn.Click();
+        }
+
+        public static void fnAddCountryField(string pstrCountry)
+        {
+            AddCountry.Click();
+            AddCountry.SendKeys(pstrCountry);
+            Thread.Sleep(TimeSpan.FromSeconds(3));
+            AddCountry.SendKeys(Keys.ArrowDown);
+            AddCountry.SendKeys(Keys.Enter);
+
+        }
+
+        public static void fnClickEnglish()
+        {
+            idiomaEnChBtn.Click();
+
+        }
+        
+
+        }
     }
-}
