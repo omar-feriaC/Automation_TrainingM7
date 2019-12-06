@@ -196,7 +196,7 @@ namespace AutomationTraining_M7.Page_Objects
 
             Console.WriteLine("Name: " + objName.Text);
             Console.WriteLine("Role: " + objRole.Text);
-            Console.WriteLine("URL: " + objURL.ToString());
+            Console.WriteLine("URL: " + objURL.GetAttribute("href"));
             Console.WriteLine("");
         }
 
