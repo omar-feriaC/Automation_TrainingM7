@@ -51,7 +51,7 @@ namespace AutomationTraining_M7.Page_Objects
             objSearchField.Clear();
             objSearchField.SendKeys(pstrSearchValue);
             objSearchField.SendKeys(Keys.Return);
-            Task.Delay(2000).Wait();
+            Task.Delay(1000).Wait();
 
         }
         
@@ -111,8 +111,6 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
         
-
-
         private IWebElement GetApplyButton()
         {
             return objApplyBtn;
@@ -123,10 +121,7 @@ namespace AutomationTraining_M7.Page_Objects
             objApplyBtn.Click();
         }
 
-        public static implicit operator LinkedIn_SearchT(LinkedIn_SearchPage v)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
     

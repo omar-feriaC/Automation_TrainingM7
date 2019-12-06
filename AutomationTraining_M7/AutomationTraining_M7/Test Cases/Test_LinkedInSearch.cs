@@ -52,26 +52,49 @@ namespace AutomationTraining_M7.Test_Cases
                 }
             }
 
+            _driverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 60));
+            objSearch = new LinkedIn_SearchPage(driver);
             //Step# 3 .- Set Filters
-            LinkedIn_SearchPage.fnEnterSearchText("Java");
+            LinkedIn_SearchPage.fnEnterSearchText("Test");
+            
             LinkedIn_SearchPage.fnClickSearchBtn();
+            _driverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='Gente' or text()='People']")));
             LinkedIn_SearchPage.fnSelectPeople();
-            Thread.Sleep(5000);
+            
+            Task.Delay(3000).Wait();
             LinkedIn_SearchPage.fnSelectAllFilters();
-            Thread.Sleep(5000);
+            _driverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//label[text()='Mexico' or text()='México']")));
+
             LinkedIn_SearchPage.fnGetRegionMx();
-            Thread.Sleep(5000);
-            LinkedIn_SearchPage.fnLanguageEng();
-            Thread.Sleep(5000);
-            LinkedIn_SearchPage.fnLanguageEsp();
-            Thread.Sleep(5000);
+            Task.Delay(3000).Wait();
+
+            //Search and click on Italy
+            LinkedIn_SearchPage.fnEnterLocationValue("Italy");
+            Task.Delay(3000).Wait();
+
+           
+
+            /* LinkedIn_SearchPage.fnLanguageEng();
+             Thread.Sleep(5000);
+             LinkedIn_SearchPage.fnLanguageEsp();
+             Thread.Sleep(5000);*/
             LinkedIn_SearchPage.fnClickApplyBtn();
 
             //Step# 4 .- Search Elements
             foreach (string strvalue in arrTechnologies)
             {
+                
                 LinkedIn_SearchPage.fnEnterSearchText(strvalue);
                 LinkedIn_SearchPage.fnClickSearchBtn();
+
+                String strName = driver.FindElement(By.XPath("//span[@class = 'actor-name']")).Text;
+                Console.WriteLine("Name: " + strName);
+
+                String strTitle = driver.FindElement(By.XPath("//p[@class = 'subline-level-1 t-14 t-black t-normal search-result__truncate']")).Text;
+                Console.WriteLine("Role: " + strTitle);
+                
+                
+
             }
 
 

@@ -24,6 +24,9 @@ namespace AutomationTraining_M7.Page_Objects
        
         readonly static string STR_ARRPROFILE_TECH = "//label[text()='English' or text()='Ingles']";
         readonly static string STR_REGIONMX_CB = "//label[text()='Mexico' or text()='México']";
+        readonly static string STR_LOCATION_FILTER = "//input[@placeholder='Añadir un país o región']";
+        
+
 
         //CONSTRUCTOR
         public LinkedIn_SearchPage(IWebDriver pobjSrcDriver)
@@ -41,7 +44,7 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objLangEngCb => _ObjSrcDriver.FindElement(By.XPath(STR_LANG_ENG_CB));
         private static IWebElement objLangEspCb => _ObjSrcDriver.FindElement(By.XPath(STR_LANG_ESP_CB));
         private static IWebElement objApplyBtn => _ObjSrcDriver.FindElement(By.XPath(STR_APPLY_BTN));
-
+        private static IWebElement objLocationFilter => _ObjSrcDriver.FindElement(By.XPath(STR_LOCATION_FILTER));
 
         //METHODS
         //Captcha
@@ -63,9 +66,13 @@ namespace AutomationTraining_M7.Page_Objects
 
         public static void fnEnterSearchText(string pstrSearchText)
         {
+            
             objSearchText.Click();
             objSearchText.Clear();
             objSearchText.SendKeys(pstrSearchText);
+            objSearchText.SendKeys(Keys.Return);
+            Task.Delay(3000).Wait();
+            
         }
 
         //Search Button
@@ -111,6 +118,23 @@ namespace AutomationTraining_M7.Page_Objects
         {
             objRegionMxCb.Click();
         }
+
+        //Select Italy
+        private IWebElement GetLocationFilter()
+        {
+            return objLocationFilter;
+        }
+
+        public static void fnEnterLocationValue(string pstrLocationValue)
+        {
+            objLocationFilter.Clear();
+            objLocationFilter.SendKeys(pstrLocationValue);
+            Task.Delay(2000).Wait();
+            objLocationFilter.SendKeys(Keys.Down);
+            objLocationFilter.SendKeys(Keys.Return);
+
+        }
+
 
         //Language English
         private IWebElement GetLanguageEng()
