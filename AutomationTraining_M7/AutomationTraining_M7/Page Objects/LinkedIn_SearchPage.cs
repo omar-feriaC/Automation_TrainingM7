@@ -188,16 +188,35 @@ namespace AutomationTraining_M7.Page_Objects
 
         public static void fnTechnology() 
         {
-            
+            //IList<IWebElement> ElementsCount = driver.FindElements(By.XPath("//span[@class='actor-name']"));
 
-            IWebElement objName = _ObjSrcDriver.FindElement(By.XPath("//span[@class='actor-name']"));
-            IWebElement objRole = _ObjSrcDriver.FindElement(By.XPath("//p[@class='subline-level-1 t-14 t-black t-normal search-result__truncate']"));
-            IWebElement objURL = _ObjSrcDriver.FindElement(By.XPath("//div[@class='search-result__info pt3 pb4 ph0']//a[@href]"));
+            IList<IWebElement> objName = _ObjSrcDriver.FindElements(By.XPath("//span[@class='actor-name']"));
+            IList<IWebElement> objRole = _ObjSrcDriver.FindElements(By.XPath("//p[@class='subline-level-1 t-14 t-black t-normal search-result__truncate']"));
+            IList<IWebElement> objURL = _ObjSrcDriver.FindElements(By.XPath("//div[@class='search-result__info pt3 pb4 ph0']//a[@href]"));
 
-            Console.WriteLine("Name: " + objName.Text);
+            //IList<IWebElement> objTechResult = _ObjSrcDriver.FindElements(By.XPath("//ul[@class='search-results__list list-style-none']"));
+
+            foreach(var Name in objName)
+            {
+                Console.WriteLine("Name: " + Name.Text);
+                
+            }
+
+            foreach (var Role in objRole)
+            {
+                Console.WriteLine("Role: " + Role.Text);
+            }
+
+            foreach (var URL in objURL)
+            {
+                Console.WriteLine("URL: " + URL.GetAttribute("href"));
+                Console.WriteLine("");
+            }
+
+            /*Console.WriteLine("Name: " + objName.Text);
             Console.WriteLine("Role: " + objRole.Text);
             Console.WriteLine("URL: " + objURL.GetAttribute("href"));
-            Console.WriteLine("");
+            Console.WriteLine("");*/
         }
 
 

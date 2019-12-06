@@ -87,10 +87,6 @@ namespace AutomationTraining_M7.Test_Cases
 
             //Search for Technologies
 
-            IList<IWebElement> ElementsCount = driver.FindElements(By.XPath("//span[@class='actor-name']"));
-
-            
-
             foreach (string Tech in arrTechnologies)
             {
                 LinkedIn_SearchPage.fnEnterSearchText(Tech);
