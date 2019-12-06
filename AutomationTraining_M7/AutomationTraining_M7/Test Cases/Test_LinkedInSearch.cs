@@ -26,7 +26,8 @@ namespace AutomationTraining_M7.Test_Cases
 
             //Step# 1 .- Log In 
             Login_LinkedIn();
-
+            
+            //driver = objLinkedIn_SearchPage.fnGetDriver()
             //Step# 2 .- Verify if captcha exist
             if (driver.Title.Contains("Verification") | driver.Title.Contains("Verificación"))
             {

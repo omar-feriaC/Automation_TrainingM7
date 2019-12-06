@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Page_Objects
 {
-    class LinkedIn_SearchPage : BaseTest
+    class LinkedIn_SearchPage //: BaseTest
     {
         private static IWebDriver _driver;
         readonly static string strSearchBox = "//input[@placeholder='Buscar' or @placeholder='Search']";
@@ -37,7 +37,15 @@ namespace AutomationTraining_M7.Page_Objects
         {
             _driver = LinkedIn_LoginPage.fnDefaultLogIN(_driver);
         }
+        public IWebDriver fnGetDriver()
+        {
+            return _driver;
+        }
         public LinkedIn_SearchPage(IWebDriver pdriver)
+        {
+            _driver = pdriver;
+        }
+        public void fnSetDriver(IWebDriver pdriver)
         {
             _driver = pdriver;
         }
@@ -47,7 +55,7 @@ namespace AutomationTraining_M7.Page_Objects
             objSearchBox.SendKeys(pobjSearchBox);
             objSearchBox.SendKeys(Keys.Return);
             WebDriverWait _driverWait;
-            _driverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 60));
+            _driverWait = new WebDriverWait(_driver, new TimeSpan(0, 0, 60));
             IWebElement objValidatior;
             objValidatior = _driverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(strPeopelFilter)));
         }
@@ -61,7 +69,7 @@ namespace AutomationTraining_M7.Page_Objects
             objAllFiltersBtn = _driver.FindElement(By.XPath(strAllFiltersBtn));
             objAllFiltersBtn.Click();
             WebDriverWait _driverWait;
-            _driverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 60));
+            _driverWait = new WebDriverWait(_driver, new TimeSpan(0, 0, 60));
             objApplicarFiltros = _driverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(strApplicarFiltros)));
             
         }
@@ -72,7 +80,14 @@ namespace AutomationTraining_M7.Page_Objects
         public void fnLanguajecheck(string ln) 
         {
             IWebElement objLNMX;
-            objLNMX = _driver.FindElement(By.XPath("//input[@id='sf-profileLanguage-"+ ln + "']"));
+            string strl;
+            switch (ln) 
+            {
+                case "Spanish": strl = "es"; break;
+                case "English": strl = "en"; break;
+                default: strl = "es"; break;
+            }
+            objLNMX = _driver.FindElement(By.XPath("//label[@for='sf-profileLanguage-" + strl + "']"));
             objLNMX.Click();
         }
         public void print(string pPrint) 
@@ -91,10 +106,16 @@ namespace AutomationTraining_M7.Page_Objects
         public void fnChecks() 
         {
             objCheckMX = _driver.FindElement(By.XPath(strCheckMX));
+            objCheckMX.Clear();
             objCheckMX.SendKeys("Mexico");
-            objCheckMX.SendKeys(Keys.Return);
+            objCheckMX.SendKeys(Keys.ArrowDown);
+            objCheckMX.SendKeys(Keys.Enter);
+            //objCheckMX.SendKeys(Keys.Return);
+            objCheckMX.Clear();
             objCheckMX.SendKeys("Italy");
-            objCheckMX.SendKeys(Keys.Return);
+            objCheckMX.SendKeys(Keys.ArrowDown);
+            objCheckMX.SendKeys(Keys.Enter);
+            //objCheckMX.SendKeys(Keys.Return);
         }
 
     }
