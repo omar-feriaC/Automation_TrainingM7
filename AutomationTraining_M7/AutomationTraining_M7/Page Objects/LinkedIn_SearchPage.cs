@@ -22,6 +22,14 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_SPANISH_CHKBOX = "//label[text()='Spanish' or text()='Español']";
         readonly static string STR_ENGLISH_CHKBOX = "//label[text()='English' or text()='Ingles']";
         readonly static string STR_APPLYFILTERS_BTN = "//button[@data-control-name='all_filters_apply']";
+        readonly static string STR_LOCITALY_TEXT = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy']";
+        readonly static string STR_LOCMEXICO_TEXT = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico']";
+        readonly static string STR_LOCATION_TEXT = "//input[@placeholder='Add a country/region' or @placeholder='Añadir un país o región']";
+        readonly static string STR_ITALY_CHKBOX = "//label[text()='Italy' or text()='Italia']";
+        readonly static string STR_SEARCHRESULTSNAME_SPAN = "(//span[@class='actor-name'])[1]";
+        readonly static string STR_SEARCHRESULTSROLE_SPAN = "(//p[@class='subline-level-1 t-14 t-black t-normal search-result__truncate']//span[@dir='ltr'])[1]";
+        readonly static string STR_SEARCHRESULTSURL_A = "(//a[@data-control-name='search_srp_result'])[1]";
+
 
         /*CONSTRUCTOR*/
         public LinkedIn_SearchPage(IWebDriver pobjDriver)
@@ -38,6 +46,12 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objSpanishChkbox => _objDriver.FindElement(By.XPath(STR_SPANISH_CHKBOX));
         private static IWebElement objEnglishChkbox => _objDriver.FindElement(By.XPath(STR_ENGLISH_CHKBOX));
         private static IWebElement objApplyFiltersBtn => _objDriver.FindElement(By.XPath(STR_APPLYFILTERS_BTN));
+        private static IWebElement objLocationFilterTxt => _objDriver.FindElement(By.XPath(STR_LOCATION_TEXT));
+        private static IWebElement objLocationMexicoTxt => _objDriver.FindElement(By.XPath(STR_LOCMEXICO_TEXT));
+        private static IWebElement objLocationItalyTxt => _objDriver.FindElement(By.XPath(STR_LOCITALY_TEXT));
+        private static IWebElement objNameSpan => _objDriver.FindElement(By.XPath(STR_SEARCHRESULTSNAME_SPAN));
+        private static IWebElement objRoleSpan => _objDriver.FindElement(By.XPath(STR_SEARCHRESULTSROLE_SPAN));
+        private static IWebElement objUrlA => _objDriver.FindElement(By.XPath(STR_SEARCHRESULTSURL_A));
         public new static IWebDriver objDriver { get => _objDriver; set => _objDriver = value; }
 
         /*METHODS*/
@@ -46,12 +60,13 @@ namespace AutomationTraining_M7.Page_Objects
         {
             return ObjSearchTxt;
         }
-
         public static void fnEnterSearchCriteria(string strSearchCrt)
         {
             ObjSearchTxt.Clear();
             ObjSearchTxt.SendKeys(strSearchCrt);
+            ObjSearchTxt.SendKeys(Keys.Enter);
         }
+
         /*Search button*/
         private static IWebElement GetSearchBtn()
         {
@@ -62,6 +77,7 @@ namespace AutomationTraining_M7.Page_Objects
         {
             objSearchBtn.Click();
         }
+
         /*Filter People button*/
         private static IWebElement GetPeopleBtn()
         {
@@ -72,6 +88,7 @@ namespace AutomationTraining_M7.Page_Objects
         {
             objPeopleBtn.Click();
         }
+
         /*All filters button*/
         private static IWebElement GetAllFiltersBtn()
         {
@@ -82,6 +99,7 @@ namespace AutomationTraining_M7.Page_Objects
         {
             objAllFiltersBtn.Click();
         }
+
         /*Location Mexico checkbox*/
         private static IWebElement GetMexicoChekbox()
         {
@@ -92,6 +110,7 @@ namespace AutomationTraining_M7.Page_Objects
         {
             objMexicoChkbox.Click();
         }
+
         /*Spanish language checkbox*/
         private static IWebElement GetSpanishChekbox()
         {
@@ -102,6 +121,7 @@ namespace AutomationTraining_M7.Page_Objects
         {
             objSpanishChkbox.Click();
         }
+
         /*English language checkbox*/
         private static IWebElement GetEnglishChekbox()
         {
@@ -112,6 +132,7 @@ namespace AutomationTraining_M7.Page_Objects
         {
             objEnglishChkbox.Click();
         }
+
         /*Apply all filters button*/
         private static IWebElement GetApplyFiltersBtn()
         {
@@ -122,6 +143,59 @@ namespace AutomationTraining_M7.Page_Objects
         {
             objApplyFiltersBtn.Click();
         }
+
+        //Select region txt filter    
+        private static IWebElement GetLocationsFilterfield()
+        {
+            return objLocationFilterTxt;
+        }
+        public static void fnEnterLocationCriteria(string strLocationCrt)
+        {
+            objLocationFilterTxt.Clear();
+            objLocationFilterTxt.SendKeys(strLocationCrt);
+        }
+        /*Location Italy dropdown text*/
+        private static IWebElement GetItalyTxt()
+        {
+            return objLocationItalyTxt;
+        }
+
+        internal static void fnClickItalyTxt()
+        {
+            objLocationItalyTxt.Click();
+        }
+        /*Location Mexico dropdown text*/
+        private static IWebElement GetMexicoTxt()
+        {
+            return objLocationMexicoTxt;
+        }
+
+        internal static void fnClickMexicoTxt()
+        {
+            objLocationMexicoTxt.Click();
+        }
+        /*Get name*/
+        public static IWebElement GetNameSpan()
+        {
+            return objNameSpan;
+        }
+        /*Get role*/
+        public static IWebElement GetRoleSpan()
+        {
+            return objRoleSpan;
+        }
+        /*Get Url*/
+        public static IWebElement GetUrlA()
+        {
+            return objUrlA;
+        }
+
+
+
+
+
+
+
         //Wait
         internal static void fnWaitPage()
         {
