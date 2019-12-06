@@ -34,7 +34,7 @@ namespace AutomationTraining_M7.Base_Files
             driver.Url = strBrowserName;
         }
 
-        //[TearDown]
+        [TearDown]
         /*Close the browser and quit the selenium instance*/
         public static void AfterTest()
         {

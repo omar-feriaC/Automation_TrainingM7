@@ -26,8 +26,7 @@ namespace AutomationTraining_M7.Test_Cases
 
             //Step# 1 .- Log In 
             Login_LinkedIn();
-            
-            //driver = objLinkedIn_SearchPage.fnGetDriver()
+
             //Step# 2 .- Verify if captcha exist
             if (driver.Title.Contains("Verification") | driver.Title.Contains("Verificación"))
             {
@@ -50,18 +49,18 @@ namespace AutomationTraining_M7.Test_Cases
                 }
             }
             LinkedIn_SearchPage objLinkedIn_SearchPage = new LinkedIn_SearchPage(driver);
-            objLinkedIn_SearchPage.fnGetSearch("Random");
+            objLinkedIn_SearchPage.fnDoASearch("Random");
             objLinkedIn_SearchPage.fnPeopelFilterClick();
             objLinkedIn_SearchPage.fnAllFiltersClick();
-            objLinkedIn_SearchPage.fnChecks();
+            objLinkedIn_SearchPage.fnLocationChecks();
             foreach (string ln in arrLanguages) {
-                objLinkedIn_SearchPage.fnLanguajecheck(ln);
+                objLinkedIn_SearchPage.fnLanguageCheck(ln);
             }
-            objLinkedIn_SearchPage.fnApply();
+            objLinkedIn_SearchPage.fnApplyFilters();
             foreach (string tch in arrTechnologies)
             {
-                objLinkedIn_SearchPage.fnGetSearch(tch);
-                objLinkedIn_SearchPage.print(tch);
+                objLinkedIn_SearchPage.fnDoASearch(tch);
+                objLinkedIn_SearchPage.fnPrintResults(tch);
             }
         }
     }
