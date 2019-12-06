@@ -73,7 +73,6 @@
     <Compile Include="Test Cases\Prueba1.cs" />
     <Compile Include="Test Cases\Test_LinkedIn.cs" />
     <Compile Include="Test Cases\Test_LinkedInSearch.cs" />
-    <Compile Include="Test Cases\Test_LinkedInSearch_Old.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

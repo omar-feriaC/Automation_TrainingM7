@@ -19,8 +19,8 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_SEARCH_BTN = "//div[@class='search-global-typeahead__controls']";
         readonly static string STR_PEOPLE_BTN = "//span[text()='People' or text()='Gente']";
         readonly static string STR_ALLFILTERS_BTN = "//button[span[text()='All Filters' or text()='Todos los filtros']]";
-        readonly static string STR_REGIONMEX_TEXT = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'México']";
-        readonly static string STR_REGIONADD_TEXT = "//input[@placeholder='Añadir un país o región']";
+        readonly static string STR_REGIONMEX_TEXT = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico']";
+        readonly static string STR_REGIONADD_TEXT = "//input[@placeholder='Add a country/region'][@aria-label='Add a country/region']";
         readonly static string STR_REGIONITA_TEXT = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy']";
        
 
@@ -167,9 +167,32 @@ namespace AutomationTraining_M7.Page_Objects
             objApplyBtn.Click();
         }
 
-      
+        /* *********************************************************************** */
+        // technologies array checkbox
+        
+        public static void fnGetTechResultsTxt()
+        {
+            IList<IWebElement> objGetTechResultsName = _objDriver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']/li//*[@class='actor-name']"));
+            IList<IWebElement> objGetTechResultsTitle = _objDriver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']//*[contains(@class,'level-1')]//*[@dir='ltr']"));
+            IList<IWebElement> objGetTechResultsLink = _objDriver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']//*[contains(@class,'search-result__info')]//a"));
 
+          foreach (var vName in objGetTechResultsName)
+            {
+                Console.WriteLine("Name: " + vName.Text);
+            }
 
+           foreach (var vTitle in objGetTechResultsTitle)
+            {
+                Console.WriteLine("Title: " + vTitle.Text);
+            }
+
+           foreach (var VLink in objGetTechResultsLink)
+            {
+                Console.WriteLine("Link: " + VLink.GetAttribute("href"));
+            }
+           
+        }
+                          
     }
 
 }

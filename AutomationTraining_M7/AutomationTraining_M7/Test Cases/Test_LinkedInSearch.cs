@@ -14,77 +14,89 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Test_Cases
 {
-    class Test_SearchLinkedIn : BaseTest
+    class Test_SearchLinkedIn : Test_LinkedIn
     {
-        LinkedIn_LoginPage objLogin;
-        LinkedIn_SearchPage objSearch;
-        //Webdriver wait
-        WebDriverWait wait;
+        
+           public WebDriverWait _driverWait;
+           LinkedIn_SearchPage objSearch;
 
-        [Test]
-        public void Search_LinkedIn()
-        {
-            // VARIABLES
-            string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol" };
-            string[] arrLanguages = { "Español", "Inglés" };
-            
-            objLogin = new LinkedIn_LoginPage(driver);
-            Assert.AreEqual(true, driver.Title.Contains("Login"), "Title not match");
-            LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
-            LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
-            LinkedIn_LoginPage.fnClickSignInButton();
+           [Test]
+           public void Search_LinkedIn()
+           {
+               //VARIABLES
+               string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol" };
+               string[] arrLanguages = { "Spanish", "English" };
 
-            objSearch = new LinkedIn_SearchPage(driver);
+               //Step# 1 .- Log In 
+               objSearch = new LinkedIn_SearchPage(driver);
+               Login_LinkedIn();
 
-            LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search1"));
-            LinkedIn_SearchPage.fnClickSearchButton();           
-            wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='People' or text()='Gente']")));
+               //Step# 2 .- Verify if captcha exist
+               if (driver.Title.Contains("Verification") | driver.Title.Contains("Verificación"))
+               {
+                   //Switch to Iframe(0)
+                   driver.SwitchTo().DefaultContent();
+                   driver.SwitchTo().Frame(driver.FindElement(By.Id("captcha-internal")));
+                   //Switch to Iframe that contains captcha.
+                   IWebElement objCheckbox;
+                   List<IWebElement> frames = new List<IWebElement>(driver.FindElements(By.TagName("iframe")));
+                   for (int i = 0; i < frames.Count - 1; i++)
+                   {
+                       if (frames[i].GetAttribute("role").ToString() == "presentation" | frames[i].GetAttribute("role").ToString() != "")
+                       {
+                           driver.SwitchTo().Frame(i);
+                           _driverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 60));
+                           objCheckbox = _driverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[@role='checkbox']")));
+                           if (objCheckbox.Enabled) { objCheckbox.Click(); }
 
-            LinkedIn_SearchPage.fnClickPeopleBtn();
-            wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@class='search-vertical-filter__dropdown-trigger-text mr1'][text()='Gente']")));
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[span[text()='All Filters' or text()='Todos los filtros']]")));
+                       }
+                   }
+               }
 
-            LinkedIn_SearchPage.fnClickAllFiltersBtn();
-            wait.Until(ExpectedConditions.ElementExists(By.XPath("//input[@placeholder='Añadir un país o región'][@aria-label='Añadir un país o región']")));
-            
-            //Region Mexico
-            LinkedIn_SearchPage.fnAddRegionMexTxt(ConfigurationManager.AppSettings.Get("regionMMx"));
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'México']")));
-            LinkedIn_SearchPage.fnEnterRegionMexText();
-            // driver.FindElement(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'México']")).Click();
-            
 
-            //Region Italy
-            LinkedIn_SearchPage.fnAddRegionItaTxt(ConfigurationManager.AppSettings.Get("regionIta"));
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy']")));
-            LinkedIn_SearchPage.fnEnterRegionMItaText();
+             LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search1"));
+             LinkedIn_SearchPage.fnClickSearchButton();
+            _driverWait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
+            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='People' or text()='Gente']")));
 
-            foreach (string language in arrLanguages)
-            {
-                LinkedIn_SearchPage.fnClickLanguageCb(language);
-            }
+             LinkedIn_SearchPage.fnClickPeopleBtn();
+            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@class='search-vertical-filter__dropdown-trigger-text mr1'][text()='People']")));
+            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[span[text()='All Filters' or text()='Todos los filtros']]")));
 
-            wait.Until(ExpectedConditions.ElementExists(By.XPath("//button[@data-control-name='all_filters_apply']")));
+             LinkedIn_SearchPage.fnClickAllFiltersBtn();
+            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//input[@placeholder='Add a country/region'][@aria-label='Add a country/region']")));
+
+             //Region Mexico
+             LinkedIn_SearchPage.fnAddRegionMexTxt(ConfigurationManager.AppSettings.Get("regionMMx"));
+            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico']")));
+             LinkedIn_SearchPage.fnEnterRegionMexText();
+                       
+             //Region Italy
+             LinkedIn_SearchPage.fnAddRegionItaTxt(ConfigurationManager.AppSettings.Get("regionIta"));
+            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy']")));
+             LinkedIn_SearchPage.fnEnterRegionMItaText();
+
+            //Language array
+             foreach (string strLanguage in arrLanguages)
+             {
+                 LinkedIn_SearchPage.fnClickLanguageCb(strLanguage);
+             }
+            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//button[@data-control-name='all_filters_apply']")));
+
+            //Technologies array
             LinkedIn_SearchPage.fnClickApplyBtn();
-            Thread.Sleep(5000);
 
-            LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search2"));
-            LinkedIn_SearchPage.fnClickSearchButton();
-            Thread.Sleep(5000);
+            foreach (string strTechnologies in arrTechnologies)
+            {
+                LinkedIn_SearchPage.fnEnterSearchText(strTechnologies);
+                LinkedIn_SearchPage.fnClickSearchButton();
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//p[@class='subline-level-1 t-14 t-black t-normal search-result__truncate']")));
+                LinkedIn_SearchPage.fnGetTechResultsTxt();
+            }
+             
 
-            LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search3"));
-            LinkedIn_SearchPage.fnClickSearchButton();
-            Thread.Sleep(5000);
 
-            LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search4"));
-            LinkedIn_SearchPage.fnClickSearchButton();
-            Thread.Sleep(5000);
 
-            LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search5"));
-            LinkedIn_SearchPage.fnClickSearchButton();
-            Thread.Sleep(5000);
-
-        }
     }
+}
 }
