@@ -192,20 +192,27 @@ namespace AutomationTraining_M7.Page_Objects
             IList<IWebElement> objRole = _ObjSrcDriver.FindElements(By.XPath("//p[@class='subline-level-1 t-14 t-black t-normal search-result__truncate']"));
             IList<IWebElement> objURL = _ObjSrcDriver.FindElements(By.XPath("//div[@class='search-result__info pt3 pb4 ph0']//a[@href]"));
 
-            foreach(var Name in objName)
-            {
-                Console.WriteLine("Name: " + Name.Text);
+            //foreach(var Name in objName)
+            //{
+            //    Console.WriteLine("Name: " + Name.Text);
                 
-            }
+            //}
 
-            foreach (var Role in objRole)
-            {
-                Console.WriteLine("Role: " + Role.Text);
-            }
+            //foreach (var Role in objRole)
+            //{
+            //    Console.WriteLine("Role: " + Role.Text);
+            //}
 
-            foreach (var URL in objURL)
+            //foreach (var URL in objURL)
+            //{
+            //    Console.WriteLine("URL: " + URL.GetAttribute("href"));
+            //    Console.WriteLine("");
+            //}
+            for(int i=0;i<objName.Count;i++)
             {
-                Console.WriteLine("URL: " + URL.GetAttribute("href"));
+                Console.WriteLine("Name: " + objName[i].Text);
+                Console.WriteLine("Role: " + objRole[i].Text);
+                Console.WriteLine("URL: " + objURL[i].GetAttribute("href"));
                 Console.WriteLine("");
             }
 
