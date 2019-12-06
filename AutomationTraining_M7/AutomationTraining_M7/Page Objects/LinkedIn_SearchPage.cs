@@ -1,4 +1,4 @@
-using AutomationTraining_M7.Base_Files;
+﻿using AutomationTraining_M7.Base_Files;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -21,8 +21,8 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_ALLFILTERS_BTN = "//button[span[text()='All Filters']]";
         readonly static string STR_LANG_ENG_CB = "//label[text()='English' or text()='Ingles']";
         readonly static string STR_LANG_ESP_CB = "//label[text()='Spanish' or text()='Español']";
-        readonly static string STR_MXREGION_CB = "//label[text()='Mexico' or text()='México']";
-
+        readonly static string STR_MXREGION_CB = "//label[text()='Mexico' or text()='Mexico']";//
+        readonly static string STR_SPREGION_CB = "//label[text()='Spain' or text()='España']";
 
         //CONSTRUCTOR
         public LinkedIn_SearchPage(IWebDriver pSrcDriver)
@@ -36,7 +36,8 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement ObjSearchBtn => _objDriver.FindElement(By.XPath(STR_SEARCH_BTN));
         private static IWebElement ObjPeopleBtn => _objDriver.FindElement(By.XPath(STR_PEOPLE_BTN));
         private static IWebElement ObjAllFiltersBtn => _objDriver.FindElement(By.XPath(STR_ALLFILTERS_BTN));
-        private static IWebElement ObjRegionMx => _objDriver.FindElement(By.XPath(STR_MXREGION_CB));
+        private static IWebElement ObjRegionMx => _objDriver.FindElement(By.XPath(STR_MXREGION_CB));//
+        private static IWebElement ObjRegionSP => _objDriver.FindElement(By.XPath(STR_SPREGION_CB));//
         private static IWebElement ObjLangEng => _objDriver.FindElement(By.XPath(STR_LANG_ENG_CB));
         private static IWebElement ObjLangEsp => _objDriver.FindElement(By.XPath(STR_LANG_ESP_CB));
         private static IWebElement ObjApplyBtn => _objDriver.FindElement(By.XPath(STR_APPLY_BTN));
@@ -108,6 +109,18 @@ namespace AutomationTraining_M7.Page_Objects
         {
             ObjRegionMx.Click();
         }
+
+        //Location Spain
+        private IWebElement GetRegionSP()
+        {
+            return ObjRegionSP;
+        }
+
+        public static void FnGetRegionSP()
+        {
+            ObjRegionSP.Click();
+        }
+
 
         //Language English
         private IWebElement GetLanguageEng()
