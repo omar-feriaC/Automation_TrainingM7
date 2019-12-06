@@ -2,13 +2,10 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Test_Cases
 {
@@ -22,7 +19,7 @@ namespace AutomationTraining_M7.Test_Cases
         public void Search_LinkedIn()
         {
             //VARIABLES
-            string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol", "Ruby", "SQL", "Android", "iOS" };
+            string[] arrTechnologies = { "Java", "C#", "C++", "Cobol", "Ruby", "SQL", "Android", "iOS", "Selenium", "Python", "PHP" };
             string[] arrLanguages = { "Spanish", "English" };
 
             //Step# 1 .- Log In 
@@ -49,14 +46,10 @@ namespace AutomationTraining_M7.Test_Cases
                     }
                 }
             }
-
-            //_driverWait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
             _driverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 60));
-            objSearch = new LinkedIn_SearchPage(driver);
+            objSearch = new LinkedIn_SearchPage(driver);            
             
-            
-            //start interacting with the page elements
-            
+            //start interacting with the page elements            
             _driverWait.Until(driver => driver.FindElement(By.XPath("//input[@class = 'search-global-typeahead__input']")));
             LinkedIn_SearchPage.fnSearchText("Amazon");
 
@@ -68,34 +61,34 @@ namespace AutomationTraining_M7.Test_Cases
 
             _driverWait.Until(driver => driver.FindElement(By.XPath("//label[text()='Mexico' or text()='México']")));            
             LinkedIn_SearchPage.fnSelectMexicoCheckbox();
-
-            //_driverWait.Until(driver => driver.FindElement(By.XPath("//label[text()='Spanish' or text()='Español']")));
-            //LinkedIn_SearchPage.fnSelectSpanishCheckbox();
-
-            //_driverWait.Until(driver => driver.FindElement(By.XPath("//label[text()='English' or text()='Inglés']")));
-            //LinkedIn_SearchPage.fnSelectEnglishCheckbox();
-
-            //_driverWait.Until(driver => driver.FindElement(By.XPath("//label[text()='English' or text()='Inglés']")));
+            
             LinkedIn_SearchPage.fnSearchLocations("Italy");
 
-            for (int x=0;x< arrLanguages.Length; x++)
+            for (int x = 0; x < arrLanguages.Length; x++)
             {
                 string lang = arrLanguages[x];
                 LinkedIn_SearchPage.fnSelectLanguage(lang);
             }
             LinkedIn_SearchPage.fnClickApplyFiltersButton();
-            Thread.Sleep(3000);
+
+            _driverWait.Until(driver => driver.FindElement(By.XPath("//button[@class='search-s-facet__button artdeco-button artdeco-button--icon-right artdeco-button--2 artdeco-button--primary ember-view']")));
 
             for (int y = 0; y < arrTechnologies.Length; y++)
             {
-                string technology = arrTechnologies[y];
-                Console.WriteLine("=== LinkedIn result for " + technology + " ===");                
+                string technology = arrTechnologies[y];                              
                 LinkedIn_SearchPage.fnSearchText(technology);
-                Thread.Sleep(3000);
+                _driverWait.Until(driver => driver.FindElement(By.XPath($"//*[contains(text(),'{technology}')]")));
+                Console.WriteLine("=== LinkedIn result for " + technology + " ===");
+
+                _driverWait.Until(driver => driver.FindElement(By.XPath("(//span[@class='name actor-name'])[1]")));
                 Console.WriteLine("Name: " + LinkedIn_SearchPage.GetNameSpan().Text);
+
+                _driverWait.Until(driver => driver.FindElement(By.XPath("(//p[@class='subline-level-1 t-14 t-black t-normal search-result__truncate']//span[@dir='ltr'])[1]")));
                 Console.WriteLine("Role: " + LinkedIn_SearchPage.GetRoleSpan().Text);
+
+                _driverWait.Until(driver => driver.FindElement(By.XPath("(//a[@class='search-result__result-link ember-view'])[1]")));
                 Console.WriteLine("LinkedIn URL: " + LinkedIn_SearchPage.GetUrlA().GetAttribute("href"));
-                Console.WriteLine("==========================");
+                Console.WriteLine("");
             }
         }
     }

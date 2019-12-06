@@ -47,11 +47,6 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objUrlA => _objDriver.FindElement(By.XPath(STR_SEARCHRESULTSURL_A));
 
         //Search Box
-        public static void fnClickSearchBox()
-        {
-            objSearchBox.Click();
-        }
-
         public static void fnSearchText(string strText)
         {
             objSearchBox.Click();
@@ -118,7 +113,7 @@ namespace AutomationTraining_M7.Page_Objects
         {
             objLocations.Click();
             objLocations.SendKeys(strText);
-            Thread.Sleep(5000);
+            Thread.Sleep(1000);
             objLocations.Click();
             objLocations.SendKeys(Keys.ArrowDown);
             objLocations.SendKeys(Keys.Enter);
@@ -129,14 +124,8 @@ namespace AutomationTraining_M7.Page_Objects
         }
         public static void fnSelectLanguage(string strText)
         {
-            if (strText == "Spanish")
-            {
-                objSpanishCheckbox.Click();
-            }
-            if (strText == "English")
-            {
-                objEnglishCheckbox.Click();
-            }
+            if (strText == "Spanish"){objSpanishCheckbox.Click();}
+            if (strText == "English"){objEnglishCheckbox.Click();}
         }
 
         public static void fnClickApplyFiltersButton()
