@@ -72,9 +72,6 @@ namespace AutomationTraining_M7.Test_Cases
             //wait.Until(ExpectedConditions.ElementExists(By.XPath("//input[@placeholder='Add a country/region' or @placeholder='Añadir un país o región']")));
             
             //INSERT Assert.something here
-            //LinkedIn_SearchPage.fnClickMexicoCheckbox();
-            //LinkedIn_SearchPage.fnClickSpanishCheckbox();
-            //LinkedIn_SearchPage.fnClickEnglishCheckbox();
             LinkedIn_SearchPage.fnEnterLocationCriteria(ConfigurationManager.AppSettings.Get("searchLocationCriteria1"));
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico']")));
             LinkedIn_SearchPage.fnClickMexicoTxt();
