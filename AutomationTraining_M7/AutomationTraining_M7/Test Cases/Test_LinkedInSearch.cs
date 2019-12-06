@@ -76,7 +76,7 @@ namespace AutomationTraining_M7.Test_Cases
             wait.Until(ExpectedConditions.TextToBePresentInElement(LinkedIn_SearchPage.GetItalyDropDown(), "Italy"));
             LinkedIn_SearchPage.fnSelectItaly();
 
-            //Entering Languages
+            //Selecting Languages
             foreach(string language in arrLanguages) 
             {
                 LinkedIn_SearchPage.fnSelectLanguage(language);
@@ -85,7 +85,7 @@ namespace AutomationTraining_M7.Test_Cases
             //Apply the Filters
             LinkedIn_SearchPage.fnClickApplyBtn();
 
-            //Search for Technologies
+            //Search for Technologies and Print the results
 
             foreach (string Tech in arrTechnologies)
             {
