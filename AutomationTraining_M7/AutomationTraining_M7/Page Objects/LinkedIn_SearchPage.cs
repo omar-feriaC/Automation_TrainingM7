@@ -24,7 +24,7 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_LANG_ESP_CB = "//label[text()='Spanish' or text()='Español']";
         readonly static string STR_APPLY_BTN = "//button[@data-control-name='all_filters_apply']";
         readonly static string STR_ADDCOUNTTRY_TEXT = "//input[@placeholder='Add a country/region'][@aria-label='Add a country/region']";
-        readonly static string STR_SELECT_ITALY_DD = "//div[@class='basic-typeahead__triggered-content search-s-add-facet__typeahead-tray']";
+        readonly static string STR_SELECT_ITALY_DD = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy' or 'Italia']";
 
         /*CONSTRUCTOR*/
         public LinkedIn_SearchPage(IWebDriver pobjSrcDriver)
@@ -44,6 +44,7 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objApplyBtn => _ObjSrcDriver.FindElement(By.XPath(STR_APPLY_BTN));
         private static IWebElement objAddCountryTxt => _ObjSrcDriver.FindElement(By.XPath(STR_ADDCOUNTTRY_TEXT));
         private static IWebElement objSelectITalyDD => _ObjSrcDriver.FindElement(By.XPath(STR_SELECT_ITALY_DD));
+        private static IWebElement objItalyDropdown => _ObjSrcDriver.FindElement(By.XPath("//div[@class='basic-typeahead__triggered-content search-s-add-facet__typeahead-tray']"));
 
         /*METHODS*/
         //Captcha
@@ -175,6 +176,11 @@ namespace AutomationTraining_M7.Page_Objects
         {
             IWebElement objLanguageOption = _ObjSrcDriver.FindElement(By.XPath($"//*[text()='{pstrLanguage}']"));
             objLanguageOption.Click();
+        }
+
+        public static IWebElement GetItalyDropDown()
+        {
+            return objItalyDropdown;
         }
     }
 }

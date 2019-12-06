@@ -50,6 +50,7 @@ namespace AutomationTraining_M7.Test_Cases
             LinkedIn_SearchPage.fnGetRegionMx();
             LinkedIn_SearchPage.fnAddCountry("Italy");
             wait.Until(ExpectedConditions.ElementExists(By.XPath("//div[@class='basic-typeahead__triggered-content search-s-add-facet__typeahead-tray']")));
+            wait.Until(ExpectedConditions.TextToBePresentInElement(LinkedIn_SearchPage.GetItalyDropDown(), "Italy"));
             LinkedIn_SearchPage.fnSelectItaly();
 
             //Entering Languages
@@ -59,7 +60,7 @@ namespace AutomationTraining_M7.Test_Cases
             }
 
             //Apply the Filters
-            LinkedIn_SearchPage.fnClickApplyBtn();
+            //LinkedIn_SearchPage.fnClickApplyBtn();
 
 
 
