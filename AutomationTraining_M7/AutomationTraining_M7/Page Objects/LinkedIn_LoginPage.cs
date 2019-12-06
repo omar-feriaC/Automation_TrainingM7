@@ -8,62 +8,71 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Page_Objects
 {
-    class LinkedIn_LoginPage : BaseTest
+    class Linkedin_LoginPage : BaseTest
     {
-        /*DRIVER REFERENCE FOR POM*/
+        //DRIVER REFERENCE DOR POM
         private static IWebDriver _objDriver;
 
-        /*LOCATORS FOR EACH ELEMENT*/
+        internal static void FnEnterPassword(object p)
+        {
+            throw new NotImplementedException();
+        }
+
+        //LOCATOR FOR EACH ELEMENT
         readonly static string STR_USERNAME_TEXT = "username";
         readonly static string STR_PASSWORD_TEXT = "password";
-        readonly static string STR_SIGNIN_BTN = "//button[text()='Sign in']";
-        
-        /*CONSTRUCTOR*/
-        public  LinkedIn_LoginPage(IWebDriver pobjDriver)
+        readonly static string STR_LOGIN_BTN = "//button[@class='btn__primary--large from__button--floating']";
+
+        //CONSTRUCTOR
+        public Linkedin_LoginPage(IWebDriver pobjDriver)
         {
             _objDriver = pobjDriver;
         }
 
-        /*IWEBELEMEMT OBJECTS*/
-        private static IWebElement objUserNameTxt => _objDriver.FindElement(By.Id(STR_USERNAME_TEXT));
-        private static IWebElement objPasswordTxt => _objDriver.FindElement(By.Id(STR_PASSWORD_TEXT));
-        private static IWebElement objSignInBtn => _objDriver.FindElement(By.XPath(STR_SIGNIN_BTN));
+        //IWEBELEMENT OBJECTS
+        private static IWebElement objUserName => _objDriver.FindElement(By.Id(STR_USERNAME_TEXT));
+        private static IWebElement objPassword => _objDriver.FindElement(By.Id(STR_PASSWORD_TEXT));
+        private static IWebElement objsingIn => _objDriver.FindElement(By.XPath(STR_LOGIN_BTN));
 
-        /*METHODS*/
-        //User Name Txt
-        private IWebElement GetUserNameField()
+        //METHODS
+        //User Name
+        private static IWebElement GetUserNameFiedl()
         {
-            return objUserNameTxt;
+            return objUserName;
         }
 
-        public static void fnEnterUserName(string pstrUserName)
+        public static void FnEnterUserName(string pstrUserName)
         {
-            objUserNameTxt.Clear();
-            objUserNameTxt.SendKeys(pstrUserName);
+            objUserName.Clear();
+            objUserName.SendKeys(pstrUserName);
+
         }
 
-        //Password Txt
-        private IWebElement GetPassword()
+        //PASSWORD
+        private static IWebElement GetPassword()
         {
-            return objPasswordTxt;
+            return objPassword;
         }
 
-        public static void fnEnterPassword(string pstrPassword)
+        public static void FnEnterPassword(string pstrPassword)
         {
-            objPasswordTxt.Clear();
-            objPasswordTxt.SendKeys(pstrPassword);
+            objPassword.Clear();
+            objPassword.SendKeys(pstrPassword);
+
+        }
+        //LoginButton
+
+        private static IWebElement GetsingInButton()
+        {
+            return objsingIn;
         }
 
-        //SignIn Button
-        private IWebElement GetSignInButton()
+        public static void fnClickSingInButton()
         {
-            return objSignInBtn;
-        }
-
-        public static void fnClickSignInButton()
-        {
-            objSignInBtn.Click();
+            objsingIn.Click();
         }
 
     }
+
+
 }

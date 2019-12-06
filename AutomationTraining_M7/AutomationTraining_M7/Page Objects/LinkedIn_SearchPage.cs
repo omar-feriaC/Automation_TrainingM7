@@ -8,140 +8,154 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Page_Objects
 {
-    class LinkedIn_SearchPage : BaseTest
+    class LinkedIn_SearchPage
     {
 
-        /*LOCATORS FOR EACH ELEMENT*/
-        private static IWebDriver _ObjSrcDriver;
+        //LOCATORS FOR EACH ELEMENT
+        private static IWebDriver _objDriver;
         readonly static string STR_CAPTCHA_CLK = "//div[@class='recaptcha-checkbox-checkmark']";
         readonly static string STR_APPLY_BTN = "//button[@data-control-name='all_filters_apply']";
         readonly static string STR_SEARCH_BTN = "//div[@class='search-global-typeahead__controls']";
-        readonly static string STR_SEARCH_TEXT = "//input[@placeholder='Search' or @placeholder='Buscar']";
-        readonly static string STR_PEOPLE_BTN = "//button[span[text()='People' or text()='Gente']]";
-        readonly static string STR_ALLFILTERS_BTN = "//button[span[text()='All Filters' or text()='Todos los filtros']]";
+        readonly static string STR_SEARCH_TEXT = "//input[@placeholder='Search']";
+        readonly static string STR_PEOPLE_BTN = "//button[span[text()='People']]";
+        readonly static string STR_ALLFILTERS_BTN = "//button[span[text()='All Filters']]";
         readonly static string STR_LANG_ENG_CB = "//label[text()='English' or text()='Ingles']";
         readonly static string STR_LANG_ESP_CB = "//label[text()='Spanish' or text()='Español']";
-        readonly static string STR_REGIONMX_CB = "//label[text()='Mexico' or text()='México']";
+        readonly static string STR_MXREGION_CB = "//label[text()='Mexico' or text()='Mexico']";//
+        readonly static string STR_SPREGION_CB = "//label[text()='Spain' or text()='España']";
 
-        /*CONSTRUCTOR*/
-        public LinkedIn_SearchPage(IWebDriver pobjSrcDriver)
+        //CONSTRUCTOR
+        public LinkedIn_SearchPage(IWebDriver pSrcDriver)
         {
-            _ObjSrcDriver = pobjSrcDriver;
+            _objDriver = pSrcDriver;
         }
 
         /*IWEBELEMEMT OBJECTS*/
-        private static IWebElement objCaptcha => _ObjSrcDriver.FindElement(By.XPath(STR_CAPTCHA_CLK));
-        private static IWebElement objSearchText => _ObjSrcDriver.FindElement(By.XPath(STR_SEARCH_TEXT));
-        private static IWebElement objSearchBtn => _ObjSrcDriver.FindElement(By.XPath(STR_SEARCH_BTN));
-        private static IWebElement objPeopleBtn => _ObjSrcDriver.FindElement(By.XPath(STR_PEOPLE_BTN));
-        private static IWebElement objAllFiltersBtn => _ObjSrcDriver.FindElement(By.XPath(STR_ALLFILTERS_BTN));
-        private static IWebElement objRegionMxCb => _ObjSrcDriver.FindElement(By.XPath(STR_REGIONMX_CB));
-        private static IWebElement objLangEngCb => _ObjSrcDriver.FindElement(By.XPath(STR_LANG_ENG_CB));
-        private static IWebElement objLangEspCb => _ObjSrcDriver.FindElement(By.XPath(STR_LANG_ESP_CB));
-        private static IWebElement objApplyBtn => _ObjSrcDriver.FindElement(By.XPath(STR_APPLY_BTN));
+        private static IWebElement ObjCaptcha => _objDriver.FindElement(By.XPath(STR_CAPTCHA_CLK));
+        private static IWebElement ObjSearchTxt => _objDriver.FindElement(By.XPath(STR_SEARCH_TEXT));
+        private static IWebElement ObjSearchBtn => _objDriver.FindElement(By.XPath(STR_SEARCH_BTN));
+        private static IWebElement ObjPeopleBtn => _objDriver.FindElement(By.XPath(STR_PEOPLE_BTN));
+        private static IWebElement ObjAllFiltersBtn => _objDriver.FindElement(By.XPath(STR_ALLFILTERS_BTN));
+        private static IWebElement ObjRegionMx => _objDriver.FindElement(By.XPath(STR_MXREGION_CB));//
+        private static IWebElement ObjRegionSP => _objDriver.FindElement(By.XPath(STR_SPREGION_CB));//
+        private static IWebElement ObjLangEng => _objDriver.FindElement(By.XPath(STR_LANG_ENG_CB));
+        private static IWebElement ObjLangEsp => _objDriver.FindElement(By.XPath(STR_LANG_ESP_CB));
+        private static IWebElement ObjApplyBtn => _objDriver.FindElement(By.XPath(STR_APPLY_BTN));
 
-
-        /*METHODS*/
-        //Captcha
+        //METHODS
+        //CAPTCHA
         private IWebElement GetCaptcha()
         {
-            return objCaptcha;
+            return ObjCaptcha;
         }
-
-        public static void fnClickCaptcha()
+        public static void FnClickCaptcha()
         {
-            objCaptcha.Click();
+            ObjCaptcha.Click();
         }
 
-        //Search Txt
+        //SEARCH TEXT
         private IWebElement GetSearchField()
         {
-            return objSearchText;
+            return ObjSearchTxt;
         }
 
-        public static void fnEnterSearchText(string pstrSearchText)
+        public static void FnEnterSearchText(string pstrSearchTxt)
         {
-            objSearchText.Click();
-            objSearchText.Clear();
-            objSearchText.SendKeys(pstrSearchText);
+            ObjSearchTxt.Click();
+            ObjSearchTxt.Clear();
+            ObjSearchTxt.SendKeys(pstrSearchTxt);
         }
 
-        //Search Button
+        //SEARCH BUTTON
         private IWebElement GetSearchButton()
         {
-            return objSearchBtn;
+            return ObjSearchBtn;
         }
 
-        public static void fnClickSearchBtn()
+        public static void FnClickSearchBtn()
         {
-            objSearchBtn.Click();
+            ObjSearchBtn.Click();
         }
 
-        //People Checkbox
-        private IWebElement GetPeopleCB()
+        //People CheckBox
+        private IWebElement GetPeopleBtn()
         {
-            return objPeopleBtn;
+            return ObjPeopleBtn;
         }
 
-        public static void fnSelectPeople()
+        public static void FnSelectPeople()
         {
-            objPeopleBtn.Click();
+            ObjPeopleBtn.Click();
         }
 
-        //All Filters button
+        //ALL FILTER
         private IWebElement GetAllFilters()
         {
-            return objAllFiltersBtn;
+            return ObjAllFiltersBtn;
         }
 
-        public static void fnSelectAllFilters()
+        public static void FnSelectAllFilters()
         {
-            objAllFiltersBtn.Click();
+            ObjAllFiltersBtn.Click();
         }
 
         //Location Mexico
         private IWebElement GetRegionMx()
         {
-            return objRegionMxCb;
+            return ObjRegionMx;
         }
 
-        public static void fnGetRegionMx()
+        public static void FnGetRegionMx()
         {
-            objRegionMxCb.Click();
+            ObjRegionMx.Click();
         }
+
+        //Location Spain
+        private IWebElement GetRegionSP()
+        {
+            return ObjRegionSP;
+        }
+
+        public static void FnGetRegionSP()
+        {
+            ObjRegionSP.Click();
+        }
+
 
         //Language English
         private IWebElement GetLanguageEng()
         {
-            return objLangEngCb;
+            return ObjLangEng;
         }
 
-        public static void fnLanguageEng()
+        public static void FnLanguageEng()
         {
-            objLangEngCb.Click();
+            ObjLangEng.Click();
         }
 
         //Language Espanish
         private IWebElement GetLanguageEsp()
         {
-            return objLangEspCb;
+            return ObjLangEsp;
         }
 
-        public static void fnLanguageEsp()
+        public static void FnLanguageEsp()
         {
-            objLangEspCb.Click();
+            ObjLangEsp.Click();
         }
 
         //Apply the Filters
         private IWebElement GetApplybutton()
         {
-            return objApplyBtn;
+            return ObjApplyBtn;
         }
 
-        public static void fnClickApplyBtn()
+        public static void FnClickApplyBtn()
         {
-            objApplyBtn.Click();
+            ObjApplyBtn.Click();
         }
+
 
     }
+
 }
