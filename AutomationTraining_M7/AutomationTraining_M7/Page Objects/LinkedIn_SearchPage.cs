@@ -182,5 +182,16 @@ namespace AutomationTraining_M7.Page_Objects
         {
             return objItalyDropdown;
         }
+
+        public static void fnTechnology() 
+        {
+            IWebElement objName = _ObjSrcDriver.FindElement(By.XPath("//span[@class='actor-name']"));
+            IWebElement objRole = _ObjSrcDriver.FindElement(By.XPath("//p[@class='subline-level-1 t-14 t-black t-normal search-result__truncate']"));
+
+            Console.WriteLine("Name: " + objName.GetAttribute("text"));
+            Console.WriteLine("Role: " + objRole.GetAttribute("text"));
+        }
+
+
     }
 }

@@ -60,7 +60,17 @@ namespace AutomationTraining_M7.Test_Cases
             }
 
             //Apply the Filters
-            //LinkedIn_SearchPage.fnClickApplyBtn();
+            LinkedIn_SearchPage.fnClickApplyBtn();
+
+            //Search for Technologies
+            foreach (string Tech in arrTechnologies)
+            {
+                LinkedIn_SearchPage.fnEnterSearchText(Tech);
+                LinkedIn_SearchPage.fnClickSearchBtn();
+                wait.Until(ExpectedConditions.ElementExists(By.XPath("//p[@class='subline-level-1 t-14 t-black t-normal search-result__truncate']")));
+                LinkedIn_SearchPage.fnTechnology();
+                
+            }
 
 
 
