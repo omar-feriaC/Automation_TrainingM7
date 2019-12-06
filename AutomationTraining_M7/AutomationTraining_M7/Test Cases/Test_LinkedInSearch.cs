@@ -54,19 +54,19 @@ namespace AutomationTraining_M7.Test_Cases
                 }
             }
 
-            //First search
+            //Step# 3 .-First search
             objSearch = new LinkedIn_SearchPage(driver);
             LinkedIn_SearchPage.fnEnterSearchText("Testing");
             LinkedIn_SearchPage.fnClickSearchBtn();
             wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[span[text()='People' or text()='Gente']]")));
 
-            //Selecting People button
+            //Step# 4 .- Selecting People button
             LinkedIn_SearchPage.fnSelectPeople();
             wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@class='search-vertical-filter__dropdown-trigger-text mr1'][text()='People']")));
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[span[text()='All Filters' or text()='Todos los filtros']]")));
 
-            //Locations selection
+            //Step# 5 .- Locations selection
             LinkedIn_SearchPage.fnSelectAllFilters();
             wait.Until(ExpectedConditions.ElementExists(By.XPath("//input[@placeholder='Add a country/region'][@aria-label='Add a country/region']")));
             wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//label[text()='Mexico' or text()='México']")));
@@ -76,16 +76,16 @@ namespace AutomationTraining_M7.Test_Cases
             wait.Until(ExpectedConditions.TextToBePresentInElement(LinkedIn_SearchPage.GetItalyDropDown(), "Italy"));
             LinkedIn_SearchPage.fnSelectItaly();
 
-            //Selecting Languages
-            foreach(string language in arrLanguages) 
+            //Step# 6 .- Selecting Languages
+            foreach (string language in arrLanguages) 
             {
                 LinkedIn_SearchPage.fnSelectLanguage(language);
             }
 
-            //Apply the Filters
+            //Step# 7 .- Apply the Filters
             LinkedIn_SearchPage.fnClickApplyBtn();
 
-            //Search for Technologies and Print the results
+            //Step# 8 .- Search for Technologies and Print the results
 
             foreach (string Tech in arrTechnologies)
             {
