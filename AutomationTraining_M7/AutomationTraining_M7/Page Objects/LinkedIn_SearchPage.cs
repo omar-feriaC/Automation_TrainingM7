@@ -14,13 +14,13 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebDriver _objDriver;
 
         /*ELEMENT LOCATORS*/
-        readonly static string STR_SEARCH_BOX_XPATH = "//input[contains(@class,'search-global-typeahead__input')]";
-        readonly static string STR_SEARCH_BTN_XPATH = "//button[contains(@class,'search-global-typeahead__button')]";
+        readonly static string STR_SEARCH_BOX_XPATH = "//*[@class='nav-search-bar']//input";
+        readonly static string STR_SEARCH_BTN_XPATH = "//*[@class='nav-search-bar']//button[@class='search-typeahead-v2__button search-global-typeahead__button']";
         readonly static string STR_PEOPLE_BTN_XPATH = "//*[text()='People' or text()='Gente']";
         readonly static string STR_ALLFLTR_BTN_XPATH = "//*[text()='All Filters' or text()='Todos los filtros']";
         readonly static string STR_LOCATIONSRCH_BOX_XPATH = "//*[@class='search-advanced-facets__facets-list']//*[@id='locations-facet-values']//input[@placeholder='Add a country/region' or @placeholder='Añadir un país o región']";
         readonly static string STR_LOCATIONMX_OPT_XPATH = $"//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'México' or text()='Mexico']";
-        readonly static string STR_LOCATIONITA_OPT_XPATH = $"//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy' or 'Italia']";
+        readonly static string STR_LOCATIONITA_OPT_XPATH = $"//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy' or text()='Italia']";
         readonly static string STR_APPLYBTN_XPATH = "//*[@role='dialog']//*[text()='Apply']";
 
         /*CONSTRUCTOR*/
@@ -81,6 +81,7 @@ namespace AutomationTraining_M7.Page_Objects
         {
             objSearchBoxInput.Clear();
             objSearchBoxInput.SendKeys(pstrSearchText);
+            objSearchBoxInput.Click();
         }
         //Click the search button
         public void fnClickSearchButton()

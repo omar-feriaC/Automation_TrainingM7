@@ -86,17 +86,33 @@ namespace AutomationTraining_M7.Test_Cases
                 pgSearch.fnClickApplyButton();
 
                 //Step#8 .- Perform search for each techonlogy provided in the arrTechnologies array.
+
                 foreach (string technology in arrTechnologies)
                 {
+                    _driverWait.Until(SearchBoxToAppear => pgSearch.GetSearchBoxField());
                     pgSearch.fnEnterSearchText(technology);
+                    _driverWait.Until(SearchWindowAppears => driver.FindElement(By.XPath("//*[@class='basic-typeahead__triggered-content search-global-typeahead__content search-box_focus']")).Displayed);
                     pgSearch.fnClickSearchButton();
-                    _driverWait.Until(PageChanges => driver.Url.Contains(technology));
-                    string Name = "Get name";//Can't select any results! Can't get any information from the search.
-                    string Role = "Get role";
-                    string ProfileURL = "Get URL";
-                    Console.WriteLine($@"Name:{Name}
-                                         Role:{Role}
-                                         Profile URL:{ProfileURL}");
+
+                    IList<IWebElement> objSearchResultsName = driver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']/li//*[@class='actor-name']"));
+                    IList<IWebElement> objSearchResultsRole = driver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']//*[contains(@class,'level-1')]//*[@dir='ltr']"));
+                    IList<IWebElement> objSearchResultsUrl = driver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']//*[contains(@class,'search-result__info')]//a"));
+
+                    //*[@class='search-results__list list-style-none ']//*[contains(@class,'search-result__info')]//a
+                    foreach (var element in objSearchResultsName)
+                    {
+                        Console.WriteLine(element.Text);
+                    }
+
+                    foreach (var element in objSearchResultsRole)
+                    {
+                        Console.WriteLine(element.Text);
+                    }
+
+                    foreach (var element in objSearchResultsUrl)
+                    {
+                        Console.WriteLine(element.GetAttribute("href"));
+                    }
                 }
 
 
