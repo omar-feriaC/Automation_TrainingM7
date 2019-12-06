@@ -1,6 +1,7 @@
-using AutomationTraining_M7.Page_Objects;
+﻿using AutomationTraining_M7.Page_Objects;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -49,11 +50,13 @@ namespace AutomationTraining_M7.Test_Cases
             }
             // Set Filters
             LinkedIn_SearchPage.FnEnterSearchText("Jesus");
-            Thread.Sleep(6000);
             LinkedIn_SearchPage.FnClickSearchBtn();
             Thread.Sleep(6000);
             LinkedIn_SearchPage.FnSelectAllFilters();
+            Thread.Sleep(6000);
             LinkedIn_SearchPage.FnGetRegionMx();
+            LinkedIn_SearchPage.FnGetRegionSP();
+            Thread.Sleep(6000);
             LinkedIn_SearchPage.FnLanguageEng();
             LinkedIn_SearchPage.FnLanguageEsp();
             LinkedIn_SearchPage.FnClickApplyBtn();
