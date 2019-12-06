@@ -131,6 +131,7 @@ namespace AutomationTraining_M7.Page_Objects
         {
             objSearchTextIt.Click();
             objSearchTextIt.Clear();
+            objSearchTextIt.SendKeys(Keys.Down);
             objSearchTextIt.SendKeys(pstrSearchTextIt);
         }
 
