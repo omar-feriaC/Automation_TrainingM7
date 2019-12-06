@@ -75,7 +75,7 @@ namespace AutomationTraining_M7.Test_Cases
 
             wait.Until(ExpectedConditions.UrlContains("people"));
             //*****Step 5*****//
-           
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[span[text()='All Filters' or text()='Todos los filtros']]")));
             LinkedIn_SearchPage.fnSelectAllFilters();
 
 
@@ -91,7 +91,6 @@ namespace AutomationTraining_M7.Test_Cases
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy' or text()='Italia']")));
             LinkedIn_SearchPage.fnSelectItaly();
 
-                       
 
             
             
@@ -104,8 +103,9 @@ namespace AutomationTraining_M7.Test_Cases
             {
                 LinkedIn_SearchPage.fnSearchTech(strSearchTech);
                 wait.Until(ExpectedConditions.UrlContains("search/results/"));
-                string strName = driver.FindElement(By.XPath("//span[@class ='actor-name'][1]")).Text;
-                string strJob = driver.FindElement(By.XPath("//span[@dir='ltr'][1]")).Text;
+                wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[@class='actor-name']\"[0]")));
+                string strName = driver.FindElement(By.XPath("//span[@class ='actor-name'][0]")).Text;
+                string strJob = driver.FindElement(By.XPath("//span[@dir='ltr'][0]")).Text;
                 string strUrl = driver.FindElement(By.XPath("//a[@data-control-name='search_srp_result']/@href[1]")).Text;
                 Console.WriteLine("Name= " + strName);
                 Console.WriteLine("Job= "+ strJob);
