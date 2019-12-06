@@ -19,14 +19,13 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_SEARCH_BTN = "//div[@class='search-global-typeahead__controls']";
         readonly static string STR_PEOPLE_BTN = "//span[text()='People' or text()='Gente']";
         readonly static string STR_ALLFILTERS_BTN = "//button[span[text()='All Filters' or text()='Todos los filtros']]";
-        //readonly static string STR_REGIONMEX_CB = readonly static string STR_REGIONMEX_CB = "//label[text()='México' or text()='Mexico']"; 
         readonly static string STR_REGIONMEX_TEXT = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'México']";
         readonly static string STR_REGIONADD_TEXT = "//input[@placeholder='Añadir un país o región']";
         readonly static string STR_REGIONITA_TEXT = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy']";
-       //readonly static string STR_REGIONENTERMX_CLK = "";
+       
 
-        readonly static string STR_LANG_ENG_CB = "//label[text()='Inglés' or text()='English']";
-        readonly static string STR_LANG_ESP_CB = "//label[text()='Español' or text()='Spanish']";
+        //readonly static string STR_LANG_ENG_CB = "//label[text()='Inglés' or text()='English']";
+        //readonly static string STR_LANG_ESP_CB = "//label[text()='Español' or text()='Spanish']";
         readonly static string STR_APPLY_BTN = "//button[@data-control-name='all_filters_apply']";
         
 
@@ -44,8 +43,6 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objRegionAddTxt => _objDriver.FindElement(By.XPath(STR_REGIONADD_TEXT));
         private static IWebElement objRegionMexTxt => _objDriver.FindElement(By.XPath(STR_REGIONMEX_TEXT));
         private static IWebElement objRegionItaTxt => _objDriver.FindElement(By.XPath(STR_REGIONITA_TEXT));
-        private static IWebElement objLangEngCb => _objDriver.FindElement(By.XPath(STR_LANG_ENG_CB));
-        private static IWebElement objLangEspCb => _objDriver.FindElement(By.XPath(STR_LANG_ESP_CB));
         private static IWebElement objApplyBtn => _objDriver.FindElement(By.XPath(STR_APPLY_BTN));
        
         
@@ -99,17 +96,6 @@ namespace AutomationTraining_M7.Page_Objects
             objAllFiltersBtn.Click();
         }
 
-        /* //Region Mexico checkbox
-         private static IWebElement fnGetRegionMexCb()
-         {
-             return objRegionMexCb;
-         }
-
-         public static void fnClickRegionMexCb()
-         {
-             objRegionMexCb.Click();
-         }
-         */
         /* ***************************************************************** */
         //Select Region Mexico 
         private static IWebElement fnGetRegionTxt()
@@ -161,27 +147,14 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
         /* *********************************************************************** */
-        // Language English checkbox
-        private static IWebElement fnGetLangEngCb()
+        // Language array checkbox
+        
+        public static void fnClickLanguageCb(string pstringLanguage)
         {
-            return objLangEngCb;
+            IWebElement objClickLanguageCb = _objDriver.FindElement(By.XPath($"//*[text()='{pstringLanguage}']"));
+            objClickLanguageCb.Click();
         }
 
-        public static void fnClickLangEngCb()
-        {
-            objLangEngCb.Click();
-        }
-
-        // Language Spanish checkbox
-        private static IWebElement fnGetLangEspCb()
-        {
-            return objLangEspCb;
-        }
-
-        public static void fnClickLangEspCb()
-        {
-            objLangEspCb.Click();
-        }
 
         //Apply button
         private static IWebElement fnGetApplyBtn()

@@ -24,6 +24,10 @@ namespace AutomationTraining_M7.Test_Cases
         [Test]
         public void Search_LinkedIn()
         {
+            // VARIABLES
+            string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol" };
+            string[] arrLanguages = { "Español", "Inglés" };
+            
             objLogin = new LinkedIn_LoginPage(driver);
             Assert.AreEqual(true, driver.Title.Contains("Login"), "Title not match");
             LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
@@ -55,14 +59,13 @@ namespace AutomationTraining_M7.Test_Cases
             LinkedIn_SearchPage.fnAddRegionItaTxt(ConfigurationManager.AppSettings.Get("regionIta"));
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy']")));
             LinkedIn_SearchPage.fnEnterRegionMItaText();
-           
 
-            LinkedIn_SearchPage.fnClickLangEspCb();
-            Thread.Sleep(5000);
+            foreach (string language in arrLanguages)
+            {
+                LinkedIn_SearchPage.fnClickLanguageCb(language);
+            }
 
-            LinkedIn_SearchPage.fnClickLangEngCb();
-            Thread.Sleep(5000);
-
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("//button[@data-control-name='all_filters_apply']")));
             LinkedIn_SearchPage.fnClickApplyBtn();
             Thread.Sleep(5000);
 
