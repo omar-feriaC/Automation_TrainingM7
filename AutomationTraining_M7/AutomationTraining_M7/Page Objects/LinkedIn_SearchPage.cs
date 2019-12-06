@@ -1,5 +1,6 @@
 ﻿using AutomationTraining_M7.Base_Files;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,8 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_APPLY_BTN = "//button[@id='ember1456']//span[text()='Aplicar'] | //button[@id='ember1456']//span[text()='Apply']";
         //readonly static string STR_CAPTCHA_CLK = "//div[@class='recaptcha-checkbox-checkmark']";
         readonly static string STR_COUNTRY2_TXTBOX = "//div[@id='ember3402']//input[@placeholder='Añadir un país o región']";
-        
+        readonly static string STR_TECH_RESULTS = "//div[@class='blended-srp-results-js pt0 pb4 ph0 container-with-shadow']";
+
         /*trash information I used to generate Xpaths*/
         //  //input[@placeholder='Buscar'] -- cuadro buscar, aqui escribo cualquier cosa y doy enter
         // //span[text()='Gente'] -- primer filtro, darle click
@@ -53,8 +55,20 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objLanguage => _objDriver.FindElement(By.XPath(STR_LANGUAGE_BTN));
         private static IWebElement objApply => _objDriver.FindElement(By.XPath(STR_APPLY_BTN));
         private static IWebElement objCountry2 => objCountry2.FindElement(By.XPath(STR_COUNTRY2_TXTBOX));
+        private static IWebElement objTechResults => objTechResults.FindElement(By.XPath(STR_TECH_RESULTS));
 
         /*METHODS*/
+        //Get Results of Technologies Found
+        private IWebElement GetTechResults()
+        {
+            return objTechResults;
+        }
+
+        public static void fnTechResults()
+        {
+            
+        }
+
         //Search textbox 
         private IWebElement GetSearch()
         {
@@ -64,9 +78,8 @@ namespace AutomationTraining_M7.Page_Objects
         public static void fnEnterSearch(string pstrSearchText)
         {
             objSearchBox.Click();
-            Task.Delay(50).Wait();
+            //Task.Delay(50).Wait();
             objSearchBox.Clear();
-            Task.Delay(50).Wait();
             objSearchBox.SendKeys(pstrSearchText);
             objSearchBox.SendKeys(Keys.Enter);
         }

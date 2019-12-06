@@ -3,8 +3,6 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 ﻿using AutomationTraining_M7.Base_Files;
-using AutomationTraining_M7.Page_Objects;
-using NUnit.Framework;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -20,6 +18,7 @@ namespace AutomationTraining_M7.Test_Cases
 
     class Test_LinkedInSearch : BaseTest
     {
+        public WebDriverWait _driverWait;
         LinkedIn_SearchPage objSearch;
 
 
@@ -27,8 +26,10 @@ namespace AutomationTraining_M7.Test_Cases
         public void FirstSearch()
         {
             //VARIABLES
-            string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol" };
             string[] arrLanguages = { "Español", "Inglés" };
+            int x = 0;
+            string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol" };
+            int y = 0;
 
             //Step 1 - Login
             objSearch = new LinkedIn_SearchPage(driver);
@@ -41,66 +42,54 @@ namespace AutomationTraining_M7.Test_Cases
 
             //Step 2 - Select People or Gente Filter
             //Perform any search and wait to load the results
+            IWebElement webElement = _driverWait.Until(driver => driver.FindElement(By.XPath("//div[@class='search-global-typeahead__controls']")));
             LinkedIn_SearchPage.fnEnterSearch("Jose Luis");
-            Task.Delay(10000).Wait();
             //Select the first filter for People or Gente.
+            IWebElement webElement2 = _driverWait.Until(driver => driver.FindElement(By.XPath("//div[@class='neptune-grid']")));
             LinkedIn_SearchPage.fnClickPeople();
-            Task.Delay(10000).Wait();
+
 
             //Step 3 - Select "All Filters" option
             //Select the option for “All Filters” and wait to open the window.
+            IWebElement webElement3 = _driverWait.Until(driver => driver.FindElement(By.XPath("//span[text()='Siguiente']")));
             LinkedIn_SearchPage.fnClickAllFilter();
-            Task.Delay(10000).Wait();
+
 
             //Step 4 - Select Location Mexico and Italy
             //In Location Option, select the option for Mexico.
+            IWebElement webElement4 = _driverWait.Until(driver => driver.FindElement(By.XPath("//fieldset[@class='search-s-facet__values search-s-facet__values--geoRegion']")));
             LinkedIn_SearchPage.fnGetMexico();
-            Task.Delay(20000).Wait();
+            //_driverWait.Until(driver => driver.FindElement(By.XPath("//header[contains(@class,'msg-overlay-bubble-header')]")));
             LinkedIn_SearchPage.fnGetItaly("Italy");
-            Task.Delay(10000).Wait();
+            IWebElement webElement5 = _driverWait.Until(driver => driver.FindElement(By.XPath("//header[contains(@class,'msg-overlay-bubble-header')]")));
 
             //Step 5 - Select Languages
             //In Profile language, select the options provided in the array arrLanguages
             foreach (string strlanguages2 in arrLanguages)
             {
+                x++;
                 LinkedIn_SearchPage.fnGetLanguage(strlanguages2);
             }
+
+            /*for (int x= 0; x < arrLanguages.Length; x++)
+            {
+                string strlanguages2 = arrLanguages[x];
+                LinkedIn_SearchPage.fnGetLanguage(strlanguages2);
+            }*/
             
             //Step 6 - Apply the filters
             LinkedIn_SearchPage.fnGetApply();
-            Task.Delay(50000).Wait();
+            IWebElement webElement6 = _driverWait.Until(driver => driver.FindElement(By.XPath("//header[contains(@class,'msg-overlay-bubble-header')]")));
 
             //Step 7 - Second Array
             foreach (string strtechnologies in arrTechnologies)
             {
+                y++;
                 LinkedIn_SearchPage.fnEnterSearch(strtechnologies);
+                _driverWait.Until(driver => driver.FindElement(By.XPath("//div[@class='blended-srp-results-js pt0 pb4 ph0 container-with-shadow']")));
+                LinkedIn_SearchPage.fnTechResults();
             }
 
-
-            /* Previous exercise
-            //In Profile language, select English and Spanish options.
-            LinkedIn_SearchPage.fnGetLanguage();
-            Thread.Sleep(5000);
-
-            //Apply the filters.
-            LinkedIn_SearchPage.fnGetApply();
-            Thread.Sleep(10000);
-                                                                                    
-            //Using filter provided now search 5 technologies
-            LinkedIn_SearchPage.fnEnterSearch("Java");
-            Thread.Sleep(5000);
-
-            LinkedIn_SearchPage.fnEnterSearch("C#");
-            Thread.Sleep(5000);
-
-            LinkedIn_SearchPage.fnEnterSearch("PHP");
-            Thread.Sleep(5000);
-
-            LinkedIn_SearchPage.fnEnterSearch("SQL");
-            Thread.Sleep(5000);
-
-            LinkedIn_SearchPage.fnEnterSearch("Quality Engineer Automation Testing");
-            Thread.Sleep(5000);*/
         }
 
     }
