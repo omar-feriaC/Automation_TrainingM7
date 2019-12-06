@@ -16,12 +16,14 @@ namespace AutomationTraining_M7
     {
         static void Main(string[] args)
         {
+
             SetUp();
             Linkedin_LoginPage objLogin = new Linkedin_LoginPage(driver);
             Linkedin_LoginPage.FnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
             Linkedin_LoginPage.FnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
             Linkedin_LoginPage.fnClickSingInButton();
 
+            
             Console.ReadKey();
 
         }
