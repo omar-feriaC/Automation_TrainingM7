@@ -25,6 +25,7 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_APPLY_BTN = "//button[@data-control-name='all_filters_apply']";
         readonly static string STR_ADDCOUNTTRY_TEXT = "//input[@placeholder='Add a country/region'][@aria-label='Add a country/region']";
         readonly static string STR_SELECT_ITALY_DD = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy' or 'Italia']";
+        
 
         /*CONSTRUCTOR*/
         public LinkedIn_SearchPage(IWebDriver pobjSrcDriver)
@@ -45,6 +46,8 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objAddCountryTxt => _ObjSrcDriver.FindElement(By.XPath(STR_ADDCOUNTTRY_TEXT));
         private static IWebElement objSelectITalyDD => _ObjSrcDriver.FindElement(By.XPath(STR_SELECT_ITALY_DD));
         private static IWebElement objItalyDropdown => _ObjSrcDriver.FindElement(By.XPath("//div[@class='basic-typeahead__triggered-content search-s-add-facet__typeahead-tray']"));
+        
+
 
         /*METHODS*/
         //Captcha
@@ -185,12 +188,18 @@ namespace AutomationTraining_M7.Page_Objects
 
         public static void fnTechnology() 
         {
+            
+
             IWebElement objName = _ObjSrcDriver.FindElement(By.XPath("//span[@class='actor-name']"));
             IWebElement objRole = _ObjSrcDriver.FindElement(By.XPath("//p[@class='subline-level-1 t-14 t-black t-normal search-result__truncate']"));
+            IWebElement objURL = _ObjSrcDriver.FindElement(By.XPath("//div[@class='search-result__info pt3 pb4 ph0']//a[@href]"));
 
-            Console.WriteLine("Name: " + objName.GetAttribute("text"));
-            Console.WriteLine("Role: " + objRole.GetAttribute("text"));
+            Console.WriteLine("Name: " + objName.Text);
+            Console.WriteLine("Role: " + objRole.Text);
+            Console.WriteLine("URL: " + objURL.ToString());
+            Console.WriteLine("");
         }
+
 
 
     }
