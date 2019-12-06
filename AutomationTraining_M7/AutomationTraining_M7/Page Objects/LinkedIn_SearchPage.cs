@@ -21,12 +21,14 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_PEOPLE_BTN = "//button[span[text()='People' or text()='Gente']]";
         readonly static string STR_ALLFILTERS_BTN = "//button[span[text()='All Filters' or text()='Todos los filtros']]";
         readonly static string STR_REGIONMX_CB = "//label[text()='Mexico' or text()='México']";
-        readonly static string STR_LANG_ENG_CB = "//label[text()='English' or text()='Ingles']";
-        readonly static string STR_LANG_ESP_CB = "//label[text()='Spanish' or text()='Español']";
+        readonly static string STR_LANG_ENG_CB = "//label[@for='sf-profileLanguage-en']";
+        readonly static string STR_LANG_ESP_CB = "//label[@for='sf-profileLanguage-es']";
         readonly static string STR_APPLY_BTN = "//button[@data-control-name='all_filters_apply']";
         readonly static string STR_ADDCOUNTTRY_TEXT = "//input[@placeholder='Add a country/region'][@aria-label='Add a country/region']";
-        readonly static string STR_SELECT_ITALY_DD = "//input[@id='sf-geoRegion-it:0']";
-        readonly static string STR_REGIONSEARCH_TEXT = "//input[@placeholder='Añadir un país o región']";
+        readonly static string STR_SELECT_ITALY_DD = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy' or text()='Italia']";
+        readonly static string STR_REGIONSEARCH_TEXT = "//input[@placeholder='Añadir un país o región' and @role='combobox']";
+        readonly static string STR_SEARCHTECH_TEXT = "//span[@class='actor-name']\"[0]";
+        readonly static string STR_URLTECH_TEXT = "//a[@data-control-name='search_srp_result']/@href";
 
 
         /*CONSTRUCTOR*/
@@ -42,7 +44,7 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objPeopleBtn => _ObjSrcDriver.FindElement(By.XPath(STR_PEOPLE_BTN));
         private static IWebElement objAllFiltersBtn => _ObjSrcDriver.FindElement(By.XPath(STR_ALLFILTERS_BTN));
         private static IWebElement objRegionMxCb => _ObjSrcDriver.FindElement(By.XPath(STR_REGIONMX_CB));
-       //private static IWebElement objRegionItCb => _ObjSrcDriver.FindElement(By.XPath(STR_REGIONIT_CB));
+       
         private static IWebElement objLangEngCb => _ObjSrcDriver.FindElement(By.XPath(STR_LANG_ENG_CB));
         private static IWebElement objLangEspCb => _ObjSrcDriver.FindElement(By.XPath(STR_LANG_ESP_CB));
         private static IWebElement objApplyBtn => _ObjSrcDriver.FindElement(By.XPath(STR_APPLY_BTN));
@@ -50,9 +52,12 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objSelectITalyDD => _ObjSrcDriver.FindElement(By.XPath(STR_SELECT_ITALY_DD));
 
         private static IWebElement objSearchTextIt => _ObjSrcDriver.FindElement(By.XPath(STR_REGIONSEARCH_TEXT));
-        
+        private static IWebElement objSearchTech => _ObjSrcDriver.FindElement(By.XPath(STR_SEARCHTECH_TEXT));
+
+        private static IWebElement objURLTech => _ObjSrcDriver.FindElement(By.XPath(STR_URLTECH_TEXT));
+
         /*METHODS*/
-        
+
 
         //Search Txt
         private IWebElement GetSearchField()
@@ -115,35 +120,24 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
         //Location Italia
-        private IWebElement GetSearchFieldIt()
+        private IWebElement GetFieldItaly()
         {
             return objSearchTextIt;
+            
         }
-        public static void fnEnterSearchTextIt(string pstrSearchTextIt)
+
+
+        public static void fnSearchItaly(string pstrSearchTextIt)
         {
             objSearchTextIt.Click();
             objSearchTextIt.Clear();
             objSearchTextIt.SendKeys(pstrSearchTextIt);
-
-            objSearchTextIt.SendKeys(Keys.ArrowDown);
-            objSearchTextIt.SendKeys(Keys.Return);
         }
 
-      //  private IWebElement GetRegionIt()
-      //  {
-      //      return objRegionItCb;
-      //  }
-      //
-      //  public static void fnGetRegionIt()
-      //  {
-      //      objRegionItCb.Click();
-      //      
-      //      objSearchTextIt.SendKeys(Keys.Return);
-      //  }
-
-         
-        
-
+        public static void fnSelectItaly()
+        {
+            objSelectITalyDD.Click();
+        }
 
         //Language English
         private IWebElement GetLanguageEng()
@@ -178,30 +172,20 @@ namespace AutomationTraining_M7.Page_Objects
             objApplyBtn.Click();
         }
 
-        //Add new Language
-        private IWebElement AddCountry()
+        public static void fnSearchTech(string pstrTech)
         {
-            return objAddCountryTxt;
-        }
 
-        public static void fnAddCountry(string pstrAddCountry)
-        {
-            objAddCountryTxt.Click();
-            objAddCountryTxt.Clear();
-            objAddCountryTxt.SendKeys(pstrAddCountry);
-            objAddCountryTxt.SendKeys(Keys.Enter);
+            //objSearchText.Click();
+            objSearchText.Clear();
+            objSearchText.SendKeys(pstrTech);
+            objSearchText.SendKeys(Keys.Return);
         }
+        
+        
 
-        //Select Italy
-        private IWebElement SelectItaly()
-        {
-            return objSelectITalyDD;
-        }
+        
 
-        public static void fnSelectItaly()
-        {
-            objSelectITalyDD.Click();
-        }
+
     }
     
 }
