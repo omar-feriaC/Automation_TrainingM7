@@ -86,8 +86,7 @@ namespace AutomationTraining_M7.Test_Cases
                  LinkedIn_SearchPage.fnClickLanguageCb(strLanguage);
              }
 
-            //Thread.Sleep(1000);
-           _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//button[@data-control-name='all_filters_apply']")));
+            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//button[@data-control-name='all_filters_apply']")));
 
             //Technologies array    
             LinkedIn_SearchPage.fnClickApplyBtn();

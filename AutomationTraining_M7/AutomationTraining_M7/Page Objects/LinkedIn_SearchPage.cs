@@ -22,7 +22,6 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_REGIONMEX_TEXT = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico']";
         readonly static string STR_REGIONADD_TEXT = "//input[@placeholder='Add a country/region'][@aria-label='Add a country/region']";
         readonly static string STR_REGIONITA_TEXT = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy']";
-       // readonly static string STR_REGIONITADD_TEXT = "//div[@class='basic-typeahead__triggered-content search-s-add-facet__typeahead-tray']";
         readonly static string STR_APPLY_BTN = "//button[@data-control-name='all_filters_apply']";
         
 
@@ -39,8 +38,7 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objAllFiltersBtn => _objDriver.FindElement(By.XPath(STR_ALLFILTERS_BTN));
         private static IWebElement objRegionAddTxt => _objDriver.FindElement(By.XPath(STR_REGIONADD_TEXT));
         private static IWebElement objRegionMexTxt => _objDriver.FindElement(By.XPath(STR_REGIONMEX_TEXT));
-        private static IWebElement objRegionItaTxt => _objDriver.FindElement(By.XPath(STR_REGIONITA_TEXT));
-        //private static IWebElement objRegionItaDD => _objDriver.FindElement(By.XPath(STR_REGIONITADD_TEXT));
+        private static IWebElement objRegionItaTxt => _objDriver.FindElement(By.XPath(STR_REGIONITA_TEXT));        
         private static IWebElement objApplyBtn => _objDriver.FindElement(By.XPath(STR_APPLY_BTN));
        
         
@@ -154,20 +152,12 @@ namespace AutomationTraining_M7.Page_Objects
             IWebElement objClickLanguageCb = _objDriver.FindElement(By.XPath($"//*[text()='{pstringLanguage}']"));
             objClickLanguageCb.Click();
         }
-
-       /* public static IWebElement GetItalyDD()
-        {
-            return objRegionItaDD;
-        }
-        */
-
+              
         //Apply button
         private static IWebElement fnGetApplyBtn()
         {
             return objApplyBtn;
         }
-
-       
 
         /* *********************************************************************** */
         // technologies array checkbox
