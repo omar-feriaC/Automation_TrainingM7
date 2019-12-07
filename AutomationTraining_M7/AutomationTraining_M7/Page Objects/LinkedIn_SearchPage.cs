@@ -22,10 +22,7 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_REGIONMEX_TEXT = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico']";
         readonly static string STR_REGIONADD_TEXT = "//input[@placeholder='Add a country/region'][@aria-label='Add a country/region']";
         readonly static string STR_REGIONITA_TEXT = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy']";
-       
-
-        //readonly static string STR_LANG_ENG_CB = "//label[text()='Inglés' or text()='English']";
-        //readonly static string STR_LANG_ESP_CB = "//label[text()='Español' or text()='Spanish']";
+       // readonly static string STR_REGIONITADD_TEXT = "//div[@class='basic-typeahead__triggered-content search-s-add-facet__typeahead-tray']";
         readonly static string STR_APPLY_BTN = "//button[@data-control-name='all_filters_apply']";
         
 
@@ -43,6 +40,7 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objRegionAddTxt => _objDriver.FindElement(By.XPath(STR_REGIONADD_TEXT));
         private static IWebElement objRegionMexTxt => _objDriver.FindElement(By.XPath(STR_REGIONMEX_TEXT));
         private static IWebElement objRegionItaTxt => _objDriver.FindElement(By.XPath(STR_REGIONITA_TEXT));
+        //private static IWebElement objRegionItaDD => _objDriver.FindElement(By.XPath(STR_REGIONITADD_TEXT));
         private static IWebElement objApplyBtn => _objDriver.FindElement(By.XPath(STR_APPLY_BTN));
        
         
@@ -96,6 +94,11 @@ namespace AutomationTraining_M7.Page_Objects
             objAllFiltersBtn.Click();
         }
 
+        public static void fnClickApplyBtn()
+        {
+            objApplyBtn.Click();
+        }
+
         /* ***************************************************************** */
         //Select Region Mexico 
         private static IWebElement fnGetRegionTxt()
@@ -122,18 +125,15 @@ namespace AutomationTraining_M7.Page_Objects
 
                /* ***************************************************************** */
         //Select Region Italy         
+        
         public static void fnAddRegionItaTxt(string pstrAddRegionIta)
         {
             
             objRegionAddTxt.Clear();
-            objRegionAddTxt.SendKeys(pstrAddRegionIta);
-           
+            objRegionAddTxt.SendKeys(pstrAddRegionIta);                       
+            
         }
-        public static void fnClickRegIta()
-        {
-            objRegionItaTxt.Click();
-        }
-
+        
         /*  ********************************************************************* */
         //Enter Italy
         private static IWebElement EnterRegionMItaText()
@@ -143,7 +143,7 @@ namespace AutomationTraining_M7.Page_Objects
 
         public static void fnEnterRegionMItaText()
         {
-            objRegionItaTxt.Click();
+            objRegionItaTxt.Click();           
         }
 
         /* *********************************************************************** */
@@ -155,6 +155,11 @@ namespace AutomationTraining_M7.Page_Objects
             objClickLanguageCb.Click();
         }
 
+       /* public static IWebElement GetItalyDD()
+        {
+            return objRegionItaDD;
+        }
+        */
 
         //Apply button
         private static IWebElement fnGetApplyBtn()
@@ -162,10 +167,7 @@ namespace AutomationTraining_M7.Page_Objects
             return objApplyBtn;
         }
 
-        public static void fnClickApplyBtn()
-        {
-            objApplyBtn.Click();
-        }
+       
 
         /* *********************************************************************** */
         // technologies array checkbox

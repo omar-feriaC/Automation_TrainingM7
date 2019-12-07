@@ -38,7 +38,7 @@ namespace AutomationTraining_M7.Base_Files
         /*Close the browser and quit the selenium instance*/
         public static void AfterTest()
         {
-            driver.Close();
+           driver.Close();
             driver.Quit();
         }
 

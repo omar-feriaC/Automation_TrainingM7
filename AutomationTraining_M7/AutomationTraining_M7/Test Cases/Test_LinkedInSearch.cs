@@ -27,9 +27,9 @@ namespace AutomationTraining_M7.Test_Cases
                string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol" };
                string[] arrLanguages = { "Spanish", "English" };
 
-               //Step# 1 .- Log In 
-               objSearch = new LinkedIn_SearchPage(driver);
-               Login_LinkedIn();
+            //Step# 1 .- Log In 
+            driver.Manage().Window.Maximize();            
+            Login_LinkedIn();
 
                //Step# 2 .- Verify if captcha exist
                if (driver.Title.Contains("Verification") | driver.Title.Contains("Verificación"))
@@ -53,8 +53,10 @@ namespace AutomationTraining_M7.Test_Cases
                    }
                }
 
+            objSearch = new LinkedIn_SearchPage(driver);
 
-             LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search1"));
+
+            LinkedIn_SearchPage.fnEnterSearchText(ConfigurationManager.AppSettings.Get("search1"));
              LinkedIn_SearchPage.fnClickSearchButton();
             _driverWait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
             _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='People' or text()='Gente']")));
@@ -73,22 +75,29 @@ namespace AutomationTraining_M7.Test_Cases
                        
              //Region Italy
              LinkedIn_SearchPage.fnAddRegionItaTxt(ConfigurationManager.AppSettings.Get("regionIta"));
+            Thread.Sleep(100);
             _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy']")));
-             LinkedIn_SearchPage.fnEnterRegionMItaText();
+            LinkedIn_SearchPage.fnEnterRegionMItaText();
+            
 
             //Language array
-             foreach (string strLanguage in arrLanguages)
+            foreach (string strLanguage in arrLanguages)
              {
                  LinkedIn_SearchPage.fnClickLanguageCb(strLanguage);
              }
-            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//button[@data-control-name='all_filters_apply']")));
 
-            //Technologies array
+            //Thread.Sleep(1000);
+           _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//button[@data-control-name='all_filters_apply']")));
+
+            //Technologies array    
             LinkedIn_SearchPage.fnClickApplyBtn();
+
+            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@class='search-results__list list-style-none ']/li//*[@class='actor-name']")));
 
             foreach (string strTechnologies in arrTechnologies)
             {
                 LinkedIn_SearchPage.fnEnterSearchText(strTechnologies);
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@class='search-results__list list-style-none ']/li//*[@class='actor-name']")));
                 LinkedIn_SearchPage.fnClickSearchButton();
                 _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//p[@class='subline-level-1 t-14 t-black t-normal search-result__truncate']")));
                 LinkedIn_SearchPage.fnGetTechResultsTxt();
@@ -99,4 +108,5 @@ namespace AutomationTraining_M7.Test_Cases
 
     }
 }
+
 }
