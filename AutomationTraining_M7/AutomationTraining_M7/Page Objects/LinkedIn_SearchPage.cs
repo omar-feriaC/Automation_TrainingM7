@@ -135,8 +135,11 @@ namespace AutomationTraining_M7.Page_Objects
             objSearchTextIt.SendKeys(pstrSearchTextIt);
         }
 
+        
+        
         public static void fnSelectItaly()
         {
+            
             objSelectITalyDD.Click();
         }
 
@@ -181,12 +184,47 @@ namespace AutomationTraining_M7.Page_Objects
             objSearchText.SendKeys(pstrTech);
             objSearchText.SendKeys(Keys.Return);
         }
-        
-        
 
-        
 
+        public static void fnGetTechResultsTxt()
+        {
+            IList<IWebElement> objGetTechResultsName = _ObjSrcDriver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']/li//*[@class='actor-name']"));
+            IList<IWebElement> objGetTechResultsTitle = _ObjSrcDriver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']//*[contains(@class,'level-1')]//*[@dir='ltr']"));
+            IList<IWebElement> objGetTechResultsLink = _ObjSrcDriver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']//*[contains(@class,'search-result__info')]//a"));
+
+            objGetTechResultsName = _ObjSrcDriver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']/li//*[@class='actor-name']"));
+            objGetTechResultsTitle = _ObjSrcDriver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']//*[contains(@class,'level-1')]//*[@dir='ltr']"));
+            objGetTechResultsLink = _ObjSrcDriver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']//*[contains(@class,'search-result__info')]//a"));
+
+            foreach (var vName in objGetTechResultsName)
+            {
+                
+                Console.WriteLine("Name: " + vName.Text);
+                
+            }
+
+            foreach (var vTitle in objGetTechResultsTitle)
+            {
+                
+                Console.WriteLine("Title: " + vTitle.Text);
+                
+            }
+
+            foreach (var VLink in objGetTechResultsLink)
+            {
+                
+                Console.WriteLine("Link: " + VLink.GetAttribute("href"));
+                
+            }
+            objGetTechResultsName = _ObjSrcDriver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']/li//*[@class='actor-name']"));
+            objGetTechResultsTitle = _ObjSrcDriver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']//*[contains(@class,'level-1')]//*[@dir='ltr']"));
+            objGetTechResultsLink = _ObjSrcDriver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']//*[contains(@class,'search-result__info')]//a"));
+        }
 
     }
-    
+
+
+
+
 }
+    
