@@ -9,34 +9,17 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Test_Cases
 {
-    class Test_LinkedIn : BaseTest
+    class Test_LinkedInSearch : BaseTest
     {
         WebDriverWait wait;
         private const string XpathToFind = "x";
         LinkedIn_LoginPage objLILP;
         LinkedIn_SearchPage objLISP;
-        public WebDriverWait _driverWait;
-        [Test, Order(0)]
-        public void Login_LinkedIn()
-        {
-            //driver.Url = ConfigurationManager.AppSettings.Get("urlLinkedIn");
-            objLILP = new LinkedIn_LoginPage(driver);
 
-            Assert.AreEqual(true, driver.Title.Contains("Login"), "Title does not match");
-
-            LinkedIn_LoginPage.fnEnterUsername(ConfigurationManager.AppSettings.Get("userLinkedIn"));
-            LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("passwordLinkedIn"));
-            LinkedIn_LoginPage.fnClickSignInButton();
-            Thread.Sleep(3000);
-            Assert.AreNotEqual(true, driver.Title.Contains("Login"), "Title does not match");
-            Assert.IsTrue(driver.Title.Contains("LinkedIn"));
-
-        }
         [Test, Order(1)]
         public void SearchLinkedIn()
         {
@@ -70,7 +53,7 @@ namespace AutomationTraining_M7.Test_Cases
             LinkedIn_SearchPage.fnClickAllFiltersButton();
             LinkedIn_SearchPage.fnWaitPage();
             //wait.Until(ExpectedConditions.ElementExists(By.XPath("//input[@placeholder='Add a country/region' or @placeholder='Añadir un país o región']")));
-            
+
             //INSERT Assert.something here
             LinkedIn_SearchPage.fnEnterLocationCriteria(ConfigurationManager.AppSettings.Get("searchLocationCriteria1"));
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico']")));
@@ -89,11 +72,11 @@ namespace AutomationTraining_M7.Test_Cases
             {
                 LinkedIn_SearchPage.fnEnterSearchCriteria(strvalue);
                 LinkedIn_SearchPage.fnWaitPage();
-   
-                Console.WriteLine("Technology "+strvalue+" :");
-                Console.WriteLine("Name: "+LinkedIn_SearchPage.GetNameSpan().Text);
-                Console.WriteLine("Role: "+LinkedIn_SearchPage.GetRoleSpan().Text);
-                Console.WriteLine("LinkedIn URL: "+LinkedIn_SearchPage.GetUrlA().GetAttribute("href"));
+
+                Console.WriteLine("Technology " + strvalue + " :");
+                Console.WriteLine("Name: " + LinkedIn_SearchPage.GetNameSpan().Text);
+                Console.WriteLine("Role: " + LinkedIn_SearchPage.GetRoleSpan().Text);
+                Console.WriteLine("LinkedIn URL: " + LinkedIn_SearchPage.GetUrlA().GetAttribute("href"));
                 Console.WriteLine("-----------");
                 strPrevURL = LinkedIn_SearchPage.GetUrlA().GetAttribute("href");
 
@@ -111,7 +94,5 @@ namespace AutomationTraining_M7.Test_Cases
                 Console.WriteLine("-----------");
             }
         }
-
-
     }
 }
