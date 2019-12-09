@@ -188,37 +188,22 @@ namespace AutomationTraining_M7.Page_Objects
 
         public static void fnGetTechResultsTxt()
         {
-            IList<IWebElement> objGetTechResultsName = _ObjSrcDriver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']/li//*[@class='actor-name']"));
-            IList<IWebElement> objGetTechResultsTitle = _ObjSrcDriver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']//*[contains(@class,'level-1')]//*[@dir='ltr']"));
-            IList<IWebElement> objGetTechResultsLink = _ObjSrcDriver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']//*[contains(@class,'search-result__info')]//a"));
+            IList<IWebElement> objName = _ObjSrcDriver.FindElements(By.XPath("//span[@class='actor-name']"));
+            IList<IWebElement> objRole = _ObjSrcDriver.FindElements(By.XPath("//p[@class='subline-level-1 t-14 t-black t-normal search-result__truncate']"));
+            IList<IWebElement> objURL = _ObjSrcDriver.FindElements(By.XPath("//div[@class='search-result__info pt3 pb4 ph0']//a[@href]"));
 
-            objGetTechResultsName = _ObjSrcDriver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']/li//*[@class='actor-name']"));
-            objGetTechResultsTitle = _ObjSrcDriver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']//*[contains(@class,'level-1')]//*[@dir='ltr']"));
-            objGetTechResultsLink = _ObjSrcDriver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']//*[contains(@class,'search-result__info')]//a"));
 
-            foreach (var vName in objGetTechResultsName)
+            for (int i = 0; i < objName.Count; i++)
             {
                 
-                Console.WriteLine("Name: " + vName.Text);
-                
-            }
+                Console.WriteLine("Name: " + objName[i].Text);
+                Console.WriteLine("Role: " + objRole[i].Text);
+                Console.WriteLine("URL: " + objURL[i].GetAttribute("href"));
+                Console.WriteLine("**************************************");
 
-            foreach (var vTitle in objGetTechResultsTitle)
-            {
-                
-                Console.WriteLine("Title: " + vTitle.Text);
-                
-            }
 
-            foreach (var VLink in objGetTechResultsLink)
-            {
-                
-                Console.WriteLine("Link: " + VLink.GetAttribute("href"));
-                
             }
-            objGetTechResultsName = _ObjSrcDriver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']/li//*[@class='actor-name']"));
-            objGetTechResultsTitle = _ObjSrcDriver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']//*[contains(@class,'level-1')]//*[@dir='ltr']"));
-            objGetTechResultsLink = _ObjSrcDriver.FindElements(By.XPath("//*[@class='search-results__list list-style-none ']//*[contains(@class,'search-result__info')]//a"));
+            
         }
 
     }

@@ -95,41 +95,27 @@ namespace AutomationTraining_M7.Test_Cases
             
             
             LinkedIn_SearchPage.fnLanguageEng();
-            Thread.Sleep(1000);
+            
             LinkedIn_SearchPage.fnLanguageEsp();
-            Thread.Sleep(1000);
+            
             LinkedIn_SearchPage.fnClickApplyBtn();
-            Thread.Sleep(1000);
+            
 
-          // foreach (string strSearchTech in arrTechnologies)
-          // {
-          //     wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//input[@placeholder='Search' or @placeholder='Buscar']")));
-          //     LinkedIn_SearchPage.fnSearchTech(strSearchTech);
-          //     wait.Until(ExpectedConditions.UrlContains("search/results/"));
-          //     wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[@class='actor-name']")));
-          //     wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='search-results__list list-style-none ']/li//*[@class='actor-name']")));
-          //     string strName = driver.FindElement(By.XPath("//*[@class='search-results__list list-style-none ']/li//*[@class='actor-name']"));//.Text;
-          //     string strJob = driver.FindElement(By.XPath("//span[@dir='ltr']"));//.Text;
-          //     string strUrl = driver.FindElement(By.XPath("//a[@data-control-name='search_srp_result']/@href"));//.Text;
-          //     Console.WriteLine("Name= " + strName);
-          //     Console.WriteLine("Job= "+ strJob);
-          //     Console.WriteLine("LinkedIn URL= "+ strUrl);
-          // }
-
-            foreach (string strSearchTech in arrTechnologies)
-            {
+          
+          
+           foreach (string strSearchTech in arrTechnologies)
+           {
+                
                 LinkedIn_SearchPage.fnEnterSearchText(strSearchTech);
-                wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@class='search-results__list list-style-none ']/li//*[@class='actor-name']")));
                 LinkedIn_SearchPage.fnClickSearchBtn();
-                wait.Until(ExpectedConditions.ElementExists(By.XPath("//p[@class='subline-level-1 t-14 t-black t-normal search-result__truncate']")));
+                wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@class='search-results ember-view']")));
+                wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[@class='actor-name']")));
                 LinkedIn_SearchPage.fnGetTechResultsTxt();
-            }
+                
+           }
 
 
-
-
-
-
+         
         }
     }
 }
