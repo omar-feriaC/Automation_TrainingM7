@@ -122,40 +122,52 @@ namespace AutomationTraining_M7.Test_Cases
             //Wait until All Filters were applied by checking if the Main Page Filters has Mexico and Italy Selected
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[@class='artdeco-button__text' and text()='Locations (2)']")));
 
-          
 
 
 
-            //*****Step 12****//
-
-
-            foreach (string strtech in arrTechnologies)
+            try
             {
-                LinkedIn_SearchPage.fnSearchTechnologies(strtech);
-
-                //Wait until results are displayed for each of the technologies
-                Task.Delay(3000).Wait();
-                
+                //*****Step 12****//
 
 
-                Console.WriteLine("************************************************* ");
+                foreach (string strtech in arrTechnologies)
+                {
+                    LinkedIn_SearchPage.fnSearchTechnologies(strtech);
 
-                String strName = driver.FindElement(By.XPath("//span[@class = 'actor-name']")).Text;
-                Console.WriteLine("Name: " +strName);
+                    //Wait until results are displayed for each of the technologies
+                    Task.Delay(3000).Wait();
 
-                String strTitle = driver.FindElement(By.XPath("//p[@class = 'subline-level-1 t-14 t-black t-normal search-result__truncate']")).Text;
-                Console.WriteLine("Role: " + strTitle);
 
-                String strLocation = driver.FindElement(By.XPath("//p[@class = 'subline-level-2 t-12 t-black--light t-normal search-result__truncate']")).Text;
-                Console.WriteLine("Location: " + strLocation);
 
+                    Console.WriteLine("************************************************* ");
+
+                    String strName = driver.FindElement(By.XPath("//span[@class = 'actor-name']")).Text;
+                    Console.WriteLine("Name: " + strName);
+
+                    String strTitle = driver.FindElement(By.XPath("//p[@class = 'subline-level-1 t-14 t-black t-normal search-result__truncate']")).Text;
+                    Console.WriteLine("Role: " + strTitle);
+
+                    String strLocation = driver.FindElement(By.XPath("//p[@class = 'subline-level-2 t-12 t-black--light t-normal search-result__truncate']")).Text;
+                    Console.WriteLine("Location: " + strLocation);
+
+                }
+
+               
+
+
+            }
+
+           
+            catch (Exception ex)
+            {
+                Console.WriteLine("Message: " + ex.Message);
             }
 
 
 
-           
 
-            
-        }
+
+
+}
     }
 }
