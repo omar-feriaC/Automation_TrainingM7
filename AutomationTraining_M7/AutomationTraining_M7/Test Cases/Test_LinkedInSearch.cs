@@ -75,8 +75,9 @@ namespace AutomationTraining_M7.Test_Cases
                        
              //Region Italy
              LinkedIn_SearchPage.fnAddRegionItaTxt(ConfigurationManager.AppSettings.Get("regionIta"));
-            Thread.Sleep(100);
-            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy']")));
+             Thread.Sleep(100);
+             _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy']")));
+           
             LinkedIn_SearchPage.fnEnterRegionMItaText();
             
 
