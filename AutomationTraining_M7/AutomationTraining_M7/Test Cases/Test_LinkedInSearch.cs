@@ -111,6 +111,7 @@ namespace AutomationTraining_M7.Test_Cases
                 wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@class='search-results ember-view']")));
                 wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[@class='actor-name']")));
                 LinkedIn_SearchPage.fnGetTechResultsTxt();
+                Thread.Sleep(3000);
                 
            }
 
