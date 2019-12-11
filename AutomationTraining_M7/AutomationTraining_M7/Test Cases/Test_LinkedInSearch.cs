@@ -13,33 +13,24 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Test_Cases
 {
-    class Test_LinkedInSearch : BaseTest
+    class Test_LinkedInSearch : Test_LinkedIn
     {
         WebDriverWait wait;
-        private const string XpathToFind = "x";
-        LinkedIn_LoginPage objLILP;
+        /*private const string XpathToFind = "x";
+        LinkedIn_LoginPage objLILP;*/
         LinkedIn_SearchPage objLISP;
 
-        [Test, Order(1)]
+        [Test, Order(0)]
         public void SearchLinkedIn()
         {
+            //variables
             wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
-            wait.Until(ExpectedConditions.TitleContains(""));
             int intFilterCount = 0;
             string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol" };
             string[] arrLanguages = { "Spanish", "English" };
-
-            //driver.Url = ConfigurationManager.AppSettings.Get("urlLinkedIn");
-            objLILP = new LinkedIn_LoginPage(driver);
+            
             //Login
-            LinkedIn_LoginPage.fnEnterUsername(ConfigurationManager.AppSettings.Get("userLinkedIn"));
-            LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("passwordLinkedIn"));
-            LinkedIn_LoginPage.fnClickSignInButton();
-            wait.Until(ExpectedConditions.ElementExists(By.XPath("//div[text()='Welcome, Edmundo!']")));
-
-            //Login asserts
-            Assert.AreNotEqual(true, driver.Title.Contains("Login"), "Title does not match");
-            Assert.IsTrue(driver.Title.Contains("LinkedIn"));
+            Login_LinkedIn();
 
             //Initialize Search driver
             objLISP = new LinkedIn_SearchPage(driver);
@@ -93,7 +84,7 @@ namespace AutomationTraining_M7.Test_Cases
             {
                 //Search technology
                 LinkedIn_SearchPage.fnEnterSearchCriteria(strvalue);
-                wait.Until(ExpectedConditions.TitleContains(strvalue));
+                wait.Until(ExpectedConditions.TitleContains(strvalue)) ;
 
                 //Print technology first result
                 Console.WriteLine("Technology " + strvalue + " :");

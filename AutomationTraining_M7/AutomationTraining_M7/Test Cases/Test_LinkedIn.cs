@@ -17,47 +17,39 @@ namespace AutomationTraining_M7.Test_Cases
     class Test_LinkedIn : BaseTest
     {
         WebDriverWait wait;
-        private const string XpathToFind = "x";
         LinkedIn_LoginPage objLILP;
-        LinkedIn_SearchPage objLISP;
 
         [Test, Order(0)]
         public void Login_LinkedIn()
         {
+            wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
             //driver.Url = ConfigurationManager.AppSettings.Get("urlLinkedIn");
             objLILP = new LinkedIn_LoginPage(driver);
 
             Assert.AreEqual(true, driver.Title.Contains("Login"), "Title does not match");
 
-            LinkedIn_LoginPage.fnEnterUsername(ConfigurationManager.AppSettings.Get("userLinkedIn"));
-            LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("passwordLinkedIn"));
-            LinkedIn_LoginPage.fnClickSignInButton();
-            Thread.Sleep(3000);
-            Assert.AreNotEqual(true, driver.Title.Contains("Login"), "Title does not match");
-            Assert.IsTrue(driver.Title.Contains("LinkedIn"));
-
-        }
-        [Test, Order(1)]
-        public void SearchLinkedIn()
-        {
-            wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
-            wait.Until(ExpectedConditions.TitleContains(""));
-            int intFilterCount = 0;
-            string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol" };
-            string[] arrLanguages = { "Spanish", "English" };
-
-            //driver.Url = ConfigurationManager.AppSettings.Get("urlLinkedIn");
-            objLILP = new LinkedIn_LoginPage(driver);
             //Login
             LinkedIn_LoginPage.fnEnterUsername(ConfigurationManager.AppSettings.Get("userLinkedIn"));
             LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("passwordLinkedIn"));
             LinkedIn_LoginPage.fnClickSignInButton();
             wait.Until(ExpectedConditions.ElementExists(By.XPath("//div[text()='Welcome, Edmundo!']")));
-            
+
             //Login asserts
             Assert.AreNotEqual(true, driver.Title.Contains("Login"), "Title does not match");
             Assert.IsTrue(driver.Title.Contains("LinkedIn"));
-            
+
+        }
+        /*[Test, Order(1)]
+        public void SearchLinkedIn()
+        {
+            //variables
+            wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
+            int intFilterCount = 0;
+            string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol" };
+            string[] arrLanguages = { "Spanish", "English" };
+
+            Login_LinkedIn();
+
             //Initialize Search driver
             objLISP = new LinkedIn_SearchPage(driver);
             
@@ -120,6 +112,6 @@ namespace AutomationTraining_M7.Test_Cases
                 Console.WriteLine("-----------");
                 strPrevURL = LinkedIn_SearchPage.GetUrlA().GetAttribute("href");
             }
-        }
+        }*/
     }
 }
