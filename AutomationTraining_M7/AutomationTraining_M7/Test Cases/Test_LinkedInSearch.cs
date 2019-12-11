@@ -25,7 +25,7 @@ namespace AutomationTraining_M7.Test_Cases
         {
             wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
             wait.Until(ExpectedConditions.TitleContains(""));
-
+            int intFilterCount = 0;
             string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol" };
             string[] arrLanguages = { "Spanish", "English" };
 
@@ -36,62 +36,72 @@ namespace AutomationTraining_M7.Test_Cases
             LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("passwordLinkedIn"));
             LinkedIn_LoginPage.fnClickSignInButton();
             wait.Until(ExpectedConditions.ElementExists(By.XPath("//div[text()='Welcome, Edmundo!']")));
-            //LinkedIn_SearchPage.fnWaitPage();
+
+            //Login asserts
             Assert.AreNotEqual(true, driver.Title.Contains("Login"), "Title does not match");
             Assert.IsTrue(driver.Title.Contains("LinkedIn"));
+
             //Initialize Search driver
             objLISP = new LinkedIn_SearchPage(driver);
+
             //Search
             LinkedIn_SearchPage.fnEnterSearchCriteria(ConfigurationManager.AppSettings.Get("searchCriteria"));
             wait.Until(ExpectedConditions.ElementExists(By.XPath("//button[span[text()='People' or text()='Gente']]")));
-            //LinkedIn_SearchPage.fnWaitPage();
-            //Assert.IsTrue(driver.Title.Contains("search/results"));
+            //Assert.IsTrue(driver.Title.Contains("Search/results"));
+
+            //Select people filter
             LinkedIn_SearchPage.fnClickPeopleButton();
-            //wait.Until(ExpectedConditions.ElementExists(By.XPath("//button[span[text()='All Filters' or text()='Todos los Filtros']]")));
+            //wait.Until(ExpectedConditions.ElementExists(By.XPath("//span[text()='All Filters' or text()='Todos los Filtros']")));
             LinkedIn_SearchPage.fnWaitPage();
             //INSERT Assert.something here
+
+            //Select all filters
             LinkedIn_SearchPage.fnClickAllFiltersButton();
             LinkedIn_SearchPage.fnWaitPage();
-            //wait.Until(ExpectedConditions.ElementExists(By.XPath("//input[@placeholder='Add a country/region' or @placeholder='Añadir un país o región']")));
 
+            //select location Mexico 
             //INSERT Assert.something here
-            LinkedIn_SearchPage.fnEnterLocationCriteria(ConfigurationManager.AppSettings.Get("searchLocationCriteria1"));
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico']")));
-            LinkedIn_SearchPage.fnClickMexicoTxt();
-            LinkedIn_SearchPage.fnEnterLocationCriteria(ConfigurationManager.AppSettings.Get("searchLocationCriteria2"));
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico']")));
-            LinkedIn_SearchPage.fnClickMexicoTxt();
-            LinkedIn_SearchPage.fnEnterLocationCriteria(ConfigurationManager.AppSettings.Get("searchLocationCriteria3"));
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy']")));
-            LinkedIn_SearchPage.fnClickItalyTxt();
+            LinkedIn_SearchPage.fnClickMexicoCheckbox();
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("//span[text()='" + ++intFilterCount + "']")));
+
+            //select location Italy
+            LinkedIn_SearchPage.fnEnterLocationCriteria(ConfigurationManager.AppSettings.Get("searchLocationCriteria"));
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("//span[text()='" + ++intFilterCount + "']")));
+
+            //select lenguages
+            foreach (string strvalue in arrLanguages)
+            {
+                switch (strvalue)
+                {
+                    case "Spanish":
+                        LinkedIn_SearchPage.fnClickSpanishCheckbox();
+                        wait.Until(ExpectedConditions.ElementExists(By.XPath("//span[text()='" + ++intFilterCount + "']")));
+                        break;
+                    case "English":
+                        LinkedIn_SearchPage.fnClickEnglishCheckbox();
+                        wait.Until(ExpectedConditions.ElementExists(By.XPath("//span[text()='" + ++intFilterCount + "']")));
+                        break;
+                }
+            }
+
+            //Apply all filters
             LinkedIn_SearchPage.fnClickApplyFiltersButton();
-            //wait.Until(ExpectedConditions.ElementExists(By.XPath("//button[span[text()='People' or text()='Gente']]")));
-            LinkedIn_SearchPage.fnWaitPage();
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("//span[text()='4']")));
+
             string strPrevURL;
             foreach (string strvalue in arrTechnologies)
             {
+                //Search technology
                 LinkedIn_SearchPage.fnEnterSearchCriteria(strvalue);
-                LinkedIn_SearchPage.fnWaitPage();
+                wait.Until(ExpectedConditions.TitleContains(strvalue));
 
+                //Print technology first result
                 Console.WriteLine("Technology " + strvalue + " :");
                 Console.WriteLine("Name: " + LinkedIn_SearchPage.GetNameSpan().Text);
                 Console.WriteLine("Role: " + LinkedIn_SearchPage.GetRoleSpan().Text);
                 Console.WriteLine("LinkedIn URL: " + LinkedIn_SearchPage.GetUrlA().GetAttribute("href"));
                 Console.WriteLine("-----------");
                 strPrevURL = LinkedIn_SearchPage.GetUrlA().GetAttribute("href");
-
-            }
-
-            foreach (string strvalue in arrLanguages)
-            {
-                LinkedIn_SearchPage.fnEnterSearchCriteria(strvalue);
-                LinkedIn_SearchPage.fnWaitPage();
-
-                Console.WriteLine("Language " + strvalue + " :");
-                Console.WriteLine("Name: " + LinkedIn_SearchPage.GetNameSpan().Text);
-                Console.WriteLine("Role: " + LinkedIn_SearchPage.GetRoleSpan().Text);
-                Console.WriteLine("LinkedIn URL: " + LinkedIn_SearchPage.GetUrlA().GetAttribute("href"));
-                Console.WriteLine("-----------");
             }
         }
     }

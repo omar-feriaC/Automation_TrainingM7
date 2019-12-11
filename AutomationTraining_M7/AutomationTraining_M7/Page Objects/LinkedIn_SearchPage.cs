@@ -25,7 +25,6 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_LOCITALY_TEXT = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy']";
         readonly static string STR_LOCMEXICO_TEXT = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico']";
         readonly static string STR_LOCATION_TEXT = "//input[@placeholder='Add a country/region' or @placeholder='Añadir un país o región']";
-        readonly static string STR_ITALY_CHKBOX = "//label[text()='Italy' or text()='Italia']";
         readonly static string STR_SEARCHRESULTSNAME_SPAN = "(//span[@class='actor-name'])[1]";
         readonly static string STR_SEARCHRESULTSROLE_SPAN = "(//p[@class='subline-level-1 t-14 t-black t-normal search-result__truncate']//span[@dir='ltr'])[1]";
         readonly static string STR_SEARCHRESULTSURL_A = "(//a[@data-control-name='search_srp_result'])[1]";
@@ -38,7 +37,7 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
         /*IWEBELEMEMT OBJECTS*/
-        private static IWebElement ObjSearchTxt => _objDriver.FindElement(By.ClassName(STR_SEARCH_TEXT));
+        private static IWebElement objSearchTxt => _objDriver.FindElement(By.ClassName(STR_SEARCH_TEXT));
         private static IWebElement objSearchBtn => _objDriver.FindElement(By.XPath(STR_SEARCH_BTN));
         private static IWebElement objPeopleBtn => _objDriver.FindElement(By.XPath(STR_PEOPLE_BTN));
         private static IWebElement objAllFiltersBtn => _objDriver.FindElement(By.XPath(STR_ALLFILTERS_BTN));
@@ -58,13 +57,13 @@ namespace AutomationTraining_M7.Page_Objects
         /*Search field*/
         private static IWebElement GetSearchField()
         {
-            return ObjSearchTxt;
+            return objSearchTxt;
         }
         public static void fnEnterSearchCriteria(string strSearchCrt)
         {
-            ObjSearchTxt.Clear();
-            ObjSearchTxt.SendKeys(strSearchCrt);
-            ObjSearchTxt.SendKeys(Keys.Enter);
+            objSearchTxt.Clear();
+            objSearchTxt.SendKeys(strSearchCrt);
+            objSearchTxt.SendKeys(Keys.Enter);
         }
 
         /*Search button*/
@@ -153,6 +152,11 @@ namespace AutomationTraining_M7.Page_Objects
         {
             objLocationFilterTxt.Clear();
             objLocationFilterTxt.SendKeys(strLocationCrt);
+            Thread.Sleep(1000);
+            objLocationFilterTxt.Click();
+            objLocationFilterTxt.SendKeys(Keys.ArrowDown);
+            objLocationFilterTxt.SendKeys(Keys.Enter);
+
         }
         /*Location Italy dropdown text*/
         private static IWebElement GetItalyTxt()
