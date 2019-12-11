@@ -32,9 +32,11 @@ namespace AutomationTraining_M7.Test_Cases
             string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol" };
             int y = 0;
             //WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
             //Step 1 - Login
             //Reusing Login from Test_LinkedIn
-            LinkedIn_LoginPage objLogin = new LinkedIn_LoginPage(driver);
+            Test_LinkedIn objLogin = new Test_LinkedIn();
+            objLogin.Login_LinkedIn();
 
             //Captcha, if needed
             if (driver.Title.Contains("Verification") | driver.Title.Contains("Verificación"))
