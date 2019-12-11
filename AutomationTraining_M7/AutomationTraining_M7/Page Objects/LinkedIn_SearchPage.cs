@@ -28,7 +28,7 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_APPLY_BTN = "//button[@id='ember1456']//span[text()='Aplicar'] | //button[@id='ember1456']//span[text()='Apply']";
         readonly static string STR_CAPTCHA_CLK = "//div[@class='recaptcha-checkbox-checkmark']";
         readonly static string STR_TECH_RESULTS = "//div[@class='blended-srp-results-js pt0 pb4 ph0 container-with-shadow']";
-        readonly static string STR_ARROW_BTN = "//button[@id='ember263']";
+        //readonly static string STR_ARROW_BTN = "//button[@id='ember263']";
 
 
         /*CONSTRUCTOR*/
@@ -48,7 +48,7 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objApply => _objDriver.FindElement(By.XPath(STR_APPLY_BTN));
         private static IWebElement objCaptcha => _objDriver.FindElement(By.XPath(STR_CAPTCHA_CLK));
         private static IWebElement objTechResults => objTechResults.FindElement(By.XPath(STR_TECH_RESULTS));
-        private static IWebElement objArrowBtn => objArrowBtn.FindElement(By.XPath(STR_ARROW_BTN));
+        //private static IWebElement objArrowBtn => objArrowBtn.FindElement(By.XPath(STR_ARROW_BTN));
 
         /*METHODS*/
         //Get Results of Technologies Found
@@ -172,7 +172,7 @@ namespace AutomationTraining_M7.Page_Objects
             objCaptcha.Click();
         }
 
-        //Arrow button
+        /*//Arrow button
         private IWebElement GetArrow()
         {
             return objArrowBtn;
@@ -181,6 +181,6 @@ namespace AutomationTraining_M7.Page_Objects
         public static void fnGetArrow()
         {
             objArrowBtn.Click();
-        }
+        }*/
     }
 }

@@ -70,7 +70,7 @@ namespace AutomationTraining_M7.Test_Cases
             //wait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.XPath("//span[text()='Gente']")));
             //wait = new WebDriverWait(driver, new TimeSpan(0,1,0));
             //Task.Delay(5000).Wait();
-            LinkedIn_SearchPage.fnGetArrow();
+            //LinkedIn_SearchPage.fnGetArrow();
             //wait.Until(driver => driver.FindElement(By.XPath("//span[text()='Gente']")));
             LinkedIn_SearchPage.fnClickPeople();
 
