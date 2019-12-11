@@ -21,23 +21,15 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_SEARCH_TXTBOX = "//input[@placeholder='Buscar'] | //input[@placeholder='Search']";
         readonly static string STR_PEOPLE_FILTER = "//span[text()='Gente'] | //span[text()='People']";
         readonly static string STR_ALL_FILTER_BTN = "//span[text()='Todos los filtros'] | //span[text()='All Filters']";
-        readonly static string STR_COUNTRY_BTN = "//label[text()='México'] | //label[text()='Mexico']";
+        readonly static string STR_MEXICO_BTN = "//label[text()='México'] | //label[text()='Mexico']";
+        readonly static string STR_COUNTRY_BTN = "//div[@id='ember3402']//input[@placeholder='Añadir un país o región']";
+        readonly static string STR_ITALY_BTN = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy' or 'Italia']";
         readonly static string STR_LANGUAGE_BTN = "//label[text()='Español' | //label[text()='Spanish' | //label[text()='Inglés' | //label[text()='English']";
-        //readonly static string STR_LANGUAGE_ESP_BTN = "//label[text()='Español' OR text()='Spanish]";
-        //readonly static string STR_LANGUAGE_ING_BTN = "//label[text()='Inglés' OR text()='English']";
         readonly static string STR_APPLY_BTN = "//button[@id='ember1456']//span[text()='Aplicar'] | //button[@id='ember1456']//span[text()='Apply']";
-        //readonly static string STR_CAPTCHA_CLK = "//div[@class='recaptcha-checkbox-checkmark']";
-        readonly static string STR_COUNTRY2_TXTBOX = "//div[@id='ember3402']//input[@placeholder='Añadir un país o región']";
+        readonly static string STR_CAPTCHA_CLK = "//div[@class='recaptcha-checkbox-checkmark']";
         readonly static string STR_TECH_RESULTS = "//div[@class='blended-srp-results-js pt0 pb4 ph0 container-with-shadow']";
+        readonly static string STR_ARROW_BTN = "//button[@id='ember263']";
 
-        /*trash information I used to generate Xpaths*/
-        //  //input[@placeholder='Buscar'] -- cuadro buscar, aqui escribo cualquier cosa y doy enter
-        // //span[text()='Gente'] -- primer filtro, darle click
-        // //span[text()='Todos los filtros'] -- opcion "todos los filtros", darle click
-        // ------------------------------------------------------------------------------------------
-        // //span[text()='Ubicaciones'] -- darle click y luego
-        // //span[@class='search-s-facet-value__name t-14 t-black--light t-normal'][text()='México']
-        // este es el valor Mexico, darle click
 
         /*CONSTRUCTOR*/
         public LinkedIn_SearchPage(IWebDriver pobjDriver)
@@ -47,26 +39,33 @@ namespace AutomationTraining_M7.Page_Objects
 
         /*IWEBELEMEMT OBJECTS*/
         private static IWebElement objSearchBox => _objDriver.FindElement(By.XPath(STR_SEARCH_TXTBOX));
-        //private static IWebElement objSearchText => _objDriver.FindElement(By.XPath(STR_SEARCH_TXTBOX));
         private static IWebElement objPeople => _objDriver.FindElement(By.XPath(STR_PEOPLE_FILTER));
         private static IWebElement objAllFilter => _objDriver.FindElement(By.XPath(STR_ALL_FILTER_BTN));
-        //private static IWebElement objLotation   => _objDriver.FindElement(By.XPath(STR_LOCATION_BTN));
+        private static IWebElement objMexico => _objDriver.FindElement(By.XPath(STR_MEXICO_BTN));
         private static IWebElement objCountry => _objDriver.FindElement(By.XPath(STR_COUNTRY_BTN));
+        private static IWebElement objItaly => _objDriver.FindElement(By.XPath(STR_ITALY_BTN));
         private static IWebElement objLanguage => _objDriver.FindElement(By.XPath(STR_LANGUAGE_BTN));
         private static IWebElement objApply => _objDriver.FindElement(By.XPath(STR_APPLY_BTN));
-        private static IWebElement objCountry2 => objCountry2.FindElement(By.XPath(STR_COUNTRY2_TXTBOX));
+        private static IWebElement objCaptcha => _objDriver.FindElement(By.XPath(STR_CAPTCHA_CLK));
         private static IWebElement objTechResults => objTechResults.FindElement(By.XPath(STR_TECH_RESULTS));
+        private static IWebElement objArrowBtn => objArrowBtn.FindElement(By.XPath(STR_ARROW_BTN));
 
         /*METHODS*/
         //Get Results of Technologies Found
-        private IWebElement GetTechResults()
-        {
-            return objTechResults;
-        }
-
         public static void fnTechResults()
         {
-            
+            IList<IWebElement> objName = _objDriver.FindElements(By.XPath("//span[@class='actor-name']"));
+            IList<IWebElement> objRole = _objDriver.FindElements(By.XPath("//p[@class='subline-level-1 t-14 t-black t-normal search-result__truncate']"));
+            IList<IWebElement> objURL = _objDriver.FindElements(By.XPath("//div[@class='search-result__info pt3 pb4 ph0']//a[@href]"));
+
+
+            for (int i = 0; i < objName.Count; i++)
+            {
+                Console.WriteLine("Name: " + objName[i].Text);
+                Console.WriteLine("Role: " + objRole[i].Text);
+                Console.WriteLine("URL: " + objURL[i].GetAttribute("href"));
+                Console.WriteLine("--===================================================--");
+            }
         }
 
         //Search textbox 
@@ -78,10 +77,10 @@ namespace AutomationTraining_M7.Page_Objects
         public static void fnEnterSearch(string pstrSearchText)
         {
             objSearchBox.Click();
-            //Task.Delay(50).Wait();
             objSearchBox.Clear();
             objSearchBox.SendKeys(pstrSearchText);
             objSearchBox.SendKeys(Keys.Enter);
+            //objSearchBox.Submit();
         }
 
         //Click People Filter
@@ -106,47 +105,41 @@ namespace AutomationTraining_M7.Page_Objects
             objAllFilter.Click();
         }
 
-
-        /*//Click and Select Location
-        private IWebElement GetLocation()
-        {
-            return objLotation;
-        }
-
-        private static void fnGetLocation()
-        {
-            objLotation.Click();
-        }*/
-
-
         //Click Mexico
         private IWebElement GetMexico()
         {
-            return objCountry;
+            return objMexico;
         }
 
         public static void fnGetMexico()
         {
             objCountry.Click();
-            //objCountry.SendKeys(Keys.Enter);
         }
 
         //Search for Italy
+        private IWebElement WriteCountry()
+        {
+            return objCountry;
+        }
+
+        public static void fnWriteCountry(string pstrCountry)
+        {
+            objCountry.Click();
+            objCountry.Clear();
+            objCountry.SendKeys(pstrCountry);
+        }
+
         private IWebElement GetItaly()
         {
-            return objCountry2;
+            return objItaly;
         }
 
-        public static void fnGetItaly(string pstrItaly)
+        public static void fnGetItaly()
         {
-            objCountry2.Click();
-            objCountry2.Clear();
-            objCountry2.SendKeys(pstrItaly);
-            objCountry2.SendKeys(Keys.ArrowDown);
-            objCountry2.SendKeys(Keys.Enter);
+            objItaly.Click();
         }
 
-        // Click Spanish and English
+         // Click Spanish and English
         private IWebElement GetLanguage()
         {
             return objLanguage;
@@ -168,8 +161,26 @@ namespace AutomationTraining_M7.Page_Objects
             objApply.Click();
         }
 
+        //Captcha
+        private IWebElement GetCaptcha()
+        {
+            return objCaptcha;
+        }
 
+        public static void fnClickCaptcha()
+        {
+            objCaptcha.Click();
+        }
 
+        //Arrow button
+        private IWebElement GetArrow()
+        {
+            return objArrowBtn;
+        }
 
+        public static void fnGetArrow()
+        {
+            objArrowBtn.Click();
+        }
     }
 }
