@@ -17,7 +17,7 @@ namespace AutomationTraining_M7.Base_Files
         //*                V A R I A B L E S
         //**************************************************
         
-        /*Webdriver Intance*/
+        /*Webdriver Instance*/
         public static IWebDriver driver;
         /*URL for Webdriver*/
         private static string strBrowserName = ConfigurationManager.AppSettings.Get("url");
