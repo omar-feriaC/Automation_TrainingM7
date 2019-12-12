@@ -32,27 +32,6 @@ namespace AutomationTraining_M7.Base_Files
         //**************************************************
         //                  M E T H O D S 
         ////**************************************************
-        //[OneTimeSetUp]
-        //public static void fnBeforeClass()
-        //{
-        //    /*Init ExtentHtmlReporter object*/
-        //    if (objHtmlReporter == null)
-        //    {
-        //        objHtmlReporter = new ExtentHtmlReporter(objRM.fnReportPath());
-        //    }
-
-        //    if (objExtent == null)
-        //    {
-        //        objExtent = new ExtentReports();
-        //        objRM.fnReportSetup(objHtmlReporter, objExtent);
-        //    }
-        //}
-
-        //[OneTimeTearDown]
-        //public static void fnAfterClass()
-        //{
-        //    objExtent.Flush();
-        //}
 
         [SetUp]
         /*Initialize the driver and indicates the url*/

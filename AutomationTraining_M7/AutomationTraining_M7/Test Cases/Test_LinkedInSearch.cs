@@ -85,9 +85,9 @@ namespace AutomationTraining_M7.Test_Cases
 
             //Step 4 - Select Location Mexico and Italy
             //In Location Option, select the option for Mexico.
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@id='ember3402']//input[@placeholder='Añadir un país o región']")));
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//div[@id='ember3402']//input[@placeholder='Añadir un país o región']")));
-            wait.Until(ExpectedConditions.ElementExists(By.XPath("//div[@id='ember3402']//input[@placeholder='Añadir un país o región']")));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//label[text()='México']")));
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//label[text()='México']")));
+            wait.Until(ExpectedConditions.ElementExists(By.XPath("//label[text()='México']")));
 
             LinkedIn_SearchPage.fnGetMexico();
             LinkedIn_SearchPage.fnWriteCountry("Italy");

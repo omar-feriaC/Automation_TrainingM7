@@ -21,9 +21,8 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_SEARCH_TXTBOX = "//input[@placeholder='Buscar'] | //input[@placeholder='Search']";
         public readonly static string STR_PEOPLE_FILTER = "//span[text()='Gente'] | //span[text()='People']";
         public readonly static string STR_ALL_FILTER_BTN = "//span[text()='Todos los filtros'] | //span[text()='All Filters']";
-        //public readonly static string STR_MEXICO_BTN = "//input[@id='sf-geoRegion-mx:0']";
         public readonly static string STR_MEXICO_BTN = "//label[text()='México'] | //label[text()='Mexico']";
-        readonly static string STR_COUNTRY_BTN = "//div[@id='ember3402']//input[@placeholder='Añadir un país o región']";
+        readonly static string STR_COUNTRY_BTN = "//input[@aria-label='Add a country/region']";
         readonly static string STR_ITALY_BTN = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy' | //span[text()= 'Italia']";
         readonly static string STR_LANGUAGE_BTN = "//label[text()='Español' | //label[text()='Spanish' | //label[text()='Inglés' | //label[text()='English']";
         readonly static string STR_APPLY_BTN = "//button[@id='ember1456']//span[text()='Aplicar'] | //button[@id='ember1456']//span[text()='Apply']";
