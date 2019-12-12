@@ -1,4 +1,7 @@
 ﻿
+using AutomationTraining_M7.Reporting;
+using AventStack.ExtentReports;
+using AventStack.ExtentReports.Reporter;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -21,10 +24,40 @@ namespace AutomationTraining_M7.Base_Files
         public static IWebDriver driver;
         /*URL for Webdriver*/
         private static string strBrowserName = ConfigurationManager.AppSettings.Get("url");
+        /*Extent Reports Framework*/
+        public static clsReportManager objRM = new clsReportManager();
+        public static ExtentV3HtmlReporter objHtmlReporter;  //Add information on HTML
+        public static ExtentReports objExtent; //Extent Report Object
+        public static ExtentTest objTest; // Test object for Extent Reports
+        //public static ExtentHtmlReporter objHtmlReporter; //Old version
+
 
         //**************************************************
         //                  M E T H O D S 
         //**************************************************
+
+        [OneTimeSetUp]
+        public static void fnBeforeClass()
+        {
+            /*Init ExtentHtmlReporter object*/
+            if(objHtmlReporter == null)
+            {
+                objHtmlReporter = new ExtentV3HtmlReporter(objRM.fnReportPath());
+            }
+
+            if(objExtent == null)
+            {
+                objExtent = new ExtentReports();
+                objRM.fnReportSetup(objHtmlReporter, objExtent);
+            }
+
+        }
+
+        [OneTimeTearDown]
+        public static void fnAfterClass()
+        {
+            objExtent.Flush();
+        }
         
         [SetUp]
         /*Initialize the driver and indicates the url*/
@@ -38,8 +71,9 @@ namespace AutomationTraining_M7.Base_Files
         /*Close the browser and quit the selenium instance*/
         public static void AfterTest()
         {
-            //driver.Close();
-            //driver.Quit();
+            objRM.fnTestCaseResult(objTest, objExtent, driver);
+            driver.Close();
+            driver.Quit();
         }
 
         /*Clear and Send text to specific field*/
