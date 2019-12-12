@@ -1,5 +1,6 @@
 ﻿using AutomationTraining_M7.Base_Files;
 using AutomationTraining_M7.Page_Objects;
+using AventStack.ExtentReports;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -25,6 +26,7 @@ namespace AutomationTraining_M7.Test_Cases
             LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
             LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
             LinkedIn_LoginPage.fnClickSignInButton();
+            objTest.Log(Status.Info, "Add Message");
         }
 
         [Test]
@@ -36,6 +38,8 @@ namespace AutomationTraining_M7.Test_Cases
             LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
             LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
             LinkedIn_LoginPage.fnClickSignInButton();
+            objTest.Log(Status.Info, "Add Message2");
+
             Assert.Fail();
         }
     }
