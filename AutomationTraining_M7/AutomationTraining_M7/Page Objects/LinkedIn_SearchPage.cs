@@ -19,16 +19,16 @@ namespace AutomationTraining_M7.Page_Objects
 
         /*LOCATORS FOR EACH ELEMENT*/
         readonly static string STR_SEARCH_TXTBOX = "//input[@placeholder='Buscar'] | //input[@placeholder='Search']";
-        readonly static string STR_PEOPLE_FILTER = "//span[text()='Gente'] | //span[text()='People']";
-        readonly static string STR_ALL_FILTER_BTN = "//span[text()='Todos los filtros'] | //span[text()='All Filters']";
-        readonly static string STR_MEXICO_BTN = "//label[text()='México'] | //label[text()='Mexico']";
+        public readonly static string STR_PEOPLE_FILTER = "//span[text()='Gente'] | //span[text()='People']";
+        public readonly static string STR_ALL_FILTER_BTN = "//span[text()='Todos los filtros'] | //span[text()='All Filters']";
+        //public readonly static string STR_MEXICO_BTN = "//input[@id='sf-geoRegion-mx:0']";
+        public readonly static string STR_MEXICO_BTN = "//label[text()='México'] | //label[text()='Mexico']";
         readonly static string STR_COUNTRY_BTN = "//div[@id='ember3402']//input[@placeholder='Añadir un país o región']";
-        readonly static string STR_ITALY_BTN = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy' or 'Italia']";
+        readonly static string STR_ITALY_BTN = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Italy' | //span[text()= 'Italia']";
         readonly static string STR_LANGUAGE_BTN = "//label[text()='Español' | //label[text()='Spanish' | //label[text()='Inglés' | //label[text()='English']";
         readonly static string STR_APPLY_BTN = "//button[@id='ember1456']//span[text()='Aplicar'] | //button[@id='ember1456']//span[text()='Apply']";
         readonly static string STR_CAPTCHA_CLK = "//div[@class='recaptcha-checkbox-checkmark']";
         readonly static string STR_TECH_RESULTS = "//div[@class='blended-srp-results-js pt0 pb4 ph0 container-with-shadow']";
-        //readonly static string STR_ARROW_BTN = "//button[@id='ember263']";
 
 
         /*CONSTRUCTOR*/
@@ -48,7 +48,7 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objApply => _objDriver.FindElement(By.XPath(STR_APPLY_BTN));
         private static IWebElement objCaptcha => _objDriver.FindElement(By.XPath(STR_CAPTCHA_CLK));
         private static IWebElement objTechResults => objTechResults.FindElement(By.XPath(STR_TECH_RESULTS));
-        //private static IWebElement objArrowBtn => objArrowBtn.FindElement(By.XPath(STR_ARROW_BTN));
+
 
         /*METHODS*/
         //Get Results of Technologies Found
@@ -80,7 +80,6 @@ namespace AutomationTraining_M7.Page_Objects
             objSearchBox.Clear();
             objSearchBox.SendKeys(pstrSearchText);
             objSearchBox.SendKeys(Keys.Enter);
-            //objSearchBox.Submit();
         }
 
         //Click People Filter
@@ -172,15 +171,5 @@ namespace AutomationTraining_M7.Page_Objects
             objCaptcha.Click();
         }
 
-        /*//Arrow button
-        private IWebElement GetArrow()
-        {
-            return objArrowBtn;
-        }
-
-        public static void fnGetArrow()
-        {
-            objArrowBtn.Click();
-        }*/
     }
 }

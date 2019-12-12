@@ -19,11 +19,13 @@ namespace AutomationTraining_M7.Test_Cases
         [Test]
         public void Login_LinkedIn()
         {
+            //objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
             objLogin = new LinkedIn_LoginPage(driver);
             Assert.AreEqual(true, driver.Title.Contains("Login"), "Title not mach");
             LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
             LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
             LinkedIn_LoginPage.fnClickSignInButton();
+            //Assert.Fail();
         }
     }
 }
