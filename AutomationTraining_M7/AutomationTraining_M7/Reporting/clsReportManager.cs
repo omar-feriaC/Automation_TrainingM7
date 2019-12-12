@@ -47,7 +47,7 @@ namespace AutomationTraining_M7.Reporting
             var strReportPath = new Uri(strActualPath).LocalPath;
             Directory.CreateDirectory(strReportPath.ToString() + "ExtentReports\\Screenshots");
             /*Save Image*/
-            var strFullPath = strSSPath.Substring(0, strSSPath.LastIndexOf("bin")) + "ExtentReports\\Screenshots";
+            var strFullPath = strSSPath.Substring(0, strSSPath.LastIndexOf("bin")) + "ExtentReports\\Screenshots\\" + pstrScreenName;
             var strLocalPath = new Uri(strFullPath).LocalPath;
             objSS.SaveAsFile(strLocalPath, ScreenshotImageFormat.Png);
             return strReportPath;
@@ -57,7 +57,7 @@ namespace AutomationTraining_M7.Reporting
         {
             var status = TestContext.CurrentContext.Result.Outcome.Status;
             var stacktrace = string.IsNullOrEmpty(TestContext.CurrentContext.Result.StackTrace)
-                ? "" : string.Format("{0}", TestContext.CurrentContext.Result.StackTrace);
+           ? "" : string.Format("{0}", TestContext.CurrentContext.Result.StackTrace);
             Status logstatus;
             switch (status)
             {
@@ -69,7 +69,19 @@ namespace AutomationTraining_M7.Reporting
                     pobjTest.Log(Status.Fail, "Fail");
                     pobjTest.Log(Status.Fail, "Snapshot below: " + pobjTest.AddScreenCaptureFromPath("Screenshots\\" + strFileName));
                     break;
+                case TestStatus.Skipped:
+                    logstatus = Status.Skip;
+                    break;
+                case TestStatus.Passed:
+                    logstatus = Status.Pass;
+                    break;
+                default:
+                    logstatus = Status.Warning;
+                    Console.WriteLine("The status: " + status + " is not supported.");
+                    break;
             }
+            pobjTest.Log(logstatus, "Test ended with " + logstatus + stacktrace);
+            pobjExtent.Flush();
         }
 
     }
