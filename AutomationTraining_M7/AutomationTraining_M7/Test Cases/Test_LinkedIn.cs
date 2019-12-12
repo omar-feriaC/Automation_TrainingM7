@@ -19,6 +19,7 @@ namespace AutomationTraining_M7.Test_Cases
         [Test]
         public void Login_LinkedIn()
         {
+            objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name); objLogin = new LinkedIn_LoginPage(driver);
             objLogin = new LinkedIn_LoginPage(driver);
 
             //Verifying the Log in page opened
@@ -32,6 +33,27 @@ namespace AutomationTraining_M7.Test_Cases
 
             //Verifying the Log in was successful by checking if the feed page opened
             Assert.AreEqual("https://www.linkedin.com/feed/", driver.Url);
+
+        }
+
+
+        [Test]
+        public void Login_LinkedIn2()
+        {
+            objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name); objLogin = new LinkedIn_LoginPage(driver);
+            objLogin = new LinkedIn_LoginPage(driver);
+
+            //Verifying the Log in page opened
+            Assert.AreEqual(true, driver.Title.Contains("Login"), "Login page was not displayed");
+
+            LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
+
+            LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
+
+            LinkedIn_LoginPage.fnClickSignInButton();
+
+            //Verifying the Log in was successful by checking if the feed page opened
+            Assert.Fail();
 
         }
 
