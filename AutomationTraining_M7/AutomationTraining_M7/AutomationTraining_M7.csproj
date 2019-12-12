@@ -101,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base Files\BaseTest.cs" />
+    <Compile Include="Base Files\clsDriver.cs" />
     <Compile Include="FinalM7\CommissionEmployee.cs" />
     <Compile Include="FinalM7\HourlyEmployee.cs" />
     <Compile Include="FinalM7\IPayrollCalculator.cs" />
