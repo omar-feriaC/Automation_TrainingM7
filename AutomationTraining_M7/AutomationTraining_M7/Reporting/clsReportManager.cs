@@ -68,10 +68,20 @@ namespace AutomationTraining_M7.Reporting {
                     pobjTest.Log(Status.Fail, "Snapshot below: " 
                         + pobjTest.AddScreenCaptureFromPath("Screenshots\\" + strFileName));
                     break;
+                case TestStatus.Skipped:
+                    logstatus = Status.Skip;
+                    break;
                 case TestStatus.Passed:
+                    logstatus = Status.Pass;
+                    break;
+                default:
+                    logstatus = Status.Warning;
+                    Console.WriteLine("The statuus: " + status + " is not supported.");
                     break;
 
             }
+            pobjTest.Log(logstatus, "Test ended with " + logstatus + stacktrace);
+            
         }
     }
 }

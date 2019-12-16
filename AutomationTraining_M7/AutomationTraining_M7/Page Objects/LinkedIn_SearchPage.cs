@@ -24,9 +24,10 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string EnglishChkbx = "//label[text()='English']";
         readonly static string SpanishChkbx = "//label[text()='Spanish']";
         readonly static string AplicarBtn = "//button[@data-control-name ='all_filters_apply']";
-        readonly static string NameLbl = "//span[@class = 'actor-name']";
-        readonly static string TitleLbl = "//p[@class = 'subline-level-1 t-14 t-black t-normal search-result__truncate']";
-        readonly static string LocationLbl = "//p[@class = 'subline-level-2 t-12 t-black--light t-normal search-result__truncate']";
+        readonly static string NameLbl = "(//span[@class = 'actor-name'])[1]";
+        readonly static string TitleLbl = "(//p[@class = 'subline-level-1 t-14 t-black t-normal search-result__truncate'])[1]";
+        readonly static string LocationLbl = "(//p[@class = 'subline-level-2 t-12 t-black--light t-normal search-result__truncate'])[1]";
+        readonly static string UrlLink = "(//a[@class='search-result__result-link ember-view'])[1]";
 
 
         public LinkedIn_SearchPage(IWebDriver pobjDriver)
@@ -45,6 +46,7 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objNameLbl => _objDriver.FindElement(By.XPath(NameLbl));
         private static IWebElement objTitleLbl => _objDriver.FindElement(By.XPath(TitleLbl));
         private static IWebElement objLocationLbl => _objDriver.FindElement(By.XPath(LocationLbl));
+        private static IWebElement objUrlLink => _objDriver.FindElement(By.XPath(UrlLink));
 
         public static void fnSearch(string strSearch)
         {
@@ -97,8 +99,11 @@ namespace AutomationTraining_M7.Page_Objects
             string strLocation = objLocationLbl.Text;
             return strLocation;
         }
-
-
+        public static string fnGetUrl()
+        {
+            string strUrl = objUrlLink.GetAttribute("href");
+            return strUrl;
+        }
 
     }
 }

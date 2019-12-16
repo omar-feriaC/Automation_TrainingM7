@@ -87,7 +87,8 @@ namespace AutomationTraining_M7.Test_Cases
                 Console.WriteLine("Technology: " + i);
                 Console.WriteLine("Name: " + LinkedIn_SearchPage.fnGetName());
                 Console.WriteLine("Title: " + LinkedIn_SearchPage.fnGetTitle());
-                Console.WriteLine("Location: " + LinkedIn_SearchPage.fnGetLocation() + "\n");
+                Console.WriteLine("Location: " + LinkedIn_SearchPage.fnGetLocation());
+                Console.WriteLine("URL: https://www.linkedin.com/" + LinkedIn_SearchPage.fnGetUrl() + "\n");
 
             }
 
