@@ -19,8 +19,9 @@ namespace AutomationTraining_M7.Base_Files
         //**************************************************
         //*                V A R I A B L E S
         //**************************************************
-        
+
         /*Webdriver Intance*/
+        public static clsDriver objclsDriver;
         public static IWebDriver driver;
         /*URL for Webdriver*/
         private static string strBrowserName = ConfigurationManager.AppSettings.Get("url");
@@ -29,7 +30,7 @@ namespace AutomationTraining_M7.Base_Files
         public static ExtentV3HtmlReporter objHtmlReporter; //Add information in HTML
         public static ExtentReports objExtent; //Extent Reports Object
         public static ExtentTest objTest; // Test object for Extent Reports
-                                          //public static ExtentHtmlReporter objHtmlReporter; //Old Version of HTML
+        //public static ExtentHtmlReporter objHtmlReporter; //Old Version of HTML
 
 
 
@@ -67,6 +68,9 @@ namespace AutomationTraining_M7.Base_Files
         {
             driver = new ChromeDriver();
             driver.Url = strBrowserName;
+            driver.Manage().Window.Maximize();
+            objclsDriver = new clsDriver(driver);
+
         }
 
         [TearDown]
