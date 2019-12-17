@@ -17,8 +17,12 @@ namespace AutomationTraining_M7.Test_Cases
     {
         LinkedIn_SearchPage objSearch;
 
+        string status;
+
         //Wait driver
-         WebDriverWait wait;
+        WebDriverWait wait;
+
+       
 
         [Test]
         public void Search_LinkedIn()
@@ -46,8 +50,23 @@ namespace AutomationTraining_M7.Test_Cases
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(LinkedIn_SearchPage.STR_PEOPLE_BTN)));
 
             //Verifying that Initial Search executed successfully by checking if the filter bar is present or not
-            Boolean isPresent = driver.FindElements(By.XPath("//div[contains(@class,'search-filters-bar')]")).Count() > 0;
-            Assert.AreEqual(true, isPresent);
+            //Boolean isPresent = driver.FindElements(By.XPath("//div[contains(@class,'search-filters-bar')]")).Count() > 0;
+            //Assert.AreEqual(true, isPresent);
+
+            if (driver.FindElements(By.XPath("//div[contains(@class,'search-filters-bar')]")).Count() > 0)
+            {
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "1stSearch_Test", status, "1stSearch_Test");
+            }
+
+            else
+            {
+
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "1stSearch_Test", status, "1stSearch_Test");
+                Assert.Fail();
+            }
+
 
 
             //*****Step 7*****//

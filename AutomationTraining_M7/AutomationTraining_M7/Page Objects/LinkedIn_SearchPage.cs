@@ -16,7 +16,7 @@ namespace AutomationTraining_M7.Page_Objects
 
         /*LOCATORS FOR EACH ELEMENT*/
 
-        readonly static string STR_SEARCH_FIELD = "//input[@class = 'search-global-typeahead__input']";
+        readonly static string STR_SEARCH_FIELD = "//input[@class = 'search-global-typeahead__input always-show-placeholder']";
         public readonly static string STR_PEOPLE_BTN = "//span[text()='People'or text()='Gente']";
         public readonly static string STR_ALLFILTERS_BTN = "//span[text()='All Filters'or text()='Todos los filtros']";
         public  readonly static string STR_MEXICO_CHCBX = "//label[text()='Mexico' or text()='México']";

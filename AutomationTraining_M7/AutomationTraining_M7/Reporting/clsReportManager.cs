@@ -9,13 +9,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace AutomationTraining_M7.Reporting
 {
     class clsReportManager
     {
 
-
+        private DateTime time = DateTime.Now;
         public string fnReportPath()
         {
 
@@ -23,7 +24,7 @@ namespace AutomationTraining_M7.Reporting
             var strActualPath = strPath.Substring(0, strPath.LastIndexOf("bin"));
             var strProjectPath = new Uri(strActualPath).LocalPath;
             Directory.CreateDirectory(strProjectPath.ToString() + "ExtentReports");
-            var strReportPath = strProjectPath + "ExtentReports\\ExtentReports.html";
+            var strReportPath = strProjectPath + "ExtentReports\\ExtentReports_"+ time.ToString("MMddyyyy_HHmmss") + ".html";
 
 
             return strReportPath;
@@ -41,8 +42,8 @@ namespace AutomationTraining_M7.Reporting
             pExtent.AddSystemInfo("Project Name: ", "Automation Famework");
             pExtent.AddSystemInfo("Application: ", "LinkedIn");
             pExtent.AddSystemInfo("Environment: ", "QAA");
-            pExtent.AddSystemInfo("Browser: ", "Chrome");
-            pExtent.AddSystemInfo("Date: ", "00/00/2019");
+            pExtent.AddSystemInfo("Browser:", ConfigurationManager.AppSettings.Get("browser"));
+            pExtent.AddSystemInfo("Date: ", time.ToShortDateString());
             pExtent.AddSystemInfo("Version: ", "v1.0");
         }
 
@@ -77,11 +78,10 @@ namespace AutomationTraining_M7.Reporting
             {
                 case TestStatus.Failed:
                     logstatus = Status.Fail;
-                    DateTime time = DateTime.Now;
-                    string strFileName = "Screenshot_" + time.ToString("h_mm_ss") + ".png";
-                    fnCaptureImage(pobjDriver, strFileName);
-                    pobjTest.Log(Status.Fail, "Fail");
-                    pobjTest.Log(Status.Fail, "Snapshot below: " + pobjTest.AddScreenCaptureFromPath("Screenshots\\" + strFileName));
+                    //string strFileName = "Screenshot_" + time.ToString("h_mm_ss") + ".png";
+                    //fnCaptureImage(pobjDriver, strFileName);
+                    //pobjTest.Log(Status.Fail, "Fail");
+                    //pobjTest.Log(Status.Fail, "Snapshot below: " + pobjTest.AddScreenCaptureFromPath("Screenshots\\" + strFileName));
 
                     break;
 
@@ -107,6 +107,44 @@ namespace AutomationTraining_M7.Reporting
 
         }
 
+
+        public void fnStepCaptureImage(ExtentReports pobjExtent, ExtentTest pobjTest, IWebDriver pobjDriver, string pMessage, string pstatus, string pImageName)
+        {
+            string strFileName;
+            
+            
+
+           
+            switch (pstatus)
+            {
+                case "Failed":
+                    
+                    strFileName = "Screenshot_" +pImageName + "_Fail_" + time.ToString("h_mm_ss") + ".png";
+                    fnCaptureImage(pobjDriver, strFileName);
+                    pobjTest.Log(Status.Fail, pMessage + "_Fail", MediaEntityBuilder.CreateScreenCaptureFromPath("Screenshots\\" + strFileName).Build());
+                   
+
+                    break;
+
+
+                case "Passed":
+                    
+                    strFileName = "Screenshot_" + pImageName + "_Pass_" + time.ToString("h_mm_ss") + ".png";
+                    fnCaptureImage(pobjDriver, strFileName);
+                    pobjTest.Log(Status.Pass, pMessage + "_Pass", MediaEntityBuilder.CreateScreenCaptureFromPath("Screenshots\\" + strFileName).Build());
+                    
+
+                    break;
+
+
+               
+
+
+            }
+
+         
+
+        }
 
     }
 }

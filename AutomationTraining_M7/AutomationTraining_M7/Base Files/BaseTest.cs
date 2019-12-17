@@ -24,6 +24,7 @@ namespace AutomationTraining_M7.Base_Files
         public static IWebDriver driver;
         /*URL for Webdriver*/
         private static string strBrowserName = ConfigurationManager.AppSettings.Get("url");
+        /*Extent Reports Framework*/
         public static clsReportManager objRM = new clsReportManager();
         public static ExtentV3HtmlReporter objHtmlReporter;
         public static ExtentReports objExtent;
@@ -37,7 +38,7 @@ namespace AutomationTraining_M7.Base_Files
         //**************************************************
         //                  M E T H O D S 
         //**************************************************
-
+        //OneTimeSetUp before each class test
         [OneTimeSetUp]
         public static void fnBeforeClass()
         {
@@ -47,6 +48,8 @@ namespace AutomationTraining_M7.Base_Files
                 objHtmlReporter = new ExtentV3HtmlReporter(objRM.fnReportPath());
             }
 
+            /*Init ExtentReports object*/
+
             if (objExtent == null)
             {
                 objExtent = new ExtentReports();
@@ -54,6 +57,7 @@ namespace AutomationTraining_M7.Base_Files
             }
         }
 
+        //OneTimeTearDown before each class test
         [OneTimeTearDown]
         public static void fnAfterClass()
         {
@@ -62,6 +66,7 @@ namespace AutomationTraining_M7.Base_Files
 
 
         [SetUp]
+        //SetUp Before each Test Case
         /*Initialize the driver and indicates the url*/
         public static void SetUp()
         {
@@ -71,6 +76,7 @@ namespace AutomationTraining_M7.Base_Files
 
        
         [TearDown]
+        //TearDown Before each Test Case
         /*Close the browser and quit the selenium instance*/
         public static void AfterTest()
         {
