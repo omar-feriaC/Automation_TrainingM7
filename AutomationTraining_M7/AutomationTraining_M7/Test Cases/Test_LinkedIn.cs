@@ -1,5 +1,7 @@
 ﻿using AutomationTraining_M7.Base_Files;
 using AutomationTraining_M7.Page_Objects;
+using AutomationTraining_M7.Reporting;
+using AventStack.ExtentReports;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -19,11 +21,16 @@ namespace AutomationTraining_M7.Test_Cases
         [Test]
         public void Login_LinkedIn()
         {
+            objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
             objLogin = new LinkedIn_LoginPage(driver);
             Assert.AreEqual(true, driver.Title.Contains("Login"), "Title not mach");
             LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
             LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
             LinkedIn_LoginPage.fnClickSignInButton();
+            objTest.Log(Status.Info, "Login Successfully");
+           
+
+            //Assert.Fail();
         }
     }
 }

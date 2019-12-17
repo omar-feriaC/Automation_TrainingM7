@@ -1,5 +1,7 @@
 ﻿using AutomationTraining_M7.Base_Files;
 using AutomationTraining_M7.Page_Objects;
+using AutomationTraining_M7.Reporting;
+using AventStack.ExtentReports;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -14,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Test_Cases
 {
-    class Test_SearchLinkedIn : Test_LinkedIn
+    class Test_SearchLinkedIn : Test_LinkedIn 
     {
         
            public WebDriverWait _driverWait;
@@ -30,9 +32,10 @@ namespace AutomationTraining_M7.Test_Cases
             //Step# 1 .- Log In 
             driver.Manage().Window.Maximize();            
             Login_LinkedIn();
+            
 
-               //Step# 2 .- Verify if captcha exist
-               if (driver.Title.Contains("Verification") | driver.Title.Contains("Verificación"))
+            //Step# 2 .- Verify if captcha exist
+            if (driver.Title.Contains("Verification") | driver.Title.Contains("Verificación"))
                {
                    //Switch to Iframe(0)
                    driver.SwitchTo().DefaultContent();
@@ -52,6 +55,7 @@ namespace AutomationTraining_M7.Test_Cases
                        }
                    }
                }
+           // objTest.Log(Status.Info, "Captcha verified");
 
             objSearch = new LinkedIn_SearchPage(driver);
 
@@ -102,11 +106,11 @@ namespace AutomationTraining_M7.Test_Cases
                 _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//p[@class='subline-level-1 t-14 t-black t-normal search-result__truncate']")));
                 LinkedIn_SearchPage.fnGetTechResultsTxt();
             }
-             
+
+            //objTest.Log(Status.Info, "Add a message2");
 
 
-
-    }
+        }
 }
 
 }
