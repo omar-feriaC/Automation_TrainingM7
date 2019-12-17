@@ -27,8 +27,16 @@ namespace AutomationTraining_M7.Test_Cases
             LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
             LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
             LinkedIn_LoginPage.fnClickSignInButton();
-            objTest.Log(Status.Info, "Login Successfully");
-           
+            //Assert.AreEqual("1", "1");
+            //objRM.fnTestCaseResult(objTest, objExtent, driver);
+            objTest.Log(Status.Pass, "Login Successfully");
+            //assert
+            var status = objTest.Status;
+            Assert.AreEqual("1", "2");
+            var status2 = objTest.Status;
+            Console.WriteLine(status2.ToString());
+            //objRM.fnAddStepLog(objTest, "The step Pass successfully", TestContext.CurrentContext.Result.Outcome.Status);
+            //objRM.fnAddStepLogScreen(objTest, driver, "The step Pass successfully", "Step one pass", "Pass");
 
             //Assert.Fail();
         }

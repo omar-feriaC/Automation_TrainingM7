@@ -86,7 +86,7 @@ namespace AutomationTraining_M7.Reporting
                     break;
 
                 default:
-                    logstatus = Status.Warning;
+                    logstatus = Status.Info;
                     Console.WriteLine("The status: " + status + " is not supported. ");
                     break;
             }
@@ -100,28 +100,28 @@ namespace AutomationTraining_M7.Reporting
                 pobjTest.Log(Status.Info, pstrMessage);
                 switch (pStatus)
                 {
-                    case "PASS":
+                    case "pass":// TestStatus.Passed:
                         pobjTest.Log(Status.Pass, pstrMessage);
                         break;
-                    case "SKIP":
+                    case "Skip":
                         pobjTest.Log(Status.Skip, pstrMessage);
                         break;
-                    case "WARNING":
+                    case "Warning":
                         pobjTest.Log(Status.Warning, pstrMessage);
                         break;
-                    case "ERROR":
+                    case "Error":
                         pobjTest.Log(Status.Error, pstrMessage);
                         break;
-                    case "FAIL":
+                    case "Fail":
                         pobjTest.Log(Status.Fail, pstrMessage);
                         break;
-                    case "FATAL":
+                    case "Fatal":
                         pobjTest.Log(Status.Fatal, pstrMessage);
                         break;
-                    case "INFO":
+                    case "Info":
                         pobjTest.Log(Status.Info, pstrMessage);
                         break;                   
-                    case "DEBUG":
+                    case "Debug":
                         pobjTest.Log(Status.Debug, pstrMessage);
                         break;
                     default:
@@ -131,35 +131,34 @@ namespace AutomationTraining_M7.Reporting
 
             }
 
-            public void fnAddStepLogWScreen(ExtentTest pobjTest, IWebDriver pobjDriver, string pstrMessage, string pstrImageName, string pStatus)
+            public void fnAddStepLogScreen(ExtentTest pobjTest, IWebDriver pobjDriver, string pstrMessage, string pstrImageName, string pStatus)
             {
                 var strImagePath = fnCaptureImage(pobjDriver, pstrImageName);
 
                 switch (pStatus)
                 {
-                    case "PASS":
+                    case "Pass":
                         pobjTest.Pass(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
                         break;
-                    case "SKIPT":
+                    case "Skip":
                         pobjTest.Skip(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
                         break;
-                    case "WARNING":
+                    case "Warning":
                         pobjTest.Warning(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
                         break;
-                    case "ERROR":
+                    case "Error":
                         pobjTest.Error(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
                         break;
-                   
-                    case "INFO":
+                    case "Info":
                         pobjTest.Info(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
                         break;
-                    case "FAIL":
+                    case "Fail":
                         pobjTest.Fail(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
                         break;
-                    case "FATAL":
+                    case "Fatal":
                         pobjTest.Fatal(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
                         break;
-                    case "DEBUG":
+                    case "Debug":
                         pobjTest.Debug(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
                         break;
                     default:
