@@ -18,23 +18,16 @@ namespace AutomationTraining_M7.Page_Objects
 
         /*LOCATORS DESCRIPTION*/
         readonly static string STR_EMAIL_TXT = "email";
-        //readonly static string STR_EMAIL_TXT2 = "email";
         readonly static string STR_PASSWORD_TXT = "password";
         readonly static string STRREMEMBERME_LNK = "//input[@value='remember-me']";
-        //readonly static string STRREMEMBERME_LNK2 = "//label[@class='checkbox']";
         readonly static string STR_FORGOTPASS_LNK = "//*[text()='Forget Password']";
         readonly static string STR_LOGIN_BTN = "//span[text()='Login']";
         readonly static string STR_HAMBURGER_BTN = "sidebarCollapse";
         readonly static string STR_TOTALADMINS_TXT = "//a[text()=' Total Admins ']";
-        readonly static string STR_TOTALADMINS_NBR = "//b[text()='8']";
         readonly static string STR_TOTALSUPPLIERS_TXT = "//a[text()=' Total Suppliers ']";
-        readonly static string STR_TOTALSUPPLIERS_NBR = "//b[text()='11']";
         readonly static string STR_TOTALCUSTOMERS_TXT = "//a[text()=' Total Customers ']";
-        readonly static string STR_TOTALCUSTOMERS_NBR = "//b[text()='530']";
         readonly static string STR_TOTALGUESTS_TXT = "//a[text()=' Total Guests ']";
-        readonly static string STR_TOTALGUESTS_NBR = "//b[text()='46']";
         readonly static string STR_TOTALBOOKINGS_TXT = "//a[text()=' Total Bookings ']";
-        readonly static string STR_TOTALBOOKINGS_NBR = "//b[text()='103']";
 
         /*CONSTRUCTOR*/
         public clsPHPTravels_LoginPage(IWebDriver pobjDriver)
@@ -50,15 +43,11 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objForgotPassLnk => _objDriver.FindElement(By.XPath(STR_FORGOTPASS_LNK));
         private static IWebElement objLoginBtn => _objDriver.FindElement(By.XPath(STR_LOGIN_BTN));
         private static IWebElement objTotAdminTxt => _objDriver.FindElement(By.XPath(STR_TOTALADMINS_TXT));
-        private static IWebElement objTotAdminNbr => _objDriver.FindElement(By.XPath(STR_TOTALADMINS_NBR));
         private static IWebElement objTotSuppTxt => _objDriver.FindElement(By.XPath(STR_TOTALSUPPLIERS_TXT));
-        private static IWebElement objTotSuppNbr => _objDriver.FindElement(By.XPath(STR_TOTALSUPPLIERS_NBR));
         private static IWebElement objTotCustomerTxt => _objDriver.FindElement(By.XPath(STR_TOTALCUSTOMERS_TXT));
-        private static IWebElement objTotCustomerNbr => _objDriver.FindElement(By.XPath(STR_TOTALCUSTOMERS_NBR));
         private static IWebElement objTotGuestTxt => _objDriver.FindElement(By.XPath(STR_TOTALGUESTS_TXT));
-        private static IWebElement objTotGuestNbr => _objDriver.FindElement(By.XPath(STR_TOTALGUESTS_NBR));
         private static IWebElement objTotBookTxt => _objDriver.FindElement(By.XPath(STR_TOTALBOOKINGS_TXT));
-        private static IWebElement objTotBookNbr => _objDriver.FindElement(By.XPath(STR_TOTALBOOKINGS_NBR));
+        
 
 
         /*METHODS/FUNCTIONS*/
@@ -113,6 +102,7 @@ namespace AutomationTraining_M7.Page_Objects
             _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.Id(STR_HAMBURGER_BTN)));
         }
 
+        //Print the stats of the page
         public static void fnPrintStats()
         {
             Console.WriteLine(objTotAdminTxt.Text);
@@ -124,7 +114,6 @@ namespace AutomationTraining_M7.Page_Objects
             Console.WriteLine(objTotGuestTxt.Text);
             Console.WriteLine("");
             Console.WriteLine(objTotBookTxt.Text);
-
         }
 
 
