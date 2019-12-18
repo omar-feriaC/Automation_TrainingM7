@@ -88,9 +88,5 @@ namespace AutomationTraining_M7.Base_Files
             driver.FindElement(by).Clear();
             driver.FindElement(by).SendKeys(pstrText);
         }
-
-
-
-
     }
 }
