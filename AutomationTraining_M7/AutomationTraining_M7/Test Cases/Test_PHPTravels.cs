@@ -31,7 +31,7 @@ namespace AutomationTraining_M7.Test_Cases
             clsPHPTravels_LoginPage.fnClickLoginButton();
             clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
             Assert.IsTrue(driver.Title.Contains("Dash"), "The Dashboard was not loaded correctly.");
-
+            clsPHPTravels_LoginPage.fnGetTotalsValuesTxt();
         }
 
     }

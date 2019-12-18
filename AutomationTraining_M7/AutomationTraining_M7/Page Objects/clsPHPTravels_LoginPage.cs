@@ -21,8 +21,6 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_EMAIL_TXT = "email";
         //readonly static string STR_EMAIL_TXT2 = "email";
         readonly static string STR_PASSWORD_TXT = "password";
-        //readonly static string STRREMEMBERME_LNK = "//label[@class='checkbox']";
-        //readonly static string STRREMEMBERME_LNK2 = "//label[@class='checkbox']";
         readonly static string STR_FORGOTPASS_LNK = "//*[text()='Forget Password']";
         readonly static string STR_LOGIN_BTN = "//span[text()='Login']";
         readonly static string STR_HAMBURGER_BTN = "sidebarCollapse";
@@ -35,9 +33,8 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
         /*OBJECT DEFINITION*/
-        private static IWebElement objEmailTxt => _objDriver.FindElement(By.Name(STR_EMAIL_TXT)); 
+        private static IWebElement objEmailTxt => _objDriver.FindElement(By.Name(STR_EMAIL_TXT));
         private static IWebElement objPasswordTxt => _objDriver.FindElement(By.Name(STR_PASSWORD_TXT));
-       // private static IWebElement objRememberMeLnk = _objDriver.FindElement(By.XPath(STRREMEMBERME_LNK));
         private static IWebElement objForgotPassLnk => _objDriver.FindElement(By.XPath(STR_FORGOTPASS_LNK));
         private static IWebElement objLoginBtn => _objDriver.FindElement(By.XPath(STR_LOGIN_BTN));
         private static IWebElement objHamburuerBtn => _objDriver.FindElement(By.Id(STR_HAMBURGER_BTN));
@@ -52,8 +49,8 @@ namespace AutomationTraining_M7.Page_Objects
 
         public static void fnEnterEmail(string pstrEmail)
         {
-            //clsDriver.fnWaitForElementToExist(By.Name(STR_EMAIL_TXT));
-            //clsDriver.fnWaitForElementToBeVisible(By.Name(STR_EMAIL_TXT));
+            clsDriver.fnWaitForElementToExist(By.Name(STR_EMAIL_TXT));
+            clsDriver.fnWaitForElementToBeVisible(By.Name(STR_EMAIL_TXT));
             objEmailTxt.Clear();
             objEmailTxt.SendKeys(pstrEmail);
         }
@@ -66,8 +63,8 @@ namespace AutomationTraining_M7.Page_Objects
 
         public static void fnEnterPassword(string pstrPass)
         {
-            //clsDriver.fnWaitForElementToExist(By.Name(STR_PASSWORD_TXT));
-            //clsDriver.fnWaitForElementToBeVisible(By.Name(STR_PASSWORD_TXT));
+            clsDriver.fnWaitForElementToExist(By.Name(STR_PASSWORD_TXT));
+            clsDriver.fnWaitForElementToBeVisible(By.Name(STR_PASSWORD_TXT));
             objPasswordTxt.Clear();
             objPasswordTxt.SendKeys(pstrPass);
         }
@@ -76,14 +73,13 @@ namespace AutomationTraining_M7.Page_Objects
         private IWebElement GetLoginButton()
         {
             return objLoginBtn;
-            //return objRememberMeLnk;
         }
 
         public static void fnClickLoginButton()
         {
-            //clsDriver.fnWaitForElementToExist(By.XPath(STR_LOGIN_BTN));
-            //clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LOGIN_BTN));
-            //clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_LOGIN_BTN));
+            clsDriver.fnWaitForElementToExist(By.XPath(STR_LOGIN_BTN));
+            clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LOGIN_BTN));
+            clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_LOGIN_BTN));
             objLoginBtn.Click();
         }
 
@@ -96,6 +92,15 @@ namespace AutomationTraining_M7.Page_Objects
 
         }
 
+        public static void fnGetTotalsValuesTxt()
+        {
+            IList<IWebElement> objGetTotalsValuesTx = _objDriver.FindElements(By.XPath("//*[@class='serverHeader__statsList']"));
 
+            foreach (var vList in objGetTotalsValuesTx)
+            {
+                Console.WriteLine(vList.Text);
+            }
+
+        }
     }
 }
