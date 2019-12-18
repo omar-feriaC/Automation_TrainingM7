@@ -45,7 +45,6 @@ namespace AutomationTraining_M7.Base_Files
             if (objHtmlReporter == null)
             {
                 objHtmlReporter = new ExtentV3HtmlReporter (objRM.fnReportPath());
-                //objHtmlReporter = new ExtentHtmlReporter(objRM.fnReportPath());
             }
             /*Init ExtentReports object*/
             if (objExtent == null)

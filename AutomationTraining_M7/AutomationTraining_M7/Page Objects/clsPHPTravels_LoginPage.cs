@@ -10,27 +10,25 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Page_Objects
 {
-    class clsPHPTravels_LoginPage
+    class clsPHPTravels_LoginPage : BaseTest
     {
         /*ATTRIBUTES*/
-        public static WebDriverWait _driverWait;
-        private static IWebDriver _objDriver;
+        public static WebDriverWait wait;
+        private static IWebDriver objDriver;
 
         /*LOCATORS DESCRIPTION*/
         readonly static string STR_EMAIL_TXT = "email";
-        readonly static string STR_EMAIL_TXT2 = "email";
         readonly static string STR_PASSWORD_TXT = "password";
-        readonly static string STRREMEMBERME_LNK = "///label[@class='checkbox']";
-        readonly static string STRREMEMBERME_LNK2 = "//label[@class='checkbox']";
-        readonly static string STR_FORGOTPASS_LNK = "//*[text()='Forget Password']";
-        readonly static string STR_LOGIN_BTN = "//span[text()='Login']";
-        readonly static string STR_HAMBURGER_BTN = "sidebarCollapse";
+        readonly static string STRREMEMBERME_LNK = "//ins[@class='iCheck-helper']";
+        readonly static string STR_FORGOTPASS_LNK = "//strong[contains(text(),'Forget Password')]";
+        readonly static string STR_LOGIN_BTN = "//span[contains(text(),'Login')]";
+        readonly static string STR_HAMBURGER_BTN = "//a[@id='sidebarCollapse']";
 
         /*CONSTRUCTOR*/
         public clsPHPTravels_LoginPage(IWebDriver pobjDriver)
         {
-            _objDriver = pobjDriver;
-            _driverWait = new WebDriverWait(_objDriver, new TimeSpan(0, 0, 40));
+            objDriver = pobjDriver;
+            wait = new WebDriverWait(objDriver, new TimeSpan(0, 0, 60));
         }
 
         /*OBJECT DEFINITION*/
@@ -39,6 +37,7 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objRememberMeLnk = driver.FindElement(By.XPath(STRREMEMBERME_LNK));
         private static IWebElement objForgotPassLnk = driver.FindElement(By.XPath(STR_FORGOTPASS_LNK));
         private static IWebElement objLoginBtn = driver.FindElement(By.XPath(STR_LOGIN_BTN));
+        private static IWebElement objHamburgerBtn = driver.FindElement(By.XPath(STR_HAMBURGER_BTN));
 
 
         /*METHODS/FUNCTIONS*/
@@ -51,8 +50,11 @@ namespace AutomationTraining_M7.Page_Objects
 
         public static void fnEnterEmail(string pstrEmail)
         {
-            clsDriver.fnWaitForElementToExist(By.Name(STR_EMAIL_TXT));
-            clsDriver.fnWaitForElementToBeVisible(By.Name(STR_EMAIL_TXT));
+            wait.Until(ExpectedConditions.ElementExists(By.Name(STR_EMAIL_TXT)));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Name(STR_EMAIL_TXT)));
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.Name(STR_EMAIL_TXT)));
+            //clsDriver.fnWaitForElementToExist(By.Name(STR_EMAIL_TXT));
+            //clsDriver.fnWaitForElementToBeVisible(By.Name(STR_EMAIL_TXT));
             objEmailTxt.Clear();
             objEmailTxt.SendKeys(pstrEmail);
         }
@@ -60,13 +62,14 @@ namespace AutomationTraining_M7.Page_Objects
         //Password
         private IWebElement GetPasswordField()
         {
-            return objPasswordTxt;
+            return objForgotPassLnk;
         }
 
         public static void fnEnterPassword(string pstrPass)
         {
-            _driverWait.Until(ExpectedConditions.ElementExists(By.Name(STR_PASSWORD_TXT)));
-            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.Name(STR_PASSWORD_TXT)));
+            wait.Until(ExpectedConditions.ElementExists(By.Name(STR_PASSWORD_TXT)));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Name(STR_PASSWORD_TXT)));
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.Name(STR_PASSWORD_TXT)));
             objPasswordTxt.Clear();
             objPasswordTxt.SendKeys(pstrPass);
         }
@@ -79,18 +82,23 @@ namespace AutomationTraining_M7.Page_Objects
 
         public static void fnClickLoginButton()
         {
-            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_LOGIN_BTN)));
-            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_LOGIN_BTN)));
-            _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_LOGIN_BTN)));
+            wait.Until(ExpectedConditions.ElementExists(By.XPath(STR_LOGIN_BTN)));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_LOGIN_BTN)));
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_LOGIN_BTN)));
             objLoginBtn.Click();
         }
 
-        /*Hamburger Button*/
+        //Hamburger Button
+        private IWebElement GetHamburgerButton()
+        {
+            return objHamburgerBtn;
+        }
+
         public static void fnWaitHamburgerMenu()
         {
-            _driverWait.Until(ExpectedConditions.ElementExists(By.Id(STR_HAMBURGER_BTN)));
-            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.Id(STR_HAMBURGER_BTN)));
-            _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.Id(STR_HAMBURGER_BTN)));
+            wait.Until(ExpectedConditions.ElementExists(By.XPath(STR_HAMBURGER_BTN)));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_HAMBURGER_BTN)));
+            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_HAMBURGER_BTN)));
         }
 
 
