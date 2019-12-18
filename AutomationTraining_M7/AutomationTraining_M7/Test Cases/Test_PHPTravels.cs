@@ -22,6 +22,7 @@ namespace AutomationTraining_M7.Test_Cases
         public void Test_M9Exercise()
         {
             //Init objects
+            objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
             objPHP = new clsPHPTravels_LoginPage(driver);
             //Login Action
             Assert.AreEqual(true, driver.Title.Contains("Administator Login"), "The Login Page was not loaded correctly.");
