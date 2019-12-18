@@ -90,9 +90,5 @@ namespace AutomationTraining_M7.Reporting
             pobjExtent.Flush();
         }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> ad493d1007a9eb8197d8a5618906dc4ece853279
     }
 }
