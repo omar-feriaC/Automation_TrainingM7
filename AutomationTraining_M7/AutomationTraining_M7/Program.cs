@@ -1,6 +1,6 @@
 ﻿using AutomationTraining_M7.Base_Files;
-using AutomationTraining_M7.FinalM7;
 using AutomationTraining_M7.Page_Objects;
+using AutomationTraining_M7.Reporting;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
@@ -14,11 +14,25 @@ namespace AutomationTraining_M7 {
     class Program : BaseTest {
         static void Main(string[] args)
         {
+<<<<<<< HEAD
             //Setup();
             //linkedin_loginpage objlogin = new linkedin_loginpage(driver);
             //linkedin_loginpage.fnenterusername(configurationmanager.appsettings.get("username"));
             //linkedin_loginpage.fnenterpassword(configurationmanager.appsettings.get("password"));
             //linkedin_loginpage.fnclicksigninbutton();
+=======
+            clsReportManager objReport = new clsReportManager();
+            objReport.fnReportPath();
+
+
+            /*
+             * SetUp();
+            LinkedIn_LoginPage objLogin = new LinkedIn_LoginPage(driver);
+            LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
+            LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
+            LinkedIn_LoginPage.fnClickSignInButton();
+            */
+>>>>>>> master
 
             /*
             SalaryEmployee objSalary = new SalaryEmployee(0, "Carlos Ruiz", 100.10);
