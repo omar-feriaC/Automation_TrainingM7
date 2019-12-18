@@ -10,7 +10,7 @@ namespace AutomationTraining_M7.Page_Objects
     class clsPHPTravels_LoginPage : BaseTest
     {
         /*ATTRIBUTES*/
-       // public static WebDriverWait _driverWait;
+      
         private static IWebDriver _objDriver;
 
         /*LOCATORS DESCRIPTION*/
@@ -20,7 +20,7 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_HAMBURGER_BTN = "sidebarCollapse";
 
         /*CONSTRUCTOR*/
-        public clsPHPTravels_LoginPage(IWebDriver pobjDriver)
+       public clsPHPTravels_LoginPage(IWebDriver pobjDriver)
         {
             _objDriver = pobjDriver;
            
