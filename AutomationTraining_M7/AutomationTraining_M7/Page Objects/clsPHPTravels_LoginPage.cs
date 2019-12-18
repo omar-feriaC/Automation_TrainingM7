@@ -34,11 +34,11 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
         /*OBJECT DEFINITION*/
-        private static IWebElement objEmailTxt = _objDriver.FindElement(By.Name(STR_EMAIL_TXT)); 
-        private static IWebElement objPasswordTxt = _objDriver.FindElement(By.Name(STR_PASSWORD_TXT));
-        private static IWebElement objRememberMeLnk = _objDriver.FindElement(By.XPath(STRREMEMBERME_LNK));
-        private static IWebElement objForgotPassLnk = _objDriver.FindElement(By.XPath(STR_FORGOTPASS_LNK));
-        private static IWebElement objLoginBtn = _objDriver.FindElement(By.XPath(STR_LOGIN_BTN));
+        private static IWebElement objEmailTxt => _objDriver.FindElement(By.Name(STR_EMAIL_TXT)); 
+        private static IWebElement objPasswordTxt => _objDriver.FindElement(By.Name(STR_PASSWORD_TXT));
+        private static IWebElement objRememberMeLnk => _objDriver.FindElement(By.XPath(STRREMEMBERME_LNK));
+        private static IWebElement objForgotPassLnk => _objDriver.FindElement(By.XPath(STR_FORGOTPASS_LNK));
+        private static IWebElement objLoginBtn => _objDriver.FindElement(By.XPath(STR_LOGIN_BTN));
 
 
         /*METHODS/FUNCTIONS*/
@@ -51,8 +51,8 @@ namespace AutomationTraining_M7.Page_Objects
 
         public static void fnEnterEmail(string pstrEmail)
         {
-            //clsDriver.fnWaitForElementToExist(By.Name(STR_EMAIL_TXT));
-            //clsDriver.fnWaitForElementToBeVisible(By.Name(STR_EMAIL_TXT));
+            clsDriver.fnWaitForElementToExist(By.Name(STR_EMAIL_TXT));
+            clsDriver.fnWaitForElementToBeVisible(By.Name(STR_EMAIL_TXT));
             objEmailTxt.Clear();
             objEmailTxt.SendKeys(pstrEmail);
         }
@@ -79,9 +79,9 @@ namespace AutomationTraining_M7.Page_Objects
 
         public static void fnClickLoginButton()
         {
-            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_LOGIN_BTN)));
-            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_LOGIN_BTN)));
-            _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_LOGIN_BTN)));
+            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//span[text()='Login']")));
+            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='Login']")));
+            _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//span[text()='Login']")));
             objLoginBtn.Click();
         }
 
