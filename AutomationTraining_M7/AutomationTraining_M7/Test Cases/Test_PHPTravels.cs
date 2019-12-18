@@ -19,40 +19,15 @@ namespace AutomationTraining_M7.Test_Cases
         public void Test_M9Exercise()
         {
             //Init objects
-            objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
             objPHP = new clsPHPTravels_LoginPage(driver);
             //Login Action
-            Assert.AreEqual(true, driver.Title.Contains("Administator Login"), "The Login Page was not loaded correctly.");
+            Assert.AreEqual(true, driver.Title.Contains("Administrador Login."), "The Login Page was not loaded correctly.");
             clsPHPTravels_LoginPage.fnEnterEmail("admin@phptravels.com");
             clsPHPTravels_LoginPage.fnEnterPassword("demoadmin");
             clsPHPTravels_LoginPage.fnClickLoginButton();
             clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
-            Assert.AreEqual(true, driver.Title.Contains("Dashboard"), "The Dashboard was not loaded correctly.");
+            Assert.AreEqual(true, driver.Title.Contains("Dashboard."), "The Dashboard was not loaded correctly.");
 
-
-
-        }
-
-        [Test]
-        public void test()
-        {
-            objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
-            var strNa = @"C:\Tools\GitHub_Review\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Login.png";
-            objTest.Fail("details2",
-                MediaEntityBuilder.CreateScreenCaptureFromPath(strNa).Build());
-            Console.WriteLine();
-        }
-
-
-        [Test]
-        public void test1()
-        {
-            objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
-            var strNa = @"C:\Tools\GitHub_Review\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Login.png";
-            objTest.Fail("details2",
-                MediaEntityBuilder.CreateScreenCaptureFromPath(strNa).Build());
-            Console.WriteLine();
-            Assert.Fail();
         }
 
     }

@@ -16,7 +16,6 @@ namespace AutomationTraining_M7.Reporting
     class clsReportManager
     {
         private DateTime time = DateTime.Now;
-        private string strImagePath;
 
         public string fnReportPath()
         {
@@ -90,6 +89,7 @@ namespace AutomationTraining_M7.Reporting
             pobjTest.Log(logstatus, "Test ended with " + logstatus + stacktrace);
             pobjExtent.Flush();
         }
+
 
     }
 }

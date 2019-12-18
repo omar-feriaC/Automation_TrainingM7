@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Page_Objects
 {
-    class clsPHPTravels_LoginPage : BaseTest
+    class clsPHPTravels_LoginPage
     {
         /*ATTRIBUTES*/
         public static WebDriverWait _driverWait;
@@ -18,8 +18,10 @@ namespace AutomationTraining_M7.Page_Objects
 
         /*LOCATORS DESCRIPTION*/
         readonly static string STR_EMAIL_TXT = "email";
+        readonly static string STR_EMAIL_TXT2 = "email";
         readonly static string STR_PASSWORD_TXT = "password";
-        readonly static string STRREMEMBERME_LNK = "//label[@class='checkbox']";
+        readonly static string STRREMEMBERME_LNK = "///label[@class='checkbox']";
+        readonly static string STRREMEMBERME_LNK2 = "//label[@class='checkbox']";
         readonly static string STR_FORGOTPASS_LNK = "//*[text()='Forget Password']";
         readonly static string STR_LOGIN_BTN = "//span[text()='Login']";
         readonly static string STR_HAMBURGER_BTN = "sidebarCollapse";
@@ -72,12 +74,11 @@ namespace AutomationTraining_M7.Page_Objects
         //Login Button
         private IWebElement GetLoginButton()
         {
-            return objLoginBtn;
+            return objRememberMeLnk;
         }
 
         public static void fnClickLoginButton()
         {
-
             _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_LOGIN_BTN)));
             _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_LOGIN_BTN)));
             _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_LOGIN_BTN)));
