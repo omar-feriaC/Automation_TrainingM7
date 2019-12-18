@@ -25,12 +25,12 @@ namespace AutomationTraining_M7.Test_Cases
             objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
             objPHP = new clsPHPTravels_LoginPage(driver);
             //Login Action
-            Assert.AreEqual(true, driver.Title.Contains("Administrator Login."), "The Login Page was not loaded correctly.");
+            Assert.IsTrue(driver.Title.Contains("Login"), "The Login Page was not loaded correctly.");
             clsPHPTravels_LoginPage.fnEnterEmail(ConfigurationManager.AppSettings.Get("email"));
             clsPHPTravels_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
             clsPHPTravels_LoginPage.fnClickLoginButton();
-           // clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
-            Assert.AreEqual(true, driver.Title.Contains("Dashboard."), "The Dashboard was not loaded correctly.");
+            clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
+            Assert.IsTrue(driver.Title.Contains("Dash"), "The Dashboard was not loaded correctly.");
 
         }
 
