@@ -14,36 +14,8 @@ namespace AutomationTraining_M7 {
     class Program : BaseTest {
         static void Main(string[] args)
         {
-<<<<<<< HEAD
-            //Setup();
-            //linkedin_loginpage objlogin = new linkedin_loginpage(driver);
-            //linkedin_loginpage.fnenterusername(configurationmanager.appsettings.get("username"));
-            //linkedin_loginpage.fnenterpassword(configurationmanager.appsettings.get("password"));
-            //linkedin_loginpage.fnclicksigninbutton();
-=======
             clsReportManager objReport = new clsReportManager();
             objReport.fnReportPath();
-
-
-            /*
-             * SetUp();
-            LinkedIn_LoginPage objLogin = new LinkedIn_LoginPage(driver);
-            LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
-            LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
-            LinkedIn_LoginPage.fnClickSignInButton();
-            */
->>>>>>> master
-
-            /*
-            SalaryEmployee objSalary = new SalaryEmployee(0, "Carlos Ruiz", 100.10);
-            HourlyEmployee objHourly = new HourlyEmployee(1, "Cesar Padilla", 5, 10.5);
-            CommissionEmployee objComm = new CommissionEmployee(2, "Omar Feria", 1000, 500.30);
-
-            objSalary.fnDisplayInfo();
-            objHourly.fnDisplayInfo();
-            objComm.fnDisplayInfo();
-            */
-
             Console.ReadKey();
 
         }

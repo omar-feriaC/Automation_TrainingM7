@@ -68,13 +68,9 @@ namespace AutomationTraining_M7.Base_Files
         {
             driver = new ChromeDriver();
             driver.Url = strBrowserName;
-<<<<<<< HEAD
             //driver.Manage().Window.Maximize();
-=======
             driver.Manage().Window.Maximize();
             objclsDriver = new clsDriver(driver);
-
->>>>>>> master
         }
 
         [TearDown]
