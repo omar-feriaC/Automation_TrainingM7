@@ -15,7 +15,6 @@ namespace AutomationTraining_M7.Test_Cases
     class Test_PHPTravels : BaseTest
     {
         clsPHPTravels_LoginPage objPHP;
-        int x = 2;
 
 
         [Test]
@@ -37,7 +36,6 @@ namespace AutomationTraining_M7.Test_Cases
             IList<IWebElement> ElementList = driver.FindElements(By.XPath("//div[contains(@class,'serverHeader')]//li"));
             for(int x = 2; x< ElementList.Count; x++)
             {
-                x++;
                 Console.WriteLine(ElementList[x].Text);
                 objTest.Log(Status.Info, ElementList[x].Text);
             }
