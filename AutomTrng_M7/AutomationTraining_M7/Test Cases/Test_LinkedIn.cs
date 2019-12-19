@@ -24,11 +24,13 @@ namespace AutomationTraining_M7.Test_Cases
             objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
             objLogin = new LinkedIn_LoginPage(driver);
             Assert.AreEqual(true, driver.Title.Contains("Login"), "Title not mach");
+            objRM.fnAddStepLogScreen(objTest, driver, "Login page opened", "scr.png", "Pass");
             LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
-            objRM.fnAddStepLogScreen(objTest, driver, "Message", "scr.png", "Pass");
+            objRM.fnAddStepLogScreen(objTest, driver, "Username entered", "scr2.png", "Pass");
             LinkedIn_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
+            objRM.fnAddStepLogScreen(objTest, driver, "Password entered", "scr3.png", "Pass");
             LinkedIn_LoginPage.fnClickSignInButton();
-            objTest.Log(Status.Info, "Add Message");
+            objTest.Log(Status.Info, "End of Test");
         }
     }
 }

@@ -95,7 +95,7 @@ namespace AutomationTraining_M7.Reporting
                     break;
             }
 
-            pobjTest.Log(logStatus, "Test end with " + logStatus + StackTrace);
+            pobjTest.Log(logStatus, "Test ended with Status: " + logStatus + StackTrace);
             pobjExtent.Flush();
         }
 
