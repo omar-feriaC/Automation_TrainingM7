@@ -34,6 +34,8 @@ namespace AutomationTraining_M7.Test_Cases
             Assert.AreEqual(true, driver.Title.Contains("Dashboard"), "The Dashboard was not loaded correctly.");
             clsPHPTravels_LoginPage.fnPrintStats();
             objRM.fnAddStepLogScreen(objTest, driver, "Login done", "scr.png", "Pass");
+            clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
+            clsPHPTravels_LoginPage.fnGeneral();
         }
 
     }

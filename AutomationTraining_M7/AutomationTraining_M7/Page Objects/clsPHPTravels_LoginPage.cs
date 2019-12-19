@@ -28,6 +28,28 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_TOTALCUSTOMERS_TXT = "//a[text()=' Total Customers ']";
         readonly static string STR_TOTALGUESTS_TXT = "//a[text()=' Total Guests ']";
         readonly static string STR_TOTALBOOKINGS_TXT = "//a[text()=' Total Bookings ']";
+        readonly static string STR_SIDEBAR_MENU = "//div[@class='social-sidebar']";
+        readonly static string STR_DASHBOARD_LNK = "//a[text()='Dashboard']";
+        readonly static string STR_UPDATES_LNK = "//a[text()='Updates']";
+        readonly static string STR_MODULES_LNK = "//a[text()='Modules']";
+        readonly static string STR_GENERAL_DD = "//a[text()=' General']";
+        readonly static string STR_GENERAL_MENU = "//ul[@id='menu-ui']";
+        readonly static string STR_SETTINGS_SUBM = "//li[text()='Settings']";
+        readonly static string STR_OCURRENCIES_SUBM = "//li[text()='Currencies']";
+        readonly static string STR_PYMTGTW_SUBM = "//li[text()='Payment Gateways']";
+        readonly static string STR_SOCIALCONN_SUBM = "//li[text()='Social Connections']";
+        readonly static string STR_WIDGETS_SUBM = "//li[text()='Widgets']";
+        readonly static string STR_SLIDERS_SUBM = "//li[text()='Sliders']";
+        readonly static string STR_EMAILTEMP_SUBM = "//li[text()='Email Templates']";
+        readonly static string STR_SMSAPISET_SUBM = "//li[text()='SMS API Settings']";
+        readonly static string STR_BACKUP_SUBM = "//li[text()='BackUp']";
+        readonly static string STR_ACCOUNTS_MENU = "//a[text()=' Accounts                ']";
+        readonly static string STR_ADMINS_SUBM = "//li[text()='Admins']";
+        readonly static string STR_SUPPLIERS_SUBM = "//li[text()='Suppliers']";
+        readonly static string STR_CUSTOMERS_SUBM = "//li[text()='Customers']";
+        readonly static string STR_GUESTCUSTOMERS_SUBM = "//li[text()='GuestCustomers']";
+
+
 
         /*CONSTRUCTOR*/
         public clsPHPTravels_LoginPage(IWebDriver pobjDriver)
@@ -47,6 +69,9 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objTotCustomerTxt => _objDriver.FindElement(By.XPath(STR_TOTALCUSTOMERS_TXT));
         private static IWebElement objTotGuestTxt => _objDriver.FindElement(By.XPath(STR_TOTALGUESTS_TXT));
         private static IWebElement objTotBookTxt => _objDriver.FindElement(By.XPath(STR_TOTALBOOKINGS_TXT));
+        private static IWebElement objSidebarMenu => _objDriver.FindElement(By.XPath(STR_SIDEBAR_MENU));
+        private static IWebElement objGeneralDD => _objDriver.FindElement(By.XPath(STR_GENERAL_DD));
+        private static IWebElement objGenMenu => _objDriver.FindElement(By.XPath(STR_GENERAL_MENU));
         
 
 
@@ -119,6 +144,18 @@ namespace AutomationTraining_M7.Page_Objects
             Console.WriteLine("");
             Console.WriteLine(objTotBookTxt.Text);
             objRM.fnAddStepLog(objTest, objTotBookTxt.Text, "Pass");
+        }
+
+        private IWebElement GetSideBar()
+        {
+            return objSidebarMenu;
+        }
+
+        public static void fnGeneral()
+        {
+            objGeneralDD.Click();
+            //Console.WriteLine(objGenMenu.Text);
+            objRM.fnAddStepLog(objTest, objGenMenu.Text, "Pass");
         }
 
 
