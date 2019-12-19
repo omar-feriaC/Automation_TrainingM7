@@ -32,12 +32,12 @@ namespace AutomationTraining_M7.Reporting
             phtmlReporter.Config.Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
             phtmlReporter.Config.DocumentTitle = "Automation Framework Report";
             pExtent.AttachReporter(phtmlReporter);
-            pExtent.AddSystemInfo("Project Name:", "Automation Framework");
-            pExtent.AddSystemInfo("Application:", "PHP Travels");
-            pExtent.AddSystemInfo("Environment:", "QAA");
+            pExtent.AddSystemInfo("Project Name:", ConfigurationManager.AppSettings.Get("project"));
+            pExtent.AddSystemInfo("Application:", ConfigurationManager.AppSettings.Get("application"));
+            pExtent.AddSystemInfo("Environment:", ConfigurationManager.AppSettings.Get("environment"));
             pExtent.AddSystemInfo("Browser:", ConfigurationManager.AppSettings.Get("browser"));
             pExtent.AddSystemInfo("Date:", time.ToShortDateString());
-            pExtent.AddSystemInfo("Version:", "v1.0");
+            pExtent.AddSystemInfo("Version:", ConfigurationManager.AppSettings.Get("version"));
         }
 
         public string fnCaptureImage(IWebDriver pobjDriver, string pstrScreenName)
@@ -66,11 +66,10 @@ namespace AutomationTraining_M7.Reporting
             {
                 case TestStatus.Failed:
                     logstatus = Status.Fail;
-                    string strFileName = "Screenshot_" + time.ToString("hh_mm_ss") + ".png";
+                    string strFileName = "Screenshot_" + time.ToString("MMddyyyy_HHmmss") + ".png";
                     var strImagePath = fnCaptureImage(pobjDriver, strFileName);
                     pobjTest.Log(Status.Fail, "Fail");
                     pobjTest.Fail("Snapshot below: ", MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
-                    //pobjTest.Log(Status.Fail, "Snapshot below: " + pobjTest.AddScreenCaptureFromPath("Screenshots\\" + strFileName));
                     break;
                 case TestStatus.Skipped:
                     logstatus = Status.Skip;

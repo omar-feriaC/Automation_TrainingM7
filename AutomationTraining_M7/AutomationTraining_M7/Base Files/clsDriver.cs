@@ -13,29 +13,21 @@ namespace AutomationTraining_M7.Base_Files
     class clsDriver : BaseTest
     {
         /*ATTRIBUTES*/
-        private static IWebDriver _objDriver;
-        private static WebDriverWait _driverWait;
+        private static WebDriverWait wait;
         private static IWebElement objElement;
 
         /*CONSTRUCTOR*/
         public clsDriver(IWebDriver pobjDriver)
         {
-            _objDriver = pobjDriver;
-            _driverWait = new WebDriverWait(_objDriver, new TimeSpan(0, 0, 40));
+            driver = pobjDriver;
+            wait = new WebDriverWait(driver, new TimeSpan(0, 0, 40));
         }
 
         /*METHODS*/
-        private static IWebElement WaitForElementThread(IWebDriver pobjDriver, By by, string pstrDesc)
-        {
-            Thread.Sleep(5000);
-            objElement = pobjDriver.FindElement(by);
-            return objElement;
-        }
-
         private static IWebElement fnWaitForElementDriver(IWebDriver pobjDriver, By by)
         {
-            objElement = _driverWait.Until(ExpectedConditions.ElementExists(by));
-            objElement = _driverWait.Until(ExpectedConditions.ElementIsVisible(by));
+            objElement = wait.Until(ExpectedConditions.ElementExists(by));
+            objElement = wait.Until(ExpectedConditions.ElementIsVisible(by));
             return objElement;
         }
 
@@ -52,28 +44,28 @@ namespace AutomationTraining_M7.Base_Files
         /*Wait for element to Exist*/
         public static IWebElement fnWaitForElementToExist(By by)
         {
-            objElement = _driverWait.Until(ExpectedConditions.ElementExists(by));
+            objElement = wait.Until(ExpectedConditions.ElementExists(by));
             return objElement;
         }
 
         /*Wait for element to be visible*/
         public static IWebElement fnWaitForElementToBeVisible(By by)
         {
-            objElement = _driverWait.Until(ExpectedConditions.ElementIsVisible(by));
+            objElement = wait.Until(ExpectedConditions.ElementIsVisible(by));
             return objElement;
         }
 
         /*Wait for element to be clickable*/
         public static IWebElement fnWaitForElementToBeClickable(By by)
         {
-            objElement = _driverWait.Until(ExpectedConditions.ElementToBeClickable(by));
+            objElement = wait.Until(ExpectedConditions.ElementToBeClickable(by));
             return objElement;
         }
 
         /*Wait for element to be selected*/
         public static bool fnWaitForElementToBeSelected(By by)
         {
-            if (_driverWait.Until(ExpectedConditions.ElementToBeSelected(by)))
+            if (wait.Until(ExpectedConditions.ElementToBeSelected(by)))
             {
                 return true;
             }
