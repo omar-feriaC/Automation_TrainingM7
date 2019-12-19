@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Page_Objects
 {
-    class clsPHPTravels_LoginPage
+    class clsPHPTravels_LoginPage : BaseTest
     {
         /*ATTRIBUTES*/
         public static WebDriverWait _driverWait;
@@ -20,7 +20,7 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_EMAIL_TXT = "email";
         readonly static string STR_EMAIL_TXT2 = "email";
         readonly static string STR_PASSWORD_TXT = "password";
-        readonly static string STRREMEMBERME_LNK = "///label[@class='checkbox']";
+        readonly static string STRREMEMBERME_LNK = "//label[@class='checkbox']";
         readonly static string STRREMEMBERME_LNK2 = "//label[@class='checkbox']";
         readonly static string STR_FORGOTPASS_LNK = "//*[text()='Forget Password']";
         readonly static string STR_LOGIN_BTN = "//span[text()='Login']";
@@ -34,11 +34,11 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
         /*OBJECT DEFINITION*/
-        private static IWebElement objEmailTxt = driver.FindElement(By.Name(STR_EMAIL_TXT)); 
-        private static IWebElement objPasswordTxt = driver.FindElement(By.Name(STR_PASSWORD_TXT));
-        private static IWebElement objRememberMeLnk = driver.FindElement(By.XPath(STRREMEMBERME_LNK));
-        private static IWebElement objForgotPassLnk = driver.FindElement(By.XPath(STR_FORGOTPASS_LNK));
-        private static IWebElement objLoginBtn = driver.FindElement(By.XPath(STR_LOGIN_BTN));
+        private static IWebElement objEmailTxt => driver.FindElement(By.Name(STR_EMAIL_TXT)); 
+        private static IWebElement objPasswordTxt => driver.FindElement(By.Name(STR_PASSWORD_TXT));
+        private static IWebElement objRememberMeLnk => driver.FindElement(By.XPath(STRREMEMBERME_LNK));
+        private static IWebElement objForgotPassLnk => driver.FindElement(By.XPath(STR_FORGOTPASS_LNK));
+        private static IWebElement objLoginBtn => driver.FindElement(By.XPath(STR_LOGIN_BTN));
 
 
         /*METHODS/FUNCTIONS*/

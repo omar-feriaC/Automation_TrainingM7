@@ -60,8 +60,8 @@ namespace AutomationTraining_M7.Reporting
         public void fnTestCaseResult(ExtentTest pobjTest, ExtentReports pobjExtent, IWebDriver pobjDriver)
         {
             var status = TestContext.CurrentContext.Result.Outcome.Status;
-            var stacktrace = string.IsNullOrEmpty(TestContext.CurrentContext.Result.StackTrace)
-           ? "" : string.Format("{0}", TestContext.CurrentContext.Result.StackTrace);
+            var stacktrace = string.IsNullOrEmpty(TestContext.CurrentContext.Result.StackTrace) 
+                ? "" : string.Format("{0}", TestContext.CurrentContext.Result.StackTrace);
             Status logstatus;
             switch (status)
             {
