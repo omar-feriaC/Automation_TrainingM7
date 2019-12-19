@@ -32,7 +32,13 @@ namespace AutomationTraining_M7.Test_Cases
             clsPHPTravels_LoginPage.fnClickLoginButton();
             clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
             Assert.IsTrue(driver.Title.Contains("Dash"), "The Dashboard was not loaded correctly.");
-            clsPHPTravels_LoginPage.fnGetTotalsValuesTxt();
+             
+            List<string> strTotVal = clsPHPTravels_LoginPage.fnGetTotalsValuesTxt();
+            foreach(var item in strTotVal)
+            {
+                objRM.fnAddStepLog(objTest, item, "Pass");
+            }
+            
             objRM.fnAddStepLogScreen(objTest, driver, "Click in Side Menu", "scr.png", "Pass");
             //Thread.Sleep(100);
             clsPHPTravels_LoginPage.fnClickLSideBarMenu();

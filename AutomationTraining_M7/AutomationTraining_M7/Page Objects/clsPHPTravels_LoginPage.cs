@@ -107,14 +107,19 @@ namespace AutomationTraining_M7.Page_Objects
 
         }
 
-        public static void fnGetTotalsValuesTxt()
+        public static List<string> fnGetTotalsValuesTxt()
         {
             IList<IWebElement> objGetTotalsValuesTx = _objDriver.FindElements(By.XPath("//*[@class='serverHeader__statsList']"));
+            List<string> strTotalValuesReport = new List<string>();
 
             foreach (var vList in objGetTotalsValuesTx)
             {
-                Console.WriteLine(vList.Text);
-            }   
+                strTotalValuesReport.Add(vList.Text);
+                Console.WriteLine(vList.Text);                
+            }
+
+            return strTotalValuesReport;
+
         }
         //SideBar Menu
         private IWebElement GetSideBarMenu()

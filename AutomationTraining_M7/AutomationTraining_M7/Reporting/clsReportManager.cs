@@ -91,7 +91,7 @@ namespace AutomationTraining_M7.Reporting
         }
 
 
-        public static void fnAddStepLog(ExtentTest pobjTest, string pstrMessage, string pStatus)
+        public  void fnAddStepLog(ExtentTest pobjTest, string pstrMessage, string pStatus)
         {
             pobjTest.Log(Status.Info, pstrMessage);
             switch (pStatus)
