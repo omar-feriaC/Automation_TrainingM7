@@ -16,14 +16,22 @@ namespace AutomationTraining_M7.Page_Objects
 
         private static IWebDriver _objDriver;
         public WebDriverWait _driverWait;
+        private static string strMenuItem;
+        private static string strSubMenuItem;
 
         /*LOCATORS DESCRIPTION*/
-        readonly static string STR_EMAIL_TXT = "email";
-        //readonly static string STR_EMAIL_TXT2 = "email";
+        readonly static string STR_EMAIL_TXT = "email";        
         readonly static string STR_PASSWORD_TXT = "password";
         readonly static string STR_FORGOTPASS_LNK = "//*[text()='Forget Password']";
         readonly static string STR_LOGIN_BTN = "//span[text()='Login']";
         readonly static string STR_HAMBURGER_BTN = "sidebarCollapse";
+        readonly static string STR_SIDEBAR_MENU = "//a[@id='sidebarCollapse']";
+        readonly static string STR_UPDATES_SUB = "//span[text()='Updates']";
+        readonly static string STR_SIDEBAR_MENU_DASH = "//ul[@id='social-sidebar-menu']//*[text()='Dashboard']";
+        readonly static string STR_LIVE_CHAT_POPUP = "//button[@class='e1mwfyk10 lc-4rgplc e1m5b1js0']";
+
+        readonly static string STR_MENU_ITEM = $"//ul[@id='social-sidebar-menu']/li//a[contains(text(),'{strMenuItem}')]";
+        readonly static string STR_SUBMENU_ITEM = $"//ul[@id='social-sidebar-menu']/li//a[contains(text(),'{strSubMenuItem}')]";
 
         /*CONSTRUCTOR*/
         public clsPHPTravels_LoginPage(IWebDriver pobjDriver)
@@ -38,6 +46,13 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objForgotPassLnk => _objDriver.FindElement(By.XPath(STR_FORGOTPASS_LNK));
         private static IWebElement objLoginBtn => _objDriver.FindElement(By.XPath(STR_LOGIN_BTN));
         private static IWebElement objHamburuerBtn => _objDriver.FindElement(By.Id(STR_HAMBURGER_BTN));
+        private static IWebElement objSidebarMenu => _objDriver.FindElement(By.XPath(STR_SIDEBAR_MENU));
+        private static IWebElement objSidebarMenuDash => _objDriver.FindElement(By.XPath(STR_SIDEBAR_MENU_DASH));
+        private static IWebElement objUpdateSubMenu => _objDriver.FindElement(By.XPath(STR_UPDATES_SUB));
+        private static IWebElement objLiveChatPopUp => _objDriver.FindElement(By.XPath(STR_LIVE_CHAT_POPUP));
+
+        private static IWebElement objMenuItem => _objDriver.FindElement(By.XPath(STR_MENU_ITEM));
+        private static IWebElement objSubMenuItem => _objDriver.FindElement(By.XPath(STR_SUBMENU_ITEM));
 
         /*METHODS/FUNCTIONS*/
 
@@ -83,7 +98,7 @@ namespace AutomationTraining_M7.Page_Objects
             objLoginBtn.Click();
         }
 
-        /*Hamburger Button*/
+        /*Hamburger Button*/     
         public static void fnWaitHamburgerMenu()
         {
             clsDriver.fnWaitForElementToExist(By.Id(STR_HAMBURGER_BTN));
@@ -99,7 +114,49 @@ namespace AutomationTraining_M7.Page_Objects
             foreach (var vList in objGetTotalsValuesTx)
             {
                 Console.WriteLine(vList.Text);
+            }   
+        }
+        //SideBar Menu
+        private IWebElement GetSideBarMenu()
+        {
+             return objSidebarMenu;
+            //return objHamburuerBtn;
+        }
+
+        public static void fnClickLSideBarMenu()
+        {
+            //objLiveChatPopUp.Click();
+            if(!objSidebarMenuDash.Displayed)
+            {
+                objSidebarMenu.Click();
             }
+            clsDriver.fnWaitForElementToExist(By.XPath(STR_SIDEBAR_MENU_DASH));
+            clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_SIDEBAR_MENU_DASH));
+            clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_SIDEBAR_MENU_DASH));
+
+            objSidebarMenuDash.Click();
+            objUpdateSubMenu.Click();
+            //objSidebarMenu.Click();          
+
+            //clsDriver.fnWaitForElementToExist(By.XPath(STR_SIDEBAR_MENU_DASH));
+            //clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_SIDEBAR_MENU_DASH));
+            //clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_SIDEBAR_MENU_DASH));
+
+            //objSidebarMenuDash.Click();
+
+        }
+
+        public void fnSelectMenuItem(string pstrMenuItem)
+        {
+            strMenuItem = pstrMenuItem;
+            objMenuItem.Click();
+        }
+        public void fnSelectMenuItem(string pstrMenuItem, string pstrSubMenuItem)
+        {
+            strMenuItem = pstrMenuItem;
+            strSubMenuItem = pstrSubMenuItem;
+            objMenuItem.Click();
+            objSubMenuItem.Click();
 
         }
     }

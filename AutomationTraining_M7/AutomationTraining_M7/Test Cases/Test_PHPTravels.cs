@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Test_Cases
@@ -32,6 +33,10 @@ namespace AutomationTraining_M7.Test_Cases
             clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
             Assert.IsTrue(driver.Title.Contains("Dash"), "The Dashboard was not loaded correctly.");
             clsPHPTravels_LoginPage.fnGetTotalsValuesTxt();
+            //Thread.Sleep(100);
+            clsPHPTravels_LoginPage.fnClickLSideBarMenu();
+            //objPHP.fnSelectMenuItem("Modules");
+            objPHP.fnSelectMenuItem("General", "Settings");
         }
 
     }
