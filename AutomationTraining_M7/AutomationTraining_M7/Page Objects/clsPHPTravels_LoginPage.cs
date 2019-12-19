@@ -126,10 +126,11 @@ namespace AutomationTraining_M7.Page_Objects
         public static void fnClickLSideBarMenu()
         {
             //objLiveChatPopUp.Click();
-            if(!objSidebarMenuDash.Displayed)
-            {
+            if (!objSidebarMenuDash.Displayed)
+            {                
                 objSidebarMenu.Click();
-            }
+             }
+
             clsDriver.fnWaitForElementToExist(By.XPath(STR_SIDEBAR_MENU_DASH));
             clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_SIDEBAR_MENU_DASH));
             clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_SIDEBAR_MENU_DASH));

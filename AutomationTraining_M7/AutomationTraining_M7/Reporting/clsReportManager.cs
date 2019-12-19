@@ -90,7 +90,8 @@ namespace AutomationTraining_M7.Reporting
             pobjExtent.Flush();
         }
 
-        public void fnAddStepLog(ExtentTest pobjTest, string pstrMessage, string pStatus)
+
+        public static void fnAddStepLog(ExtentTest pobjTest, string pstrMessage, string pStatus)
         {
             pobjTest.Log(Status.Info, pstrMessage);
             switch (pStatus)
@@ -159,6 +160,7 @@ namespace AutomationTraining_M7.Reporting
                 default:
                     pobjTest.Info(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
                     break;
+
             }
 
         }
