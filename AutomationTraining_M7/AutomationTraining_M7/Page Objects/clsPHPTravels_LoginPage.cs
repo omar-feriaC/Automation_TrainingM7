@@ -106,14 +106,19 @@ namespace AutomationTraining_M7.Page_Objects
         public static void fnPrintStats()
         {
             Console.WriteLine(objTotAdminTxt.Text);
+            objRM.fnAddStepLog(objTest, objTotAdminTxt.Text, "Pass");
             Console.WriteLine("");
             Console.WriteLine(objTotSuppTxt.Text);
+            objRM.fnAddStepLog(objTest, objTotSuppTxt.Text, "Pass");
             Console.WriteLine("");
             Console.WriteLine(objTotCustomerTxt.Text);
+            objRM.fnAddStepLog(objTest, objTotCustomerTxt.Text, "Pass");
             Console.WriteLine("");
             Console.WriteLine(objTotGuestTxt.Text);
+            objRM.fnAddStepLog(objTest, objTotGuestTxt.Text, "Pass");
             Console.WriteLine("");
             Console.WriteLine(objTotBookTxt.Text);
+            objRM.fnAddStepLog(objTest, objTotBookTxt.Text, "Pass");
         }
 
 
