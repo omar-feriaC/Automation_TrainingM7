@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Base_Files
 {
-    class BaseTest
+    class BaseTest : clsReportManager
     {
         //**************************************************
         //*                V A R I A B L E S
