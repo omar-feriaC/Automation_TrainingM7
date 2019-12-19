@@ -8,6 +8,7 @@ using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Base_Files
 {
@@ -79,8 +80,9 @@ namespace AutomationTraining_M7.Base_Files
             driver.Quit();
         }
 
+     
 
-    
+
 
     }
 }

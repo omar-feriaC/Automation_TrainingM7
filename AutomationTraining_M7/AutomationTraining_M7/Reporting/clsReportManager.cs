@@ -63,10 +63,10 @@ namespace AutomationTraining_M7.Reporting
             {
                 case TestStatus.Failed:
                     logstatus = Status.Fail;
-                    string strFileName = "Screenshot_" + time.ToString("hh_mm_ss") + ".png";
-                    var strImagePath = fnCaptureImage(pobjDriver, strFileName);
-                    pobjTest.Log(Status.Fail, "Fail");
-                    pobjTest.Fail("Snapshot below: ", MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
+                    //string strFileName = "Screenshot_" + time.ToString("hh_mm_ss") + ".png";
+                    //var strImagePath = fnCaptureImage(pobjDriver, strFileName);
+                   // pobjTest.Log(Status.Fail, "Fail");
+                   // pobjTest.Fail("Snapshot below: ", MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
                     break;
 
                 case TestStatus.Skipped:
@@ -75,10 +75,10 @@ namespace AutomationTraining_M7.Reporting
 
                 case TestStatus.Passed:
                     logstatus = Status.Pass;
-                    strFileName = "Screenshot_" + time.ToString("hh_mm_ss") + ".png";
-                    strImagePath = fnCaptureImage(pobjDriver, strFileName);
-                    pobjTest.Log(Status.Pass, "Pass");
-                    pobjTest.Pass("Snapshot below: ", MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
+                   // strFileName = "Screenshot_" + time.ToString("hh_mm_ss") + ".png";
+                   // strImagePath = fnCaptureImage(pobjDriver, strFileName);
+                   // pobjTest.Log(Status.Pass, "Pass");
+                   // pobjTest.Pass("Snapshot below: ", MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
                     break;
 
                 default:
@@ -90,6 +90,42 @@ namespace AutomationTraining_M7.Reporting
             pobjExtent.Flush();
         }
 
+
+
+        public void fnStepCaptureImage(ExtentReports pobjExtent, ExtentTest pobjTest, IWebDriver pobjDriver, string pMessage, string pstatus, string pImageName)
+        {
+            string strFileName;
+
+
+
+
+            switch (pstatus)
+            {
+                case "Failed":
+
+                    strFileName = "Screenshot_" + pImageName + "_Fail_" + time.ToString("h_mm_ss") + ".png";
+                    fnCaptureImage(pobjDriver, strFileName);
+                    pobjTest.Log(Status.Fail, pMessage + "_Fail", MediaEntityBuilder.CreateScreenCaptureFromPath("Screenshots\\" + strFileName).Build());
+
+
+                    break;
+
+
+                case "Passed":
+
+                    strFileName = "Screenshot_" + pImageName + "_Pass_" + time.ToString("h_mm_ss") + ".png";
+                    fnCaptureImage(pobjDriver, strFileName);
+                    pobjTest.Log(Status.Pass, pMessage + "_Pass", MediaEntityBuilder.CreateScreenCaptureFromPath("Screenshots\\" + strFileName).Build());
+
+
+                    break;
+
+
+
+
+
+            }
+        }
 
     }
 }
