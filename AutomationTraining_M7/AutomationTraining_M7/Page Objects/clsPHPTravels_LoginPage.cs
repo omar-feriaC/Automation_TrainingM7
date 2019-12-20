@@ -12,6 +12,8 @@ namespace AutomationTraining_M7.Page_Objects
         /*ATTRIBUTES*/
       
         private static IWebDriver _objDriver;
+       
+       
 
         /*LOCATORS DESCRIPTION*/
         readonly static string STR_EMAIL_TXT = "email";
@@ -23,11 +25,21 @@ namespace AutomationTraining_M7.Page_Objects
         public string STR_SUPPLIERS_SUBMENU = "//a[contains(text(),'Suppliers')]";
         public string STR_CUSTOMERS_SUBMENU = "//a[text()='Customers']";
         public string STR_GUESTCUSTOMERS_SUBMENU = "//a[contains(text(),'GuestCustomers')]"; 
-        public string STR_FIRSTNAME_HEADER = "//th[contains(text(),'First Name')]";
+        public string STR_FIRSTNAME_HEADER = "//th[contains(text(),'First Name')]"; 
+        public string STR_FIRSTNAME_HEADER_DESC = "//th[contains(text(),'↓ First Name')]";
+        public string STR_FIRSTNAME_HEADER_ASC = "//th[contains(text(),'↑ First Name')]";
         public string STR_LASTNAME_HEADER = "//th[contains(text(),'Last Name')]";
+        public string STR_LASTNAME_HEADER_DESC = "//th[contains(text(),'↓ Last Name')]";
+        public string STR_LASTNAME_HEADER_ASC = "//th[contains(text(),'↑ Last Name')]";
         public string STR_EMAIL_HEADER = "//th[contains(text(),'Email')]";
+        public string STR_EMAIL_HEADER_DESC = "//th[contains(text(),'↓ Email')]";
+        public string STR_EMAIL_HEADER_ASC = "//th[contains(text(),'↑ Email')]";
         public string STR_ACTIVE_HEADER = "//th[contains(text(),'Active')]";
+        public string STR_ACTIVE_HEADER_DESC = "//th[contains(text(),'↓ Active')]";
+        public string STR_ACTIVE_HEADER_ASC = "//th[contains(text(),'↑ Active')]";
         public string STR_LASTLOGIN_HEADER = "//th[contains(text(),'Last Login')]";
+        public string STR_LASTLOGIN_HEADER_DESC = "//th[contains(text(),'↓ Last Login')]";
+        public string STR_LASTLOGIN_HEADER_ASC = "//th[contains(text(),'↑ Last Login')]";
 
         /*CONSTRUCTOR*/
         public clsPHPTravels_LoginPage(IWebDriver pobjDriver)
@@ -121,7 +133,7 @@ namespace AutomationTraining_M7.Page_Objects
 
         public static void fnSorting(string pHeader)
         {
-
+           
             try
             {
 
@@ -129,6 +141,7 @@ namespace AutomationTraining_M7.Page_Objects
                 clsDriver.fnWaitForElementToBeVisible(By.XPath(pHeader));
               
                 driver.FindElement(By.XPath(pHeader)).Click();
+               
             }
 
             catch (StaleElementReferenceException)

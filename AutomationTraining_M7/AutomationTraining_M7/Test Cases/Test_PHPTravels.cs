@@ -7,13 +7,14 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Test_Cases
 {
     class Test_PHPTravels : BaseTest
     {
        clsPHPTravels_LoginPage objPHP;
-       string status="Passed";
+       string status;
        public static clsReportManager objRep = new clsReportManager();
 
         [Test]
@@ -43,78 +44,883 @@ namespace AutomationTraining_M7.Test_Cases
 
             }
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //Incomplete: Missing Asserts to validate failures and report them  
-            //below code is a first approach on how to interact(Need to figure out how to make reusable)
-            //with the Menus and SubMenus (using a new function that receives parameters fnSelectMenuSubMenu) , 
-            //Sorting by Clicking on the headers (using a new function fnSorting)
-            //and attaching screens after each click (using a new function fnStepCaptureImage)
+            //
+            //Below code is a running version of a first approach on how to :
+            // 1) Interact with the Menus and SubMenus (using a new function that receives parameters fnSelectMenuSubMenu)
+            // 2) Sort Asc and Desc by clicking on the headers (using a new function fnSorting)
+            // 3) Attaching screens (using a new function fnStepCaptureImage) based on the  Passed or Failed results of
+            //    Assertions(by checking if the sorted column header added a ↓ ↑) 
+            //
+            // Areas to Improve:
+            // 1) Reduce significantly the code by using a new function(s) on the repeatable code
+            // 2) Add code to validate actual sorting logic by using arrays and data comparison
+            //      
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             clsPHPTravels_LoginPage.fnSelectMenuSubMenu(objPHP.STR_ACCOUNTS_MENU, objPHP.STR_ADMINS_SUBMENU);
-            clsPHPTravels_LoginPage.fnSorting(objPHP.STR_FIRSTNAME_HEADER);
+            try { 
+            Assert.AreEqual(true, driver.Title.Contains("Admins Management"), "The Accounts-Admin Page was not loaded correctly.");
+            status="Passed";
             objRep.fnStepCaptureImage(objExtent, objTest, driver, "Accounts_Admins_Selected_Test", status, "Accounts_Admins_Selected_Test");
-            clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTNAME_HEADER);
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_FirstNameSorting_Test", status, "ACADM_FirstNameSorting_Test");
-            clsPHPTravels_LoginPage.fnSorting(objPHP.STR_EMAIL_HEADER);
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_LastNameSorting_Test", status, "ACADM_LastNameSorting_Test");
-            clsPHPTravels_LoginPage.fnSorting(objPHP.STR_ACTIVE_HEADER);
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_EmailSorting_Test", status, "ACADM_EmailSorting_Test");
-            clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTLOGIN_HEADER);
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_ActiveSorting_Test", status, "ACADM_ActiveSorting_Test");
-            clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_LASTLOGIN_HEADER));
-            clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_LASTLOGIN_HEADER));
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_LastLoginSorting_Test", status, "ACADM_LastLoginSorting_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "Accounts_Admins_Selected_Test", status, "Accounts_Admins_Selected_Test");
+                Assert.Fail();
+            }
+
+
+           
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_FIRSTNAME_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_FIRSTNAME_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_FIRSTNAME_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_FIRSTNAME_HEADER_DESC)).Count>0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_FirstNameSortingDesc_Test", status, "ACADM_FirstNameSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_FirstNameSortingDesc_Test", status, "ACADM_FirstNameSortingDesc_Test");
+                Assert.Fail();
+            }
+
+
+            
+            
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_FIRSTNAME_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_FIRSTNAME_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_FIRSTNAME_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_FIRSTNAME_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_FirstNameSortingAsc_Test", status, "ACADM_FirstNameSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_FirstNameSortingAsc_Test", status, "ACADM_FirstNameSortingAsc_Test");
+                Assert.Fail();
+            }
+
+
+
+           
+
+           
+           
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTNAME_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_LASTNAME_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_LASTNAME_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_LASTNAME_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_LastNameSortingAsc_Test", status, "ACADM_LastNameSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_LastNameSortingAsc_Test", status, "ACADM_LastNameSortingAsc_Test");
+                Assert.Fail();
+            }
+           
+
+
+           
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTNAME_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_LASTNAME_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_LASTNAME_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_LASTNAME_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_LastNameSortingDesc_Test", status, "ACADM_LastNameSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_LastNameSortingDesc_Test", status, "ACADM_LastNameSortingDesc_Test");
+                Assert.Fail();
+            }
+           
+
+         
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_EMAIL_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_EMAIL_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_EMAIL_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_EMAIL_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_EmailSortingDesc_Test", status, "ACADM_EmailSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_EmailSortingDesc_Test", status, "ACADM_EmailSortingDesc_Test");
+                Assert.Fail();
+            }
+           
+
+
+            
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_EMAIL_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_EMAIL_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_EMAIL_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_EMAIL_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_EmailSortingAsc_Test", status, "ACADM_EmailSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_EmailSortingAsc_Test", status, "ACADM_EmailSortingAsc_Test");
+                Assert.Fail();
+            }
+
+           
+
+
+            
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_ACTIVE_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_ACTIVE_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_ACTIVE_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_ACTIVE_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_ActiveSortingAsc_Test", status, "ACADM_ActiveSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_ActiveSortingAsc_Test", status, "ACADM_ActiveSortingAsc_Test");
+                Assert.Fail();
+            }
+           
+            try
+            {
+
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_ACTIVE_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_ACTIVE_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_ACTIVE_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_ACTIVE_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_ActiveSortingDesc_Test", status, "ACADM_ActiveSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_ActiveSortingDesc_Test", status, "ACADM_ActiveSortingDesc_Test");
+                Assert.Fail();
+            }
+           
+
+            
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTLOGIN_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_LASTLOGIN_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_LASTLOGIN_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_LASTLOGIN_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_LastLoginSortingDesc_Test", status, "ACADM_LastLoginSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_LastLoginSortingDesc_Test", status, "ACADM_LastLoginSortingDesc_Test");
+                Assert.Fail();
+            }
+           
+            
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTLOGIN_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_LASTLOGIN_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_LASTLOGIN_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_LASTLOGIN_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_LastLoginSortingAsc_Test", status, "ACADM_LastLoginSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACADM_LastLoginSortingAsc_Test", status, "ACADM_LastLoginSortingAsc_Test");
+                Assert.Fail();
+            }
+
+
+
+
+            ////////////////////////
 
 
 
             clsPHPTravels_LoginPage.fnSelectMenuSubMenu(objPHP.STR_ACCOUNTS_MENU, objPHP.STR_SUPPLIERS_SUBMENU);
-            clsPHPTravels_LoginPage.fnSorting(objPHP.STR_FIRSTNAME_HEADER);
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "Accounts_Suppliers_Selected_Test", status, "Accounts_Suppliers_Selected_Test");
-            clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTNAME_HEADER);
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_FirstNameSorting_Test", status, "ACSUP_FirstNameSorting_Test");
-            clsPHPTravels_LoginPage.fnSorting(objPHP.STR_EMAIL_HEADER);
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_LastNameSorting_Test", status, "ACSUP_LastNameSorting_Test");
-            clsPHPTravels_LoginPage.fnSorting(objPHP.STR_ACTIVE_HEADER);
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_EmailSorting_Test", status, "ACSUP_EmailSorting_Test");
-            clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTLOGIN_HEADER);
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_ActiveSorting_Test", status, "ACSUP_ActiveSorting_Test");
-            clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_LASTLOGIN_HEADER));
-            clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_LASTLOGIN_HEADER));
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_LastLoginSorting_Test", status, "ACSUP_LastLoginSorting_Test");
+            try
+            {
+                Assert.AreEqual(true, driver.Title.Contains("Suppliers Management"), "The Accounts-Suppliers Page was not loaded correctly.");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "Accounts_Suppliers_Selected_Test", status, "Accounts_Suppliers_Selected_Test");
+            }
 
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "Accounts_Suppliers_Selected_Test", status, "Accounts_Suppliers_Selected_Test");
+                Assert.Fail();
+            }
+
+
+            try
+            {
+
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_FIRSTNAME_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_FIRSTNAME_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_FIRSTNAME_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_FIRSTNAME_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_FirstNameSortingDesc_Test", status, "ACSUP_FirstNameSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_FirstNameSortingDesc_Test", status, "ACSUP_FirstNameSortingDesc_Test");
+                Assert.Fail();
+            }
+
+
+
+     
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_FIRSTNAME_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_FIRSTNAME_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_FIRSTNAME_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_FIRSTNAME_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_FirstNameSortingAsc_Test", status, "ACSUP_FirstNameSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_FirstNameSortingAsc_Test", status, "ACSUP_FirstNameSortingAsc_Test");
+                Assert.Fail();
+            }
+
+
+
+
+
+
+            
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTNAME_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_LASTNAME_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_LASTNAME_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_LASTNAME_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_LastNameSortingAsc_Test", status, "ACSUP_LastNameSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_LastNameSortingAsc_Test", status, "ACSUP_LastNameSortingAsc_Test");
+                Assert.Fail();
+            }
+
+
+
+           
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTNAME_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_LASTNAME_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_LASTNAME_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_LASTNAME_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_LastNameSortingDesc_Test", status, "ACSUP_LastNameSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_LastNameSortingDesc_Test", status, "ACSUP_LastNameSortingDesc_Test");
+                Assert.Fail();
+            }
+
+
+           
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_EMAIL_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_EMAIL_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_EMAIL_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_EMAIL_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_EmailSortingDesc_Test", status, "ACSUP_EmailSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_EmailSortingDesc_Test", status, "ACSUP_EmailSortingDesc_Test");
+                Assert.Fail();
+            }
+
+
+
+            
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_EMAIL_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_EMAIL_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_EMAIL_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_EMAIL_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_EmailSortingAsc_Test", status, "ACSUP_EmailSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_EmailSortingAsc_Test", status, "ACSUP_EmailSortingAsc_Test");
+                Assert.Fail();
+            }
+
+
+
+
+           
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_ACTIVE_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_ACTIVE_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_ACTIVE_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_ACTIVE_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_ActiveSortingAsc_Test", status, "ACSUP_ActiveSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_ActiveSortingAsc_Test", status, "ACSUP_ActiveSortingAsc_Test");
+                Assert.Fail();
+            }
+
+           
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_ACTIVE_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_ACTIVE_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_ACTIVE_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_ACTIVE_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_ActiveSortingDesc_Test", status, "ACSUP_ActiveSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_ActiveSortingDesc_Test", status, "ACSUP_ActiveSortingDesc_Test");
+                Assert.Fail();
+            }
+
+
+            try
+            {
+
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTLOGIN_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_LASTLOGIN_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_LASTLOGIN_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_LASTLOGIN_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_LastLoginSortingDesc_Test", status, "ACSUP_LastLoginSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_LastLoginSortingDesc_Test", status, "ACSUP_LastLoginSortingDesc_Test");
+                Assert.Fail();
+            }
+
+           
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTLOGIN_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_LASTLOGIN_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_LASTLOGIN_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_LASTLOGIN_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_LastLoginSortingAsc_Test", status, "ACSUP_LastLoginSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACSUP_LastLoginSortingAsc_Test", status, "ACSUP_LastLoginSortingAsc_Test");
+                Assert.Fail();
+            }
+
+
+
+
+            ////////////////////////
 
 
             clsPHPTravels_LoginPage.fnSelectMenuSubMenu(objPHP.STR_ACCOUNTS_MENU, objPHP.STR_CUSTOMERS_SUBMENU);
-            clsPHPTravels_LoginPage.fnSorting(objPHP.STR_FIRSTNAME_HEADER);
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "Accounts_Customers_Selected_Test", status, "Accounts_Customers_Selected_Test");
-            clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTNAME_HEADER);
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_FirstNameSorting_Test", status, "ACCUS_FirstNameSorting_Test");
-            clsPHPTravels_LoginPage.fnSorting(objPHP.STR_EMAIL_HEADER);
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_LastNameSorting_Test", status, "ACCUS_LastNameSorting_Test");
-            clsPHPTravels_LoginPage.fnSorting(objPHP.STR_ACTIVE_HEADER);
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_EmailSorting_Test", status, "ACCUS_EmailSorting_Test");
-            clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTLOGIN_HEADER);
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_ActiveSorting_Test", status, "ACCUS_ActiveSorting_Test");
-            clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_LASTLOGIN_HEADER));
-            clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_LASTLOGIN_HEADER));
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_LastLoginSorting_Test", status, "ACCUS_LastLoginSorting_Test");
+            try
+            {
+                Assert.AreEqual(true, driver.Title.Contains("Customers Management"), "The Accounts-Customers Page was not loaded correctly.");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "Accounts_Customers_Selected_Test", status, "Accounts_Customers_Selected_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "Accounts_Customers_Selected_Test", status, "Accounts_Customers_Selected_Test");
+                Assert.Fail();
+            }
 
 
+           
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_FIRSTNAME_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_FIRSTNAME_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_FIRSTNAME_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_FIRSTNAME_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_FirstNameSortingDesc_Test", status, "ACCUS_FirstNameSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_FirstNameSortingDesc_Test", status, "ACCUS_FirstNameSortingDesc_Test");
+                Assert.Fail();
+            }
+
+
+
+        
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_FIRSTNAME_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_FIRSTNAME_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_FIRSTNAME_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_FIRSTNAME_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_FirstNameSortingAsc_Test", status, "ACCUS_FirstNameSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_FirstNameSortingAsc_Test", status, "ACCUS_FirstNameSortingAsc_Test");
+                Assert.Fail();
+            }
+
+
+
+
+
+
+           
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTNAME_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_LASTNAME_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_LASTNAME_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_LASTNAME_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_LastNameSortingAsc_Test", status, "ACCUS_LastNameSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_LastNameSortingAsc_Test", status, "ACCUS_LastNameSortingAsc_Test");
+                Assert.Fail();
+            }
+
+
+
+           
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTNAME_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_LASTNAME_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_LASTNAME_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_LASTNAME_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_LastNameSortingDesc_Test", status, "ACCUS_LastNameSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_LastNameSortingDesc_Test", status, "ACCUS_LastNameSortingDesc_Test");
+                Assert.Fail();
+            }
+
+
+           
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_EMAIL_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_EMAIL_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_EMAIL_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_EMAIL_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_EmailSortingDesc_Test", status, "ACCUS_EmailSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_EmailSortingDesc_Test", status, "ACCUS_EmailSortingDesc_Test");
+                Assert.Fail();
+            }
+
+
+
+           
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_EMAIL_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_EMAIL_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_EMAIL_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_EMAIL_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_EmailSortingAsc_Test", status, "ACCUS_EmailSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_EmailSortingAsc_Test", status, "ACCUS_EmailSortingAsc_Test");
+                Assert.Fail();
+            }
+
+
+
+
+         
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_ACTIVE_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_ACTIVE_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_ACTIVE_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_ACTIVE_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_ActiveSortingAsc_Test", status, "ACCUS_ActiveSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_ActiveSortingAsc_Test", status, "ACCUS_ActiveSortingAsc_Test");
+                Assert.Fail();
+            }
+
+            
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_ACTIVE_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_ACTIVE_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_ACTIVE_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_ACTIVE_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_ActiveSortingDesc_Test", status, "ACCUS_ActiveSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_ActiveSortingDesc_Test", status, "ACCUS_ActiveSortingDesc_Test");
+                Assert.Fail();
+            }
+
+
+          
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTLOGIN_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_LASTLOGIN_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_LASTLOGIN_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_LASTLOGIN_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUSP_LastLoginSortingDesc_Test", status, "ACCUS_LastLoginSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_LastLoginSortingDesc_Test", status, "ACCUS_LastLoginSortingDesc_Test");
+                Assert.Fail();
+            }
+
+           
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTLOGIN_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_LASTLOGIN_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_LASTLOGIN_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_LASTLOGIN_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_LastLoginSortingAsc_Test", status, "ACCUS_LastLoginSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACCUS_LastLoginSortingAsc_Test", status, "ACCUS_LastLoginSortingAsc_Test");
+                Assert.Fail();
+            }
+
+
+
+            ////////////////////////
 
             clsPHPTravels_LoginPage.fnSelectMenuSubMenu(objPHP.STR_ACCOUNTS_MENU, objPHP.STR_GUESTCUSTOMERS_SUBMENU);
-            clsPHPTravels_LoginPage.fnSorting(objPHP.STR_FIRSTNAME_HEADER);
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "Accounts_GuestCustomers_Selected_Test", status, "Accounts_GuestCustomers_Selected_Test");
-            clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTNAME_HEADER);
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGCUS_FirstNameSorting_Test", status, "ACGCUS_FirstNameSorting_Test");
-            clsPHPTravels_LoginPage.fnSorting(objPHP.STR_EMAIL_HEADER);
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGCUS_LastNameSorting_Test", status, "ACGCUS_LastNameSorting_Test");
-            clsPHPTravels_LoginPage.fnSorting(objPHP.STR_ACTIVE_HEADER);
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGCUS_EmailSorting_Test", status, "ACGCUS_EmailSorting_Test");
-            clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTLOGIN_HEADER);
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGCUS_ActiveSorting_Test", status, "ACGCUS_ActiveSorting_Test");
-            clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_LASTLOGIN_HEADER));
-            clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_LASTLOGIN_HEADER));
-            objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGCUS_LastLoginSorting_Test", status, "ACGCUS_LastLoginSorting_Test");
+            try
+            {
+                Assert.AreEqual(true, driver.Title.Contains("Guest Management"), "The Accounts-GuestCustomers Page was not loaded correctly.");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "Accounts_GuestCustomers_Selected_Test", status, "Accounts_GuestCustomers_Selected_Test");
+            }
 
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "Accounts_GuestCustomers_Selected_Test", status, "Accounts_GuestCustomers_Selected_Test");
+                Assert.Fail();
+            }
+
+           
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_FIRSTNAME_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_FIRSTNAME_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_FIRSTNAME_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_FIRSTNAME_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGUE_FirstNameSortingDesc_Test", status, "ACGUE_FirstNameSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGUE_FirstNameSortingDesc_Test", status, "ACGUE_FirstNameSortingDesc_Test");
+                Assert.Fail();
+            }
+
+
+
+           
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_FIRSTNAME_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_FIRSTNAME_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_FIRSTNAME_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_FIRSTNAME_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGUE_FirstNameSortingAsc_Test", status, "ACGUE_FirstNameSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGUE_FirstNameSortingAsc_Test", status, "ACGUE_FirstNameSortingAsc_Test");
+                Assert.Fail();
+            }
+
+
+
+
+
+
+            try
+            {
+
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTNAME_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_LASTNAME_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_LASTNAME_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_LASTNAME_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGUE_LastNameSortingAsc_Test", status, "ACGUE_LastNameSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGUE_LastNameSortingAsc_Test", status, "ACGUE_LastNameSortingAsc_Test");
+                Assert.Fail();
+            }
+
+
+
+           
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTNAME_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_LASTNAME_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_LASTNAME_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_LASTNAME_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGUE_LastNameSortingDesc_Test", status, "ACGUE_LastNameSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGUE_LastNameSortingDesc_Test", status, "ACGUE_LastNameSortingDesc_Test");
+                Assert.Fail();
+            }
+
+
+           
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_EMAIL_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_EMAIL_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_EMAIL_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_EMAIL_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGUE_EmailSortingDesc_Test", status, "ACGUE_EmailSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGUE_EmailSortingDesc_Test", status, "ACGUE_EmailSortingDesc_Test");
+                Assert.Fail();
+            }
+
+
+
+            
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_EMAIL_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_EMAIL_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_EMAIL_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_EMAIL_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGUE_EmailSortingAsc_Test", status, "ACGUE_EmailSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGUE_EmailSortingAsc_Test", status, "ACGUE_EmailSortingAsc_Test");
+                Assert.Fail();
+            }
+
+
+
+
+           
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_ACTIVE_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_ACTIVE_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_ACTIVE_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_ACTIVE_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGUE_ActiveSortingAsc_Test", status, "ACGUE_ActiveSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGUE_ActiveSortingAsc_Test", status, "ACGUE_ActiveSortingAsc_Test");
+                Assert.Fail();
+            }
+
+           
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_ACTIVE_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_ACTIVE_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_ACTIVE_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_ACTIVE_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGUE_ActiveSortingDesc_Test", status, "ACGUE_ActiveSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGUE_ActiveSortingDesc_Test", status, "ACGUE_ActiveSortingDesc_Test");
+                Assert.Fail();
+            }
+
+
+      
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTLOGIN_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_LASTLOGIN_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_LASTLOGIN_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_LASTLOGIN_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGUE_LastLoginSortingDesc_Test", status, "ACGUE_LastLoginSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGUE_LastLoginSortingDesc_Test", status, "ACGUE_LastLoginSortingDesc_Test");
+                Assert.Fail();
+            }
+
+         
+            try
+            {
+                clsPHPTravels_LoginPage.fnSorting(objPHP.STR_LASTLOGIN_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(objPHP.STR_LASTLOGIN_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(objPHP.STR_LASTLOGIN_HEADER_ASC));Assert.AreEqual(true, driver.FindElements(By.XPath(objPHP.STR_LASTLOGIN_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGUE_LastLoginSortingAsc_Test", status, "ACGUE_LastLoginSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, "ACGUE_LastLoginSortingAsc_Test", status, "ACGUE_LastLoginSortingAsc_Test");
+                Assert.Fail();
+            }
+
+
+
+            ////////////////////////
 
 
         }
