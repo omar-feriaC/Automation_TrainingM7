@@ -1,4 +1,6 @@
 ﻿using AutomationTraining_M7.Base_Files;
+using AutomationTraining_M7.Reporting;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
@@ -12,8 +14,9 @@ namespace AutomationTraining_M7.Page_Objects
         /*ATTRIBUTES*/
       
         private static IWebDriver _objDriver;
-       
-       
+        public static clsReportManager objRep = new clsReportManager();
+
+
 
         /*LOCATORS DESCRIPTION*/
         readonly static string STR_EMAIL_TXT = "email";
@@ -25,21 +28,21 @@ namespace AutomationTraining_M7.Page_Objects
         public string STR_SUPPLIERS_SUBMENU = "//a[contains(text(),'Suppliers')]";
         public string STR_CUSTOMERS_SUBMENU = "//a[text()='Customers']";
         public string STR_GUESTCUSTOMERS_SUBMENU = "//a[contains(text(),'GuestCustomers')]"; 
-        public string STR_FIRSTNAME_HEADER = "//th[contains(text(),'First Name')]"; 
-        public string STR_FIRSTNAME_HEADER_DESC = "//th[contains(text(),'↓ First Name')]";
-        public string STR_FIRSTNAME_HEADER_ASC = "//th[contains(text(),'↑ First Name')]";
-        public string STR_LASTNAME_HEADER = "//th[contains(text(),'Last Name')]";
-        public string STR_LASTNAME_HEADER_DESC = "//th[contains(text(),'↓ Last Name')]";
-        public string STR_LASTNAME_HEADER_ASC = "//th[contains(text(),'↑ Last Name')]";
-        public string STR_EMAIL_HEADER = "//th[contains(text(),'Email')]";
-        public string STR_EMAIL_HEADER_DESC = "//th[contains(text(),'↓ Email')]";
-        public string STR_EMAIL_HEADER_ASC = "//th[contains(text(),'↑ Email')]";
-        public string STR_ACTIVE_HEADER = "//th[contains(text(),'Active')]";
-        public string STR_ACTIVE_HEADER_DESC = "//th[contains(text(),'↓ Active')]";
-        public string STR_ACTIVE_HEADER_ASC = "//th[contains(text(),'↑ Active')]";
-        public string STR_LASTLOGIN_HEADER = "//th[contains(text(),'Last Login')]";
-        public string STR_LASTLOGIN_HEADER_DESC = "//th[contains(text(),'↓ Last Login')]";
-        public string STR_LASTLOGIN_HEADER_ASC = "//th[contains(text(),'↑ Last Login')]";
+        readonly static string  STR_FIRSTNAME_HEADER = "//th[contains(text(),'First Name')]"; 
+        readonly static string  STR_FIRSTNAME_HEADER_DESC = "//th[contains(text(),'↓ First Name')]";
+        readonly static string  STR_FIRSTNAME_HEADER_ASC = "//th[contains(text(),'↑ First Name')]";
+        readonly static string  STR_LASTNAME_HEADER = "//th[contains(text(),'Last Name')]";
+        readonly static string  STR_LASTNAME_HEADER_DESC = "//th[contains(text(),'↓ Last Name')]";
+        readonly static string  STR_LASTNAME_HEADER_ASC = "//th[contains(text(),'↑ Last Name')]";
+        readonly static string  STR_EMAIL_HEADER = "//th[contains(text(),'Email')]";
+        readonly static string  STR_EMAIL_HEADER_DESC = "//th[contains(text(),'↓ Email')]";
+        readonly static string  STR_EMAIL_HEADER_ASC = "//th[contains(text(),'↑ Email')]";
+        readonly static string  STR_ACTIVE_HEADER = "//th[contains(text(),'Active')]";
+        readonly static string  STR_ACTIVE_HEADER_DESC = "//th[contains(text(),'↓ Active')]";
+        readonly static string  STR_ACTIVE_HEADER_ASC = "//th[contains(text(),'↑ Active')]";
+        readonly static string  STR_LASTLOGIN_HEADER = "//th[contains(text(),'Last Login')]";
+        readonly static string  STR_LASTLOGIN_HEADER_DESC = "//th[contains(text(),'↓ Last Login')]";
+        readonly static string  STR_LASTLOGIN_HEADER_ASC = "//th[contains(text(),'↑ Last Login')]";
 
         /*CONSTRUCTOR*/
         public clsPHPTravels_LoginPage(IWebDriver pobjDriver)
@@ -112,7 +115,7 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
 
-
+        //Selects a Menu and Submenu based on parameters passed
         public static void fnSelectMenuSubMenu(String pMenu, String pSubMenu)
         {
 
@@ -131,7 +134,8 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
 
-        public static void fnSorting(string pHeader)
+        //Clicks on the element sent as parameter making sure it exists and visible
+        public static void fnClick(string pHeader)
         {
            
             try
@@ -151,6 +155,216 @@ namespace AutomationTraining_M7.Page_Objects
                 
                 driver.FindElement(By.XPath(pHeader)).Click();
             }
+
+
+        }
+
+
+        
+
+        //Works with all of the Sorting Headers in each of the SubMenus
+
+        public static void fnAccountsMenuSubMenusSorting(string pMenuSubmenuAcronym)
+        {
+            string status;
+
+            try
+            {
+                fnClick(STR_FIRSTNAME_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(STR_FIRSTNAME_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_FIRSTNAME_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_FIRSTNAME_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_FirstNameSortingDesc_Test", status, $"{pMenuSubmenuAcronym}_FirstNameSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_FirstNameSortingDesc_Test", status, $"{pMenuSubmenuAcronym}_FirstNameSortingDesc_Test");
+                Assert.Fail();
+            }
+
+
+
+
+            try
+            {
+                fnClick(STR_FIRSTNAME_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(STR_FIRSTNAME_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_FIRSTNAME_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_FIRSTNAME_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_FirstNameSortingAsc_Test", status, $"{pMenuSubmenuAcronym}_FirstNameSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_FirstNameSortingAsc_Test", status, $"{pMenuSubmenuAcronym}_FirstNameSortingAsc_Test");
+                Assert.Fail();
+            }
+
+
+
+
+
+
+
+            try
+            {
+                fnClick(STR_LASTNAME_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(STR_LASTNAME_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LASTNAME_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_LASTNAME_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_LastNameSortingAsc_Test", status, $"{pMenuSubmenuAcronym}_LastNameSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_LastNameSortingAsc_Test", status, $"{pMenuSubmenuAcronym}_LastNameSortingAsc_Test");
+                Assert.Fail();
+            }
+
+
+
+
+            try
+            {
+                fnClick(STR_LASTNAME_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(STR_LASTNAME_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LASTNAME_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_LASTNAME_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_LastNameSortingDesc_Test", status, $"{pMenuSubmenuAcronym}_LastNameSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_LastNameSortingDesc_Test", status, $"{pMenuSubmenuAcronym}_LastNameSortingDesc_Test");
+                Assert.Fail();
+            }
+
+
+
+            try
+            {
+                fnClick(STR_EMAIL_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(STR_EMAIL_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_EMAIL_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_EMAIL_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_EmailSortingDesc_Test", status, $"{pMenuSubmenuAcronym}_EmailSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_EmailSortingDesc_Test", status, $"{pMenuSubmenuAcronym}_EmailSortingDesc_Test");
+                Assert.Fail();
+            }
+
+
+
+
+            try
+            {
+                fnClick(STR_EMAIL_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(STR_EMAIL_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_EMAIL_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_EMAIL_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_EmailSortingAsc_Test", status, $"{pMenuSubmenuAcronym}_EmailSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_EmailSortingAsc_Test", status, $"{pMenuSubmenuAcronym}_EmailSortingAsc_Test");
+                Assert.Fail();
+            }
+
+
+
+
+
+            try
+            {
+                fnClick(STR_ACTIVE_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(STR_ACTIVE_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_ACTIVE_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_ACTIVE_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_ActiveSortingAsc_Test", status, $"{pMenuSubmenuAcronym}_ActiveSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_ActiveSortingAsc_Test", status, $"{pMenuSubmenuAcronym}_ActiveSortingAsc_Test");
+                Assert.Fail();
+            }
+
+            try
+            {
+
+                fnClick(STR_ACTIVE_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(STR_ACTIVE_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_ACTIVE_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_ACTIVE_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_ActiveSortingDesc_Test", status, $"{pMenuSubmenuAcronym}_ActiveSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_ActiveSortingDesc_Test", status, $"{pMenuSubmenuAcronym}_ActiveSortingDesc_Test");
+                Assert.Fail();
+            }
+
+
+
+            try
+            {
+                fnClick(STR_LASTLOGIN_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(STR_LASTLOGIN_HEADER_DESC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LASTLOGIN_HEADER_DESC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_LASTLOGIN_HEADER_DESC)).Count > 0, "The Descending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_LastLoginSortingDesc_Test", status, $"{pMenuSubmenuAcronym}_LastLoginSortingDesc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_LastLoginSortingDesc_Test", status, $"{pMenuSubmenuAcronym}_LastLoginSortingDesc_Test");
+                Assert.Fail();
+            }
+
+
+            try
+            {
+                fnClick(STR_LASTLOGIN_HEADER);
+                clsDriver.fnWaitForElementToExist(By.XPath(STR_LASTLOGIN_HEADER_ASC));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LASTLOGIN_HEADER_ASC));
+                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_LASTLOGIN_HEADER_ASC)).Count > 0, "The Ascending Sort did not work");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_LastLoginSortingAsc_Test", status, $"{pMenuSubmenuAcronym}_LastLoginSortingAsc_Test");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_LastLoginSortingAsc_Test", status, $"{pMenuSubmenuAcronym}_LastLoginSortingAsc_Test");
+                Assert.Fail();
+            }
+
+
+
 
 
         }
