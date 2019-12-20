@@ -30,7 +30,7 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_SIDEBAR_MENU_DASH = "//ul[@id='social-sidebar-menu']//*[text()='Dashboard']";
         readonly static string STR_LIVE_CHAT_POPUP = "//button[@class='e1mwfyk10 lc-4rgplc e1m5b1js0']";
 
-        readonly static string STR_MENU_ITEM = $"//ul[@id='social-sidebar-menu']/li//a[contains(text(),'{strMenuItem}')]";
+        readonly static string STR_MENU_ITEM = $"(//ul[@id='social-sidebar-menu']/li//*[contains(text(),'{strMenuItem}')]//ancestor::li/a)[1]";
         readonly static string STR_SUBMENU_ITEM = $"//ul[@id='social-sidebar-menu']/li//a[contains(text(),'{strSubMenuItem}')]";
 
         readonly static string STR_ACCOUNTS_MENU = "//a[@href='#ACCOUNTS']";
@@ -147,6 +147,7 @@ namespace AutomationTraining_M7.Page_Objects
             //objLiveChatPopUp.Click();
             if (!objSidebarMenuDash.Displayed)
             {                
+
                 objSidebarMenu.Click();
              }
 
@@ -154,8 +155,8 @@ namespace AutomationTraining_M7.Page_Objects
             clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_SIDEBAR_MENU_DASH));
             clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_SIDEBAR_MENU_DASH));
 
-            objSidebarMenuDash.Click();
-            objUpdateSubMenu.Click();
+           // objSidebarMenuDash.Click();
+            //objUpdateSubMenu.Click();
             //objSidebarMenu.Click();          
 
             //clsDriver.fnWaitForElementToExist(By.XPath(STR_SIDEBAR_MENU_DASH));

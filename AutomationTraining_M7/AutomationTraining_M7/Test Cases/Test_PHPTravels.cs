@@ -44,8 +44,10 @@ namespace AutomationTraining_M7.Test_Cases
             clsPHPTravels_LoginPage.fnClickLSideBarMenu();
             objRM.fnAddStepLogScreen(objTest, driver, "Side Menu Bar", "scr1.png", "Pass");
 
-            //objPHP.fnSelectMenuItem("Modules");
-            objPHP.fnSelectMenuItem("General", "Settings");
+            objPHP.fnSelectMenuItem("Tours");
+            objRM.fnAddStepLogScreen(objTest, driver, "Visa Menu Bar", "scr2.png", "Pass");
+
+            //objPHP.fnSelectMenuItem("General", "Settings");
         }
 
     }
