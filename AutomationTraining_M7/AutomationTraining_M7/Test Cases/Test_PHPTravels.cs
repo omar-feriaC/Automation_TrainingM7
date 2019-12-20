@@ -1,5 +1,6 @@
 ﻿using AutomationTraining_M7.Base_Files;
 using AutomationTraining_M7.Page_Objects;
+using AutomationTraining_M7.Reporting;
 using AventStack.ExtentReports;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -34,20 +35,24 @@ namespace AutomationTraining_M7.Test_Cases
 
             //Print in the console and Report the totals and values for Total links
             IList<IWebElement> ElementList = driver.FindElements(By.XPath("//div[contains(@class,'serverHeader')]//li"));
-            for(int x = 2; x< ElementList.Count; x++)
+            for (int x = 2; x < ElementList.Count; x++)
             {
                 Console.WriteLine(ElementList[x].Text);
+                clsReportManager.fnTestCaseResult(objTest, objExtent, objPHP);
                 objTest.Log(Status.Info, ElementList[x].Text);
             }
 
             //Access Menu and Submenus
-            for (int y = 0; y < ElementList.Count; y++)
+            //IList<IWebElement> ElementList2 = driver.FindElements(By.XPath("//ul[@id='ACCOUNTS']//li//a"));
+            /*for (int y = 0; y < ElementList2.Count; y++)
             {
-                clsPHPTravels_LoginPage.fnGetMenu(5, y);
-            }
-            
+                clsPHPTravels_LoginPage.fnGetMenu("Accounts");
 
-            
+            }*/
+            clsPHPTravels_LoginPage.fnGetMenu("Accounts");
+
+
+
         }
 
     }

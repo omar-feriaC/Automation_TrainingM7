@@ -73,13 +73,25 @@ namespace AutomationTraining_M7.Reporting
                     break;
                 case TestStatus.Skipped:
                     logstatus = Status.Skip;
+                    string strFileName2 = "Screenshot_" + time.ToString("MMddyyyy_HHmmss") + ".png";
+                    var strImagePath2 = fnCaptureImage(pobjDriver, strFileName2);
+                    pobjTest.Log(Status.Skip, "Fail");
+                    pobjTest.Skip("Snapshot below: ", MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath2).Build());
                     break;
                 case TestStatus.Passed:
                     logstatus = Status.Pass;
+                    string strFileName3 = "Screenshot_" + time.ToString("MMddyyyy_HHmmss") + ".png";
+                    var strImagePath3 = fnCaptureImage(pobjDriver, strFileName3);
+                    pobjTest.Log(Status.Pass, "Fail");
+                    pobjTest.Pass("Snapshot below: ", MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath3).Build());
                     break;
                 default:
                     logstatus = Status.Warning;
                     Console.WriteLine("The status: " + status + " is not supported.");
+                    string strFileName4 = "Screenshot_" + time.ToString("MMddyyyy_HHmmss") + ".png";
+                    var strImagePath4 = fnCaptureImage(pobjDriver, strFileName4);
+                    pobjTest.Log(Status.Warning, "Fail");
+                    pobjTest.Warning("Snapshot below: ", MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath4).Build());
                     break;
             }
             pobjTest.Log(logstatus, "Test ended with " + logstatus + stacktrace);

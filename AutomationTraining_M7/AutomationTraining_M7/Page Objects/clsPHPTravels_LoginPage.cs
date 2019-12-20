@@ -1,4 +1,5 @@
 ﻿using AutomationTraining_M7.Base_Files;
+using AutomationTraining_M7.Reporting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
@@ -13,14 +14,12 @@ namespace AutomationTraining_M7.Page_Objects
     {
         /*ATTRIBUTES*/
         public static WebDriverWait wait;
-        private static IWebDriver objDriver;
+        public static IWebDriver objDriver;
 
         /*LOCATORS DESCRIPTION*/
         readonly static string STR_EMAIL_TXT = "email";
         readonly static string STR_PASSWORD_TXT = "password";
         readonly static string STR_LOGIN_BTN = "//span[contains(text(),'Login')]";
-        //readonly static string STR_ACCOUNTS_LNK = "//a[contains(text(),'Accounts')]";
-        readonly static string STR_SUB_ACCOUNTS_LNK = "//ul[@id='ACCOUNTS']//li";
         readonly static string STR_HAMBURGER_BTN = "sidebarCollapse";
 
 
@@ -35,8 +34,6 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objEmailTxt = driver.FindElement(By.Name(STR_EMAIL_TXT)); 
         private static IWebElement objPasswordTxt = driver.FindElement(By.Name(STR_PASSWORD_TXT));
         private static IWebElement objLoginBtn = driver.FindElement(By.XPath(STR_LOGIN_BTN));
-        //private static IWebElement objAccountsLnk = driver.FindElement(By.XPath(STR_ACCOUNTS_LNK));
-        //private static IWebElement objSubMenuAccounts = driver.FindElement(By.XPath(STR_SUB_ACCOUNTS_LNK));
         
 
         /*METHODS/FUNCTIONS*/
@@ -91,39 +88,24 @@ namespace AutomationTraining_M7.Page_Objects
             wait.Until(ExpectedConditions.ElementToBeClickable(By.Id(STR_HAMBURGER_BTN)));
         }
 
-        //Get Menus
-        public static void fnGetMenu(int pintingIndexNum, int pintIndexNumber)
+        //Get Menus and Submenus
+        public static void fnGetMenu(string pstrMenuOption)
         {
-            IList<IWebElement> ElementList2 = driver.FindElements(By.XPath("//body[contains(@class,'pace-done')]/div[@class='wrapper']/nav[@id='sidebar']/div[@class='social-sidebar']/ul[@id='social-sidebar-menu']/li[" + pintingIndexNum + "]/a"));
-            IList<IWebElement> ElementList3 = driver.FindElements(By.XPath("//ul[@id='ACCOUNTS']//li[" + pintIndexNumber + "]//a"));
+            IList<IWebElement> ElementList2 = driver.FindElements(By.XPath("//a[contains(text()," + pstrMenuOption + ")]"));
+            if (ElementList2.Count > 1) {
+                ElementList2[0].Click();
+                IList<IWebElement> ElementList3 = driver.FindElements(By.XPath("//ul[@id='ACCOUNTS']//li//a"));
+                for (int i = 0; i < ElementList3.Count; i++) {
+                    wait.Until(ExpectedConditions.ElementExists(By.XPath("//ul[@id='ACCOUNTS']//li[" + i + "]//a")));
+                    wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//ul[@id='ACCOUNTS']//li[" + i + "]//a")));
+                    wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//ul[@id='ACCOUNTS']//li[" + i + "]//a")));
+                    ElementList3[i].Click();
+                    //clsReportManager.fnTestCaseResult("", "", "");
+                }
+
+            }
+            
+           
         }
-
-        /*
-        //Get Submenus
-        public static void fnGetSubmenu(string pstrIndexNumber)
-        {
-            IList<IWebElement> ElementList3 = driver.FindElements(By.XPath("//ul[@id='ACCOUNTS']//li[" + pstrIndexNumber + "]//a"));
-        }
-        
-        private IWebElement GetAccountLink()
-        {
-            return objAccountsLnk;
-        }
-
-        public static void fnAccountLink()
-        {
-
-        }
-
-        private IWebElement GetSubmenuAccounts()
-        {
-            return objSubMenuAccounts;
-        }
-
-        public static void fnSubmenuAccounts()
-        {
-
-        }*/
-
     }
 }
