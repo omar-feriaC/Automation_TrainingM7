@@ -90,6 +90,40 @@ namespace AutomationTraining_M7.Reporting
             pobjExtent.Flush();
         }
 
+        public void fnAddStepLog(ExtentTest pobjTest, string pstrMessage, string pStatus)
+        {
+            pobjTest.Log(Status.Info, pstrMessage);
+            switch (pStatus)
+            {
+                case "pass":// TestStatus.Passed:
+                    pobjTest.Log(Status.Pass, pstrMessage);
+                    break;
+                case "Skip":
+                    pobjTest.Log(Status.Skip, pstrMessage);
+                    break;
+                case "Warning":
+                    pobjTest.Log(Status.Warning, pstrMessage);
+                    break;
+                case "Error":
+                    pobjTest.Log(Status.Error, pstrMessage);
+                    break;
+                case "Fail":
+                    pobjTest.Log(Status.Fail, pstrMessage);
+                    break;
+                case "Fatal":
+                    pobjTest.Log(Status.Fatal, pstrMessage);
+                    break;
+                case "Info":
+                    pobjTest.Log(Status.Info, pstrMessage);
+                    break;
+                case "Debug":
+                    pobjTest.Log(Status.Debug, pstrMessage);
+                    break;
+                default:
+                    pobjTest.Log(Status.Info, pstrMessage);
+                    break;
+            }
 
+        }
     }
 }

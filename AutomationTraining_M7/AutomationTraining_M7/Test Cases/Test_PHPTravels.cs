@@ -32,8 +32,21 @@ namespace AutomationTraining_M7.Test_Cases
             clsPHPTravels_LoginPage.fnEnterEmail(ConfigurationManager.AppSettings.Get("email"));
             clsPHPTravels_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
             clsPHPTravels_LoginPage.fnClickLoginButton();
+            //Open LiveChat
+
+            clsPHPTravels_LoginPage.fnClickOpenLiveChat();
+            //Close LiveChat
+            clsPHPTravels_LoginPage.fnClickCloseLiveChat();
+            
+            //Click HamburguerMenu
             clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
-            Assert.AreEqual(true, driver.Title.Contains("Dashboard"), "The Dashboard was not loaded correctly.");
+            clsPHPTravels_LoginPage.fnClickHamburgerMenu();
+            
+            //Assert.AreEqual(true, driver.Title.Contains("Dashboard"), "The Dashboard was not loaded correctly.");
+            
+            //Close Accounts Menu
+            clsPHPTravels_LoginPage.fnClickAccountsMenu();
+
 
         }
 
