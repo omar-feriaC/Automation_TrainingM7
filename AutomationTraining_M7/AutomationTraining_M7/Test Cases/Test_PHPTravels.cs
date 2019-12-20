@@ -38,11 +38,12 @@ namespace AutomationTraining_M7.Test_Cases
             {
                 objRM.fnAddStepLog(objTest, item, "Pass");
             }
-            
             objRM.fnAddStepLogScreen(objTest, driver, "Click in Side Menu", "scr.png", "Pass");
-            //Thread.Sleep(100);
+            
+            
             clsPHPTravels_LoginPage.fnClickLSideBarMenu();
             objRM.fnAddStepLogScreen(objTest, driver, "Side Menu Bar", "scr1.png", "Pass");
+
             //objPHP.fnSelectMenuItem("Modules");
             objPHP.fnSelectMenuItem("General", "Settings");
         }

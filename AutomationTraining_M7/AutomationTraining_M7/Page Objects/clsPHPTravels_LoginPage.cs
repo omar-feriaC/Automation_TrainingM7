@@ -33,6 +33,18 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_MENU_ITEM = $"//ul[@id='social-sidebar-menu']/li//a[contains(text(),'{strMenuItem}')]";
         readonly static string STR_SUBMENU_ITEM = $"//ul[@id='social-sidebar-menu']/li//a[contains(text(),'{strSubMenuItem}')]";
 
+        readonly static string STR_ACCOUNTS_MENU = "//a[@href='#ACCOUNTS']";
+        readonly static string STR_AC_ADMINS_SUBMENU = "//a[contains(text(), 'Admins')]";
+        readonly static string STR_AC_SUPPLIERS_SUBMENU = "//a[contains(text(), 'Suppliers')]";
+        readonly static string STR_AC_CUSTOMERS_SUBMENU = "//a[text()='Customers']";
+        readonly static string STR_AC_GUESTCUSTOMERS_SUBMENU = "//a[contains(text(), 'GuestCustomers')]";
+
+        readonly static string STR_FIRSTnAME_HEADER = "";
+        readonly static string STR_LASTNAME_HEADER = "";
+        readonly static string STR_EMAIL_HEADER = "";
+        readonly static string STR_ACTIVE_HEADER = "";
+        readonly static string STR_LASTLOGIN_HEADER = "";
+
         /*CONSTRUCTOR*/
         public clsPHPTravels_LoginPage(IWebDriver pobjDriver)
         {
@@ -53,6 +65,8 @@ namespace AutomationTraining_M7.Page_Objects
 
         private static IWebElement objMenuItem => _objDriver.FindElement(By.XPath(STR_MENU_ITEM));
         private static IWebElement objSubMenuItem => _objDriver.FindElement(By.XPath(STR_SUBMENU_ITEM));
+
+
 
         /*METHODS/FUNCTIONS*/
 
