@@ -27,10 +27,20 @@ namespace AutomationTraining_M7.Test_Cases
 
             //Login Action
             Assert.AreEqual(true, driver.Title.Contains("Administator Login"), "The Login Page was not loaded correctly.");
+           
             clsPHPTravels_LoginPage.fnEnterEmail(ConfigurationManager.AppSettings.Get("email"));
             clsPHPTravels_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
+            clsPHPTravels_LoginPage.fnCloseHelpWindowifPresent();
             clsPHPTravels_LoginPage.fnClickLoginButton();
+
             clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
+
+           
+            clsPHPTravels_LoginPage.fnMinimizeChatWindowifPresent();
+           
+
+
+
             Assert.AreEqual(true, driver.Title.Contains("Dashboard"), "The Dashboard was not loaded correctly.");
 
             //Printing the Total Links info in Console and adding them to the Extent Report
@@ -60,6 +70,8 @@ namespace AutomationTraining_M7.Test_Cases
 
 
             clsPHPTravels_LoginPage.fnSelectMenuSubMenu(objPHP.STR_ACCOUNTS_MENU, objPHP.STR_ADMINS_SUBMENU);
+         
+
             try { 
             Assert.AreEqual(true, driver.Title.Contains("Admins Management"), "The Accounts-Admin Page was not loaded correctly.");
             status="Passed";
@@ -82,6 +94,8 @@ namespace AutomationTraining_M7.Test_Cases
 
 
             clsPHPTravels_LoginPage.fnSelectMenuSubMenu(objPHP.STR_ACCOUNTS_MENU, objPHP.STR_SUPPLIERS_SUBMENU);
+           
+
             try
             {
                 Assert.AreEqual(true, driver.Title.Contains("Suppliers Management"), "The Accounts-Suppliers Page was not loaded correctly.");
@@ -105,6 +119,8 @@ namespace AutomationTraining_M7.Test_Cases
 
 
             clsPHPTravels_LoginPage.fnSelectMenuSubMenu(objPHP.STR_ACCOUNTS_MENU, objPHP.STR_CUSTOMERS_SUBMENU);
+       
+
             try
             {
                 Assert.AreEqual(true, driver.Title.Contains("Customers Management"), "The Accounts-Customers Page was not loaded correctly.");
@@ -126,6 +142,8 @@ namespace AutomationTraining_M7.Test_Cases
             ////////////////////////
 
             clsPHPTravels_LoginPage.fnSelectMenuSubMenu(objPHP.STR_ACCOUNTS_MENU, objPHP.STR_GUESTCUSTOMERS_SUBMENU);
+          
+
             try
             {
                 Assert.AreEqual(true, driver.Title.Contains("Guest Management"), "The Accounts-GuestCustomers Page was not loaded correctly.");

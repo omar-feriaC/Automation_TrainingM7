@@ -2,6 +2,7 @@
 using AutomationTraining_M7.Reporting;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
@@ -12,7 +13,7 @@ namespace AutomationTraining_M7.Page_Objects
     class clsPHPTravels_LoginPage : BaseTest
     {
         /*ATTRIBUTES*/
-      
+
         private static IWebDriver _objDriver;
         public static clsReportManager objRep = new clsReportManager();
 
@@ -27,35 +28,40 @@ namespace AutomationTraining_M7.Page_Objects
         public string STR_ADMINS_SUBMENU = "//a[contains(text(),'Admins')]";
         public string STR_SUPPLIERS_SUBMENU = "//a[contains(text(),'Suppliers')]";
         public string STR_CUSTOMERS_SUBMENU = "//a[text()='Customers']";
-        public string STR_GUESTCUSTOMERS_SUBMENU = "//a[contains(text(),'GuestCustomers')]"; 
-        readonly static string  STR_FIRSTNAME_HEADER = "//th[contains(text(),'First Name')]"; 
-        readonly static string  STR_FIRSTNAME_HEADER_DESC = "//th[contains(text(),'↓ First Name')]";
-        readonly static string  STR_FIRSTNAME_HEADER_ASC = "//th[contains(text(),'↑ First Name')]";
-        readonly static string  STR_LASTNAME_HEADER = "//th[contains(text(),'Last Name')]";
-        readonly static string  STR_LASTNAME_HEADER_DESC = "//th[contains(text(),'↓ Last Name')]";
-        readonly static string  STR_LASTNAME_HEADER_ASC = "//th[contains(text(),'↑ Last Name')]";
-        readonly static string  STR_EMAIL_HEADER = "//th[contains(text(),'Email')]";
-        readonly static string  STR_EMAIL_HEADER_DESC = "//th[contains(text(),'↓ Email')]";
-        readonly static string  STR_EMAIL_HEADER_ASC = "//th[contains(text(),'↑ Email')]";
-        readonly static string  STR_ACTIVE_HEADER = "//th[contains(text(),'Active')]";
-        readonly static string  STR_ACTIVE_HEADER_DESC = "//th[contains(text(),'↓ Active')]";
-        readonly static string  STR_ACTIVE_HEADER_ASC = "//th[contains(text(),'↑ Active')]";
-        readonly static string  STR_LASTLOGIN_HEADER = "//th[contains(text(),'Last Login')]";
-        readonly static string  STR_LASTLOGIN_HEADER_DESC = "//th[contains(text(),'↓ Last Login')]";
-        readonly static string  STR_LASTLOGIN_HEADER_ASC = "//th[contains(text(),'↑ Last Login')]";
+        public string STR_GUESTCUSTOMERS_SUBMENU = "//a[contains(text(),'GuestCustomers')]";
+        readonly static string STR_FIRSTNAME_HEADER = "//th[contains(text(),'First Name')]";
+        readonly static string STR_FIRSTNAME_HEADER_DESC = "//th[contains(text(),'↓ First Name')]";
+        readonly static string STR_FIRSTNAME_HEADER_ASC = "//th[contains(text(),'↑ First Name')]";
+        readonly static string STR_LASTNAME_HEADER = "//th[contains(text(),'Last Name')]";
+        readonly static string STR_LASTNAME_HEADER_DESC = "//th[contains(text(),'↓ Last Name')]";
+        readonly static string STR_LASTNAME_HEADER_ASC = "//th[contains(text(),'↑ Last Name')]";
+        readonly static string STR_EMAIL_HEADER = "//th[contains(text(),'Email')]";
+        readonly static string STR_EMAIL_HEADER_DESC = "//th[contains(text(),'↓ Email')]";
+        readonly static string STR_EMAIL_HEADER_ASC = "//th[contains(text(),'↑ Email')]";
+        readonly static string STR_ACTIVE_HEADER = "//th[contains(text(),'Active')]";
+        readonly static string STR_ACTIVE_HEADER_DESC = "//th[contains(text(),'↓ Active')]";
+        readonly static string STR_ACTIVE_HEADER_ASC = "//th[contains(text(),'↑ Active')]";
+        readonly static string STR_LASTLOGIN_HEADER = "//th[contains(text(),'Last Login')]";
+        readonly static string STR_LASTLOGIN_HEADER_DESC = "//th[contains(text(),'↓ Last Login')]";
+        readonly static string STR_LASTLOGIN_HEADER_ASC = "//th[contains(text(),'↑ Last Login')]";
+        readonly static string STR_CHAT_FRAME = "chat-widget";
+        readonly static string STR_CHAT_MAXIMIZEDWINDOW = "//div[@id='chat-widget-container' and contains(@style,'height: 652px')] ";
+        readonly static string STR_CHAT_MINIMIZE_BTN = "//button[@class='e1mwfyk10 lc-4rgplc e1m5b1js0']";
+        readonly static string STR_CHAT_HELPWINDOW = "livechat-eye-catcher";
+        readonly static string STR_CHAT_HELPWINDOW_X = "//div[contains(text(),'×')]";
 
         /*CONSTRUCTOR*/
         public clsPHPTravels_LoginPage(IWebDriver pobjDriver)
         {
             _objDriver = pobjDriver;
-           
+
         }
 
         /*OBJECT DEFINITION*/
-        private static IWebElement objEmailTxt = driver.FindElement(By.Name(STR_EMAIL_TXT)); 
+        private static IWebElement objEmailTxt = driver.FindElement(By.Name(STR_EMAIL_TXT));
         private static IWebElement objPasswordTxt = driver.FindElement(By.Name(STR_PASSWORD_TXT));
         private static IWebElement objLoginBtn = driver.FindElement(By.XPath(STR_LOGIN_BTN));
-    
+
 
         /*METHODS/FUNCTIONS*/
 
@@ -83,7 +89,7 @@ namespace AutomationTraining_M7.Page_Objects
         {
             clsDriver.fnWaitForElementToExist(By.Name(STR_PASSWORD_TXT));
             clsDriver.fnWaitForElementToBeVisible(By.Name(STR_PASSWORD_TXT));
-          
+
             objPasswordTxt.Clear();
             objPasswordTxt.SendKeys(pstrPass);
         }
@@ -100,8 +106,10 @@ namespace AutomationTraining_M7.Page_Objects
             clsDriver.fnWaitForElementToExist(By.XPath(STR_LOGIN_BTN));
             clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LOGIN_BTN));
             clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_LOGIN_BTN));
-           
             objLoginBtn.Click();
+
+
+
         }
 
         /*Hamburger Button*/
@@ -121,13 +129,13 @@ namespace AutomationTraining_M7.Page_Objects
 
             clsDriver.fnWaitForElementToExist(By.XPath(pMenu));
             clsDriver.fnWaitForElementToBeVisible(By.XPath(pMenu));
-          
+            clsDriver.fnWaitForElementToBeClickable(By.XPath(pMenu));
 
             driver.FindElement(By.XPath(pMenu)).Click();
 
             clsDriver.fnWaitForElementToExist(By.XPath(pSubMenu));
             clsDriver.fnWaitForElementToBeVisible(By.XPath(pSubMenu));
-           
+            clsDriver.fnWaitForElementToBeClickable(By.XPath(pSubMenu));
 
 
             driver.FindElement(By.XPath(pSubMenu)).Click();
@@ -137,22 +145,22 @@ namespace AutomationTraining_M7.Page_Objects
         //Clicks on the element sent as parameter making sure it exists and visible
         public static void fnClick(string pHeader)
         {
-           
+
+
+
             try
             {
 
                 clsDriver.fnWaitForElementToExist(By.XPath(pHeader));
                 clsDriver.fnWaitForElementToBeVisible(By.XPath(pHeader));
-              
                 driver.FindElement(By.XPath(pHeader)).Click();
-               
+
             }
 
             catch (StaleElementReferenceException)
             {
                 clsDriver.fnWaitForElementToExist(By.XPath(pHeader));
                 clsDriver.fnWaitForElementToBeVisible(By.XPath(pHeader));
-                
                 driver.FindElement(By.XPath(pHeader)).Click();
             }
 
@@ -160,7 +168,52 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
 
-        
+
+        //Minimize Chat Window
+        public static void fnMinimizeChatWindowifPresent()
+        {
+
+
+            if (driver.FindElements(By.XPath(STR_CHAT_MAXIMIZEDWINDOW)).Count > 0)
+            {
+
+                driver.SwitchTo().Frame(driver.FindElement(By.Id(STR_CHAT_FRAME)));
+                clsDriver.fnWaitForElementToExist(By.XPath(STR_CHAT_MINIMIZE_BTN));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_CHAT_MINIMIZE_BTN));
+                clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_CHAT_MINIMIZE_BTN));
+                driver.FindElement(By.XPath(STR_CHAT_MINIMIZE_BTN)).Click();
+                driver.SwitchTo().ParentFrame();
+
+            }
+
+
+
+        }
+
+
+
+        //Cloaw Help Window
+        public static void fnCloseHelpWindowifPresent()
+        {
+
+
+            if (driver.FindElements(By.Id(STR_CHAT_HELPWINDOW)).Count > 0)
+            {
+
+
+                IWebElement web_Element_To_Be_Hovered = driver.FindElement(By.Id(STR_CHAT_HELPWINDOW));
+                Actions action = new Actions(driver);
+                action.MoveToElement(web_Element_To_Be_Hovered).Build().Perform();
+                clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_CHAT_HELPWINDOW_X));
+                driver.FindElement(By.XPath(STR_CHAT_HELPWINDOW_X)).Click();
+               
+
+            }
+
+
+
+        }
+
 
         //Works with all of the Sorting Headers in each of the SubMenus
 
