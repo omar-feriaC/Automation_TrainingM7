@@ -39,11 +39,11 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_AC_CUSTOMERS_SUBMENU = "//a[text()='Customers']";
         readonly static string STR_AC_GUESTCUSTOMERS_SUBMENU = "//a[contains(text(), 'GuestCustomers')]";
 
-        readonly static string STR_FIRSTnAME_HEADER = "";
-        readonly static string STR_LASTNAME_HEADER = "";
-        readonly static string STR_EMAIL_HEADER = "";
-        readonly static string STR_ACTIVE_HEADER = "";
-        readonly static string STR_LASTLOGIN_HEADER = "";
+        readonly static string STR_FIRSTnAME_HEADER = "//th[contains(text(), 'First Name')]";
+        readonly static string STR_LASTNAME_HEADER = "//th[contains(text(), 'Last Name')]";
+        readonly static string STR_EMAIL_HEADER = "//th[contains(text(), 'Email')]";
+        readonly static string STR_ACTIVE_HEADER = "//th[contains(text(), 'Active')]";
+        readonly static string STR_LASTLOGIN_HEADER = "//th[contains(text(), 'Last Login')]";
 
         /*CONSTRUCTOR*/
         public clsPHPTravels_LoginPage(IWebDriver pobjDriver)
