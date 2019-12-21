@@ -46,7 +46,11 @@ namespace AutomationTraining_M7.Test_Cases
             
             //Close Accounts Menu
             clsPHPTravels_LoginPage.fnClickAccountsMenu();
-
+            List<string> strTotVal = clsPHPTravels_LoginPage.fnGetTotalsValuesTxt();
+            foreach (var item in strTotVal)
+            {
+                objRM.fnAddStepLog(objTest, item, "Pass");
+            }
 
         }
 

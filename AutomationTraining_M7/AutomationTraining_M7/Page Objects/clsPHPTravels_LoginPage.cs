@@ -135,20 +135,7 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
         //ACCOUNTS SUBMENUS******************
-        public static List<string> fnClickAccountsSubMenuTxt()
-        {
-            IList<IWebElement> objGetAccountsSubMenuTxt = _objDriver.FindElements(By.XPath("//ul[@id='ACCOUNTS']"));
-            List<string> strAccountsSubMenu = new List<string>();
 
-            foreach (var vList in objGetAccountsSubMenuTxt)
-            {
-                strAccountsSubMenu.Add(vList.Text);
-                Console.WriteLine(vList.Text);
-            }
-
-            return strAccountsSubMenu;
-
-        }
         //*********************ACCOUNTS SUBMENUS
 
 
