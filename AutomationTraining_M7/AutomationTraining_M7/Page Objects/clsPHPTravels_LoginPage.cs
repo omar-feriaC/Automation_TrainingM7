@@ -107,9 +107,6 @@ namespace AutomationTraining_M7.Page_Objects
             clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LOGIN_BTN));
             clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_LOGIN_BTN));
             objLoginBtn.Click();
-
-
-
         }
 
         /*Hamburger Button*/
@@ -118,8 +115,6 @@ namespace AutomationTraining_M7.Page_Objects
             clsDriver.fnWaitForElementToExist(By.Id(STR_HAMBURGER_BTN));
             clsDriver.fnWaitForElementToBeVisible(By.Id(STR_HAMBURGER_BTN));
             clsDriver.fnWaitForElementToBeClickable(By.Id(STR_HAMBURGER_BTN));
-
-
         }
 
 
@@ -142,11 +137,35 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
 
+
+
+
+        //Account Menu Assertions
+        public static void fnAccountMenuAssertions(string pTitle, string pTitleMessage, string pMessageScreen)
+        {
+
+            string status;
+            try
+            {
+                Assert.AreEqual(true, driver.Title.Contains($"{pTitle}"), $"{pTitleMessage}");
+                status = "Passed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMessageScreen}", status, $"{pMessageScreen}");
+            }
+
+            catch
+            {
+                status = "Failed";
+                objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMessageScreen}", status, $"{pMessageScreen}");
+                Assert.Fail();
+            }
+
+
+        }
+
+
         //Clicks on the element sent as parameter making sure it exists and visible
         public static void fnClick(string pHeader)
         {
-
-
 
             try
             {
@@ -164,7 +183,6 @@ namespace AutomationTraining_M7.Page_Objects
                 driver.FindElement(By.XPath(pHeader)).Click();
             }
 
-
         }
 
 
@@ -172,7 +190,6 @@ namespace AutomationTraining_M7.Page_Objects
         //Minimize Chat Window
         public static void fnMinimizeChatWindowifPresent()
         {
-
 
             if (driver.FindElements(By.XPath(STR_CHAT_MAXIMIZEDWINDOW)).Count > 0)
             {
@@ -185,8 +202,6 @@ namespace AutomationTraining_M7.Page_Objects
                 driver.SwitchTo().ParentFrame();
 
             }
-
-
 
         }
 
@@ -209,8 +224,6 @@ namespace AutomationTraining_M7.Page_Objects
                
 
             }
-
-
 
         }
 
@@ -239,8 +252,6 @@ namespace AutomationTraining_M7.Page_Objects
             }
 
 
-
-
             try
             {
                 fnClick(STR_FIRSTNAME_HEADER);
@@ -257,11 +268,6 @@ namespace AutomationTraining_M7.Page_Objects
                 objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_FirstNameSortingAsc_Test", status, $"{pMenuSubmenuAcronym}_FirstNameSortingAsc_Test");
                 Assert.Fail();
             }
-
-
-
-
-
 
 
             try
@@ -282,8 +288,6 @@ namespace AutomationTraining_M7.Page_Objects
             }
 
 
-
-
             try
             {
                 fnClick(STR_LASTNAME_HEADER);
@@ -300,7 +304,6 @@ namespace AutomationTraining_M7.Page_Objects
                 objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_LastNameSortingDesc_Test", status, $"{pMenuSubmenuAcronym}_LastNameSortingDesc_Test");
                 Assert.Fail();
             }
-
 
 
             try
@@ -321,8 +324,6 @@ namespace AutomationTraining_M7.Page_Objects
             }
 
 
-
-
             try
             {
                 fnClick(STR_EMAIL_HEADER);
@@ -339,9 +340,6 @@ namespace AutomationTraining_M7.Page_Objects
                 objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_EmailSortingAsc_Test", status, $"{pMenuSubmenuAcronym}_EmailSortingAsc_Test");
                 Assert.Fail();
             }
-
-
-
 
 
             try
@@ -380,7 +378,6 @@ namespace AutomationTraining_M7.Page_Objects
             }
 
 
-
             try
             {
                 fnClick(STR_LASTLOGIN_HEADER);
@@ -415,10 +412,6 @@ namespace AutomationTraining_M7.Page_Objects
                 objRep.fnStepCaptureImage(objExtent, objTest, driver, $"{pMenuSubmenuAcronym}_LastLoginSortingAsc_Test", status, $"{pMenuSubmenuAcronym}_LastLoginSortingAsc_Test");
                 Assert.Fail();
             }
-
-
-
-
 
         }
 
