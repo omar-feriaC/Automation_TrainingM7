@@ -15,14 +15,10 @@ namespace AutomationTraining_M7.Test_Cases
 {
     class Test_PHPTravels : BaseTest
     {
-        //clsPHPTravels_LoginPage objPHP;
-        //clsPHPTravels_Dashboard_Page objDashboard;
         [Test]
         public void Test_M9Exercise()
         {
-            //Init login object(s)
             objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
-            //objPHP = new clsPHPTravels_LoginPage(driver);
 
             //Login action(s)
             Assert.AreEqual(true, driver.Title.Contains("Administator Login"), "The Login Page was not loaded correctly.");
@@ -31,9 +27,6 @@ namespace AutomationTraining_M7.Test_Cases
             clsPHPTravels_LoginPage.fnClickLoginButton();
             clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
             Assert.AreEqual(true, driver.Title.Contains("Dashboard"), "The Dashboard was not loaded correctly.");
-
-            //Init dashboaard object(s)
-            //objDashboard = new clsPHPTravels_Dashboard_Page(driver);
 
             //Dashboard action(s)
             Console.WriteLine(ClsPHPTravels_Dashboard_Page.GetTotalAdminsLink().Text);

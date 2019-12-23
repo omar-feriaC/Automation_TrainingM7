@@ -13,9 +13,6 @@ namespace AutomationTraining_M7.Page_Objects
     class ClsPHPTravels_Dashboard_Page : BaseTest
     {
         /*ATTRIBUTES*/
-        //public static WebDriverWait _driverWait;
-        //private static IWebDriver _objDriver;
-
         public static WebDriverWait _driverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 40));
 
         /*LOCATORS DESCRIPTION*/
@@ -45,15 +42,6 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_LASTLOGIN_TH = "//th[contains(text(),'Last Login')]";
         readonly static string STR_LASTLOGINDESC_TH = "//th[contains(text(),'↓ Last Login')]";
         readonly static string STR_LASTLOGINASC_TH = "//th[contains(text(),'↑ Last Login')]";
-        //readonly static string STR_DATATABLE_TBL = "//table[@class='xcrud-list table table-striped table-hover']";
-        //readonly static string STR_CHAT_IFRAME = "chat-widget";
-
-        /*CONSTRUCTOR*/
-        //public clsPHPTravels_Dashboard_Page(IWebDriver pobjDriver)
-        //{
-        //    //_objDriver = pobjDriver;
-        //_driverWait = new WebDriverWait(_objDriver, new TimeSpan(0, 0, 40));
-        //}
 
         /*OBJECT DEFINITION*/
         private static IWebElement objTotalAdminsLnk = driver.FindElement(By.XPath(STR_TOTALADMINS_LNK));

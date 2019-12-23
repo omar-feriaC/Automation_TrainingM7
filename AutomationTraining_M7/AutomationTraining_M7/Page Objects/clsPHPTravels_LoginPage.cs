@@ -13,8 +13,6 @@ namespace AutomationTraining_M7.Page_Objects
     class clsPHPTravels_LoginPage : BaseTest
     {
         /*ATTRIBUTES*/
-        //public static WebDriverWait _driverWait;
-        //private static IWebDriver _objDriver;
 
         public static WebDriverWait _driverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 40));
 
