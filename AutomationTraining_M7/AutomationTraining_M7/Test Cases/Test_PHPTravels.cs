@@ -55,7 +55,7 @@ namespace AutomationTraining_M7.Test_Cases
 
             //sort first name in DESC order
             ClsPHPTravels_Dashboard_Page.FnSortFirstNameColumn("desc");
-            lstSortedColumnCellsAsc = ClsPHPTravels_Dashboard_Page.FnSortColumnCells(ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(3), "desc");
+            lstSortedColumnCellsDesc = ClsPHPTravels_Dashboard_Page.FnSortColumnCells(ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(3), "desc");
             ClsPHPTravels_Dashboard_Page.FnWaitFirstNameSortedDesc();
             lstColumnCells = ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(3);
 
@@ -63,11 +63,11 @@ namespace AutomationTraining_M7.Test_Cases
             foreach (string s in lstColumnCells) { Console.WriteLine(s); }
             Console.WriteLine("");
             Console.WriteLine("Sorted list in desc order");
-            foreach (string s in lstSortedColumnCellsAsc) { Console.WriteLine(s); }
+            foreach (string s in lstSortedColumnCellsDesc) { Console.WriteLine(s); }
             Console.WriteLine("");
             try
             {
-                Assert.AreEqual(true, lstColumnCells.SequenceEqual(lstSortedColumnCellsAsc), "The sorting is incorrect");
+                Assert.AreEqual(true, lstColumnCells.SequenceEqual(lstSortedColumnCellsDesc), "The sorting is incorrect");
                 objTest.Log(Status.Pass, "First name desc sorting passed");
             }
             catch (Exception e)
@@ -77,7 +77,7 @@ namespace AutomationTraining_M7.Test_Cases
 
             //sort first name in ASC order
             ClsPHPTravels_Dashboard_Page.FnSortFirstNameColumn("asc");
-            lstSortedColumnCellsDesc = ClsPHPTravels_Dashboard_Page.FnSortColumnCells(ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(3), "asc");
+            lstSortedColumnCellsAsc = ClsPHPTravels_Dashboard_Page.FnSortColumnCells(ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(3), "asc");
             ClsPHPTravels_Dashboard_Page.FnWaitFirstNameSortedAsc();
             lstColumnCells = ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(3);
 
@@ -85,11 +85,11 @@ namespace AutomationTraining_M7.Test_Cases
             foreach (string s in lstColumnCells) { Console.WriteLine(s); }
             Console.WriteLine("");
             Console.WriteLine("Sorted list in asc order");
-            foreach (string s in lstSortedColumnCellsDesc) { Console.WriteLine(s); }
+            foreach (string s in lstSortedColumnCellsAsc) { Console.WriteLine(s); }
             Console.WriteLine("");
             try
             {
-                Assert.AreEqual(true, lstColumnCells.SequenceEqual(lstSortedColumnCellsDesc), "The sorting is incorrect");
+                Assert.AreEqual(true, lstColumnCells.SequenceEqual(lstSortedColumnCellsAsc), "The sorting is incorrect");
                 objTest.Log(Status.Pass, "First name asc sorting passed");
             }
             catch (Exception e)
@@ -99,7 +99,7 @@ namespace AutomationTraining_M7.Test_Cases
 
             //sort last name in DESC order
             ClsPHPTravels_Dashboard_Page.FnSortLastNameColumn("desc");
-            lstSortedColumnCellsAsc = ClsPHPTravels_Dashboard_Page.FnSortColumnCells(ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(4), "desc");
+            lstSortedColumnCellsDesc = ClsPHPTravels_Dashboard_Page.FnSortColumnCells(ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(4), "desc");
             ClsPHPTravels_Dashboard_Page.FnWaitLastNameSortedDesc();
             lstColumnCells = ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(4);
 
@@ -107,11 +107,11 @@ namespace AutomationTraining_M7.Test_Cases
             foreach (string s in lstColumnCells) { Console.WriteLine(s); }
             Console.WriteLine("");
             Console.WriteLine("Sorted list in desc order");
-            foreach (string s in lstSortedColumnCellsAsc) { Console.WriteLine(s); }
+            foreach (string s in lstSortedColumnCellsDesc) { Console.WriteLine(s); }
             Console.WriteLine("");
             try
             {
-                Assert.AreEqual(true, lstColumnCells.SequenceEqual(lstSortedColumnCellsAsc), "The sorting is incorrect");
+                Assert.AreEqual(true, lstColumnCells.SequenceEqual(lstSortedColumnCellsDesc), "The sorting is incorrect");
                 objTest.Log(Status.Pass, "last name desc sorting passed");
             }
             catch (Exception e)
@@ -121,7 +121,7 @@ namespace AutomationTraining_M7.Test_Cases
 
             //sort last name in ASC order
             ClsPHPTravels_Dashboard_Page.FnSortLastNameColumn("asc");
-            lstSortedColumnCellsDesc = ClsPHPTravels_Dashboard_Page.FnSortColumnCells(ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(4), "asc");
+            lstSortedColumnCellsAsc = ClsPHPTravels_Dashboard_Page.FnSortColumnCells(ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(4), "asc");
             ClsPHPTravels_Dashboard_Page.FnWaitLastNameSortedAsc();
             lstColumnCells = ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(4);
 
@@ -129,11 +129,11 @@ namespace AutomationTraining_M7.Test_Cases
             foreach (string s in lstColumnCells) { Console.WriteLine(s); }
             Console.WriteLine("");
             Console.WriteLine("Sorted list in asc order");
-            foreach (string s in lstSortedColumnCellsDesc) { Console.WriteLine(s); }
+            foreach (string s in lstSortedColumnCellsAsc) { Console.WriteLine(s); }
             Console.WriteLine("");
             try
             {
-                Assert.AreEqual(true, lstColumnCells.SequenceEqual(lstSortedColumnCellsDesc), "The sorting is incorrect");
+                Assert.AreEqual(true, lstColumnCells.SequenceEqual(lstSortedColumnCellsAsc), "The sorting is incorrect");
                 objTest.Log(Status.Pass, "last name asc sorting passed");
             }
             catch (Exception e)
@@ -143,7 +143,7 @@ namespace AutomationTraining_M7.Test_Cases
 
             //sort email in DESC order
             ClsPHPTravels_Dashboard_Page.FnSortEmailColumn("desc");
-            lstSortedColumnCellsAsc = ClsPHPTravels_Dashboard_Page.FnSortColumnCells(ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(5), "desc");
+            lstSortedColumnCellsDesc = ClsPHPTravels_Dashboard_Page.FnSortColumnCells(ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(5), "desc");
             ClsPHPTravels_Dashboard_Page.FnWaitEmailSortedDesc();
             lstColumnCells = ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(5);
 
@@ -151,11 +151,11 @@ namespace AutomationTraining_M7.Test_Cases
             foreach (string s in lstColumnCells) { Console.WriteLine(s); }
             Console.WriteLine("");
             Console.WriteLine("Sorted list in desc order");
-            foreach (string s in lstSortedColumnCellsAsc) { Console.WriteLine(s); }
+            foreach (string s in lstSortedColumnCellsDesc) { Console.WriteLine(s); }
             Console.WriteLine("");
             try
             {
-                Assert.AreEqual(true, lstColumnCells.SequenceEqual(lstSortedColumnCellsAsc), "The sorting is incorrect");
+                Assert.AreEqual(true, lstColumnCells.SequenceEqual(lstSortedColumnCellsDesc), "The sorting is incorrect");
                 objTest.Log(Status.Pass, "email desc sorting passed");
             }
             catch (Exception e)
@@ -165,7 +165,7 @@ namespace AutomationTraining_M7.Test_Cases
 
             //sort email in ASC order
             ClsPHPTravels_Dashboard_Page.FnSortEmailColumn("asc");
-            lstSortedColumnCellsDesc = ClsPHPTravels_Dashboard_Page.FnSortColumnCells(ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(5), "asc");
+            lstSortedColumnCellsAsc = ClsPHPTravels_Dashboard_Page.FnSortColumnCells(ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(5), "asc");
             ClsPHPTravels_Dashboard_Page.FnWaitEmailSortedAsc();
             lstColumnCells = ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(5);
 
@@ -173,11 +173,11 @@ namespace AutomationTraining_M7.Test_Cases
             foreach (string s in lstColumnCells) { Console.WriteLine(s); }
             Console.WriteLine("");
             Console.WriteLine("Sorted list in asc order");
-            foreach (string s in lstSortedColumnCellsDesc) { Console.WriteLine(s); }
+            foreach (string s in lstSortedColumnCellsAsc) { Console.WriteLine(s); }
             Console.WriteLine("");
             try
             {
-                Assert.AreEqual(true, lstColumnCells.SequenceEqual(lstSortedColumnCellsDesc), "The sorting is incorrect");
+                Assert.AreEqual(true, lstColumnCells.SequenceEqual(lstSortedColumnCellsAsc), "The sorting is incorrect");
                 objTest.Log(Status.Pass, "email asc sorting passed");
             }
             catch (Exception e)
@@ -187,7 +187,7 @@ namespace AutomationTraining_M7.Test_Cases
 
             //sort active in DESC order
             ClsPHPTravels_Dashboard_Page.FnSortActiveColumn("desc");
-            lstSortedColumnCellsAsc = ClsPHPTravels_Dashboard_Page.FnSortColumnCells(ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(6), "desc");
+            lstSortedColumnCellsDesc = ClsPHPTravels_Dashboard_Page.FnSortColumnCells(ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(6), "desc");
             ClsPHPTravels_Dashboard_Page.FnWaitActiveSortedDesc();
             lstColumnCells = ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(6);
 
@@ -195,11 +195,11 @@ namespace AutomationTraining_M7.Test_Cases
             foreach (string s in lstColumnCells) { Console.WriteLine(s); }
             Console.WriteLine("");
             Console.WriteLine("Sorted list in desc order");
-            foreach (string s in lstSortedColumnCellsAsc) { Console.WriteLine(s); }
+            foreach (string s in lstSortedColumnCellsDesc) { Console.WriteLine(s); }
             Console.WriteLine("");
             try
             {
-                Assert.AreEqual(true, lstColumnCells.SequenceEqual(lstSortedColumnCellsAsc), "The sorting is incorrect");
+                Assert.AreEqual(true, lstColumnCells.SequenceEqual(lstSortedColumnCellsDesc), "The sorting is incorrect");
                 objTest.Log(Status.Pass, "active desc sorting passed");
             }
             catch (Exception e)
@@ -209,7 +209,7 @@ namespace AutomationTraining_M7.Test_Cases
 
             //sort active in ASC order
             ClsPHPTravels_Dashboard_Page.FnSortActiveColumn("asc");
-            lstSortedColumnCellsDesc = ClsPHPTravels_Dashboard_Page.FnSortColumnCells(ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(6), "asc");
+            lstSortedColumnCellsAsc = ClsPHPTravels_Dashboard_Page.FnSortColumnCells(ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(6), "asc");
             ClsPHPTravels_Dashboard_Page.FnWaitActiveSortedAsc();
             lstColumnCells = ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(6);
 
@@ -217,11 +217,11 @@ namespace AutomationTraining_M7.Test_Cases
             foreach (string s in lstColumnCells) { Console.WriteLine(s); }
             Console.WriteLine("");
             Console.WriteLine("Sorted list in asc order");
-            foreach (string s in lstSortedColumnCellsDesc) { Console.WriteLine(s); }
+            foreach (string s in lstSortedColumnCellsAsc) { Console.WriteLine(s); }
             Console.WriteLine("");
             try
             {
-                Assert.AreEqual(true, lstColumnCells.SequenceEqual(lstSortedColumnCellsDesc), "The sorting is incorrect");
+                Assert.AreEqual(true, lstColumnCells.SequenceEqual(lstSortedColumnCellsAsc), "The sorting is incorrect");
                 objTest.Log(Status.Pass, "active asc sorting passed");
             }
             catch (Exception e)
@@ -231,7 +231,7 @@ namespace AutomationTraining_M7.Test_Cases
 
             //sort last login in DESC order
             ClsPHPTravels_Dashboard_Page.FnSortLastLoginColumn("desc");
-            lstSortedColumnCellsAsc = ClsPHPTravels_Dashboard_Page.FnSortColumnCells(ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(7), "desc");
+            lstSortedColumnCellsDesc = ClsPHPTravels_Dashboard_Page.FnSortColumnCells(ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(7), "desc");
             ClsPHPTravels_Dashboard_Page.FnWaitLastLoginSortedDesc();
             lstColumnCells = ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(7);
 
@@ -239,11 +239,11 @@ namespace AutomationTraining_M7.Test_Cases
             foreach (string s in lstColumnCells) { Console.WriteLine(s); }
             Console.WriteLine("");
             Console.WriteLine("Sorted list in desc order");
-            foreach (string s in lstSortedColumnCellsAsc) { Console.WriteLine(s); }
+            foreach (string s in lstSortedColumnCellsDesc) { Console.WriteLine(s); }
             Console.WriteLine("");
             try
             {
-                Assert.AreEqual(true, lstColumnCells.SequenceEqual(lstSortedColumnCellsAsc), "The sorting is incorrect");
+                Assert.AreEqual(true, lstColumnCells.SequenceEqual(lstSortedColumnCellsDesc), "The sorting is incorrect");
                 objTest.Log(Status.Pass, "last login desc sorting passed");
             }
             catch (Exception e)
@@ -253,7 +253,7 @@ namespace AutomationTraining_M7.Test_Cases
 
             //sort last login in ASC order
             ClsPHPTravels_Dashboard_Page.FnSortLastLoginColumn("asc");
-            lstSortedColumnCellsDesc = ClsPHPTravels_Dashboard_Page.FnSortColumnCells(ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(7), "asc");
+            lstSortedColumnCellsAsc = ClsPHPTravels_Dashboard_Page.FnSortColumnCells(ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(7), "asc");
             ClsPHPTravels_Dashboard_Page.FnWaitLastLoginSortedAsc();
             lstColumnCells = ClsPHPTravels_Dashboard_Page.FnGetCellsFromColumn(7);
 
@@ -261,11 +261,11 @@ namespace AutomationTraining_M7.Test_Cases
             foreach (string s in lstColumnCells) { Console.WriteLine(s); }
             Console.WriteLine("");
             Console.WriteLine("Sorted list in asc order");
-            foreach (string s in lstSortedColumnCellsDesc) { Console.WriteLine(s); }
+            foreach (string s in lstSortedColumnCellsAsc) { Console.WriteLine(s); }
             Console.WriteLine("");
             try
             {
-                Assert.AreEqual(true, lstColumnCells.SequenceEqual(lstSortedColumnCellsDesc), "The sorting is incorrect");
+                Assert.AreEqual(true, lstColumnCells.SequenceEqual(lstSortedColumnCellsAsc), "The sorting is incorrect");
                 objTest.Log(Status.Pass, "last login asc sorting passed");
             }
             catch (Exception e)
