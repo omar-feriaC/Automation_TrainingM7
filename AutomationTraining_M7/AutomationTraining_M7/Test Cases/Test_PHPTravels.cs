@@ -35,7 +35,7 @@ namespace AutomationTraining_M7.Test_Cases
             clsPHPTravels_LoginPage.fnPrintStats();
             objRM.fnAddStepLogScreen(objTest, driver, "Login done", "scr.png", "Pass");
             clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
-            clsPHPTravels_LoginPage.fnGeneral();
+            clsPHPTravels_LoginPage.fnPrintSidebarMenu();
         }
 
     }
