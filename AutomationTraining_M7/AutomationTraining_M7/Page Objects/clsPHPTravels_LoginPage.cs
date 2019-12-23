@@ -157,11 +157,14 @@ namespace AutomationTraining_M7.Page_Objects
         public void fnClickSubmenus()
         {
             STR_MENU_ITEM = $"(//ul[@id='social-sidebar-menu']/li//*[contains(text(),'Accounts')]//ancestor::li/a)[1]";
+            
             foreach (var account in objAccountsSubMenuItems)
             {
                 objMenuItem.Click();
                 clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_MENU_ITEM));
+                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_ACCOUNTS_SUBMENU_ITEMS));
                 account.Click();
+               
             }
         }
     }
