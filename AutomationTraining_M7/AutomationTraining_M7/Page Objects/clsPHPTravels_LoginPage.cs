@@ -13,8 +13,10 @@ namespace AutomationTraining_M7.Page_Objects
     class clsPHPTravels_LoginPage : BaseTest
     {
         /*ATTRIBUTES*/
-        public static WebDriverWait _driverWait;
-        private static IWebDriver _objDriver;
+        //public static WebDriverWait _driverWait;
+        //private static IWebDriver _objDriver;
+
+        public static WebDriverWait _driverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 40));
 
         /*LOCATORS DESCRIPTION*/
         readonly static string STR_EMAIL_TXT = "email";
@@ -27,8 +29,8 @@ namespace AutomationTraining_M7.Page_Objects
         /*CONSTRUCTOR*/
         public clsPHPTravels_LoginPage(IWebDriver pobjDriver)
         {
-            _objDriver = pobjDriver;
-            _driverWait = new WebDriverWait(_objDriver, new TimeSpan(0, 0, 40));
+            //_objDriver = pobjDriver;
+            //_driverWait = new WebDriverWait(_objDriver, new TimeSpan(0, 0, 40));
         }
 
         /*OBJECT DEFINITION*/
