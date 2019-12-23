@@ -32,22 +32,27 @@ namespace AutomationTraining_M7.Test_Cases
             clsPHPTravels_LoginPage.fnClickLoginButton();
             clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
             Assert.IsTrue(driver.Title.Contains("Dash"), "The Dashboard was not loaded correctly.");
-             
+
             List<string> strTotVal = clsPHPTravels_LoginPage.fnGetTotalsValuesTxt();
-            foreach(var item in strTotVal)
+            foreach (var item in strTotVal)
             {
                 objRM.fnAddStepLog(objTest, item, "Pass");
             }
             objRM.fnAddStepLogScreen(objTest, driver, "Click in Side Menu", "scr.png", "Pass");
-            
-            
+
+
             clsPHPTravels_LoginPage.fnClickLSideBarMenu();
             objRM.fnAddStepLogScreen(objTest, driver, "Side Menu Bar", "scr1.png", "Pass");
 
-            objPHP.fnSelectMenuItem("Tours");
-            objRM.fnAddStepLogScreen(objTest, driver, "Visa Menu Bar", "scr2.png", "Pass");
+          //  objPHP.fnSelectMenuItem("Tours");
+          //  objRM.fnAddStepLogScreen(objTest, driver, "Visa Menu Bar", "scr2.png", "Pass");
 
-            //objPHP.fnSelectMenuItem("General", "Settings");
+            objPHP.fnSelectMenuItem("General", "Settings");
+            objRM.fnAddStepLogScreen(objTest, driver, "Select menu item", "scr2.png", "Pass");
+
+            objPHP.fnClickSubmenus();
+            objRM.fnAddStepLogScreen(objTest, driver, "Account Menu", "scr2.png", "Pass");
+
         }
 
     }
