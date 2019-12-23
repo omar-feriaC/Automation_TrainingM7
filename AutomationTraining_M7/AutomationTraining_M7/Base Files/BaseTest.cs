@@ -1,5 +1,4 @@
-﻿
-using AutomationTraining_M7.Reporting;
+﻿using AutomationTraining_M7.Reporting;
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
 using NUnit.Framework;
