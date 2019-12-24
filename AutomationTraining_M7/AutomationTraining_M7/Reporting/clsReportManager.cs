@@ -60,7 +60,7 @@ namespace AutomationTraining_M7.Reporting
         public void fnTestCaseResult(ExtentTest pobjTest, ExtentReports pobjExtent, IWebDriver pobjDriver)
         {
             var status = TestContext.CurrentContext.Result.Outcome.Status;
-            var stacktrace = string.IsNullOrEmpty(TestContext.CurrentContext.Result.StackTrace) 
+            var stacktrace = string.IsNullOrEmpty(TestContext.CurrentContext.Result.StackTrace)
                 ? "" : string.Format("{0}", TestContext.CurrentContext.Result.StackTrace);
             Status logstatus;
             switch (status)
@@ -121,6 +121,43 @@ namespace AutomationTraining_M7.Reporting
                     break;
                 default:
                     pobjTest.Log(Status.Info, pstrMessage);
+                    break;
+            }
+
+        }
+
+        public void fnAddStepLogScreen(ExtentTest pobjTest, IWebDriver pobjDriver, string pstrMessage, string pstrImageName, string pStatus)
+        {
+            var strImagePath = fnCaptureImage(pobjDriver, pstrImageName);
+
+            switch (pStatus)
+            {
+                case "Pass":
+                    pobjTest.Pass(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
+                    break;
+                case "Skip":
+                    pobjTest.Skip(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
+                    break;
+                case "Warning":
+                    pobjTest.Warning(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
+                    break;
+                case "Error":
+                    pobjTest.Error(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
+                    break;
+                case "Info":
+                    pobjTest.Info(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
+                    break;
+                case "Fail":
+                    pobjTest.Fail(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
+                    break;
+                case "Fatal":
+                    pobjTest.Fatal(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
+                    break;
+                case "Debug":
+                    pobjTest.Debug(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
+                    break;
+                default:
+                    pobjTest.Info(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
                     break;
             }
 

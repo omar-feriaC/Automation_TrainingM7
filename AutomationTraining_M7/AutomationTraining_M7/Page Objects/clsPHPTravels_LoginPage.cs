@@ -30,7 +30,11 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_CLOSECHAT = "//button[@class='e1mwfyk10 lc-4rgplc e1m5b1js0']";
         readonly static string STR_OPENCHAT = "//*[@class='lc-1r1l4b7 e5ibypu0']"; //*[@class='e1mwfyk10 lc-4rgplc e1m5b1js0']
         readonly static string STR_CHATTEXT = "//div[@class='lc-lpdesj e903lsu2 lc-r4kv7x-enter-done']";
-        readonly static string STR_SUBMENU_ADMINS = "//ul[@class='wow fadeIn animated list-unstyled collapse in']";
+        readonly static string STR_SUBMENU_ADMINS = "//ul/li/a[text()='Admins']";
+        readonly static string STR_SUBMENU_CUSTOMERS = "//ul/li/a[text()='Customers']";
+        readonly static string STR_SUBMENU_SUPPLIERS = "//ul/li/a[text()='Suppliers']";
+        readonly static string STR_SUBMENU_GUESTCUSTOMERS = "//ul/li/a[text()='GuestCustomers']";
+
         /*CONSTRUCTOR*/
         public clsPHPTravels_LoginPage(IWebDriver pobjDriver)
         {
@@ -51,7 +55,11 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objLiveChatOpenBtn => _objDriver.FindElement(By.XPath(STR_OPENCHAT));
         private static IWebElement objLiveChatText => _objDriver.FindElement(By.XPath(STR_CHATTEXT));
         private static IWebElement objSubmenuAdmins => _objDriver.FindElement(By.XPath(STR_SUBMENU_ADMINS));
-        
+        private static IWebElement objSubMenuAdmins => _objDriver.FindElement(By.XPath(STR_SUBMENU_ADMINS));
+        private static IWebElement objSubMenuSuppliers => _objDriver.FindElement(By.XPath(STR_SUBMENU_SUPPLIERS));
+        private static IWebElement objSubmenuCustomers => _objDriver.FindElement(By.XPath(STR_SUBMENU_CUSTOMERS));
+        private static IWebElement objSubmenuGuestCustomers => _objDriver.FindElement(By.XPath(STR_SUBMENU_GUESTCUSTOMERS));
+
 
 
 
@@ -129,13 +137,14 @@ namespace AutomationTraining_M7.Page_Objects
         //Get Totals 
         public static List<string> fnGetTotalsValuesTxt()
         {
-            IList<IWebElement> objGetTotalsValuesTx = _objDriver.FindElements(By.XPath("//*[@class='serverHeader__statsList']"));
+            IList<IWebElement> objGetTotalsValuesTx = _objDriver.FindElements(By.XPath("//ul[@class='serverHeader__statsList']//li//a"));
             List<string> strTotalValuesReport = new List<string>();
 
             foreach (var vList in objGetTotalsValuesTx)
             {
                 strTotalValuesReport.Add(vList.Text);
                 Console.WriteLine(vList.Text);
+                vList.Click();
             }
 
             return strTotalValuesReport;
@@ -143,55 +152,51 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
         //ACCOUNTS SUBMENUS******************
-        public static List<string> fnGetAccountsSubMenu()
+        public static void fnClickSubMenus()
         {
-            IList<IWebElement> objAccountsSubmenu = _objDriver.FindElements(By.XPath(STR_SUBMENU_ADMINS));
-            List<string> strobjAccountsSubmenu = new List<string>();
+            var AdminSubMenus = new[] { objSubMenuAdmins, objSubMenuSuppliers, objSubmenuCustomers, objSubmenuGuestCustomers };
 
-            foreach (var vList in objAccountsSubmenu)
+        foreach (IWebElement AdminSubMenu in AdminSubMenus)
             {
-                strobjAccountsSubmenu.Add(vList.Text);
-                Console.WriteLine(vList.Text);
+                AdminSubMenu.Click();
+                
             }
-
-            return strobjAccountsSubmenu;
-
         }
-        //*********************ACCOUNTS SUBMENUS
+    //*********************ACCOUNTS SUBMENUS
 
 
 
-        //LIVE CHAT OPEN AND CLOSE*********************
+    //LIVE CHAT OPEN AND CLOSE*********************
 
 
-        //public static IWebElement GetLiveChatOpenBtn()
-        //{
+    //public static IWebElement GetLiveChatOpenBtn()
+    //{
 
-        //    _driverWait.Until(ExpectedConditions.ElementIsVisible(By.Id(STR_CHATTEXT)));
+    //    _driverWait.Until(ExpectedConditions.ElementIsVisible(By.Id(STR_CHATTEXT)));
 
-        //    return objLiveChatText;
-        //}
-        //public static void fnClickOpenLiveChat()
-        //{
-
-
-
-        //}
-        //public static IWebElement GetLiveChatCloseBtn()
-        //{
-        //    //Linkify
-
-        //    _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_CHATTEXT)));
-        //    return objLiveChatCloseBtn;
-        //}
-        //public static void fnClickCloseLiveChat()
-        //{
-        //    _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_CLOSECHAT)));
-        //    objLiveChatCloseBtn.Click();
+    //    return objLiveChatText;
+    //}
+    //public static void fnClickOpenLiveChat()
+    //{
 
 
-        //}
-        //******************LIVE CHAT OPEN AND CLOSE
 
-    }
+    //}
+    //public static IWebElement GetLiveChatCloseBtn()
+    //{
+    //    //Linkify
+
+    //    _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_CHATTEXT)));
+    //    return objLiveChatCloseBtn;
+    //}
+    //public static void fnClickCloseLiveChat()
+    //{
+    //    _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_CLOSECHAT)));
+    //    objLiveChatCloseBtn.Click();
+
+
+    //}
+    //******************LIVE CHAT OPEN AND CLOSE
+
+}
 }

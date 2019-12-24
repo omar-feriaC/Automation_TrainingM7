@@ -36,7 +36,10 @@ namespace AutomationTraining_M7.Test_Cases
             clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
             clsPHPTravels_LoginPage.fnGetTotalsValuesTxt();
             clsPHPTravels_LoginPage.fnClickAccountsMenu();
-            clsPHPTravels_LoginPage.fnGetAccountsSubMenu();
+            clsPHPTravels_LoginPage.fnClickSubMenus();
+
+
+           //clsPHPTravels_LoginPage.fnGetAccountsSubMenu();
 
 
 
