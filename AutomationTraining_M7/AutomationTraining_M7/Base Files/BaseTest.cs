@@ -30,6 +30,8 @@ namespace AutomationTraining_M7.Base_Files
         public static ExtentV3HtmlReporter objHtmlReporter; //Add information in HTML
         public static ExtentReports objExtent; //Extent Reports Object
         public static ExtentTest objTest; // Test object for Extent Reports
+        public static string strEmail;
+        public static string strPasword;
         //public static ExtentHtmlReporter objHtmlReporter; //Old Version of HTML
 
 
@@ -53,6 +55,8 @@ namespace AutomationTraining_M7.Base_Files
                 objExtent = new ExtentReports();
                 objRM.fnReportSetUp(objHtmlReporter, objExtent);
             }
+            strEmail = ConfigurationManager.AppSettings.Get("email");
+            strPasword = ConfigurationManager.AppSettings.Get("password");
         }
 
         //OneTimeTearDown after each class test
@@ -70,7 +74,7 @@ namespace AutomationTraining_M7.Base_Files
             driver.Url = strBrowserName;
             driver.Manage().Window.Maximize();
             objclsDriver = new clsDriver(driver);
-
+            objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
         }
 
         [TearDown]
@@ -78,8 +82,8 @@ namespace AutomationTraining_M7.Base_Files
         public static void AfterTest()
         {
             objRM.fnTestCaseResult(objTest, objExtent, driver);
-            driver.Close();
-            driver.Quit();
+            //driver.Close();
+            //driver.Quit();
         }
 
         /*Clear and Send text to specific field*/
