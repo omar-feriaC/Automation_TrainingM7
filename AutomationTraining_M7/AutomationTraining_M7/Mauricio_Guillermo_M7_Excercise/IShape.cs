@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationTraining_M7.FinalM7
+namespace AutomationTraining_M7.Mauricio_Guillermo_M7_Excercise
 {
-    interface IPayrollCalculator
+    interface IShape
     {
-        int intID { get; set; }
         string strName { get; set; }
+        double dblArea { get; set; }
+        double dblPerimeter { get; set; }
         void fnDisplayInfo();
     }
 }
