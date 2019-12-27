@@ -15,12 +15,13 @@ namespace AutomationTraining_M7.Base_Files
         /*ATTRIBUTES*/
         private static WebDriverWait wait;
         private static IWebElement objElement;
+        private static IWebDriver _driver;
 
         /*CONSTRUCTOR*/
         public clsDriver(IWebDriver pobjDriver)
         {
-            driver = pobjDriver;
-            wait = new WebDriverWait(driver, new TimeSpan(0, 0, 40));
+            _driver = pobjDriver;
+            wait = new WebDriverWait(_driver, new TimeSpan(0, 0, 40));
         }
 
         /*METHODS*/
@@ -33,7 +34,7 @@ namespace AutomationTraining_M7.Base_Files
 
         private static IWebElement WaitForElementDriverFluent(IWebDriver pobjDriver, By by)
         {
-            DefaultWait<IWebDriver> fluentWait = new DefaultWait<IWebDriver>(driver);
+            DefaultWait<IWebDriver> fluentWait = new DefaultWait<IWebDriver>(_driver);
             fluentWait.Timeout = TimeSpan.FromSeconds(5);
             fluentWait.PollingInterval = TimeSpan.FromMilliseconds(250);
             fluentWait.IgnoreExceptionTypes(typeof(NoSuchElementException));

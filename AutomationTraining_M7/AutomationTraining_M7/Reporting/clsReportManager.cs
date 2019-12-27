@@ -106,7 +106,7 @@ namespace AutomationTraining_M7.Reporting
             {
                 case "Failed":
 
-                    strFileName = "Screenshot_" + pImageName + "_Fail_" + time.ToString("h_mm_ss") + ".png";
+                    strFileName = "Screenshot_" + pImageName + "_Fail_" + time.ToString("MMddyyyy_HHmmss") + ".png";
                     fnCaptureImage(pobjDriver, strFileName);
                     pobjTest.Log(Status.Fail, pMessage + "_Fail", MediaEntityBuilder.CreateScreenCaptureFromPath("Screenshots\\" + strFileName).Build());
                     break;
@@ -114,7 +114,7 @@ namespace AutomationTraining_M7.Reporting
 
                 case "Passed":
 
-                    strFileName = "Screenshot_" + pImageName + "_Pass_" + time.ToString("h_mm_ss") + ".png";
+                    strFileName = "Screenshot_" + pImageName + "_Pass_" + time.ToString("MMddyyyy_HHmmss") + ".png";
                     fnCaptureImage(pobjDriver, strFileName);
                     pobjTest.Log(Status.Pass, pMessage + "_Pass", MediaEntityBuilder.CreateScreenCaptureFromPath("Screenshots\\" + strFileName).Build());
                     break;
