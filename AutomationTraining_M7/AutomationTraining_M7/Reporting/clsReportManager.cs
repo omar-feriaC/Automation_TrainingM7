@@ -27,7 +27,6 @@ namespace AutomationTraining_M7.Reporting
             return strReportPath;
         }
 
-        //public void fnReportSetUp(ExtentHtmlReporter phtmlReporter, ExtentReports pExtent)
         public void fnReportSetUp(ExtentV3HtmlReporter phtmlReporter, ExtentReports pExtent)
         {
             phtmlReporter.Config.Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
@@ -69,10 +68,10 @@ namespace AutomationTraining_M7.Reporting
                     logstatus = Status.Fail;
                     //DateTime time = DateTime.Now;
                     //string strFileName = "Screenshot_" + time.ToShortDateString() + ".png";
-                    string strFileName = "Screenshot_" + time.ToString("hh_mm_ss") + ".png";
-                    var strImagePath = fnCaptureImage(pobjDriver, strFileName);
-                    pobjTest.Log(Status.Fail, "Fail");
-                    pobjTest.Fail("Snapshot below: ", MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
+                    //string strFileName = "Screenshot_" + time.ToString("hh_mm_ss") + ".png";
+                    //var strImagePath = fnCaptureImage(pobjDriver, strFileName);
+                    //pobjTest.Log(Status.Fail, "Fail");
+                    //pobjTest.Fail("Snapshot below: ", MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
                     //pobjTest.Log(Status.Fail, "Snapshot below: " + pobjTest.AddScreenCaptureFromPath("Screenshots\\" + strFileName));
                     break;
                 case TestStatus.Skipped:
