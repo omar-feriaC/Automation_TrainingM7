@@ -30,6 +30,11 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_CHAT_LNK = "//div[@id='chat-widget-container']";
         readonly static string STR_MIN_CHAT_BTN = "//button[@class='e1mwfyk10 lc-4rgplc e1m5b1js0']";
         readonly static string STR_CHAT_MAX_CHAT = "//div[@id='chat-widget-container' and contains(@style,'height: 652px')] ";
+        readonly static string STR_FIRSTNAME_HEADER = "//th[contains(text(),'First Name')]";
+        readonly static string STR_LASTNAME_HEADER = "//th[contains(text(),'Last Name')]";
+        readonly static string STR_EMAIL_HEADER = "//th[contains(text(),'Email')]";
+        readonly static string STR_ACTIVE_HEADER = "//th[contains(text(),'Active')]";
+        readonly static string STR_LASTLOGIN_HEADER = "//th[contains(text(),'Last Login')]";
         readonly static string STR_FIRSTNAME_HEADER_DESC = "//th[contains(text(),'↓ First Name')]";
         readonly static string STR_LASTNAME_HEADER_DESC = "//th[contains(text(),'↓ Last Name')]";
         readonly static string STR_EMAIL_HEADER_DESC = "//th[contains(text(),'↓ Email')]";
@@ -58,6 +63,7 @@ namespace AutomationTraining_M7.Page_Objects
         public static IWebElement objActiveHeader;
         public static IWebElement objLastLoginHeader;
         public static IWebElement objAccountsBtn;
+        public static IWebElement objSubMenuBtn;
 
 
 
@@ -149,6 +155,7 @@ namespace AutomationTraining_M7.Page_Objects
             }
         }
 
+        //Function to Click the Accounts Meny
         private IWebElement GetButton()
         {
             return objAccountsBtn;
@@ -156,12 +163,93 @@ namespace AutomationTraining_M7.Page_Objects
 
         public static void fnClickAccounts()
         {
-            objAccountsBtn = _objDriver.FindElement(By.Name(STR_ACCOUNTS_BTN));
+            objAccountsBtn = _objDriver.FindElement(By.XPath(STR_ACCOUNTS_BTN));
             clsDriver.fnWaitForElementToExist(By.XPath(STR_ACCOUNTS_BTN));
             clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_ACCOUNTS_BTN));
             clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_ACCOUNTS_BTN));
             objAccountsBtn.Click();
         }
+
+        //Function to click the Submenu option
+        /*private IWebElement GetSubMenuButton()
+        {
+            return objSubMenuBtn;
+        }
+        public static void fnClickSubmenu(string pXPathValue)
+        {
+            var StringXPath = pXPathValue;
+            objSubMenuBtn = StringXPath;
+            objSubMenuBtn = _objDriver.FindElement(By.XPath("setAttribute("pXPathValue));
+            driver.findElement(By.xpath("//input[@id='invoice_supplier_id'])).setAttribute("value", "your value")
+        }*/
+
+        //Functions used for clicking the headers on the Accounts Page's subpages
+        private IWebElement GetFirstNameH()
+        {
+            return objFirstNHeader;
+        }
+
+        public static void fnClickFirstNameH()
+        {
+            objFirstNHeader = _objDriver.FindElement(By.XPath(STR_FIRSTNAME_HEADER));
+            objFirstNHeader.Click();
+            clsDriver.fnWaitForElementToExist(By.XPath(STR_FIRSTNAME_HEADER_DESC));
+            clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_FIRSTNAME_HEADER_DESC));
+        }
+
+        private IWebElement GetLastNameH()
+        {
+            return objLastNHeader;
+        }
+
+        public static void fnClickLastNameH()
+        {
+            objLastNHeader = _objDriver.FindElement(By.XPath(STR_LASTNAME_HEADER));
+            objLastNHeader.Click();
+            clsDriver.fnWaitForElementToExist(By.XPath(STR_LASTNAME_HEADER_DESC));
+            clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LASTNAME_HEADER_DESC));
+        }
+
+        private IWebElement GetEmailH()
+        {
+            return objEmailHeader;
+        }
+
+        public static void fnClickEmailH()
+        {
+            objEmailHeader = _objDriver.FindElement(By.XPath(STR_EMAIL_HEADER));
+            objEmailHeader.Click();
+            clsDriver.fnWaitForElementToExist(By.XPath(STR_EMAIL_HEADER_DESC));
+            clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_EMAIL_HEADER_DESC));
+        }
+
+        private IWebElement GetActiveH()
+        {
+            return objActiveHeader;
+        }
+
+        public static void fnClickActiveH()
+        {
+            objActiveHeader = _objDriver.FindElement(By.XPath(STR_ACTIVE_HEADER));
+            objActiveHeader.Click();
+            clsDriver.fnWaitForElementToExist(By.XPath(STR_ACTIVE_HEADER_DESC));
+            clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_ACTIVE_HEADER_DESC));
+        }
+
+        private IWebElement GetLastLoginH()
+        {
+            return objLastLoginHeader;
+        }
+
+        public static void fnClickLastLoginH()
+        {
+            objLastLoginHeader = _objDriver.FindElement(By.XPath(STR_LASTLOGIN_HEADER));
+            objLastLoginHeader.Click();
+            clsDriver.fnWaitForElementToExist(By.XPath(STR_LASTLOGIN_HEADER_DESC));
+            clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LASTLOGIN_HEADER_DESC));
+        }
+
+
 
         //Function for sorting asserts
         public static void fnTryCatchSort(string pXPath)
@@ -195,11 +283,14 @@ namespace AutomationTraining_M7.Page_Objects
                 for (int i = 0; i < ElementList3.Count; i++)
                 {
                     string status;
+                    int listValue = i + 1;
+                    string XPathValue = "//ul[@id='" + pstrMenuOption.ToUpper() + "']//li[" + listValue.ToString() + "]//a[1]";
 
                     //Adding a Switch to work on every page and verify asserts work
-                    wait.Until(ExpectedConditions.ElementExists(By.XPath("//ul[@id='" + pstrMenuOption.ToUpper() + "']//li[" + i + "]//a")));
-                    wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//ul[@id='" + pstrMenuOption.ToUpper() + "']//li[" + i + "]//a")));
-                    wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//ul[@id='" + pstrMenuOption.ToUpper() + "']//li[" + i + "]//a")));
+                    wait.Until(ExpectedConditions.ElementExists(By.XPath(XPathValue)));
+                    wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(XPathValue)));
+                    wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(XPathValue)));
+                    //fnClickSubmenu(XPathValue);
                     ElementList3[i].Click();
                     string y = "The Submenu page did not load correctly.";
                     fnWaitHamburgerMenu();
@@ -212,9 +303,7 @@ namespace AutomationTraining_M7.Page_Objects
 
                             try
                             {
-                                objFirstNHeader.Click();
-                                clsDriver.fnWaitForElementToExist(By.XPath(STR_FIRSTNAME_HEADER_DESC));
-                                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_FIRSTNAME_HEADER_DESC));
+                                fnClickFirstNameH();
                                 Assert.AreEqual(true, driver.FindElements(By.XPath(STR_FIRSTNAME_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
                                 status = "Passed";
                                 //clsReportManager.fnStepCaptureImage(objExtent, objTest, objDriver, "Information is sorted correctly", status, "");
@@ -229,9 +318,7 @@ namespace AutomationTraining_M7.Page_Objects
 
                             try
                             {
-                                objFirstNHeader.Click();
-                                clsDriver.fnWaitForElementToExist(By.XPath(STR_LASTNAME_HEADER_DESC));
-                                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LASTNAME_HEADER_DESC));
+                                fnClickLastNameH();
                                 Assert.AreEqual(true, driver.FindElements(By.XPath(STR_LASTNAME_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
                                 status = "Passed";
                                 //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
@@ -246,9 +333,7 @@ namespace AutomationTraining_M7.Page_Objects
 
                             try
                             {
-                                objFirstNHeader.Click();
-                                clsDriver.fnWaitForElementToExist(By.XPath(STR_EMAIL_HEADER_DESC));
-                                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_EMAIL_HEADER_DESC));
+                                fnClickEmailH();
                                 Assert.AreEqual(true, driver.FindElements(By.XPath(STR_EMAIL_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
                                 status = "Passed";
                                 //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
@@ -263,9 +348,7 @@ namespace AutomationTraining_M7.Page_Objects
 
                             try
                             {
-                                objFirstNHeader.Click();
-                                clsDriver.fnWaitForElementToExist(By.XPath(STR_ACTIVE_HEADER_DESC));
-                                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_ACTIVE_HEADER_DESC));
+                                fnClickActiveH();
                                 Assert.AreEqual(true, driver.FindElements(By.XPath(STR_ACTIVE_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
                                 status = "Passed";
                                 //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
@@ -280,9 +363,7 @@ namespace AutomationTraining_M7.Page_Objects
 
                             try
                             {
-                                objFirstNHeader.Click();
-                                clsDriver.fnWaitForElementToExist(By.XPath(STR_LASTLOGIN_HEADER_DESC));
-                                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LASTLOGIN_HEADER_DESC));
+                                fnClickLastLoginH();
                                 Assert.AreEqual(true, driver.FindElements(By.XPath(STR_LASTLOGIN_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
                                 status = "Passed";
                                 //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
@@ -295,7 +376,7 @@ namespace AutomationTraining_M7.Page_Objects
                                 Assert.Fail();
                             }
 
-                            ElementList2[0].Click();
+                            fnClickAccounts();
 
                             break;
 
@@ -304,9 +385,7 @@ namespace AutomationTraining_M7.Page_Objects
 
                             try
                             {
-                                objFirstNHeader.Click();
-                                clsDriver.fnWaitForElementToExist(By.XPath(STR_FIRSTNAME_HEADER_DESC));
-                                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_FIRSTNAME_HEADER_DESC));
+                                fnClickFirstNameH();
                                 Assert.AreEqual(true, driver.FindElements(By.XPath(STR_FIRSTNAME_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
                                 status = "Passed";
                                 //clsReportManager.fnStepCaptureImage(objExtent, objTest, objDriver, "Information is sorted correctly", status, "");
@@ -321,9 +400,7 @@ namespace AutomationTraining_M7.Page_Objects
 
                             try
                             {
-                                objFirstNHeader.Click();
-                                clsDriver.fnWaitForElementToExist(By.XPath(STR_LASTNAME_HEADER_DESC));
-                                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LASTNAME_HEADER_DESC));
+                                fnClickLastNameH();
                                 Assert.AreEqual(true, driver.FindElements(By.XPath(STR_LASTNAME_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
                                 status = "Passed";
                                 //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
@@ -338,9 +415,7 @@ namespace AutomationTraining_M7.Page_Objects
 
                             try
                             {
-                                objFirstNHeader.Click();
-                                clsDriver.fnWaitForElementToExist(By.XPath(STR_EMAIL_HEADER_DESC));
-                                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_EMAIL_HEADER_DESC));
+                                fnClickEmailH();
                                 Assert.AreEqual(true, driver.FindElements(By.XPath(STR_EMAIL_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
                                 status = "Passed";
                                 //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
@@ -355,9 +430,7 @@ namespace AutomationTraining_M7.Page_Objects
 
                             try
                             {
-                                objFirstNHeader.Click();
-                                clsDriver.fnWaitForElementToExist(By.XPath(STR_ACTIVE_HEADER_DESC));
-                                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_ACTIVE_HEADER_DESC));
+                                fnClickActiveH();
                                 Assert.AreEqual(true, driver.FindElements(By.XPath(STR_ACTIVE_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
                                 status = "Passed";
                                 //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
@@ -372,9 +445,7 @@ namespace AutomationTraining_M7.Page_Objects
 
                             try
                             {
-                                objFirstNHeader.Click();
-                                clsDriver.fnWaitForElementToExist(By.XPath(STR_LASTLOGIN_HEADER_DESC));
-                                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LASTLOGIN_HEADER_DESC));
+                                fnClickLastLoginH();
                                 Assert.AreEqual(true, driver.FindElements(By.XPath(STR_LASTLOGIN_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
                                 status = "Passed";
                                 //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
@@ -387,7 +458,8 @@ namespace AutomationTraining_M7.Page_Objects
                                 Assert.Fail();
                             }
 
-                            ElementList2[0].Click();
+
+                            fnClickAccounts();
 
                             break;
 
@@ -396,9 +468,7 @@ namespace AutomationTraining_M7.Page_Objects
 
                             try
                             {
-                                objFirstNHeader.Click();
-                                clsDriver.fnWaitForElementToExist(By.XPath(STR_FIRSTNAME_HEADER_DESC));
-                                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_FIRSTNAME_HEADER_DESC));
+                                fnClickFirstNameH();
                                 Assert.AreEqual(true, driver.FindElements(By.XPath(STR_FIRSTNAME_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
                                 status = "Passed";
                                 //clsReportManager.fnStepCaptureImage(objExtent, objTest, objDriver, "Information is sorted correctly", status, "");
@@ -413,9 +483,7 @@ namespace AutomationTraining_M7.Page_Objects
 
                             try
                             {
-                                objFirstNHeader.Click();
-                                clsDriver.fnWaitForElementToExist(By.XPath(STR_LASTNAME_HEADER_DESC));
-                                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LASTNAME_HEADER_DESC));
+                                fnClickLastNameH();
                                 Assert.AreEqual(true, driver.FindElements(By.XPath(STR_LASTNAME_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
                                 status = "Passed";
                                 //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
@@ -430,9 +498,7 @@ namespace AutomationTraining_M7.Page_Objects
 
                             try
                             {
-                                objFirstNHeader.Click();
-                                clsDriver.fnWaitForElementToExist(By.XPath(STR_EMAIL_HEADER_DESC));
-                                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_EMAIL_HEADER_DESC));
+                                fnClickEmailH();
                                 Assert.AreEqual(true, driver.FindElements(By.XPath(STR_EMAIL_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
                                 status = "Passed";
                                 //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
@@ -447,9 +513,7 @@ namespace AutomationTraining_M7.Page_Objects
 
                             try
                             {
-                                objFirstNHeader.Click();
-                                clsDriver.fnWaitForElementToExist(By.XPath(STR_ACTIVE_HEADER_DESC));
-                                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_ACTIVE_HEADER_DESC));
+                                fnClickActiveH();
                                 Assert.AreEqual(true, driver.FindElements(By.XPath(STR_ACTIVE_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
                                 status = "Passed";
                                 //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
@@ -464,9 +528,7 @@ namespace AutomationTraining_M7.Page_Objects
 
                             try
                             {
-                                objFirstNHeader.Click();
-                                clsDriver.fnWaitForElementToExist(By.XPath(STR_LASTLOGIN_HEADER_DESC));
-                                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LASTLOGIN_HEADER_DESC));
+                                fnClickLastLoginH();
                                 Assert.AreEqual(true, driver.FindElements(By.XPath(STR_LASTLOGIN_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
                                 status = "Passed";
                                 //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
@@ -479,7 +541,8 @@ namespace AutomationTraining_M7.Page_Objects
                                 Assert.Fail();
                             }
 
-                            ElementList2[0].Click();
+
+                            fnClickAccounts();
 
                             break;
 
@@ -488,9 +551,7 @@ namespace AutomationTraining_M7.Page_Objects
 
                             try
                             {
-                                objFirstNHeader.Click();
-                                clsDriver.fnWaitForElementToExist(By.XPath(STR_FIRSTNAME_HEADER_DESC));
-                                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_FIRSTNAME_HEADER_DESC));
+                                fnClickFirstNameH();
                                 Assert.AreEqual(true, driver.FindElements(By.XPath(STR_FIRSTNAME_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
                                 status = "Passed";
                                 //clsReportManager.fnStepCaptureImage(objExtent, objTest, objDriver, "Information is sorted correctly", status, "");
@@ -505,9 +566,7 @@ namespace AutomationTraining_M7.Page_Objects
 
                             try
                             {
-                                objFirstNHeader.Click();
-                                clsDriver.fnWaitForElementToExist(By.XPath(STR_LASTNAME_HEADER_DESC));
-                                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LASTNAME_HEADER_DESC));
+                                fnClickLastNameH();
                                 Assert.AreEqual(true, driver.FindElements(By.XPath(STR_LASTNAME_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
                                 status = "Passed";
                                 //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
@@ -522,9 +581,7 @@ namespace AutomationTraining_M7.Page_Objects
 
                             try
                             {
-                                objFirstNHeader.Click();
-                                clsDriver.fnWaitForElementToExist(By.XPath(STR_EMAIL_HEADER_DESC));
-                                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_EMAIL_HEADER_DESC));
+                                fnClickEmailH();
                                 Assert.AreEqual(true, driver.FindElements(By.XPath(STR_EMAIL_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
                                 status = "Passed";
                                 //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
@@ -539,9 +596,7 @@ namespace AutomationTraining_M7.Page_Objects
 
                             try
                             {
-                                objFirstNHeader.Click();
-                                clsDriver.fnWaitForElementToExist(By.XPath(STR_ACTIVE_HEADER_DESC));
-                                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_ACTIVE_HEADER_DESC));
+                                fnClickActiveH();
                                 Assert.AreEqual(true, driver.FindElements(By.XPath(STR_ACTIVE_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
                                 status = "Passed";
                                 //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
@@ -556,9 +611,7 @@ namespace AutomationTraining_M7.Page_Objects
 
                             try
                             {
-                                objFirstNHeader.Click();
-                                clsDriver.fnWaitForElementToExist(By.XPath(STR_LASTLOGIN_HEADER_DESC));
-                                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LASTLOGIN_HEADER_DESC));
+                                fnClickLastLoginH();
                                 Assert.AreEqual(true, driver.FindElements(By.XPath(STR_LASTLOGIN_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
                                 status = "Passed";
                                 //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
@@ -571,7 +624,8 @@ namespace AutomationTraining_M7.Page_Objects
                                 Assert.Fail();
                             }
 
-                            ElementList2[0].Click();
+
+                            fnClickAccounts();
 
                             break;
 
