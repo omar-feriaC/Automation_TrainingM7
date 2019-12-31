@@ -169,20 +169,20 @@ namespace AutomationTraining_M7.Page_Objects
             clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_ACCOUNTS_BTN));
             objAccountsBtn.Click();
         }
-
+        
         //Function to click the Submenu option
-        /*private IWebElement GetSubMenuButton()
+        private IWebElement GetSubMenuButton()
         {
             return objSubMenuBtn;
         }
-        public static void fnClickSubmenu(string pXPathValue)
+        public static void fnClickSubmenu(string pSubMenuX)
         {
-            var StringXPath = pXPathValue;
-            objSubMenuBtn = StringXPath;
-            objSubMenuBtn = _objDriver.FindElement(By.XPath("setAttribute("pXPathValue));
-            driver.findElement(By.xpath("//input[@id='invoice_supplier_id'])).setAttribute("value", "your value")
-        }*/
-
+            //string pMenuName, int pListValue
+            //string SubMenuX = "//ul[@id='" + pMenuName.ToUpper() + "']//li[" + pListValue.ToString() + "]//a[1]";
+            objSubMenuBtn = driver.FindElement(By.XPath(pSubMenuX));
+            objSubMenuBtn.Click();
+        }
+        
         //Functions used for clicking the headers on the Accounts Page's subpages
         private IWebElement GetFirstNameH()
         {
@@ -250,24 +250,86 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
 
-
         //Function for sorting asserts
-        public static void fnTryCatchSort(string pXPath)
+        public static void fnTryCatchSort()
         {
+            string status;
             try
             {
-                objHeader.Click();
-                clsDriver.fnWaitForElementToExist(By.XPath(STR_FIRSTNAME_HEADER_DESC));
-                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_FIRSTNAME_HEADER_DESC));
+                fnClickFirstNameH();
                 Assert.AreEqual(true, driver.FindElements(By.XPath(STR_FIRSTNAME_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
-                //clsReportManager.fnStepCaptureImage(objExtent, objTest, objDriver, "Information is sorted correctly", status, timeDate);
+                status = "Passed";
+                //clsReportManager.fnStepCaptureImage(objExtent, objTest, objDriver, "Information is sorted correctly", status, "");
             }
 
             catch
             {
+                status = "Failed";
                 //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information was not sorted", status, timeDate);
                 Assert.Fail();
             }
+
+            try
+            {
+                fnClickLastNameH();
+                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_LASTNAME_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
+                status = "Passed";
+                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
+            }
+
+            catch
+            {
+                status = "Failed";
+                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information was not sorted", status, timeDate);
+                Assert.Fail();
+            }
+
+            try
+            {
+                fnClickEmailH();
+                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_EMAIL_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
+                status = "Passed";
+                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
+            }
+
+            catch
+            {
+                status = "Failed";
+                //clsReportManager.fnStepCaptureImage(objExtent, objTest, _objDriver, "Information was not sorted", status, timeDate);
+                Assert.Fail();
+            }
+
+            try
+            {
+                fnClickActiveH();
+                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_ACTIVE_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
+                status = "Passed";
+                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
+            }
+
+            catch
+            {
+                status = "Failed";
+                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information was not sorted", status, timeDate);
+                Assert.Fail();
+            }
+
+            try
+            {
+                fnClickLastLoginH();
+                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_LASTLOGIN_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
+                status = "Passed";
+                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
+            }
+
+            catch
+            {
+                status = "Failed";
+                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information was not sorted", status, timeDate);
+                Assert.Fail();
+            }
+
+            fnClickAccounts();
         }
 
         //Get Menus and Submenus
@@ -282,7 +344,7 @@ namespace AutomationTraining_M7.Page_Objects
                 //ElementList2[0].Click();
                 for (int i = 0; i < ElementList3.Count; i++)
                 {
-                    string status;
+                    //string status;
                     int listValue = i + 1;
                     string XPathValue = "//ul[@id='" + pstrMenuOption.ToUpper() + "']//li[" + listValue.ToString() + "]//a[1]";
 
@@ -290,8 +352,8 @@ namespace AutomationTraining_M7.Page_Objects
                     wait.Until(ExpectedConditions.ElementExists(By.XPath(XPathValue)));
                     wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(XPathValue)));
                     wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(XPathValue)));
-                    //fnClickSubmenu(XPathValue);
-                    ElementList3[i].Click();
+                    fnClickSubmenu(XPathValue);
+                    //ElementList3[i].Click();
                     string y = "The Submenu page did not load correctly.";
                     fnWaitHamburgerMenu();
                     //fnMinimizeLiveChat();
@@ -300,332 +362,26 @@ namespace AutomationTraining_M7.Page_Objects
                         {
                             case 0:
                             Assert.AreEqual(true, driver.Title.Contains("Admins Management"), "The Submenu page did not load correctly.");
+                            fnTryCatchSort();
 
-                            try
-                            {
-                                fnClickFirstNameH();
-                                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_FIRSTNAME_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
-                                status = "Passed";
-                                //clsReportManager.fnStepCaptureImage(objExtent, objTest, objDriver, "Information is sorted correctly", status, "");
-                            }
-
-                            catch
-                            {
-                                status = "Failed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information was not sorted", status, timeDate);
-                                Assert.Fail();
-                            }
-
-                            try
-                            {
-                                fnClickLastNameH();
-                                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_LASTNAME_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
-                                status = "Passed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
-                            }
-
-                            catch
-                            {
-                                status = "Failed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information was not sorted", status, timeDate);
-                                Assert.Fail();
-                            }
-
-                            try
-                            {
-                                fnClickEmailH();
-                                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_EMAIL_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
-                                status = "Passed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
-                            }
-
-                            catch
-                            {
-                                status = "Failed";
-                                //clsReportManager.fnStepCaptureImage(objExtent, objTest, _objDriver, "Information was not sorted", status, timeDate);
-                                Assert.Fail();
-                            }
-
-                            try
-                            {
-                                fnClickActiveH();
-                                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_ACTIVE_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
-                                status = "Passed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
-                            }
-
-                            catch
-                            {
-                                status = "Failed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information was not sorted", status, timeDate);
-                                Assert.Fail();
-                            }
-
-                            try
-                            {
-                                fnClickLastLoginH();
-                                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_LASTLOGIN_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
-                                status = "Passed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
-                            }
-
-                            catch
-                            {
-                                status = "Failed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information was not sorted", status, timeDate);
-                                Assert.Fail();
-                            }
-
-                            fnClickAccounts();
 
                             break;
 
                             case 1:
                             Assert.AreEqual(true, driver.Title.Contains("Suppliers Management"), "The Submenu page did not load correctly.");
-
-                            try
-                            {
-                                fnClickFirstNameH();
-                                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_FIRSTNAME_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
-                                status = "Passed";
-                                //clsReportManager.fnStepCaptureImage(objExtent, objTest, objDriver, "Information is sorted correctly", status, "");
-                            }
-
-                            catch
-                            {
-                                status = "Failed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information was not sorted", status, timeDate);
-                                Assert.Fail();
-                            }
-
-                            try
-                            {
-                                fnClickLastNameH();
-                                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_LASTNAME_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
-                                status = "Passed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
-                            }
-
-                            catch
-                            {
-                                status = "Failed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information was not sorted", status, timeDate);
-                                Assert.Fail();
-                            }
-
-                            try
-                            {
-                                fnClickEmailH();
-                                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_EMAIL_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
-                                status = "Passed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
-                            }
-
-                            catch
-                            {
-                                status = "Failed";
-                                //clsReportManager.fnStepCaptureImage(objExtent, objTest, _objDriver, "Information was not sorted", status, timeDate);
-                                Assert.Fail();
-                            }
-
-                            try
-                            {
-                                fnClickActiveH();
-                                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_ACTIVE_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
-                                status = "Passed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
-                            }
-
-                            catch
-                            {
-                                status = "Failed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information was not sorted", status, timeDate);
-                                Assert.Fail();
-                            }
-
-                            try
-                            {
-                                fnClickLastLoginH();
-                                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_LASTLOGIN_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
-                                status = "Passed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
-                            }
-
-                            catch
-                            {
-                                status = "Failed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information was not sorted", status, timeDate);
-                                Assert.Fail();
-                            }
-
-
-                            fnClickAccounts();
+                            fnTryCatchSort();
 
                             break;
 
                             case 2:
                             Assert.AreEqual(true, driver.Title.Contains("Customers Management"), "The Submenu page did not load correctly.");
-
-                            try
-                            {
-                                fnClickFirstNameH();
-                                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_FIRSTNAME_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
-                                status = "Passed";
-                                //clsReportManager.fnStepCaptureImage(objExtent, objTest, objDriver, "Information is sorted correctly", status, "");
-                            }
-
-                            catch
-                            {
-                                status = "Failed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information was not sorted", status, timeDate);
-                                Assert.Fail();
-                            }
-
-                            try
-                            {
-                                fnClickLastNameH();
-                                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_LASTNAME_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
-                                status = "Passed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
-                            }
-
-                            catch
-                            {
-                                status = "Failed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information was not sorted", status, timeDate);
-                                Assert.Fail();
-                            }
-
-                            try
-                            {
-                                fnClickEmailH();
-                                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_EMAIL_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
-                                status = "Passed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
-                            }
-
-                            catch
-                            {
-                                status = "Failed";
-                                //clsReportManager.fnStepCaptureImage(objExtent, objTest, _objDriver, "Information was not sorted", status, timeDate);
-                                Assert.Fail();
-                            }
-
-                            try
-                            {
-                                fnClickActiveH();
-                                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_ACTIVE_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
-                                status = "Passed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
-                            }
-
-                            catch
-                            {
-                                status = "Failed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information was not sorted", status, timeDate);
-                                Assert.Fail();
-                            }
-
-                            try
-                            {
-                                fnClickLastLoginH();
-                                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_LASTLOGIN_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
-                                status = "Passed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
-                            }
-
-                            catch
-                            {
-                                status = "Failed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information was not sorted", status, timeDate);
-                                Assert.Fail();
-                            }
-
-
-                            fnClickAccounts();
+                            fnTryCatchSort();
 
                             break;
 
                             case 3:
                             Assert.AreEqual(true, driver.Title.Contains("Guest Management"), "The Submenu page did not load correctly.");
-
-                            try
-                            {
-                                fnClickFirstNameH();
-                                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_FIRSTNAME_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
-                                status = "Passed";
-                                //clsReportManager.fnStepCaptureImage(objExtent, objTest, objDriver, "Information is sorted correctly", status, "");
-                            }
-
-                            catch
-                            {
-                                status = "Failed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information was not sorted", status, timeDate);
-                                Assert.Fail();
-                            }
-
-                            try
-                            {
-                                fnClickLastNameH();
-                                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_LASTNAME_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
-                                status = "Passed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
-                            }
-
-                            catch
-                            {
-                                status = "Failed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information was not sorted", status, timeDate);
-                                Assert.Fail();
-                            }
-
-                            try
-                            {
-                                fnClickEmailH();
-                                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_EMAIL_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
-                                status = "Passed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
-                            }
-
-                            catch
-                            {
-                                status = "Failed";
-                                //clsReportManager.fnStepCaptureImage(objExtent, objTest, _objDriver, "Information was not sorted", status, timeDate);
-                                Assert.Fail();
-                            }
-
-                            try
-                            {
-                                fnClickActiveH();
-                                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_ACTIVE_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
-                                status = "Passed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
-                            }
-
-                            catch
-                            {
-                                status = "Failed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information was not sorted", status, timeDate);
-                                Assert.Fail();
-                            }
-
-                            try
-                            {
-                                fnClickLastLoginH();
-                                Assert.AreEqual(true, driver.FindElements(By.XPath(STR_LASTLOGIN_HEADER_DESC)).Count > 0, "Information was sorted in descending way");
-                                status = "Passed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information is sorted correctly", status, timeDate);
-                            }
-
-                            catch
-                            {
-                                status = "Failed";
-                                //clsReportManager.fnStepCaptureImage(pobjExtent, pobjTest, pobjDriver, "Information was not sorted", status, timeDate);
-                                Assert.Fail();
-                            }
-
-
-                            fnClickAccounts();
+                            fnTryCatchSort();
 
                             break;
 
