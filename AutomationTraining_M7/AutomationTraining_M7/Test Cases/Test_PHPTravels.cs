@@ -28,7 +28,7 @@ namespace AutomationTraining_M7.Test_Cases
             clsPHPTravels_LoginPage.fnEnterEmail(ConfigurationManager.AppSettings.Get("email"));
             clsPHPTravels_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
             clsPHPTravels_LoginPage.fnClickLoginButton();
-            clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
+            clsPHPTravels_LoginPage.fnClickMenu("ACCOUNTS");
             Assert.AreEqual(true, driver.Title.Contains("Dashboard"), "The Dashboard was not loaded correctly.");
 
             IList<IWebElement> DashElements = driver.FindElements(By.XPath("//ul[@class='serverHeader__statsList']//child::a"));
