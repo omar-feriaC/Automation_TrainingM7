@@ -52,10 +52,20 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_ACCOUNT_GCUST_CLP = "//ul[@id='ACCOUNTS']//a[contains(text(),'GuestCustomers')]";
         //HEADERS
         readonly static string STR_FIRSTNAME_LBL = "//th[contains(text(),'First Name')]";
+        readonly static string STR_FIRSTNAME_LBL_ASC = "//th[contains(text(),'↓ First Name')]";
+        readonly static string STR_FIRSTNAME_LBL_DESC = "//th[contains(text(),'↑ First Name')]";
         readonly static string STR_LASTNAME_LBL = "//th[contains(text(),'Last Name')]";
+        readonly static string STR_LASTNAME_LBL_ASC = "//th[contains(text(),'↓ Last Name')]";
+        readonly static string STR_LASTNAME_LBL_DESC = "//th[contains(text(),'↑ Last Name')]";
         readonly static string STR_EMAIL_LBL = "//th[contains(text(),'Email')]";
+        readonly static string STR_EMAIL_LBL_ASC = "//th[contains(text(),'↓ Email')]";
+        readonly static string STR_EMAIL_LBL_DESC = "//th[contains(text(),'↑ Email')]";
         readonly static string STR_ACTIVE_LBL = "//th[contains(text(),'Active')]";
+        readonly static string STR_ACTIVE_LBL_ASC = "//th[contains(text(),'↓ Active')]";
+        readonly static string STR_ACTIVE_LBL_DESC = "//th[contains(text(),'↑ Active')]";
         readonly static string STR_LASTLOGIN_LBL = "//th[contains(text(),'Last Login')]";
+        readonly static string STR_LASTLOGIN_LBL_ASC = "//th[contains(text(),'↓ Last Login')]";
+        readonly static string STR_LASTLOGIN_LBL_DESC = "//th[contains(text(),'↑ Last Login')]";
 
         /*CONSTRUCTOR*/
         public clsPHPTravels_LoginPage(IWebDriver pobjDriver, ExtentReports objExtent, ExtentTest objTest)
@@ -244,98 +254,94 @@ namespace AutomationTraining_M7.Page_Objects
         {
             string Status;
             string Order;
+            fnClickSubMenuAdmins();
             try
             {
-                fnClickSubMenuAdmins();
-                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_FIRSTNAME_LBL)));
-                _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_FIRSTNAME_LBL)));
+                Status = "Pass";
                 //FirstName
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_FIRSTNAME_LBL)));
                 Order = objFNameBtn.GetAttribute("data-order");
                 objFNameBtn.Click();
-                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_FIRSTNAME_LBL)));
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_FIRSTNAME_LBL_ASC)));
                 Assert.AreNotEqual(Order, objFNameBtn.GetAttribute("data-order"));
-                Status = "Pass";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_FirstNameSorting_Test", Status, $"Admins_FirstNameSorting_Test");
                 //LastName
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_LASTNAME_LBL)));
                 Order = objLNameBtn.GetAttribute("data-order");
                 objLNameBtn.Click();
-                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_LASTNAME_LBL)));
+                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_LASTNAME_LBL_ASC)));
                 Assert.AreNotEqual(Order, objLNameBtn.GetAttribute("data-order"));
-                Status = "Pass";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_LastNameSorting_Test", Status, $"Admins_LastNameSorting_Test");
                 //EMail
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_EMAIL_LBL)));
                 Order = objEmailBtn.GetAttribute("data-order");
                 objEmailBtn.Click();
-                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_EMAIL_LBL)));
+                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_EMAIL_LBL_ASC)));
                 Assert.AreNotEqual(Order, objEmailBtn.GetAttribute("data-order"));
-                Status = "Pass";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_eMailSorting_Test", Status, $"Admins_eMailSorting_Test");
                 //Active
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_ACTIVE_LBL)));
                 Order = objActiveBtn.GetAttribute("data-order");
                 objActiveBtn.Click();
-                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_ACTIVE_LBL)));
+                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_ACTIVE_LBL_ASC)));
                 Assert.AreNotEqual(Order, objActiveBtn.GetAttribute("data-order"));
-                Status = "Pass";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_ActiveSorting_Test", Status, $"Admins_ActiveSorting_Test");
                 //LastLogin
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_LASTLOGIN_LBL)));
                 Order = objLLoginBtn.GetAttribute("data-order");
                 objLLoginBtn.Click();
-                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_LASTLOGIN_LBL)));
+                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_LASTLOGIN_LBL_ASC)));
                 Assert.AreNotEqual(Order, objLLoginBtn.GetAttribute("data-order"));
-                Status = "Pass";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_LastLoginSorting_Test", Status, $"Admins_LastLoginSorting_Test");
-
             }
             catch (Exception e)
             {
                 Status = "Fail";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_Sorting_Test", Status, $"Admins_Sorting_Test");
-                Assert.Fail();
             }
         }
         public static void fnSortingSuppliers()
         {
             string Status;
             string Order;
+            fnClickSubMenuSuppliers();
             try
             {
-                fnClickSubMenuSuppliers();
-                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_FIRSTNAME_LBL)));
-                _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_FIRSTNAME_LBL)));
+                Status = "Pass";
                 //FirstName
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_FIRSTNAME_LBL)));
                 Order = objFNameBtn.GetAttribute("data-order");
                 objFNameBtn.Click();
-                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_FIRSTNAME_LBL)));
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_FIRSTNAME_LBL_ASC)));
                 Assert.AreNotEqual(Order, objFNameBtn.GetAttribute("data-order"));
-                Status = "Pass";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_FirstNameSorting_Test", Status, $"Admins_FirstNameSorting_Test");
                 //LastName
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_LASTNAME_LBL)));
                 Order = objLNameBtn.GetAttribute("data-order");
                 objLNameBtn.Click();
-                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_LASTNAME_LBL)));
+                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_LASTNAME_LBL_ASC)));
                 Assert.AreNotEqual(Order, objLNameBtn.GetAttribute("data-order"));
-                Status = "Pass";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_LastNameSorting_Test", Status, $"Admins_LastNameSorting_Test");
                 //EMail
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_EMAIL_LBL)));
                 Order = objEmailBtn.GetAttribute("data-order");
                 objEmailBtn.Click();
-                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_EMAIL_LBL)));
+                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_EMAIL_LBL_ASC)));
                 Assert.AreNotEqual(Order, objEmailBtn.GetAttribute("data-order"));
-                Status = "Pass";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_eMailSorting_Test", Status, $"Admins_eMailSorting_Test");
                 //Active
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_ACTIVE_LBL)));
                 Order = objActiveBtn.GetAttribute("data-order");
                 objActiveBtn.Click();
-                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_ACTIVE_LBL)));
+                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_ACTIVE_LBL_ASC)));
                 Assert.AreNotEqual(Order, objActiveBtn.GetAttribute("data-order"));
-                Status = "Pass";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_ActiveSorting_Test", Status, $"Admins_ActiveSorting_Test");
                 //LastLogin
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_LASTLOGIN_LBL)));
                 Order = objLLoginBtn.GetAttribute("data-order");
                 objLLoginBtn.Click();
-                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_LASTLOGIN_LBL)));
+                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_LASTLOGIN_LBL_ASC)));
                 Assert.AreNotEqual(Order, objLLoginBtn.GetAttribute("data-order"));
-                Status = "Pass";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_LastLoginSorting_Test", Status, $"Admins_LastLoginSorting_Test");
 
             }
@@ -343,52 +349,50 @@ namespace AutomationTraining_M7.Page_Objects
             {
                 Status = "Fail";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_Sorting_Test", Status, $"Admins_Sorting_Test");
-                Assert.Fail();
             }
         }
         public static void fnSortingCustomer()
         {
             string Status;
             string Order;
+            fnClickSubMenuCustomer();
             try
             {
-                fnClickSubMenuCustomer();
-                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_FIRSTNAME_LBL)));
-                _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_FIRSTNAME_LBL)));
+                Status = "Pass";
                 //FirstName
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_FIRSTNAME_LBL)));
                 Order = objFNameBtn.GetAttribute("data-order");
                 objFNameBtn.Click();
-                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_FIRSTNAME_LBL)));
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_FIRSTNAME_LBL_ASC)));
                 Assert.AreNotEqual(Order, objFNameBtn.GetAttribute("data-order"));
-                Status = "Pass";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_FirstNameSorting_Test", Status, $"Admins_FirstNameSorting_Test");
                 //LastName
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_LASTNAME_LBL)));
                 Order = objLNameBtn.GetAttribute("data-order");
                 objLNameBtn.Click();
-                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_LASTNAME_LBL)));
+                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_LASTNAME_LBL_ASC)));
                 Assert.AreNotEqual(Order, objLNameBtn.GetAttribute("data-order"));
-                Status = "Pass";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_LastNameSorting_Test", Status, $"Admins_LastNameSorting_Test");
                 //EMail
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_EMAIL_LBL)));
                 Order = objEmailBtn.GetAttribute("data-order");
                 objEmailBtn.Click();
-                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_EMAIL_LBL)));
+                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_EMAIL_LBL_ASC)));
                 Assert.AreNotEqual(Order, objEmailBtn.GetAttribute("data-order"));
-                Status = "Pass";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_eMailSorting_Test", Status, $"Admins_eMailSorting_Test");
                 //Active
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_ACTIVE_LBL)));
                 Order = objActiveBtn.GetAttribute("data-order");
                 objActiveBtn.Click();
-                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_ACTIVE_LBL)));
+                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_ACTIVE_LBL_ASC)));
                 Assert.AreNotEqual(Order, objActiveBtn.GetAttribute("data-order"));
-                Status = "Pass";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_ActiveSorting_Test", Status, $"Admins_ActiveSorting_Test");
                 //LastLogin
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_LASTLOGIN_LBL)));
                 Order = objLLoginBtn.GetAttribute("data-order");
                 objLLoginBtn.Click();
-                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_LASTLOGIN_LBL)));
+                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_LASTLOGIN_LBL_ASC)));
                 Assert.AreNotEqual(Order, objLLoginBtn.GetAttribute("data-order"));
-                Status = "Pass";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_LastLoginSorting_Test", Status, $"Admins_LastLoginSorting_Test");
 
             }
@@ -396,52 +400,50 @@ namespace AutomationTraining_M7.Page_Objects
             {
                 Status = "Fail";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_Sorting_Test", Status, $"Admins_Sorting_Test");
-                Assert.Fail();
             }
         }
         public static void fnSortingGuestCustomer()
         {
             string Status;
             string Order;
+            fnClickSubMenuGuestCustomer();
             try
             {
-                fnClickSubMenuGuestCustomer();
-                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_FIRSTNAME_LBL)));
-                _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_FIRSTNAME_LBL)));
+                Status = "Pass";
                 //FirstName
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_FIRSTNAME_LBL)));
                 Order = objFNameBtn.GetAttribute("data-order");
                 objFNameBtn.Click();
-                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_FIRSTNAME_LBL)));
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_FIRSTNAME_LBL_ASC)));
                 Assert.AreNotEqual(Order, objFNameBtn.GetAttribute("data-order"));
-                Status = "Pass";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_FirstNameSorting_Test", Status, $"Admins_FirstNameSorting_Test");
                 //LastName
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_LASTNAME_LBL)));
                 Order = objLNameBtn.GetAttribute("data-order");
                 objLNameBtn.Click();
-                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_LASTNAME_LBL)));
+                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_LASTNAME_LBL_ASC)));
                 Assert.AreNotEqual(Order, objLNameBtn.GetAttribute("data-order"));
-                Status = "Pass";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_LastNameSorting_Test", Status, $"Admins_LastNameSorting_Test");
                 //EMail
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_EMAIL_LBL)));
                 Order = objEmailBtn.GetAttribute("data-order");
                 objEmailBtn.Click();
-                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_EMAIL_LBL)));
+                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_EMAIL_LBL_ASC)));
                 Assert.AreNotEqual(Order, objEmailBtn.GetAttribute("data-order"));
-                Status = "Pass";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_eMailSorting_Test", Status, $"Admins_eMailSorting_Test");
                 //Active
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_ACTIVE_LBL)));
                 Order = objActiveBtn.GetAttribute("data-order");
                 objActiveBtn.Click();
-                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_ACTIVE_LBL)));
+                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_ACTIVE_LBL_ASC)));
                 Assert.AreNotEqual(Order, objActiveBtn.GetAttribute("data-order"));
-                Status = "Pass";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_ActiveSorting_Test", Status, $"Admins_ActiveSorting_Test");
                 //LastLogin
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_LASTLOGIN_LBL)));
                 Order = objLLoginBtn.GetAttribute("data-order");
                 objLLoginBtn.Click();
-                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_LASTLOGIN_LBL)));
+                _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_LASTLOGIN_LBL_ASC)));
                 Assert.AreNotEqual(Order, objLLoginBtn.GetAttribute("data-order"));
-                Status = "Pass";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_LastLoginSorting_Test", Status, $"Admins_LastLoginSorting_Test");
 
             }
@@ -449,7 +451,6 @@ namespace AutomationTraining_M7.Page_Objects
             {
                 Status = "Fail";
                 objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_Sorting_Test", Status, $"Admins_Sorting_Test");
-                Assert.Fail();
             }
         }
     }
