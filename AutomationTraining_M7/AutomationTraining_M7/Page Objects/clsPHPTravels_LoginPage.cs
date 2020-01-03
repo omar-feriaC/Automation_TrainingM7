@@ -1,4 +1,7 @@
 ﻿using AutomationTraining_M7.Base_Files;
+using AutomationTraining_M7.Reporting;
+using AventStack.ExtentReports;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
@@ -15,6 +18,9 @@ namespace AutomationTraining_M7.Page_Objects
         /*ATTRIBUTES*/
         public static WebDriverWait _driverWait;
         private static IWebDriver _objDriver;
+        private static clsReportManager objReport = new clsReportManager();
+        private static ExtentReports _objExtent; 
+        private static ExtentTest _objTest; 
 
         /*LOCATORS DESCRIPTION*/
         readonly static string STR_EMAIL_TXT = "email";
@@ -46,26 +52,28 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_ACCOUNT_GCUST_CLP = "//ul[@id='ACCOUNTS']//a[contains(text(),'GuestCustomers')]";
         //HEADERS
         readonly static string STR_FIRSTNAME_LBL = "//th[contains(text(),'First Name')]";
-        readonly static string STR_FIRSTNAME_LBL_DESC = "//th[contains(text(),'↓ First Name')]";
-        readonly static string STR_FIRSTNAME_LBL_ASC = "//th[contains(text(),'↑ First Name')]";
+        //readonly static string STR_FIRSTNAME_LBL_DESC = "//th[contains(text(),'↓ First Name')]";
+        //readonly static string STR_FIRSTNAME_LBL_ASC = "//th[contains(text(),'↑ First Name')]";
         readonly static string STR_LASTNAME_LBL = "//th[contains(text(),'Last Name')]";
-        readonly static string STR_LASTNAME_LBL_DESC = "//th[contains(text(),'↓ Last Name')]";
-        readonly static string STR_LASTNAME_LBL_ASC = "//th[contains(text(),'↑ Last Name')]";
+        //readonly static string STR_LASTNAME_LBL_DESC = "//th[contains(text(),'↓ Last Name')]";
+        //readonly static string STR_LASTNAME_LBL_ASC = "//th[contains(text(),'↑ Last Name')]";
         readonly static string STR_EMAIL_LBL = "//th[contains(text(),'Email')]";
-        readonly static string STR_EMAIL_LBL_DESC = "//th[contains(text(),'↓ Email')]";
-        readonly static string STR_EMAIL_LBL_ASC = "//th[contains(text(),'↑ Email')]";
+        //readonly static string STR_EMAIL_LBL_DESC = "//th[contains(text(),'↓ Email')]";
+        //readonly static string STR_EMAIL_LBL_ASC = "//th[contains(text(),'↑ Email')]";
         readonly static string STR_ACTIVE_LBL = "//th[contains(text(),'Active')]";
-        readonly static string STR_ACTIVE_LBL_DESC = "//th[contains(text(),'↓ Active')]";
-        readonly static string STR_ACTIVE_LBL_ASC = "//th[contains(text(),'↑ Active')]";
+        //readonly static string STR_ACTIVE_LBL_DESC = "//th[contains(text(),'↓ Active')]";
+        //readonly static string STR_ACTIVE_LBL_ASC = "//th[contains(text(),'↑ Active')]";
         readonly static string STR_LASTLOGIN_LBL = "//th[contains(text(),'Last Login')]";
-        readonly static string STR_LASTLOGIN_LBL_DESC = "//th[contains(text(),'↓ Last Login')]";
-        readonly static string STR_LASTLOGIN_LBL_ASC = "//th[contains(text(),'↑ Last Login')]";
+        //readonly static string STR_LASTLOGIN_LBL_DESC = "//th[contains(text(),'↓ Last Login')]";
+        //readonly static string STR_LASTLOGIN_LBL_ASC = "//th[contains(text(),'↑ Last Login')]";
 
         /*CONSTRUCTOR*/
-        public clsPHPTravels_LoginPage(IWebDriver pobjDriver)
+        public clsPHPTravels_LoginPage(IWebDriver pobjDriver, ExtentReports objExtent, ExtentTest objTest)
         {
             _objDriver = pobjDriver;
             _driverWait = new WebDriverWait(_objDriver, new TimeSpan(0, 0, 40));
+            _objExtent = objExtent;
+            _objTest = objTest;
         }
 
         /*OBJECT DEFINITION*/
@@ -147,14 +155,15 @@ namespace AutomationTraining_M7.Page_Objects
             _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_LOGIN_BTN)));
             _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_LOGIN_BTN)));
             objLoginBtn.Click();
+            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//ul[@class='serverHeader__statsList']")));
         }
 
         //Menu
 
         public static void fnClickMenu(string Menu_Option)
         {
-            _driverWait.Until(ExpectedConditions.ElementExists(By.Name(STR_DASHBOARD_MNU)));
-            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.Name(STR_DASHBOARD_MNU)));
+            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_DASHBOARD_MNU)));
+            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_DASHBOARD_MNU)));
             switch (Menu_Option)
             {
                 case "DASHBOARD":
@@ -243,6 +252,7 @@ namespace AutomationTraining_M7.Page_Objects
         //Sorting
         public static void fnSorting()
         {
+            string Status;
             string Order;
             try
             {
@@ -251,11 +261,16 @@ namespace AutomationTraining_M7.Page_Objects
                 _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_FIRSTNAME_LBL)));
                 Order = objFNameBtn.GetAttribute("data-order");
                 objFNameBtn.Click();
+                Assert.AreNotEqual(Order, objFNameBtn.GetAttribute("data-order"));
+                Status = "Pass";
+                objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_FirstNameSorting_Test", Status, $"Admins_FirstNameSorting_Test");
 
             }
             catch (Exception e)
             {
-
+                Status = "Fail";
+                Assert.Fail();
+                objReport.fnStepCaptureImage(_objExtent, _objTest, _objDriver, $"Admins_FirstNameSorting_Test", Status, $"Admins_FirstNameSorting_Test");
             }
 
             objLNameBtn.Click();
