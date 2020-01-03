@@ -38,8 +38,20 @@ namespace AutomationTraining_M7.Test_Cases
             }
             //Click Menu
             clsPHPTravels_LoginPage.fnClickMenu("ACCOUNTS");
-            //Sort 
-            clsPHPTravels_LoginPage.fnSorting();
+            //Sort Submenu-Admins
+            clsPHPTravels_LoginPage.fnSortingAdmins();
+            //Click Menu
+            clsPHPTravels_LoginPage.fnClickMenu("ACCOUNTS");
+            //Sort Submenu-Suppliers
+            clsPHPTravels_LoginPage.fnSortingSuppliers();
+            //Click Menu
+            clsPHPTravels_LoginPage.fnClickMenu("ACCOUNTS");
+            //Sort Submenu-Customer
+            clsPHPTravels_LoginPage.fnSortingCustomer();
+            //Click Menu
+            clsPHPTravels_LoginPage.fnClickMenu("ACCOUNTS");
+            //Sort Submenu-GuestCustomer
+            clsPHPTravels_LoginPage.fnSortingGuestCustomer();
 
 
         }
