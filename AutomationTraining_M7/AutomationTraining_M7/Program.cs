@@ -16,8 +16,10 @@ namespace AutomationTraining_M7
     {
         static void Main(string[] args)
         {
-            clsReportManager objReport = new clsReportManager();
-            objReport.fnReportPath();
+            clsLibData objLibData = new clsLibData();
+            objLibData.fnInitConnection();
+            //clsReportManager objReport = new clsReportManager();
+            //objReport.fnReportPath();
 
 
             /*
