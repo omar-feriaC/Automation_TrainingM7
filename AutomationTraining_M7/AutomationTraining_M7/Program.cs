@@ -6,13 +6,14 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AutomationTraining_M7
 {
-    class Program
+    class Program : BaseTest
     {
         //Delegates
         delegate void LambdasNoParams(); //(1)
@@ -20,6 +21,39 @@ namespace AutomationTraining_M7
 
         static void Main(string[] args)
         {
+            DataTable myTable;
+
+            /* D A T A B A S E*/
+            clsData objData = new clsData();
+            clsLibData objLibData = new clsLibData();
+            objLibData.fnInitConnection();
+
+
+            myTable =  objLibData.fnExecuteQueryData2("select * from UserCredentials");
+            if (myTable != null && myTable.Rows.Count > 0)
+            {
+                //Iterate each row in Table
+                foreach (DataRow row in myTable.Rows)
+                {
+                    if (row["SetValue"].ToString().Trim() == "3")
+                    {
+                        string username = row["UserName"].ToString().Trim();
+                        string password = row["Password"].ToString().Trim();
+                    }
+
+                  
+                }
+            }
+
+
+            objLibData.fnExecuteQueryData("select * from Tbl_Users");
+            objLibData.fnExecuteQueryData("select * from Tbl_Users");
+            objData.fnExecuteQueryData("select * from Tbl_Users");
+
+
+
+
+
 
             /*L A M B D A */
 

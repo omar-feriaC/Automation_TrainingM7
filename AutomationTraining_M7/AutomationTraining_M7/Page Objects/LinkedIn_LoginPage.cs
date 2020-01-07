@@ -1,7 +1,9 @@
 ﻿using AutomationTraining_M7.Base_Files;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ namespace AutomationTraining_M7.Page_Objects
     {
         /*DRIVER REFERENCE FOR POM*/
         private static IWebDriver _objDriver;
+
 
         /*LOCATORS FOR EACH ELEMENT*/
         readonly static string STR_USERNAME_TEXT = "username";
@@ -63,6 +66,39 @@ namespace AutomationTraining_M7.Page_Objects
         public static void fnClickSignInButton()
         {
             objSignInBtn.Click();
+        }
+
+        public static void fnLoginLikedInPage(DataTable pTable, string pstrSet)
+        {
+            try
+            {
+                if (pTable != null && pTable.Rows.Count > 0)
+                {
+                    //Iterate each row in Table
+                    foreach (DataRow row in pTable.Rows)
+                    {
+                        if (row["SetValue"].ToString().Trim() == pstrSet)
+                        {
+                            Assert.AreEqual(true, driver.Title.Contains("Login"), "Title not mach");
+                            fnEnterUserName("fdgfdgfd");
+                            fnEnterUserName("Test23");
+
+                            fnEnterPassword(row["Password"].ToString().Trim());
+                            fnEnterPassword(row["Password"].ToString().Trim());
+                            fnClickSignInButton();
+                        }
+
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Eror in fnLoginLikedInPage: \n" + ex.GetBaseException());
+                Assert.Fail();
+            }
+
+
         }
 
     }

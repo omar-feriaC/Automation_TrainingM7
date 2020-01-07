@@ -92,6 +92,12 @@
     </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Common, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.Common.4.3.0\lib\net451\System.Data.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SqlClient, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.8.0\lib\net46\System.Data.SqlClient.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
@@ -112,7 +118,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base Files\BaseTest.cs" />
+    <Compile Include="Base Files\clsData.cs" />
     <Compile Include="Base Files\clsDriver.cs" />
+    <Compile Include="Base Files\clsLibData.cs" />
     <Compile Include="FinalM7\CommissionEmployee.cs" />
     <Compile Include="FinalM7\HourlyEmployee.cs" />
     <Compile Include="FinalM7\IPayrollCalculator.cs" />
@@ -126,6 +134,7 @@
     <Compile Include="Test Cases\Prueba1.cs" />
     <Compile Include="Test Cases\Test_LinkedIn.cs" />
     <Compile Include="Test Cases\Test_LinkedInSearch.cs" />
+    <Compile Include="Test Cases\Test_LinkedIn_DataDriven.cs" />
     <Compile Include="Test Cases\Test_PHPTravels.cs" />
   </ItemGroup>
   <ItemGroup>
