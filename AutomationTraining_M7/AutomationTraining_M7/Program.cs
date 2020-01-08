@@ -29,15 +29,15 @@ namespace AutomationTraining_M7
             objLibData.fnInitConnection();
 
 
-            myTable =  objLibData.fnExecuteQueryData2("select * from UserCredentials");
+            myTable =  objLibData.fnExecuteQueryData2("select * from t_User");
             if (myTable != null && myTable.Rows.Count > 0)
             {
                 //Iterate each row in Table
                 foreach (DataRow row in myTable.Rows)
                 {
-                    if (row["SetValue"].ToString().Trim() == "3")
+                    if (row["ID"].ToString().Trim() == "2")
                     {
-                        string username = row["UserName"].ToString().Trim();
+                        string username = row["Email"].ToString().Trim();
                         string password = row["Password"].ToString().Trim();
                     }
 
