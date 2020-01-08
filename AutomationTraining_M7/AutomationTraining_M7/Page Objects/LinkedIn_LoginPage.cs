@@ -77,13 +77,13 @@ namespace AutomationTraining_M7.Page_Objects
                     //Iterate each row in Table
                     foreach (DataRow row in pTable.Rows)
                     {
-                        if (row["SetValue"].ToString().Trim() == pstrSet)
+                        if (row["ID"].ToString().Trim() == pstrSet)
                         {
                             Assert.AreEqual(true, driver.Title.Contains("Login"), "Title not mach");
-                            fnEnterUserName("fdgfdgfd");
-                            fnEnterUserName("Test23");
+                            //fnEnterUserName("fdgfdgfd");
+                            //fnEnterUserName("Test23");
 
-                            fnEnterPassword(row["Password"].ToString().Trim());
+                            fnEnterUserName(row["Email"].ToString().Trim());
                             fnEnterPassword(row["Password"].ToString().Trim());
                             fnClickSignInButton();
                         }
