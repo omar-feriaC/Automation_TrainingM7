@@ -20,9 +20,9 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_USERNAME_TEXT = "username";
         readonly static string STR_PASSWORD_TEXT = "password";
         readonly static string STR_SIGNIN_BTN = "//button[text()='Sign in']";
-        
+
         /*CONSTRUCTOR*/
-        public  LinkedIn_LoginPage(IWebDriver pobjDriver)
+        public LinkedIn_LoginPage(IWebDriver pobjDriver)
         {
             _objDriver = pobjDriver;
         }
@@ -77,13 +77,13 @@ namespace AutomationTraining_M7.Page_Objects
                     //Iterate each row in Table
                     foreach (DataRow row in pTable.Rows)
                     {
-                        if (row["SetValue"].ToString().Trim() == pstrSet)
+                        if (row["ID"].ToString().Trim() == pstrSet)
                         {
                             Assert.AreEqual(true, driver.Title.Contains("Login"), "Title not mach");
-                            fnEnterUserName("fdgfdgfd");
-                            fnEnterUserName("Test23");
+                            //fnEnterUserName("fdgfdgfd");
+                            //fnEnterUserName("Test23");
 
-                            fnEnterPassword(row["Password"].ToString().Trim());
+                            fnEnterUserName(row["Email"].ToString().Trim());
                             fnEnterPassword(row["Password"].ToString().Trim());
                             fnClickSignInButton();
                         }

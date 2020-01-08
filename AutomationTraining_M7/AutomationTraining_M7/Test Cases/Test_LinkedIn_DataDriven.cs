@@ -22,8 +22,8 @@ namespace AutomationTraining_M7.Test_Cases
         {
             objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
             objLogin = new LinkedIn_LoginPage(driver);
-            tblTable = objLibData.fnExecuteQueryData2("select * from UserCredentials");
-            LinkedIn_LoginPage.fnLoginLikedInPage(tblTable, "3");
+            tblTable = objLibData.fnExecuteQueryData2("select * from t_User");
+            LinkedIn_LoginPage.fnLoginLikedInPage(tblTable, "2");
 
         }
 

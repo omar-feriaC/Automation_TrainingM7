@@ -29,19 +29,19 @@ namespace AutomationTraining_M7
             objLibData.fnInitConnection();
 
 
-            myTable =  objLibData.fnExecuteQueryData2("select * from UserCredentials");
+            myTable = objLibData.fnExecuteQueryData2("select * from t_User");
             if (myTable != null && myTable.Rows.Count > 0)
             {
                 //Iterate each row in Table
                 foreach (DataRow row in myTable.Rows)
                 {
-                    if (row["SetValue"].ToString().Trim() == "3")
+                    if (row["ID"].ToString().Trim() == "2")
                     {
-                        string username = row["UserName"].ToString().Trim();
+                        string username = row["Email"].ToString().Trim();
                         string password = row["Password"].ToString().Trim();
                     }
 
-                  
+
                 }
             }
 
@@ -80,7 +80,7 @@ namespace AutomationTraining_M7
             //********************************************************
             // Case 3
             //********************************************************
-            List<int> numbers = new List<int>() { 1,2,3,4,5,6,7,8,9,10 };
+            List<int> numbers = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             List<int> oddNumbers = numbers.FindAll(x => x % 2 != 0).ToList();
             List<int> evenNumbers2 = numbers.FindAll(x => x % 2 == 0).ToList();
             Console.WriteLine("List of Odd Numbers is");
@@ -99,7 +99,7 @@ namespace AutomationTraining_M7
             //********************************************************
             // Case 4
             //********************************************************
-            List<int> numbers2 = new List<int>() { 1,2,3,4,5,6,7,8,9,10 };
+            List<int> numbers2 = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             foreach (int ab in numbers2.Where(x =>
             {
                 Console.WriteLine("Number is {0}", x);
@@ -125,3 +125,4 @@ namespace AutomationTraining_M7
     }
 
 }
+
