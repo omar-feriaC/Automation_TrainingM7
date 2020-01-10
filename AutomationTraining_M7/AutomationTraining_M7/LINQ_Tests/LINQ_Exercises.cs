@@ -32,12 +32,6 @@ namespace AutomationTraining_M7.LINQ_Tests
                 arr1[i] = Console.ReadLine();
             }
 
-            IEnumerable<string> objNew = from m in arr1
-                                         select m;
-
-            foreach (string z in objNew)
-                Console.WriteLine("Item: {0}, characters {1}", z, z.Length);
-
             Console.ReadLine();
         }
 
@@ -50,12 +44,6 @@ namespace AutomationTraining_M7.LINQ_Tests
             Console.Write("\nLINQ : Calculate the Size of File : ");
             Console.Write("\n------------------------------------\n");
 
-            var avgFsize = dirfiles.Select(file => new FileInfo(file));
-
-            foreach (var file in avgFsize)
-            {
-                Console.WriteLine("The file size is {0} bytes", file.Length);
-            }
 
             Console.ReadLine();
 
@@ -69,20 +57,10 @@ namespace AutomationTraining_M7.LINQ_Tests
             Console.Write("\nBasic structure of LINQ : ");
             Console.Write("\n---------------------------");
 
-            // The second part is Query creation.
-            // nQuery is an IEnumerable<int>
-            var nQuery =
-                from VrNum in n1
-                where (VrNum % 2) == 0
-                select VrNum;
+
 
             // The third part is Query execution.
 
-            Console.Write("\nThe numbers which produce the remainder 0 after divided by 2 are : \n");
-            foreach (int VrNum in nQuery)
-            {
-                Console.Write("{0} ", VrNum);
-            }
             Console.Write("\n\n");
         }
 
@@ -93,14 +71,6 @@ namespace AutomationTraining_M7.LINQ_Tests
             Console.Write("\nLINQ : Display the name of the days of a week : ");
             Console.Write("\n------------------------------------------------\n");
 
-
-            var days = from WeekDay in dayWeek
-                       select WeekDay;
-            foreach (var WeekDay in days)
-            {
-                Console.WriteLine(WeekDay);
-            }
-            Console.WriteLine();
         }
 
         public void Exercise5()
@@ -110,12 +80,6 @@ namespace AutomationTraining_M7.LINQ_Tests
             Console.Write("\nLINQ : Print the number and its square from an array: ");
             Console.Write("\n------------------------------------------------------------------------\n");
 
-            var sqNo = from int Number in arr1
-                       let SqrNo = Number * Number
-                       select new { Number, SqrNo };
-
-            foreach (var a in sqNo)
-                Console.WriteLine(a);
 
             Console.ReadLine();
 
