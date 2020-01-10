@@ -125,6 +125,7 @@
     <Compile Include="FinalM7\HourlyEmployee.cs" />
     <Compile Include="FinalM7\IPayrollCalculator.cs" />
     <Compile Include="FinalM7\SalaryEmployee.cs" />
+    <Compile Include="LINQ_Tests\LINQ_Exercises.cs" />
     <Compile Include="Page Objects\clsPHPTravels_LoginPage.cs" />
     <Compile Include="Page Objects\LinkedIn_LoginPage.cs" />
     <Compile Include="Page Objects\LinkedIn_SearchPage.cs" />
