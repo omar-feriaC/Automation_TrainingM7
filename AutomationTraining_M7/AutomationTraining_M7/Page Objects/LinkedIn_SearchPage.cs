@@ -10,135 +10,131 @@ namespace AutomationTraining_M7.Page_Objects
 {
     class LinkedIn_SearchPage : BaseTest
     {
+        private static IWebDriver _objDriver;
 
-        /*LOCATORS FOR EACH ELEMENT*/
-        private static IWebDriver _ObjSrcDriver;
-        readonly static string STR_CAPTCHA_CLK = "//div[@class='recaptcha-checkbox-checkmark']";
-        readonly static string STR_APPLY_BTN = "//button[@data-control-name='all_filters_apply']";
+        readonly static string STR_SEARCH_TEXT = "//input[@placeholder='Buscar' or @placeholder='Search']";
         readonly static string STR_SEARCH_BTN = "//div[@class='search-global-typeahead__controls']";
-        readonly static string STR_SEARCH_TEXT = "//input[@placeholder='Search' or @placeholder='Buscar']";
         readonly static string STR_PEOPLE_BTN = "//button[span[text()='People' or text()='Gente']]";
         readonly static string STR_ALLFILTERS_BTN = "//button[span[text()='All Filters' or text()='Todos los filtros']]";
-        readonly static string STR_LANG_ENG_CB = "//label[text()='English' or text()='Ingles']";
-        readonly static string STR_LANG_ESP_CB = "//label[text()='Spanish' or text()='Español']";
-        readonly static string STR_REGIONMX_CB = "//label[text()='Mexico' or text()='México']";
+        readonly static string STR_LOCATION_MX = "//label[text()='Mexico' or text()='México']";
+        readonly static string STR_LOCATION_TEXT = "//input[@placeholder='Añadir un país o región' or @placeholder='Add country or region']";
+        readonly static string STR_LOCATION_IT = "//div[@class='search-typeahead-v2__hit ember-view']//span[text()= 'Italia' or text()='Italy']";
+        readonly static string STR_LANGUAGE_ENG_CB = "//label[text()='Inglés' or text()='English']";
+        readonly static string STR_LANGUAGE_ESP_CB = "//label[text()='Español' or text()='Spanish']";
+        readonly static string STR_APPLY_BTN = "//button[@data-control-name='all_filters_apply']";
 
-        /*CONSTRUCTOR*/
-        public LinkedIn_SearchPage(IWebDriver pobjSrcDriver)
+        public LinkedIn_SearchPage(IWebDriver pobjDriver)
         {
-            _ObjSrcDriver = pobjSrcDriver;
+            _objDriver = pobjDriver;
         }
 
-        /*IWEBELEMEMT OBJECTS*/
-        private static IWebElement objCaptcha => _ObjSrcDriver.FindElement(By.XPath(STR_CAPTCHA_CLK));
-        private static IWebElement objSearchText => _ObjSrcDriver.FindElement(By.XPath(STR_SEARCH_TEXT));
-        private static IWebElement objSearchBtn => _ObjSrcDriver.FindElement(By.XPath(STR_SEARCH_BTN));
-        private static IWebElement objPeopleBtn => _ObjSrcDriver.FindElement(By.XPath(STR_PEOPLE_BTN));
-        private static IWebElement objAllFiltersBtn => _ObjSrcDriver.FindElement(By.XPath(STR_ALLFILTERS_BTN));
-        private static IWebElement objRegionMxCb => _ObjSrcDriver.FindElement(By.XPath(STR_REGIONMX_CB));
-        private static IWebElement objLangEngCb => _ObjSrcDriver.FindElement(By.XPath(STR_LANG_ENG_CB));
-        private static IWebElement objLangEspCb => _ObjSrcDriver.FindElement(By.XPath(STR_LANG_ESP_CB));
-        private static IWebElement objApplyBtn => _ObjSrcDriver.FindElement(By.XPath(STR_APPLY_BTN));
+        private static IWebElement objSearchTxt => _objDriver.FindElement(By.XPath(STR_SEARCH_TEXT));
+        private static IWebElement objSearchBtn => _objDriver.FindElement(By.XPath(STR_SEARCH_BTN));
+        private static IWebElement objPeopleBtn => _objDriver.FindElement(By.XPath(STR_PEOPLE_BTN));
+        private static IWebElement objAllFiltersBtn => _objDriver.FindElement(By.XPath(STR_ALLFILTERS_BTN));
+        private static IWebElement objLocationCBox => _objDriver.FindElement(By.XPath(STR_LOCATION_MX));
+        private static IWebElement objLocationTxt => _objDriver.FindElement(By.XPath(STR_LOCATION_TEXT));
+        private static IWebElement objLocationCBoxIt => _objDriver.FindElement(By.XPath(STR_LOCATION_IT));
+        private static IWebElement objLanguageEngCBox => _objDriver.FindElement(By.XPath(STR_LANGUAGE_ENG_CB));
+        private static IWebElement objLanguageEspCBox => _objDriver.FindElement(By.XPath(STR_LANGUAGE_ESP_CB));
+        private static IWebElement objApplyBtn => _objDriver.FindElement(By.XPath(STR_APPLY_BTN));
 
-
-        /*METHODS*/
-        //Captcha
-        private IWebElement GetCaptcha()
+        private static IWebElement GetSearchField()
         {
-            return objCaptcha;
-        }
-
-        public static void fnClickCaptcha()
-        {
-            objCaptcha.Click();
-        }
-
-        //Search Txt
-        private IWebElement GetSearchField()
-        {
-            return objSearchText;
+            return objSearchTxt;
         }
 
         public static void fnEnterSearchText(string pstrSearchText)
         {
-            objSearchText.Click();
-            objSearchText.Clear();
-            objSearchText.SendKeys(pstrSearchText);
+            objSearchTxt.Click();
+            objSearchTxt.Clear();
+            objSearchTxt.SendKeys(pstrSearchText);
         }
 
-        //Search Button
-        private IWebElement GetSearchButton()
+        private static IWebElement GetSearchButton()
         {
             return objSearchBtn;
         }
 
-        public static void fnClickSearchBtn()
+        public static void fnClickSearchButton()
         {
             objSearchBtn.Click();
         }
 
-        //People Checkbox
-        private IWebElement GetPeopleCB()
+        private static IWebElement GetPeopleButton()
         {
             return objPeopleBtn;
         }
 
-        public static void fnSelectPeople()
+        public static void fnClickPeopleButton()
         {
             objPeopleBtn.Click();
         }
-
-        //All Filters button
-        private IWebElement GetAllFilters()
+        
+        private static IWebElement GetAllFiltersButton()
         {
             return objAllFiltersBtn;
         }
 
-        public static void fnSelectAllFilters()
+        public static void fnClickAllFiltersButton()
         {
             objAllFiltersBtn.Click();
         }
 
-        //Location Mexico
-        private IWebElement GetRegionMx()
+        private static IWebElement GetLocationField()
         {
-            return objRegionMxCb;
+            return objLocationTxt;
         }
 
-        public static void fnGetRegionMx()
+        public static void fnEnterLocationText(string pstrSearchText)
         {
-            objRegionMxCb.Click();
+            objLocationTxt.Click();
+            objLocationTxt.Clear();
+            objLocationTxt.SendKeys(pstrSearchText);
+        }
+        private static IWebElement GetLocationComboBox()
+        {
+            return objLocationCBox;
         }
 
-        //Language English
-        private IWebElement GetLanguageEng()
+        public static void fnClickLocationComboBoxIt()
         {
-            return objLangEngCb;
+
+            objLocationCBoxIt.Click();
         }
 
-        public static void fnLanguageEng()
+        public static void fnClickLocationComboBox()
         {
-            objLangEngCb.Click();
+
+            objLocationCBox.Click();
         }
 
-        //Language Espanish
-        private IWebElement GetLanguageEsp()
+        private static IWebElement GetEnglishLanguageComboBox()
         {
-            return objLangEspCb;
+            return objLanguageEngCBox;
         }
 
-        public static void fnLanguageEsp()
+        public static void fnClickEnglishLanguageComboBox()
         {
-            objLangEspCb.Click();
+            objLanguageEngCBox.Click();
         }
 
-        //Apply the Filters
-        private IWebElement GetApplybutton()
+        private static IWebElement GetSpanishLanguageComboBox()
+        {
+            return objLanguageEspCBox;
+        }
+
+        public static void fnClickSpanishLanguageComboBox()
+        {
+            objLanguageEspCBox.Click();
+        }
+
+        private static IWebElement GetApplyButton()
         {
             return objApplyBtn;
         }
 
-        public static void fnClickApplyBtn()
+        public static void fnClickApplyButton()
         {
             objApplyBtn.Click();
         }
