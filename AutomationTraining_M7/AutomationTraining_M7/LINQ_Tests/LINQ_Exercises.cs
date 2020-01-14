@@ -32,6 +32,14 @@ namespace AutomationTraining_M7.LINQ_Tests
                 arr1[i] = Console.ReadLine();
             }
 
+            var words = from word in arr1
+                        select word;
+
+            foreach (var word in words)
+            {
+                Console.WriteLine("Word: {0}, Length: {1}", word, word.Length);
+            }
+
             Console.ReadLine();
         }
 
