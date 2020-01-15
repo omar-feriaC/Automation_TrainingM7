@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Data;
+using AutomationTraining_M7.Base_Files;
 
 namespace AutomationTraining_M7.LINQ_Tests
 {
@@ -37,7 +40,11 @@ namespace AutomationTraining_M7.LINQ_Tests
 
             foreach (var word in words)
             {
+
                 Console.WriteLine("Word: {0}, Length: {1}", word, word.Length);
+
+                Console.WriteLine("Word: {0}, length: {1}",word,word.Length);
+
             }
 
             Console.ReadLine();
@@ -74,19 +81,68 @@ namespace AutomationTraining_M7.LINQ_Tests
 
         public void Exercise4()
         {
-            string[] dayWeek = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+            //string[] dayWeek = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+            clsLibData libData = new clsLibData();
+            DataTable dataTable = libData.fnExecuteQueryData2("select * from t_Students");
+            List<clsStudent> students = new List<clsStudent>();
 
-            Console.Write("\nLINQ : Display the name of the days of a week : ");
+            students = dataTable.AsEnumerable().Select(x => new clsStudent { strName = x["Name"].ToString(), strAge = x["Age"].ToString() }).Where(p => Convert.ToInt32(p.strAge) > 25).ToList();
+
+            using(StreamWriter OutputFile = new StreamWriter(@"C:\Users\DanielEnriqueLunaRiv\Documents\Automation\LINQ Exercises\StudentsList.txt", true))
+            {
+
+
+                foreach (var student in students)
+                {
+                    OutputFile.WriteLine(student.strName);
+                }
+
+                OutputFile.WriteLine("_____________________________________________");
+            }
+
+            
+
+            //Console.Write("\nLINQ : Display the name of the days of a week : ");
             Console.Write("\n------------------------------------------------\n");
+
+
+        }
+
+        public class clsStudent
+        {
+            public string strName;
+            public string strAge;
 
         }
 
         public void Exercise5()
         {
-            var arr1 = new[] { 3, 9, 2, 8, 6, 5 };
+            //var arr1 = new[] { 3, 9, 2, 8, 6, 5 };
+            clsLibData libData = new clsLibData();
+            DataTable dataTable = libData.fnExecuteQueryData2("select * from t_Students");
+            List<clsStudent> students = new List<clsStudent>();
+            //var names;
+            
 
-            Console.Write("\nLINQ : Print the number and its square from an array: ");
-            Console.Write("\n------------------------------------------------------------------------\n");
+            students = dataTable.AsEnumerable().Select(x => new clsStudent { strName = x["Name"].ToString(), strAge = x["Age"].ToString() }).Where(p => Convert.ToInt32(p.strAge) > 25).ToList();
+
+            foreach (var student in students)
+            {
+                Console.WriteLine(student.strName);
+                Console.WriteLine(student.strAge);
+            }
+
+            //if (dataTable.Rows.Count > 0 && dataTable != null)
+            //{
+            //    foreach (var row in dataTable.Rows)
+            //    {
+            //        students.Add(row.ToString());
+            //    }
+            //}
+
+
+            //Console.Write("\nLINQ : Print the number and its square from an array: ");
+            //Console.Write("\n------------------------------------------------------------------------\n");
 
 
             Console.ReadLine();

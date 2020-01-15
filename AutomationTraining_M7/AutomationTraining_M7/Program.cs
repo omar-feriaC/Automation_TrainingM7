@@ -20,11 +20,19 @@ namespace AutomationTraining_M7
         {
             LINQ_Exercises objLINQ = new LINQ_Exercises();
 
-            objLINQ.Exercise1();
-            /*objLINQ.Exercise2();
+
+            /*objLINQ.Exercise1();
+            objLINQ.Exercise2();
             objLINQ.Exercise3();
             objLINQ.Exercise4();
             objLINQ.Exercise5();*/
+
+            //objLINQ.Exercise1();
+            //objLINQ.Exercise2();
+            //objLINQ.Exercise3();
+            objLINQ.Exercise4();
+            //objLINQ.Exercise5();
+
             Console.ReadKey();
         }
     }
