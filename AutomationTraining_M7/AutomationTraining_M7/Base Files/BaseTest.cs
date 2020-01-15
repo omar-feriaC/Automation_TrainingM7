@@ -83,8 +83,8 @@ namespace AutomationTraining_M7.Base_Files
         //TearDown After each test case
         public void AfterTest()
         {
-      //      driver.Close();
-       //     driver.Quit();
+            driver.Close();
+            driver.Quit();
         }
 
         //OneTimeTearDown after each class test
