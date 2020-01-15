@@ -39,7 +39,7 @@ namespace AutomationTraining_M7.Base_Files
             return objElement;
         }
 
-        private static IWebElement WaitForElementDriverFluent(IWebDriver pobjDriver, By by)
+        private IWebElement WaitForElementDriverFluent(IWebDriver pobjDriver, By by)
         {
             DefaultWait<IWebDriver> fluentWait = new DefaultWait<IWebDriver>(driver);
             fluentWait.Timeout = TimeSpan.FromSeconds(5);

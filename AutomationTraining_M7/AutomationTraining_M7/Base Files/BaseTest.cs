@@ -25,13 +25,20 @@ namespace AutomationTraining_M7.Base_Files
         public static IWebDriver driver;
         /*URL for Webdriver*/
         private static string strBrowserName = ConfigurationManager.AppSettings.Get("url");
-        /*Extent Reports Framework*/
-        public static clsReportManager objRM = new clsReportManager();
-        public static ExtentV3HtmlReporter objHtmlReporter; //Add information in HTML
-        public static ExtentReports objExtent; //Extent Reports Object
-        public static ExtentTest objTest; // Test object for Extent Reports
+
         //public static ExtentHtmlReporter objHtmlReporter; //Old Version of HTML
 
+        public string url;
+        public string username;
+        public string password;
+
+        public clsReportManager manager;
+        public ExtentV3HtmlReporter htmlReporter;
+        public ExtentReports extent;
+
+        public ExtentTest exTestSuite;
+        public ExtentTest exTestCase;
+        public ExtentTest exTestStep;
 
 
         //**************************************************
@@ -39,58 +46,52 @@ namespace AutomationTraining_M7.Base_Files
         //**************************************************
         //OneTimeSetUp before each class test
         [OneTimeSetUp]
-        public static void fnBeforeClass()
+        public void fnBeforeClass()
         {
-            /*Init ExtentHtmlReporter object*/
-            if (objHtmlReporter == null)
-            {
-                objHtmlReporter = new ExtentV3HtmlReporter (objRM.fnReportPath());
-                //objHtmlReporter = new ExtentHtmlReporter(objRM.fnReportPath());
-            }
-            /*Init ExtentReports object*/
-            if (objExtent == null)
-            {
-                objExtent = new ExtentReports();
-                objRM.fnReportSetUp(objHtmlReporter, objExtent);
-            }
-        }
+            manager = new clsReportManager();
 
-        //OneTimeTearDown after each class test
-        [OneTimeTearDown]
-        public static void fnAfterClass()
-        {
-            objExtent.Flush();
+            extent = new ExtentReports();
+            htmlReporter = new ExtentV3HtmlReporter(manager.fnGetReportPath());
+
+            manager.fnReportSetup(htmlReporter, extent);
+
+            exTestSuite = extent.CreateTest(TestContext.CurrentContext.Test.Name);
+
         }
 
         [SetUp]
         //SetUp Before each test case
-        public static void SetUp()
+        public void SetUp()
         {
             driver = new ChromeDriver();
             driver.Url = strBrowserName;
             driver.Manage().Window.Maximize();
             objclsDriver = new clsDriver(driver);
 
+            exTestCase = exTestSuite.CreateNode(TestContext.CurrentContext.Test.Name);
         }
 
-        [TearDown]
-        //TearDown After each test case
-        public static void AfterTest()
-        {
-            objRM.fnTestCaseResult(objTest, objExtent, driver);
-            driver.Close();
-            driver.Quit();
-        }
-
+   
         /*Clear and Send text to specific field*/
-        public static void FnSendkeyAndClear(By by, string pstrText)
+        public void FnSendkeyAndClear(By by, string pstrText)
         {
             driver.FindElement(by).Clear();
             driver.FindElement(by).SendKeys(pstrText);
         }
 
+        [TearDown]
+        //TearDown After each test case
+        public void AfterTest()
+        {
+      //      driver.Close();
+       //     driver.Quit();
+        }
 
-
-
+        //OneTimeTearDown after each class test
+        [OneTimeTearDown]
+        public void fnAfterClass()
+        {
+            extent.Flush();
+        }
     }
 }
