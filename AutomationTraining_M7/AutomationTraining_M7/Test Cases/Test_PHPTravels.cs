@@ -75,7 +75,6 @@ namespace AutomationTraining_M7.Test_Cases
                 else
                 { //valdiate sorting xpath for column header button "//th/@data-order"
                     objTest.Log(Status.Info, ("Inside " + clsPHPTravels_LoginPage.getTableHeader() + " table for submenu "+ submenu + " ."));
-                    int control = 1;
                     string[] pstrColumns = { "3,First Name", "4,Last Name", "5,Email", "6,Active", "7,Last Login" };
                     foreach (string col in pstrColumns)
                     {
@@ -142,7 +141,6 @@ namespace AutomationTraining_M7.Test_Cases
                             }
                             objTest.Log(Status.Info, col.Split(',').Last() + " manual asc sorted: " + content);
                         }
-                        control++;
                         //click column title for 3rd time since the sorting of one column affects the first sorting of a new column
                         clsPHPTravels_LoginPage.fnClickIWebElement(clsPHPTravels_LoginPage.GetElement("//th[contains(text(),'" + col.Split(',').Last() + "')]"));
                         //WAIT!!!!
