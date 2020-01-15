@@ -88,9 +88,43 @@ namespace AutomationTraining_M7.Base_Files
             driver.FindElement(by).Clear();
             driver.FindElement(by).SendKeys(pstrText);
         }
+        //Look for an specific label in a list of elements
+        public static IWebElement FnFindElement(List<IWebElement> plist, string pstrCriteria)
+        {
+            foreach (IWebElement item in plist)
+            {
+                if (item.Text.Equals(pstrCriteria))
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+        //Trims list based on the text of eash element.
+        public static List<string> FnGeTWebElementsNames(List<IWebElement> plist)
+        {
+            List<string> listIWE = new List<string>();
+            foreach (IWebElement item in plist)
+            {
+                    listIWE.Add(item.Text);
+            }
+            return listIWE;
+        }
+        public static List<string> GetHREFNamesFromList(List<IWebElement> plist)
+        {
+            List<string> parNameslist = new List<string>();
+            foreach (IWebElement item in plist)
+            {
 
-
-
+                if (!string.IsNullOrEmpty(item.Text))
+                {
+                    string strhref = item.GetAttribute("href").ToString();
+                    string[] splitString = strhref.Split('/');
+                    parNameslist.Add(splitString[splitString.Length-2]);
+                }
+            }
+            return parNameslist;
+        }
 
     }
 }

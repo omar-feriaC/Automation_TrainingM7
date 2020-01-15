@@ -113,7 +113,6 @@
   <ItemGroup>
     <Compile Include="Base Files\BaseTest.cs" />
     <Compile Include="Base Files\clsDriver.cs" />
-    <Compile Include="Page Objects\clsPHPTravels_DashboardPage.cs" />
     <Compile Include="Page Objects\clsPHPTravels_LoginPage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
