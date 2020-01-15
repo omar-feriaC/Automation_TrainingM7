@@ -6,6 +6,7 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,36 @@ namespace AutomationTraining_M7
 
         static void Main(string[] args)
         {
+            /*FILES*/
+
+            string strFileName = @"C:\TempAuto\TempAuto123.txt";
+            FileInfo objFile = new FileInfo(strFileName);
+
+            using (StreamWriter sw = objFile.CreateText())
+            {
+                sw.WriteLine("Test1");
+                sw.WriteLine("Test2");
+                sw.WriteLine("Test3");
+                sw.WriteLine("Test4");
+                sw.WriteLine("Test5");
+                sw.WriteLine("Test6");
+            }
+
+            using (StreamReader sr = File.OpenText(strFileName))
+            {
+                string strValue = "";
+                while ((strValue = sr.ReadLine()) != null)
+                {
+                    Console.WriteLine(strValue);
+                }
+            }
+
+
+            Console.ReadKey();
+
+
+
+
 
             /*L A M B D A */
 
