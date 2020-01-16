@@ -25,17 +25,36 @@ namespace AutomationTraining_M7
             //-------------------------------------------------
             //Excersie 1
             //-------------------------------------------------
-            string[] arr1;
+            string[] arr1; 
             int n, i;
 
             Console.Write("\nLINQ : Print the lenght of the strings in the array : ");
             Console.Write("\n------------------------------------------------------\n");
 
             //Write Your code Here
+
+            Console.Write("How many elements will include your array? :");
+            n = Convert.ToInt32(Console.ReadLine());
+            arr1 = new string[n];
+            Console.Write("\nEnter {0} strings for the array  :\n", n);
+            for (i = 0; i < n; i++)
+            {
+                Console.Write("Element[{0}] : ", i);
+                arr1[i] = Console.ReadLine();
+            }
+
+            var elements = from element in arr1
+                       select element;
+
+            foreach (var element in elements)
+            {
+                Console.WriteLine("String: {0}, Length: {1}", element, element.Length);
+            }
+
             Console.ReadLine();
 
 
-
+            /*
 
 
             //-------------------------------------------------
@@ -96,7 +115,7 @@ namespace AutomationTraining_M7
 
             //Write Your code
             Console.ReadLine();
-
+            */
         }
     }
 
