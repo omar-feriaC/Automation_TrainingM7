@@ -50,6 +50,12 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objTotalGuestsLnk = driver.FindElement(By.XPath(STR_TOTALGUESTS_LNK));
         private static IWebElement objTotalBookingsLnk = driver.FindElement(By.XPath(STR_TOTALBOOKINGS_LNK));
 
+        public enum Sort
+        {
+            Asc,
+            Desc
+        }
+
         //Total admins link
         public static IWebElement GetTotalAdminsLink()
         {
@@ -99,31 +105,30 @@ namespace AutomationTraining_M7.Page_Objects
             _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_SUPPLIERSMGMT_DIV)));
             _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_SUPPLIERSMGMT_DIV)));
         }
-        public static void FnSortFirstNameColumn(string pstrSortMode)
+        public static void FnSortFirstNameColumn(Sort sortMode)
         {
             string strHeaderDescOrAsc;
+            Sort orderedAs = Sort.Desc;
+            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_FIRSTNAME_TH)));
+            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_FIRSTNAME_TH)));
+            strHeaderDescOrAsc = driver.FindElement(By.XPath(STR_FIRSTNAME_TH)).GetAttribute("data-order");
+            if (strHeaderDescOrAsc == "desc") { orderedAs = Sort.Desc; } else if  (strHeaderDescOrAsc == "asc"){ orderedAs = Sort.Asc; }
             try
             {
-                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_FIRSTNAME_TH)));
-                _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_FIRSTNAME_TH)));
-                strHeaderDescOrAsc = driver.FindElement(By.XPath(STR_FIRSTNAME_TH)).GetAttribute("data-order");
+                
                 do
                 {
                     _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_FIRSTNAME_TH)));
                     driver.FindElement(By.XPath(STR_FIRSTNAME_TH)).Click();
-                } while (pstrSortMode != strHeaderDescOrAsc);
+                } while (sortMode != orderedAs);
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
-                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_FIRSTNAME_TH)));
-                _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_FIRSTNAME_TH)));
-                strHeaderDescOrAsc = driver.FindElement(By.XPath(STR_FIRSTNAME_TH)).GetAttribute("data-order");
                 do
                 {
                     _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_FIRSTNAME_TH)));
                     driver.FindElement(By.XPath(STR_FIRSTNAME_TH)).Click();
-                } while (pstrSortMode != strHeaderDescOrAsc);
+                } while (sortMode != orderedAs);
             }
         }
         public static void FnSortLastNameColumn(string pstrSortMode)
@@ -310,14 +315,14 @@ namespace AutomationTraining_M7.Page_Objects
             return lstColumnCells;
         }
 
-        public static IList<string> FnSortColumnCells(IList<string> plstColumnCells, string pstrSortMode)
+        public static IList<string> FnSortColumnCells(IList<string> plstColumnCells, Sort sortMode)
         {
             IList<string> lstSortedColumnCells = new List<string>();
-            if(pstrSortMode == "asc")
+            if(sortMode == Sort.Asc)
             {
                 lstSortedColumnCells = plstColumnCells.OrderBy(q => q).ToList();
             }
-            else if (pstrSortMode == "desc")
+            else if (sortMode == Sort.Desc)
             {
                 lstSortedColumnCells = plstColumnCells.OrderByDescending(q => q).ToList();
             }
