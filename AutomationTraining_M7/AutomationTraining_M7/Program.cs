@@ -23,7 +23,7 @@ namespace AutomationTraining_M7
         {
 
             //-------------------------------------------------
-            //Excersie 1
+            //Exercise 1
             //-------------------------------------------------
             string[] arr1;
             int n, i;
