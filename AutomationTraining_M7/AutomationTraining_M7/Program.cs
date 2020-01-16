@@ -23,7 +23,7 @@ namespace AutomationTraining_M7
         {
 
             //-------------------------------------------------
-            //Excersie 1
+            //Excersie 1: print the length of a string from an array of strings
             //-------------------------------------------------
             string[] arr1;
             int n, i;
@@ -31,7 +31,7 @@ namespace AutomationTraining_M7
             Console.Write("\nLINQ : Print the lenght of the strings in the array : ");
             Console.Write("\n------------------------------------------------------\n");
 
-            //Write Your code Here
+            
             Console.ReadLine();
 
 
@@ -39,16 +39,16 @@ namespace AutomationTraining_M7
 
 
             //-------------------------------------------------
-            //Excersie 2
+            //Excersie 2: print the size of a file in bytes in a directory using LINQ
             //-------------------------------------------------
-            string[] dirfiles = Directory.GetFiles("C:/Test");
-            // there are three files in the directory abcd are :
-            // abcd.txt, simple_file.txt and xyz.txt
-
             Console.Write("\nLINQ : Calculate the Size of File : ");
             Console.Write("\n------------------------------------\n");
 
-            //Write Your code
+            long FileSize = 0;
+            string[] dirfiles = Directory.GetFiles("C:/Test", "*.txt", SearchOption.TopDirectoryOnly);
+            FileSize = new FileInfo(dirfiles[0]).Length;
+            Console.WriteLine("File size: " + FileSize + " Bytes");
+
             Console.ReadLine();
 
 
@@ -56,7 +56,7 @@ namespace AutomationTraining_M7
 
 
             //-------------------------------------------------
-            //Excersie 3
+            //Excersie 3: shows how the three parts of a query operation execute
             //-------------------------------------------------
             //  The first part is Data source.
             int[] n1 = new int[10] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
@@ -72,7 +72,7 @@ namespace AutomationTraining_M7
 
 
             //-------------------------------------------------
-            //Excersie 4
+            //Excersie 4: display the name of the days of a week
             //-------------------------------------------------
             string[] dayWeek = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 
@@ -87,7 +87,7 @@ namespace AutomationTraining_M7
 
 
             //-------------------------------------------------
-            //Excersie 5
+            //Excersie 5: print the number and its square form an array
             //-------------------------------------------------
             var arr3 = new[] { 3, 9, 2, 8, 6, 5 };
 
