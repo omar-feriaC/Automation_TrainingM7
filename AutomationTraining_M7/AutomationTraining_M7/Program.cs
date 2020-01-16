@@ -21,103 +21,82 @@ namespace AutomationTraining_M7
 
         static void Main(string[] args)
         {
-            /*FILES*/
 
-            string strFileName = @"C:\TempAuto\TempAuto123.txt";
-            FileInfo objFile = new FileInfo(strFileName);
+            //-------------------------------------------------
+            //Excersie 1
+            //-------------------------------------------------
+            string[] arr1;
+            int n, i;
 
-            using (StreamWriter sw = objFile.CreateText())
-            {
-                sw.WriteLine("Test1");
-                sw.WriteLine("Test2");
-                sw.WriteLine("Test3");
-                sw.WriteLine("Test4");
-                sw.WriteLine("Test5");
-                sw.WriteLine("Test6");
-            }
+            Console.Write("\nLINQ : Print the lenght of the strings in the array : ");
+            Console.Write("\n------------------------------------------------------\n");
 
-            using (StreamReader sr = File.OpenText(strFileName))
-            {
-                string strValue = "";
-                while ((strValue = sr.ReadLine()) != null)
-                {
-                    Console.WriteLine(strValue);
-                }
-            }
-
-
-            Console.ReadKey();
+            //Write Your code Here
+            Console.ReadLine();
 
 
 
 
 
-            /*L A M B D A */
+            //-------------------------------------------------
+            //Excersie 2
+            //-------------------------------------------------
+            string[] dirfiles = Directory.GetFiles("C:/Test");
+            // there are three files in the directory abcd are :
+            // abcd.txt, simple_file.txt and xyz.txt
 
-            //********************************************************
-            // Case 1
-            //********************************************************
-            LambdasWithNoParameter();
-            Console.WriteLine("//********************************************************");
+            Console.Write("\nLINQ : Calculate the Size of File : ");
+            Console.Write("\n------------------------------------\n");
 
-
-            //********************************************************
-            // Case 2
-            //********************************************************
-            List<int> list = new List<int>() { 1, 2, 3, 4, 5, 6 };
-            List<int> evenNumbers = list.FindAll(x => (x % 2) == 0);
-
-            foreach (var num in evenNumbers)
-            {
-                Console.WriteLine("{0} ", num);
-            }
-            Console.WriteLine("//********************************************************");
+            //Write Your code
+            Console.ReadLine();
 
 
-            //********************************************************
-            // Case 3
-            //********************************************************
-            List<int> numbers = new List<int>() { 1,2,3,4,5,6,7,8,9,10 };
-            List<int> oddNumbers = numbers.FindAll(x => x % 2 != 0).ToList();
-            List<int> evenNumbers2 = numbers.FindAll(x => x % 2 == 0).ToList();
-            Console.WriteLine("List of Odd Numbers is");
-            foreach (int ab in oddNumbers)
-            {
-                Console.WriteLine(ab);
-            }
-            Console.WriteLine("List of Even Numbers is");
-            foreach (int ab in evenNumbers2)
-            {
-                Console.WriteLine(ab);
-            }
-            Console.WriteLine("//********************************************************");
 
 
-            //********************************************************
-            // Case 4
-            //********************************************************
-            List<int> numbers2 = new List<int>() { 1,2,3,4,5,6,7,8,9,10 };
-            foreach (int ab in numbers2.Where(x =>
-            {
-                Console.WriteLine("Number is {0}", x);
-                Console.WriteLine("Sqrt of Value is: {0}", Math.Sqrt(x));
-                return x % 3 == 0 || x % 5 == 0;
-            }))
-            {
-                Console.WriteLine("Returned Number is {0}", ab);
-            }
-            Console.WriteLine("//********************************************************");
+
+            //-------------------------------------------------
+            //Excersie 3
+            //-------------------------------------------------
+            //  The first part is Data source.
+            int[] n1 = new int[10] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+            Console.Write("\nBasic structure of LINQ : ");
+            Console.Write("\n---------------------------");
+
+            //Write Your code
+            Console.ReadLine();
 
 
-            Console.ReadKey();
 
-        }
 
-        //(1) No parameters
-        public static void LambdasWithNoParameter()
-        {
-            LambdasNoParams noparams = () => Console.WriteLine(" Hello!!!");
-            noparams();
+
+            //-------------------------------------------------
+            //Excersie 4
+            //-------------------------------------------------
+            string[] dayWeek = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+
+            Console.Write("\nLINQ : Display the name of the days of a week : ");
+            Console.Write("\n------------------------------------------------\n");
+
+            //Write Your code
+            Console.ReadLine();
+
+
+
+
+
+            //-------------------------------------------------
+            //Excersie 5
+            //-------------------------------------------------
+            var arr3 = new[] { 3, 9, 2, 8, 6, 5 };
+
+            Console.Write("\nLINQ : Print the number and its square from an array: ");
+            Console.Write("\n------------------------------------------------------------------------\n");
+
+            //Write Your code
+            Console.ReadLine();
+
         }
     }
 
