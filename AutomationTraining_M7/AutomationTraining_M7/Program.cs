@@ -23,6 +23,43 @@ namespace AutomationTraining_M7
         {
             DataTable myTable;
 
+
+
+            /*F I L E   H A N D L I N G*/
+
+
+            string strFileName = @"C:\TempAuto\TempAuto123.txt";
+            FileInfo objFile = new FileInfo(strFileName);
+
+            using (StreamWriter sw = objFile.CreateText())
+            {
+                sw.WriteLine("Test1");
+                sw.WriteLine("Test2");
+                sw.WriteLine("Test3");
+                sw.WriteLine("Test4");
+                sw.WriteLine("Test5");
+                sw.WriteLine("Test6");
+            }
+
+            using (StreamReader sr = new StreamReader(strFileName))
+            {
+                string strValue = "";
+                while ((strValue = sr.ReadLine()) != null)
+                {
+                    Console.WriteLine(strValue);
+                }
+            }
+
+
+            Console.ReadKey();
+
+
+
+
+
+
+
+
             /* D A T A B A S E*/
             clsData objData = new clsData();
             clsLibData objLibData = new clsLibData();
