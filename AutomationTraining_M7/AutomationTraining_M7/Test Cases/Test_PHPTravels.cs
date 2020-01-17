@@ -50,6 +50,7 @@ namespace AutomationTraining_M7.Test_Cases
             {
 
                 Console.WriteLine("Error in: \n" + ex.GetBaseException());
+                Assert.Fail();
                 
 
             }
