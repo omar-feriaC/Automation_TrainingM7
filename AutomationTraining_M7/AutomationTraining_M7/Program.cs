@@ -29,7 +29,7 @@ namespace AutomationTraining_M7
             int n, i;
             int intItemNum = 1;
 
-            List<int> listStringsizes = arr1.Select(s => s.Length());
+            List<int> listStringsizes = arr1.Select(s => s.Length).ToList();
             Console.Write("\nLINQ : Print the lenght of the strings in the array : ");
             Console.Write("\n------------------------------------------------------\n");
             
@@ -53,8 +53,9 @@ namespace AutomationTraining_M7
             Console.Write("\nLINQ : Calculate the Size of File : ");
             Console.Write("\n------------------------------------\n");
             string[] dirfiles = Directory.GetFiles("C:/Test");
-            FileInfo tempfile = new FileInfo(dirfiles[0]);
+            
             List<FileInfo> tempfiles = new List<FileInfo>();
+            
             foreach (string fileName in dirfiles)
             {
                 FileInfo tempfile = new FileInfo(fileName);
@@ -62,11 +63,11 @@ namespace AutomationTraining_M7
                 //Console.Write("the size of the item {1} is {2} ", intItemNum, intSize.ToString());
                 //intItemNum++;
             }
-            List<long> listFilesizes = tempfiles.Select(s => s.Length());
+            List<FileInfo> listFilesizes = tempfiles.Select(s => s).ToList();
 
-            foreach (long Filesize in listFilesizes)
+            foreach (FileInfo Filesize in listFilesizes)
             {
-                Console.Write("the size of the file {1} is {2} ", intItemNum.ToString(), Filesize.ToString());
+                Console.Write("the size of the file {1} is {2} ", intItemNum.ToString(), Filesize.Length.ToString());
                 intItemNum++;
             }
 
@@ -89,9 +90,8 @@ namespace AutomationTraining_M7
             Console.Write("\nBasic structure of LINQ : ");
             Console.Write("\n---------------------------");
 
-            int[] temp = from s in n1
-                       where s > 2 && s < 4
-                       select s;
+            int[] temp = n1.Where(x => x < 4 && x > 2).ToArray();
+                       
             foreach (int intTemp in temp)
             {
                 Console.Write("the size of the item {1} is {2} ", intItemNum.ToString(), intTemp.ToString());
@@ -99,7 +99,7 @@ namespace AutomationTraining_M7
             }
             intItemNum = 1;
 
-            int[] temptoo = n1.Where(x => x > 2 && x < 6).Select(x);
+            int[] temptoo = n1.Where(x => x > 2 && x < 6).ToArray();
 
             foreach (int intTemp in temptoo)
             {
@@ -123,7 +123,7 @@ namespace AutomationTraining_M7
             Console.Write("\nLINQ : Display the name of the days of a week : ");
             Console.Write("\n------------------------------------------------\n");
 
-            List<string> listWeekNames = dayWeek.FindAll(x => x);
+            List<string> listWeekNames = dayWeek.Select(s => s).ToList();
             foreach (string WeekName in listWeekNames)
             {
                 Console.Write("the size of the item {1} is {2} ", intItemNum.ToString(), WeekName);
@@ -143,8 +143,8 @@ namespace AutomationTraining_M7
 
             Console.Write("\nLINQ : Print the number and its square from an array: ");
             Console.Write("\n------------------------------------------------------------------------\n");
-            List<long> listSquare = arr3.Select(x => x^2);
-            foreach (long SquareVal in listSquare)
+            List<int> listSquare = arr3.Select(x => x^2).ToList();
+            foreach (int SquareVal in listSquare)
             {
                 Console.Write("the size of the item {1} is {2} ", intItemNum.ToString(), SquareVal.ToString());
                 intItemNum++;
