@@ -8,6 +8,8 @@ using System.Linq;
 using NUnit.Framework;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
+using AutomationTraining_M7.Reporting;
 
 namespace AutomationTraining_M7.Page_Objects
 {
@@ -200,22 +202,39 @@ namespace AutomationTraining_M7.Page_Objects
                         _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//tr[@class='xcrud-th']")));
 
                         IList<IWebElement> tableElements = driver.FindElements(By.XPath("//tr[@class='xcrud-th']//child::th"));
-                        tableElements.Count();
-                        for (int i = 2; i < tableElements.Count(); i++)
+                        int intTableElements = tableElements.Count();
+                        
+
+                        for (int i = 2; i <= intTableElements; i++)
                         {
                             string valSortingBef = "";
                             string valSortingAft = "";
+                            string valContains = "";
                             _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//tr[@class='xcrud-th']//child::th")));
                             _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//tr[@class='xcrud-th']//child::th")));
                             
                             //tableElements[i].GetAttribute("data-order");
                             valSortingBef = tableElements[i].GetAttribute("data-order");
                             tableElements[i].Click();
+                            //Thread.Sleep(5000);
+                            _driverWait.Until(ExpectedConditions.StalenessOf(tableElements[i]));
+                            
                             tableElements = driver.FindElements(By.XPath("//tr[@class='xcrud-th']//child::th"));
                             valSortingAft = tableElements[i].GetAttribute("data-order");
+                            _driverWait.Until(ExpectedConditions.ElementToBeClickable(tableElements[i]));
+                            valContains = tableElements[i].Text;
+                            if (valContains.Contains("↓")) {
+                                Assert.AreNotEqual(valSortingBef, valSortingAft);
+                                objRM.fnAddStepLog(objTest, tableElements[i].Text, "PASS");
+
+
+                            }
+                            
+                            //Thread.Sleep(5000);
+
                             //_driverWait.Until(ExpectedConditions.ElementToBeClickable(tableElements[i]));
 
-                            
+
                         }
 
                         //foreach (var tElements in tableElements)
