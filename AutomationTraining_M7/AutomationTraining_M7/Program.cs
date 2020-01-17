@@ -76,6 +76,8 @@ namespace AutomationTraining_M7
 
             //Write Your code
 
+      
+
 
             var files = from file in dirfiles
                           select file;
@@ -83,7 +85,8 @@ namespace AutomationTraining_M7
 
             foreach (var file in files)
             {
-                Console.WriteLine($"File Name: {file}");
+                FileInfo objFile = new FileInfo(file);
+                Console.WriteLine($"File Name: {objFile.FullName} Size of the File: {objFile.Length} ");
                 
             }
 
