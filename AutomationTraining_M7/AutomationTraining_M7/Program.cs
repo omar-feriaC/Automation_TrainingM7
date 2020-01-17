@@ -22,6 +22,16 @@ namespace AutomationTraining_M7
         static void Main(string[] args)
         {
 
+            //Exercise1();
+            //Exercise2();
+            //Exercise3();
+            //Exercise4();
+            //Exercise5();
+
+        }
+
+        static void Exercise1()
+        {
             //-------------------------------------------------
             //Excersie 1
             //-------------------------------------------------
@@ -50,7 +60,11 @@ namespace AutomationTraining_M7
             }
 
             Console.ReadLine();
-            
+
+        }
+
+        static void Exercise2()
+        {
 
             //-------------------------------------------------
             //Excersie 2
@@ -58,45 +72,55 @@ namespace AutomationTraining_M7
             string[] dirfiles = Directory.GetFiles("C:/Test");
             // there are three files in the directory abcd are :
             // abcd.txt, simple_file.txt and xyz.txt
-            
+
             Console.Write("\nLINQ : Calculate the Size of File : ");
             Console.Write("\n------------------------------------\n");
 
             //Write Your code
             var fileQuery = from files in dirfiles
-                            orderby new FileInfo(files).Length descending
+                            orderby new FileInfo(files).Length 
                             select files;
 
             foreach (string fileList in fileQuery)
             {
-                Console.WriteLine(fileList);
+                Console.WriteLine("File Name: "+ fileList + " " + "Size in Bytes: " + fileList.Length);
             }
-            
+
             Console.ReadLine();
-            
-            
+
+        }
+
+        static void Exercise3()
+        {
+
             //-------------------------------------------------
             //Excersie 3
             //-------------------------------------------------
             //  The first part is Data source.
-            int[] n1 = new int[10] {  0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            int[] n1 = new int[10] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             //IList<int> intList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
             Console.Write("\nBasic structure of LINQ : ");
             Console.WriteLine("\n---------------------------");
 
             //Write Your code
-                         var result = from s in n1
-                                      where s.Equals(1)
-                                      select s;
+            var result = from s in n1
+                         where s.Equals(1)
+                         select s;
 
             foreach (var intLis in result)
             {
-                Console.WriteLine(intLis);
+                Console.WriteLine("Query must display as a result a 1:" + " " + intLis);
+
             }
             Console.ReadLine();
 
-                                   
+        }
+
+        static void Exercise4()
+        {
+
+
             //-------------------------------------------------
             //Excersie 4
             //-------------------------------------------------
@@ -116,7 +140,11 @@ namespace AutomationTraining_M7
 
             Console.ReadLine();
 
-                        
+        }
+
+        static void Exercise5()
+        {
+
             //-------------------------------------------------
             //Excersie 5
             //-------------------------------------------------
@@ -129,6 +157,8 @@ namespace AutomationTraining_M7
             Console.ReadLine();
 
         }
+
+
     }
 
 }
