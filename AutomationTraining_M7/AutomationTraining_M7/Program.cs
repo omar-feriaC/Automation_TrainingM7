@@ -13,12 +13,6 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7
 {
-
-    public class Numbers
-    {
-        public int intNumber;
-        public int intSquare;
-    }
     class Program
     {
         //Delegates
@@ -34,7 +28,6 @@ namespace AutomationTraining_M7
             //Excersie 1
             //-------------------------------------------------
             string[] arr1 = { "Mexico", "USA", "Canada", "Australia", "Switzerland" };
-            int n, i;
 
             Console.Write("\nLINQ : Print the length of the strings in the array : ");
             Console.Write("\n------------------------------------------------------\n");
