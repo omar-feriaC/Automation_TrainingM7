@@ -62,10 +62,10 @@ namespace AutomationTraining_M7
 
 
 
-            /*
+
 
             //-------------------------------------------------
-            //Excersie 2
+            //Exercise 2
             //-------------------------------------------------
             string[] dirfiles = Directory.GetFiles("C:/Test");
             // there are three files in the directory abcd are :
@@ -75,9 +75,21 @@ namespace AutomationTraining_M7
             Console.Write("\n------------------------------------\n");
 
             //Write Your code
+
+
+            var files = from file in dirfiles
+                          select file;
+
+
+            foreach (var file in files)
+            {
+                Console.WriteLine($"File Name: {file}");
+                
+            }
+
             Console.ReadLine();
 
-           */
+
 
 
             /*
@@ -96,12 +108,12 @@ namespace AutomationTraining_M7
 
            */
 
-            
 
-           //-------------------------------------------------
-           //Excersie 4
-           //-------------------------------------------------
-           string[] dayWeek = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+
+            //-------------------------------------------------
+            //Exercise 4
+            //-------------------------------------------------
+            string[] dayWeek = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
             
            Console.Write("\nLINQ : Display the name of the days of a week : ");
            Console.Write("\n------------------------------------------------\n");
@@ -120,12 +132,12 @@ namespace AutomationTraining_M7
             Console.ReadLine();
 
 
-             
+
 
 
 
             //-------------------------------------------------
-            //Excersie 5
+            //Exercise 5 
             //-------------------------------------------------
             var arr3 = new[] { 3, 9, 2, 8, 6, 5 };
 
