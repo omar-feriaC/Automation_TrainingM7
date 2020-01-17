@@ -32,11 +32,37 @@ namespace AutomationTraining_M7
             Console.Write("\n------------------------------------------------------\n");
 
             //Write Your code Here
+
+            Console.Write("Provide the number of strings to store: ");
+            n = Convert.ToInt32(Console.ReadLine());
+            arr1 = new string[n];
+            Console.Write($"\nProvide {n} strings for the array  :\n");
+
+            for (i = 0; i < n; i++)
+            {
+                Console.Write($"String[{i}] : ");
+                arr1[i] = Console.ReadLine();
+            }
+
+            var strings = from element in arr1
+                        select element;
+
+            Console.WriteLine("\n");
+
+            foreach (var element in strings)
+            {
+                Console.WriteLine($"String: {element}, Length: {element.Length}");
+
+
+            }
+
+
+
             Console.ReadLine();
 
 
 
-
+            /*
 
             //-------------------------------------------------
             //Excersie 2
@@ -51,38 +77,50 @@ namespace AutomationTraining_M7
             //Write Your code
             Console.ReadLine();
 
+           */
 
 
+            /*
 
+          //-------------------------------------------------
+          //Excersie 3
+          //-------------------------------------------------
+          //  The first part is Data source.
+          int[] n1 = new int[10] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
-            //-------------------------------------------------
-            //Excersie 3
-            //-------------------------------------------------
-            //  The first part is Data source.
-            int[] n1 = new int[10] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+           Console.Write("\nBasic structure of LINQ : ");
+           Console.Write("\n---------------------------");
 
-            Console.Write("\nBasic structure of LINQ : ");
-            Console.Write("\n---------------------------");
+           //Write Your code
+           Console.ReadLine();
+
+           */
+
+            
+
+           //-------------------------------------------------
+           //Excersie 4
+           //-------------------------------------------------
+           string[] dayWeek = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+            
+           Console.Write("\nLINQ : Display the name of the days of a week : ");
+           Console.Write("\n------------------------------------------------\n");
 
             //Write Your code
+            int x = 1;
+            var days= from day in dayWeek
+                          select day;
+
+            foreach (var day in days)
+            {
+                Console.WriteLine($"Day{x}: {day}");
+                x++;
+            }
+
             Console.ReadLine();
 
 
-
-
-
-            //-------------------------------------------------
-            //Excersie 4
-            //-------------------------------------------------
-            string[] dayWeek = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
-
-            Console.Write("\nLINQ : Display the name of the days of a week : ");
-            Console.Write("\n------------------------------------------------\n");
-
-            //Write Your code
-            Console.ReadLine();
-
-
+             
 
 
 
@@ -95,7 +133,23 @@ namespace AutomationTraining_M7
             Console.Write("\n------------------------------------------------------------------------\n");
 
             //Write Your code
+
+            var numbers = from number in arr3
+                          select number;
+
+            foreach (var number in numbers)
+            {
+                Console.WriteLine($"Number: {number}, Square: {number*number}");
+
+
+            }
+
+         
+     
+
             Console.ReadLine();
+
+
 
         }
     }
