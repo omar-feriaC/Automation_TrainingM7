@@ -132,14 +132,14 @@ namespace AutomationTraining_M7.Page_Objects
         public static void fnSideMenuBtn(string strMenuString)
         {
 
-            //IList<IWebElement> listSideMenu = driver.FindElements(By.XPath("//ul[@class='list-unstyled components']//child::li/a"));
+            
             fnClickSideMenu(strMenuString);
             IList<IWebElement> listSideSubMenu1 = fnSubMenu();
 
             
                     _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//ul[@class='wow fadeIn animated list-unstyled collapse in']")));
                     _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//ul[@class='wow fadeIn animated list-unstyled collapse in']")));
-            //IList<IWebElement> listSideSubMenu = driver.FindElements(By.XPath("//ul[@class='wow fadeIn animated list-unstyled collapse in']//child::li/a"));
+            
 
                 for (int a = 0; a < listSideSubMenu1.Count; a++) 
                 {
@@ -147,20 +147,16 @@ namespace AutomationTraining_M7.Page_Objects
                         
                         _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//ul[@class='wow fadeIn animated list-unstyled collapse in']")));
                         _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//ul[@class='wow fadeIn animated list-unstyled collapse in']")));
-                //IList<IWebElement> listSideSubMenu2 = listSideSubMenu1;
+                
                         IList<IWebElement> listSideSubMenu = driver.FindElements(By.XPath("//ul[@class='wow fadeIn animated list-unstyled collapse in']//child::li/a"));
                         listSideSubMenu1 = listSideSubMenu;
-                        objRM.fnAddStepLog(objTest, listSideSubMenu1[a].Text, "PASS");
+                        objRM.fnAddStepLog(objTest, "Click on SubMenu: " + listSideSubMenu1[a].Text, "PASS");
                         listSideSubMenu1[a].Click();
                         
 
                         _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//tr[@class='xcrud-th']")));
                         _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//tr[@class='xcrud-th']")));
 
-
-                        fnClickSideMenu(strMenuString);
-
-                        //IList<IWebElement> tableElements = driver.FindElements(By.XPath("//tr[@class='xcrud-th']//child::th"));
                         IList<IWebElement> tableElements = fnTableElementsPage();
                         int intTableElements = tableElements.Count();
 
@@ -186,7 +182,7 @@ namespace AutomationTraining_M7.Page_Objects
                                 if (valContains.Contains("↓"))
                                 {
                                     Assert.AreNotEqual(valSortingBef, valSortingAft);
-                                    objRM.fnAddStepLog(objTest, tableElements[i].Text, "PASS");
+                                    objRM.fnAddStepLog(objTest, "Click on Column: "+tableElements[i].Text, "PASS");
 
 
                                 }
@@ -195,76 +191,8 @@ namespace AutomationTraining_M7.Page_Objects
                             
 
                         }
-                        
-                    }
-
-                
-            
-
-            /*
-            foreach (IWebElement SideElement in listSideMenu)
-            {
-
-                if (SideElement.Text == strMenuString.ToUpper())
-                {
-
-
-                    SideElement.Click();
-                    _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//ul[@class='wow fadeIn animated list-unstyled collapse in']")));
-                    _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//ul[@class='wow fadeIn animated list-unstyled collapse in']")));
-                    IList<IWebElement> listSideSubMenu = driver.FindElements(By.XPath("//ul[@class='wow fadeIn animated list-unstyled collapse in']//child::li/a"));
-
-
-                    foreach (IWebElement SubMenuElements in listSideSubMenu)
-                    {
-
-                        SubMenuElements.Click();
-
-                        _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//tr[@class='xcrud-th']")));
-                        _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//tr[@class='xcrud-th']")));
-
-                        IList<IWebElement> tableElements = driver.FindElements(By.XPath("//tr[@class='xcrud-th']//child::th"));
-                        int intTableElements = tableElements.Count();
-
-                        listSideMenu = driver.FindElements(By.XPath("//ul[@class='list-unstyled components']//child::li/a"));
-                        if (SideElement.Text == strMenuString.ToUpper())
-                        {
-                            SideElement.Click();
-                        }
-
-                        //for (int i = 2; i < intTableElements; i++)
-                        //{
-                        //    string valSortingBef = "";
-                        //    string valSortingAft = "";
-                        //    string valContains = "";
-                        //    _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//tr[@class='xcrud-th']//child::th")));
-                        //    _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//tr[@class='xcrud-th']//child::th")));
-
-
-                        //    valSortingBef = tableElements[i].GetAttribute("data-order");
-                        //    tableElements[i].Click();
-
-                        //    _driverWait.Until(ExpectedConditions.StalenessOf(tableElements[i]));
-
-                        //    tableElements = driver.FindElements(By.XPath("//tr[@class='xcrud-th']//child::th"));
-                        //    valSortingAft = tableElements[i].GetAttribute("data-order");
-                        //    _driverWait.Until(ExpectedConditions.ElementToBeClickable(tableElements[i]));
-                        //    valContains = tableElements[i].Text;
-                        //    if (valContains.Contains("↓"))
-                        //    {
-                        //        Assert.AreNotEqual(valSortingBef, valSortingAft);
-                        //        objRM.fnAddStepLog(objTest, tableElements[i].Text, "PASS");
-
-
-                        //    }
-
-                        //}
-
-                    }
-
+                        fnClickSideMenu(strMenuString);
                 }
-            }
-            */
         }
 
         public static void fnClickSideMenu(string strMenuString)
@@ -278,7 +206,7 @@ namespace AutomationTraining_M7.Page_Objects
                 if (SideElement.Text == strMenuString.ToUpper())
                 {
                     SideElement.Click();
-                    objRM.fnAddStepLog(objTest, SideElement.Text, "PASS");
+                    objRM.fnAddStepLog(objTest, "Click on Menu: " + SideElement.Text, "PASS");
                 }
             }
         }
@@ -289,25 +217,11 @@ namespace AutomationTraining_M7.Page_Objects
             return listSideSubMenu;
         }
 
-        
-
-
         public static IList<IWebElement> fnTableElementsPage()
         {
             IList<IWebElement> tableElements = driver.FindElements(By.XPath("//tr[@class='xcrud-th']//child::th"));
             return tableElements;
         }
-        
 
-
-
-        public List<string> altareco(string var1, string var2)
-        {
-            var Lrecorridos = new List<string>();
-            Lrecorridos.Add(var1);
-            Lrecorridos.Add(var2);
-
-            return Lrecorridos;
-        }
     }
 }
