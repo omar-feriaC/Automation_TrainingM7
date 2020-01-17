@@ -25,17 +25,45 @@ namespace AutomationTraining_M7
             //-------------------------------------------------
             //Excersie 1
             //-------------------------------------------------
-            string[] arr1;
+            string[] arr1; 
             int n, i;
 
             Console.Write("\nLINQ : Print the lenght of the strings in the array : ");
             Console.Write("\n------------------------------------------------------\n");
 
             //Write Your code Here
+            string temp1;
+            do {
+                Console.Write("How many strings will you save? (Type only numbers)\n");
+                temp1 = Console.ReadLine();
+                if (!string.IsNullOrEmpty(temp1))
+                {
+                    Console.WriteLine($"Thank you.\n");
+                    n = Convert.ToInt32(temp1);
+                    arr1 = new string[n];
+
+                    for (i = 0; i < n; i++)
+                    {
+                        Console.Write($"Type String #{i + 1}:");
+                        arr1[i] = Console.ReadLine();
+                    }
+
+                    var stringQuery = from value in arr1
+                                      select value;
+
+                    foreach (var value in stringQuery)
+                    {
+                        Console.Write($"Value: {value}, Lenght: {value.Length}\n");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Empty input, please try again");
+                }
+            }
+            while (string.IsNullOrEmpty(temp1));
+
             Console.ReadLine();
-
-
-
 
 
             //-------------------------------------------------
