@@ -86,7 +86,7 @@ namespace AutomationTraining_M7
             foreach (var file in files)
             {
                 FileInfo objFile = new FileInfo(file);
-                Console.WriteLine($"File Name: {objFile.FullName} Size of the File: {objFile.Length} ");
+                Console.WriteLine($"File Name: {objFile.Name} -  Size of the File: {objFile.Length} bytes ");
                 
             }
 
@@ -95,7 +95,7 @@ namespace AutomationTraining_M7
 
 
 
-            /*
+            
 
           //-------------------------------------------------
           //Excersie 3
@@ -106,10 +106,27 @@ namespace AutomationTraining_M7
            Console.Write("\nBasic structure of LINQ : ");
            Console.Write("\n---------------------------");
 
-           //Write Your code
-           Console.ReadLine();
 
-           */
+            //Write Your code
+
+            var integers = from integer in n1
+                       select integer;
+            int d =1;
+
+            Console.Write($"\nData Source : Array n1 ");
+            Console.Write($"\nQuery : from integer in n1 select integer; ");
+
+            Console.Write("\nQuery Execution :  \n");
+
+            foreach (var integer in integers)
+            {
+                Console.WriteLine($"Value {d}: {integer}");
+                d++;
+            }
+
+            Console.ReadLine();
+
+           
 
 
 
