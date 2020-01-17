@@ -42,9 +42,13 @@ namespace AutomationTraining_M7 {
             Console.Write("\n---------------------------------\n");
 
             long FileSize = 0;
-            string[] dirfiles = Directory.GetFiles("C:/Test", "*.txt", SearchOption.TopDirectoryOnly);
-            FileSize = new FileInfo(dirfiles[0]).Length;
-            Console.WriteLine("File size: " + FileSize + " Bytes");
+            string[] dirfiles = Directory.GetFiles("C:/Test");
+            var z = from size in dirfiles select size;
+            foreach (var size in z)
+            {
+                FileSize = new FileInfo(size).Length;
+                Console.WriteLine("File size: " + FileSize + " Bytes");
+            }
 
             Console.ReadLine();
 
