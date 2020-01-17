@@ -22,11 +22,11 @@ namespace AutomationTraining_M7
         static void Main(string[] args)
         {
 
-            //Exercise1();
-            //Exercise2();
-            //Exercise3();
-            //Exercise4();
-            //Exercise5();
+            Exercise1();
+            Exercise2();
+            Exercise3();
+            Exercise4();
+            Exercise5();
 
         }
 
@@ -154,6 +154,15 @@ namespace AutomationTraining_M7
             Console.Write("\n------------------------------------------------------------------------\n");
 
             //Write Your code
+
+            var arrList = from a in arr3
+                          select a;
+
+            foreach (var aList in arrList)
+            {
+                Console.WriteLine("Number: " + aList + " " + "Square: " +  Math.Pow(aList, 2));
+            }
+
             Console.ReadLine();
 
         }
