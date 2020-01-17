@@ -5,6 +5,7 @@ using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NUnit.Framework;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,22 +24,40 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_FORGOTPASS_LNK = "//*[text()='Forget Password']";
         readonly static string STR_LOGIN_BTN = "//span[text()='Login']";
         readonly static string STR_HAMBURGER_BTN = "sidebarCollapse";
+        //readonly static string STR_ISCHATMAXIMAZED_TXT = "//div[text()= 'Welcome to LiveChat']";
+        //readonly static string STR_ISCHATMINIMIZED_TXT = "//";
+        readonly static string STR_MINIMIZE_CHAT_BTN = "e1mwfyk10 lc-4rgplc e1m5b1js0";
+        readonly static string STR_TOTALADMIN_TXT = "//a[text()= ' Total Admins ']";
+        readonly static string STR_TOTALSUPPLIERS_TXT = "//a[text()= ' Total Suppliers ']";
+        readonly static string STR_TOTALCUSTOMERS_TXT = "//a[text()= ' Total Customers ']";
+        readonly static string STR_TOTALGUESTS_TXT = "//a[text()= ' Total Guests ']";
+        readonly static string STR_TOTALBOOKINGS_TXT = "//a[text()= ' Total Bookings ']";
+        readonly static string STR_SIDE_MENU_BTN = "//*[text()=' General']";
+        
 
         /*CONSTRUCTOR*/
         public clsPHPTravels_LoginPage(IWebDriver pobjDriver)
         {
             _objDriver = pobjDriver;
-            _driverWait = new WebDriverWait(_objDriver, new TimeSpan(0, 0, 40));
+            _driverWait = new WebDriverWait(_objDriver, new TimeSpan(0, 0, 20));
         }
 
         /*OBJECT DEFINITION*/
-        private static IWebElement objEmailTxt = driver.FindElement(By.Name(STR_EMAIL_TXT)); 
-        private static IWebElement objPasswordTxt = driver.FindElement(By.Name(STR_PASSWORD_TXT));
-        private static IWebElement objRememberMeLnk = driver.FindElement(By.XPath(STRREMEMBERME_LNK));
-        private static IWebElement objForgotPassLnk = driver.FindElement(By.XPath(STR_FORGOTPASS_LNK));
-        private static IWebElement objLoginBtn = driver.FindElement(By.XPath(STR_LOGIN_BTN));
+        private static IWebElement objEmailTxt => driver.FindElement(By.Name(STR_EMAIL_TXT)); 
+        private static IWebElement objPasswordTxt => driver.FindElement(By.Name(STR_PASSWORD_TXT));
+        private static IWebElement objRememberMeLnk => driver.FindElement(By.XPath(STRREMEMBERME_LNK));
+        private static IWebElement objForgotPassLnk => driver.FindElement(By.XPath(STR_FORGOTPASS_LNK));
+        private static IWebElement objLoginBtn => driver.FindElement(By.XPath(STR_LOGIN_BTN));
+        private static IWebElement objMinChat => driver.FindElement(By.ClassName(STR_MINIMIZE_CHAT_BTN));
+        private static IWebElement objTotalAdminTXT => driver.FindElement(By.XPath(STR_TOTALADMIN_TXT));
+        private static IWebElement objTotalSuppiersTXT => driver.FindElement(By.XPath(STR_TOTALSUPPLIERS_TXT));
+        private static IWebElement objTotalCustomersTXT => driver.FindElement(By.XPath(STR_TOTALCUSTOMERS_TXT));
+        private static IWebElement objTotalGuestsTXT => driver.FindElement(By.XPath(STR_TOTALGUESTS_TXT));
+        private static IWebElement objTotalBookingsTXT => driver.FindElement(By.XPath(STR_TOTALBOOKINGS_TXT));
+        private static IWebElement objSideMenuBtn => driver.FindElement(By.XPath(STR_SIDE_MENU_BTN));
+        private static IWebElement objChildSideMenuBtn => driver.FindElement(By.XPath(STR_SIDE_MENU_BTN));
 
-
+        //private static IList<IWebElement> tableElements = driver.FindElements(By.XPath("//tr[@class='xcrud-th']//child::th"));
         /*METHODS/FUNCTIONS*/
 
         //Email
@@ -92,6 +111,138 @@ namespace AutomationTraining_M7.Page_Objects
             _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.Id(STR_HAMBURGER_BTN)));
         }
 
+        //MINIMIZE CHAT
 
+        //private IWebElement GetChatMax() {
+        //    return objIsChatMax;
+        //}
+
+        //private IWebElement GetChatMin() {
+        //    return objIsChatMin;
+        //}
+        //private IWebElement GetMinimizeChatButton()
+        //{
+        //    return objMinChat;
+        //}
+        //public static void fnMinimizeChat()
+        //{
+        //    _driverWait.Until(ExpectedConditions.ElementIsVisible(By.ClassName(STR_ISCHATMINIMIZED_TXT))); 
+
+        //    if (objIsChatMax.Displayed) //(driver.FindElements(By.XPath(STR_ISCHATMAXIMAZED_TXT)).Count > 0) 
+        //    {
+        //        _driverWait.Until(ExpectedConditions.ElementExists(By.ClassName(STR_MINIMIZE_CHAT_BTN)));
+        //        _driverWait.Until(ExpectedConditions.ElementIsVisible(By.ClassName(STR_MINIMIZE_CHAT_BTN)));
+        //        _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.ClassName(STR_MINIMIZE_CHAT_BTN)));
+        //        objMinChat.Click();
+        //    }
+        //    else { 
+        //        _driverWait.Until(ExpectedConditions.ElementExists(By.ClassName(STR_ISCHATMINIMIZED_TXT)));
+        //        _driverWait.Until(ExpectedConditions.ElementIsVisible(By.ClassName(STR_ISCHATMINIMIZED_TXT)));
+        //        _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.ClassName(STR_ISCHATMINIMIZED_TXT)));
+        //        objIsChatMin.Click();
+
+        //    }
+        //}
+
+        //Print the stats of the page
+        public static void fnPrintStats()
+        {
+            Console.WriteLine(objTotalAdminTXT.Text);
+            objRM.fnAddStepLog(objTest, objTotalAdminTXT.Text, "Pass");
+            Console.WriteLine("");
+            Console.WriteLine(objTotalSuppiersTXT.Text);
+            objRM.fnAddStepLog(objTest, objTotalSuppiersTXT.Text, "Pass");
+            Console.WriteLine("");
+            Console.WriteLine(objTotalCustomersTXT.Text);
+            objRM.fnAddStepLog(objTest, objTotalGuestsTXT.Text, "Pass");
+            Console.WriteLine("");
+            Console.WriteLine(objTotalGuestsTXT.Text);
+            objRM.fnAddStepLog(objTest, objTotalGuestsTXT.Text, "Pass");
+            Console.WriteLine("");
+            Console.WriteLine(objTotalBookingsTXT.Text);
+            objRM.fnAddStepLog(objTest, objTotalBookingsTXT.Text, "Pass");
+        }
+
+        private IWebElement GetSideMenu() {
+            return objSideMenuBtn;
+        }
+        private IWebElement GetChildMenu()
+        {
+            return objChildSideMenuBtn;
+        }
+
+        public static void fnSideMenuBtn (string strMenuString)
+        {
+           
+            IList<IWebElement> listSideMenu = driver.FindElements(By.XPath("//ul[@class='list-unstyled components']//child::li/a"));
+
+            foreach (IWebElement SideElement in listSideMenu)
+            {
+                
+                if (SideElement.Text == strMenuString.ToUpper()) {
+
+                    
+                    SideElement.Click();
+                    _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//ul[@class='wow fadeIn animated list-unstyled collapse in']")));
+                    _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//ul[@class='wow fadeIn animated list-unstyled collapse in']")));
+                    IList<IWebElement> listSideSubMenu = driver.FindElements(By.XPath("//ul[@class='wow fadeIn animated list-unstyled collapse in']//child::li/a"));
+                    
+
+                    foreach (IWebElement SubMenuElements in listSideSubMenu) {
+
+                        SubMenuElements.Click();
+                        
+                        //SubMenuElements.GetAttribute("class");
+                        
+                        //string classSideSubMenu = SubMenuElements.GetAttribute("class");
+
+                        _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//tr[@class='xcrud-th']")));
+                        _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//tr[@class='xcrud-th']")));
+
+                        IList<IWebElement> tableElements = driver.FindElements(By.XPath("//tr[@class='xcrud-th']//child::th"));
+                        tableElements.Count();
+                        for (int i = 2; i < tableElements.Count(); i++)
+                        {
+                            string valSortingBef = "";
+                            string valSortingAft = "";
+                            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//tr[@class='xcrud-th']//child::th")));
+                            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//tr[@class='xcrud-th']//child::th")));
+                            
+                            //tableElements[i].GetAttribute("data-order");
+                            valSortingBef = tableElements[i].GetAttribute("data-order");
+                            tableElements[i].Click();
+                            tableElements = driver.FindElements(By.XPath("//tr[@class='xcrud-th']//child::th"));
+                            valSortingAft = tableElements[i].GetAttribute("data-order");
+                            //_driverWait.Until(ExpectedConditions.ElementToBeClickable(tableElements[i]));
+
+                            
+                        }
+
+                        //foreach (var tElements in tableElements)
+                        //{
+
+                        //    //string valSortingBef = tElements.GetAttribute("data-order");
+                        //    tElements.Click();
+                        //    //string valSortingAft = tElements.GetAttribute("data-order");
+
+                        //    //Assert.AreNotEqual(valSortingBef, valSortingAft);
+                        //}
+
+
+
+                        //SideElement.Click();
+                    }
+
+                    
+                }
+            
+            }
+        }
+
+        public static void fnSideMenu()
+        {
+            
+        
+        }
     }
 }

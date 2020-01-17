@@ -16,7 +16,7 @@ namespace AutomationTraining_M7.Reporting
     class clsReportManager
     {
         private DateTime time = DateTime.Now;
-        private string strImagePath;
+        //private string strImagePath;
 
         public string fnReportPath()
         {
@@ -94,7 +94,7 @@ namespace AutomationTraining_M7.Reporting
 
         public void fnAddStepLog(ExtentTest pobjTest, string pstrMessage, string pStatus)
         {
-            pobjTest.Log(Status.Info, pstrMessage);
+            //pobjTest.Log(Status.Info, pstrMessage);
             switch (pStatus.ToUpper())
             {
                 case "PASS":
