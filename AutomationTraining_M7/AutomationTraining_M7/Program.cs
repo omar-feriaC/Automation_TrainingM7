@@ -33,10 +33,14 @@ namespace AutomationTraining_M7
 
             //Write Your code Here
             string temp1;
-            do {
+            //int temp1;
+            do
+            {
                 Console.Write("How many strings will you save? (Type only numbers)\n");
                 temp1 = Console.ReadLine();
-                if (!string.IsNullOrEmpty(temp1))
+
+                //if (temp1 != null)
+                if (!string.IsNullOrEmpty(temp1))//was trying to also add non numbers but already took too much time :(
                 {
                     Console.WriteLine($"Thank you.\n");
                     n = Convert.ToInt32(temp1);
@@ -48,12 +52,13 @@ namespace AutomationTraining_M7
                         arr1[i] = Console.ReadLine();
                     }
 
+                    Console.Write("\n------------------------------------------------------\n");
                     var stringQuery = from value in arr1
                                       select value;
 
                     foreach (var value in stringQuery)
                     {
-                        Console.Write($"Value: {value}, Lenght: {value.Length}\n");
+                        Console.Write($"Value: {value}\t Lenght: {value.Length}\n");
                     }
                 }
                 else
@@ -61,14 +66,24 @@ namespace AutomationTraining_M7
                     Console.WriteLine("Empty input, please try again");
                 }
             }
+            //while (temp1 = null);
             while (string.IsNullOrEmpty(temp1));
 
             Console.ReadLine();
 
+            var dir = @"C:/Test";  // folder location
 
+            if (!Directory.Exists(dir))  // if it doesn't exist, create
+                Directory.CreateDirectory(dir);
+
+            // use Path.Combine to combine 2 strings to a path
+            File.WriteAllText(Path.Combine(dir, "abcd.txt"), "test1");
+            File.WriteAllText(Path.Combine(dir, "simple_file.txt"), "test2");
+            File.WriteAllText(Path.Combine(dir, "xyz.txt"), "test3");
             //-------------------------------------------------
             //Excersie 2
             //-------------------------------------------------
+
             string[] dirfiles = Directory.GetFiles("C:/Test");
             // there are three files in the directory abcd are :
             // abcd.txt, simple_file.txt and xyz.txt
@@ -77,11 +92,16 @@ namespace AutomationTraining_M7
             Console.Write("\n------------------------------------\n");
 
             //Write Your code
+            var files = from file in dirfiles
+                        select file;
+
+            foreach (var file in files)
+            {
+                FileInfo objFile = new FileInfo(file);
+                Console.WriteLine($"File: {objFile.Name}\t Size: {objFile.Length} bytes");
+            }
+
             Console.ReadLine();
-
-
-
-
 
             //-------------------------------------------------
             //Excersie 3
