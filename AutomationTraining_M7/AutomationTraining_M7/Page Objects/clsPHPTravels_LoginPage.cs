@@ -166,10 +166,10 @@ namespace AutomationTraining_M7.Page_Objects
                             _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//tr[@class='xcrud-th']//child::th")));
                             _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//tr[@class='xcrud-th']//child::th")));
 
-                            //tableElements[i].GetAttribute("data-order");
+                            
                             valSortingBef = tableElements[i].GetAttribute("data-order");
                             tableElements[i].Click();
-                            //Thread.Sleep(5000);
+                            
                             _driverWait.Until(ExpectedConditions.StalenessOf(tableElements[i]));
 
                             tableElements = driver.FindElements(By.XPath("//tr[@class='xcrud-th']//child::th"));
