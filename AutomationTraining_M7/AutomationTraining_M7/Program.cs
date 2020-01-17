@@ -86,14 +86,18 @@ namespace AutomationTraining_M7
             //-------------------------------------------------
             //  The first part is Data source.
             int[] n1 = new int[10] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-
             Console.Write("\nBasic structure of LINQ : ");
             Console.Write("\n---------------------------");
-
+            //-------------------------------------------------
+            //  The second Part is the Query
+            //-------------------------------------------------
             int[] temp = n1.Where(x => x < 4 && x > 2).ToArray();
-                       
+
             foreach (int intTemp in temp)
             {
+                //-------------------------------------------------
+                //  The third part is the result.
+                //-------------------------------------------------
                 Console.Write("the size of the item {1} is {2} ", intItemNum.ToString(), intTemp.ToString());
                 intItemNum++;
             }
