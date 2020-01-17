@@ -42,7 +42,6 @@ namespace AutomationTraining_M7.Test_Cases
                 clsPHPTravels_LoginPage.fnClickLoginButton();
                 clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
                 Assert.AreEqual(true, driver.Title.Contains("Dashboard"), "The Dashboard was not loaded correctly.");
-                //WdriverWait.Until(ExpectedConditions.ElementExists(By.ClassName("lc-1le0op1")));
                 clsPHPTravels_LoginPage.fnPrintStats();
                 clsPHPTravels_LoginPage.fnSideMenuBtn("Accounts");
                 Console.WriteLine("");

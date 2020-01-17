@@ -20,6 +20,8 @@ namespace AutomationTraining_M7
 
         static void Main(string[] args)
         {
+            clsPHPTravels_LoginPage.fnSideMenuBtn("Accounts");
+            Console.ReadKey();
 
             /*L A M B D A */
 
