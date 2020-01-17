@@ -148,7 +148,7 @@ namespace AutomationTraining_M7.Page_Objects
                         _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//ul[@class='wow fadeIn animated list-unstyled collapse in']")));
                         _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//ul[@class='wow fadeIn animated list-unstyled collapse in']")));
                 
-                        IList<IWebElement> listSideSubMenu = driver.FindElements(By.XPath("//ul[@class='wow fadeIn animated list-unstyled collapse in']//child::li/a"));
+                        IList<IWebElement> listSideSubMenu = fnSubMenu();
                         listSideSubMenu1 = listSideSubMenu;
                         objRM.fnAddStepLog(objTest, "Click on SubMenu: " + listSideSubMenu1[a].Text, "PASS");
                         listSideSubMenu1[a].Click();
