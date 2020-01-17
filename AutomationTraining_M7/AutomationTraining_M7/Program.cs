@@ -32,11 +32,25 @@ namespace AutomationTraining_M7
             Console.Write("\n------------------------------------------------------\n");
 
             //Write Your code Here
+            Console.Write("Input number of strings for the array :");
+            n = Convert.ToInt32(Console.ReadLine());
+            arr1 = new string[n];
+            Console.Write("\nInput {0} strings for the array  :\n", n);
+            for (i = 0; i < n; i++)
+            {
+                Console.Write("Element[{0}] : ", i);
+                arr1[i] = Console.ReadLine();
+            }
+            var words = from word in arr1
+                        select word;
+
+            foreach (var word in words)
+            {
+                Console.WriteLine("String: {0}, Lenght: {1}", word, word.Length);
+            }
+
             Console.ReadLine();
-
-
-
-
+            
 
             //-------------------------------------------------
             //Excersie 2
@@ -44,33 +58,45 @@ namespace AutomationTraining_M7
             string[] dirfiles = Directory.GetFiles("C:/Test");
             // there are three files in the directory abcd are :
             // abcd.txt, simple_file.txt and xyz.txt
-
+            
             Console.Write("\nLINQ : Calculate the Size of File : ");
             Console.Write("\n------------------------------------\n");
 
             //Write Your code
+            var fileQuery = from files in dirfiles
+                            orderby new FileInfo(files).Length descending
+                            select files;
+
+            foreach (string fileList in fileQuery)
+            {
+                Console.WriteLine(fileList);
+            }
+            
             Console.ReadLine();
-
-
-
-
-
+            
+            
             //-------------------------------------------------
             //Excersie 3
             //-------------------------------------------------
             //  The first part is Data source.
-            int[] n1 = new int[10] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            int[] n1 = new int[10] {  0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            //IList<int> intList = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
             Console.Write("\nBasic structure of LINQ : ");
-            Console.Write("\n---------------------------");
+            Console.WriteLine("\n---------------------------");
 
             //Write Your code
+                         var result = from s in n1
+                                      where s.Equals(1)
+                                      select s;
+
+            foreach (var intLis in result)
+            {
+                Console.WriteLine(intLis);
+            }
             Console.ReadLine();
 
-
-
-
-
+                                   
             //-------------------------------------------------
             //Excersie 4
             //-------------------------------------------------
@@ -80,12 +106,17 @@ namespace AutomationTraining_M7
             Console.Write("\n------------------------------------------------\n");
 
             //Write Your code
+            var daysName = from d in dayWeek
+                           select d;
+
+            foreach (var days in daysName)
+            {
+                Console.WriteLine(days);
+            }
+
             Console.ReadLine();
 
-
-
-
-
+                        
             //-------------------------------------------------
             //Excersie 5
             //-------------------------------------------------
