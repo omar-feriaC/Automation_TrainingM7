@@ -54,13 +54,13 @@ namespace AutomationTraining_M7
             Console.ReadLine();
 
 
-            /*
+            
 
 
             //-------------------------------------------------
             //Excersie 2
             //-------------------------------------------------
-            string[] dirfiles = Directory.GetFiles("C:/Test");
+            string[] dirfiles = Directory.GetFiles(@"C:\Users\DanielEnriqueLunaRiv\Documents\Automation\M10 Ex\");
             // there are three files in the directory abcd are :
             // abcd.txt, simple_file.txt and xyz.txt
 
@@ -68,11 +68,14 @@ namespace AutomationTraining_M7
             Console.Write("\n------------------------------------\n");
 
             //Write Your code
+
+            
+
             Console.ReadLine();
 
 
 
-
+            /*
 
             //-------------------------------------------------
             //Excersie 3
