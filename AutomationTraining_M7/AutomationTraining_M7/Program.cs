@@ -21,7 +21,7 @@ namespace AutomationTraining_M7
 
         static void Main(string[] args)
         {
-
+            
             //-------------------------------------------------
             //Excersie 1
             //-------------------------------------------------
@@ -52,7 +52,7 @@ namespace AutomationTraining_M7
             }
 
             Console.ReadLine();
-
+            
 
             
 
@@ -69,13 +69,29 @@ namespace AutomationTraining_M7
 
             //Write Your code
 
-            
+            if (dirfiles.Count() > 0)
+            {
+                Console.WriteLine("Number of files in the Directory: " + dirfiles.Count());
+
+                var files = from file in dirfiles
+                            select file;
+
+                foreach (var file in files)
+                {
+                    long size = new FileInfo(file).Length;
+
+                    Console.WriteLine("File Name: {0}, Size in bytes: {1}", file
+                        , size);
+
+                }
+
+            }
 
             Console.ReadLine();
 
+            
 
 
-            /*
 
             //-------------------------------------------------
             //Excersie 3
@@ -84,14 +100,29 @@ namespace AutomationTraining_M7
             int[] n1 = new int[10] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
             Console.Write("\nBasic structure of LINQ : ");
-            Console.Write("\n---------------------------");
+            Console.WriteLine("\n---------------------------");
 
             //Write Your code
+
+            //The Second part is create the query in LINQ.
+
+            var numbers = from number in n1
+                         select number;
+
+            // The third part is Query execution.
+
+            Console.WriteLine("Array contains the following numbers:");
+
+            foreach (var number in numbers)
+            {
+                Console.WriteLine("{0}", number);
+            }
+
             Console.ReadLine();
 
+            
 
-
-
+            
 
             //-------------------------------------------------
             //Excersie 4
@@ -102,12 +133,21 @@ namespace AutomationTraining_M7
             Console.Write("\n------------------------------------------------\n");
 
             //Write Your code
+            var days = from day in dayWeek
+                          select day;
+            
+            Console.WriteLine("A week consist on the following days:");
+
+            foreach (var day in days)
+            {
+                Console.WriteLine("{0}", day);
+            }
             Console.ReadLine();
+            
 
 
 
-
-
+            
             //-------------------------------------------------
             //Excersie 5
             //-------------------------------------------------
@@ -117,8 +157,19 @@ namespace AutomationTraining_M7
             Console.Write("\n------------------------------------------------------------------------\n");
 
             //Write Your code
+
+            var numbers2 = from number in arr3
+                          select number;
+            foreach ( var num in numbers2)
+            {
+                double sqr = Math.Pow(num, 2);
+                Console.WriteLine("Number: {0}. Square of the number: {1}", num, sqr);
+            }
+
             Console.ReadLine();
-            */
+
+
+            
         }
     }
 
