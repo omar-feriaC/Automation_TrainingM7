@@ -23,25 +23,54 @@ namespace AutomationTraining_M7
         {
 
             //-------------------------------------------------
-            //Excersie 1
+            //Exercise 1
             //-------------------------------------------------
             string[] arr1;
+            string[] arr2 = new[] { "Jose", "Luis", "Novelo", "Margain" };
             int n, i;
 
             Console.Write("\nLINQ : Print the lenght of the strings in the array : ");
             Console.Write("\n------------------------------------------------------\n");
 
             //Write Your code Here
+            //One way to do it
+            Console.Write("Input number of strings to  store in the array :");
+            n = Convert.ToInt32(Console.ReadLine());
+            arr1 = new string[n];
+            Console.Write("\nInput {0} strings for the array  :\n", n);
+            for (i = 0; i < n; i++)
+            {
+                Console.Write("Element[{0}] : ", i);
+                arr1[i] = Console.ReadLine();
+            }
+
+            var words = from word in arr1
+                        select word;
+
+            foreach (var word in words)
+            {
+                Console.WriteLine("Word: {0}, Length: {1}", word, word.Length);
+            }
+
+            Console.WriteLine("------------------------------------");
+            Console.WriteLine("Another approach");
+            
+            //Another way to do it
+            var names = from name in arr2
+                        select name;
+
+            foreach (var name in names)
+            {
+                Console.WriteLine("Word: {0}, Length: {1}", name, name.Length);
+            }
+
             Console.ReadLine();
 
-
-
-
-
             //-------------------------------------------------
-            //Excersie 2
+            //Exercise 2
             //-------------------------------------------------
-            string[] dirfiles = Directory.GetFiles("C:/Test");
+            string[] dirfiles = Directory.GetFiles("C:/Users/JoseLuisNoveloMargai/Desktop/M10Exercise");
+            //C:\Users\JoseLuisNoveloMargai\Desktop\M10Exercise
             // there are three files in the directory abcd are :
             // abcd.txt, simple_file.txt and xyz.txt
 
@@ -49,45 +78,78 @@ namespace AutomationTraining_M7
             Console.Write("\n------------------------------------\n");
 
             //Write Your code
+            if (dirfiles.Count() > 0)
+            {
+                Console.WriteLine("Number of files: " + dirfiles.Count());
+
+                var files = from file in dirfiles
+                            select file;
+
+                foreach (var file in files)
+                {
+                    long size = new FileInfo(file).Length;
+
+                    Console.WriteLine("File Name: {0}, Size in bytes: {1}", file
+                        , size);
+
+                }
+
+            }
+
             Console.ReadLine();
-
-
-
-
+            
 
             //-------------------------------------------------
-            //Excersie 3
+            //Exercise 3
             //-------------------------------------------------
             //  The first part is Data source.
             int[] n1 = new int[10] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
-            Console.Write("\nBasic structure of LINQ : ");
-            Console.Write("\n---------------------------");
+            Console.WriteLine("Basic structure of LINQ : ");
+            Console.WriteLine("---------------------------");
 
             //Write Your code
+
+            //The Second part is LINQ Query creation.
+
+            var numbers = from number in n1
+                          select number;
+
+            // The third part is Query execution.
+
+            Console.WriteLine("Array contains the following numbers:");
+
+            foreach (var number in numbers)
+            {
+                Console.WriteLine("{0}", number);
+            }
+
             Console.ReadLine();
 
 
-
-
-
             //-------------------------------------------------
-            //Excersie 4
+            //Exercise 4
             //-------------------------------------------------
-            string[] dayWeek = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+            string[] dayWeek = new string []{ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 
-            Console.Write("\nLINQ : Display the name of the days of a week : ");
-            Console.Write("\n------------------------------------------------\n");
+            Console.WriteLine("LINQ : Display the name of the days of a week : ");
+            Console.WriteLine("------------------------------------------------");
 
             //Write Your code
+            var days = from day in dayWeek
+                       select day;
+
+            foreach (var day in days)
+            {
+                Console.WriteLine("Day of the week: {0}", day);
+            }
+
+
             Console.ReadLine();
 
 
-
-
-
             //-------------------------------------------------
-            //Excersie 5
+            //Exercise 5
             //-------------------------------------------------
             var arr3 = new[] { 3, 9, 2, 8, 6, 5 };
 
@@ -95,6 +157,14 @@ namespace AutomationTraining_M7
             Console.Write("\n------------------------------------------------------------------------\n");
 
             //Write Your code
+            var squares = from square in arr3
+                           select square;
+            foreach (var square in squares)
+            {
+                double sqr = Math.Pow(square, 2);
+                Console.WriteLine("Number: {0}. Square from number: {1}", square, sqr);
+            }
+
             Console.ReadLine();
 
         }
