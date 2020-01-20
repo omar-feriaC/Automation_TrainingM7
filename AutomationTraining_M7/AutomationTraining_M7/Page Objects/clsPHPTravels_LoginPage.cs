@@ -172,6 +172,8 @@ namespace AutomationTraining_M7.Page_Objects
                             valSortingBef = tableElements[i].GetAttribute("data-order");
                             if (valSortingBef != null)
                             {
+                                IList<IWebElement> tableRowsBefore = fnColumnOrderAfter(i);
+                                var ListToCompare = tableRowsBefore.OrderBy(x => x.Text).ToList().ToString();
                                 tableElements[i].Click();
                                 _driverWait.Until(ExpectedConditions.StalenessOf(tableElements[i]));
 
@@ -181,7 +183,11 @@ namespace AutomationTraining_M7.Page_Objects
                                 valContains = tableElements[i].Text;
                                 if (valContains.Contains("↓"))
                                 {
+                                    IList<IWebElement> tableRowsAfter = fnColumnOrderAfter(i);
+                                    var ListToCompareTo = tableRowsAfter.OrderBy(y => y.Text).ToList().ToString();
+                                    Assert.AreEqual(ListToCompare,ListToCompareTo);
                                     Assert.AreNotEqual(valSortingBef, valSortingAft);
+                                    objRM.fnAddStepLog(objTest, "Data validation on column: " + tableElements[i].Text+" is correct", "PASS");
                                     objRM.fnAddStepLog(objTest, "Click on Column: "+tableElements[i].Text, "PASS");
 
 
@@ -221,6 +227,18 @@ namespace AutomationTraining_M7.Page_Objects
         {
             IList<IWebElement> tableElements = driver.FindElements(By.XPath("//tr[@class='xcrud-th']//child::th"));
             return tableElements;
+        }
+
+        public static IList<IWebElement> fnColumnOrderBefore(int tableRow)
+        {
+            IList<IWebElement> tableRows = driver.FindElements(By.XPath($"//tbody//tr//td[{tableRow}]"));
+            return tableRows;
+        }
+
+        public static IList<IWebElement> fnColumnOrderAfter(int tableRow)
+        {
+            IList<IWebElement> tableRows = driver.FindElements(By.XPath($"//tbody//tr//td[{tableRow}]"));
+            return tableRows;
         }
 
     }
