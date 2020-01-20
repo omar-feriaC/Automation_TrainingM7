@@ -71,15 +71,15 @@ namespace AutomationTraining_M7
 
             Console.ReadLine();
 
-            var dir = @"C:/Test";  // folder location
+            /*var dir = @"C:/Test";  // folder location
 
-            if (!Directory.Exists(dir))  // if it doesn't exist, create
+            if (!Directory.Exists(dir))  // if it doesn't exist, create it
                 Directory.CreateDirectory(dir);
 
             // use Path.Combine to combine 2 strings to a path
             File.WriteAllText(Path.Combine(dir, "abcd.txt"), "test1");
             File.WriteAllText(Path.Combine(dir, "simple_file.txt"), "test2");
-            File.WriteAllText(Path.Combine(dir, "xyz.txt"), "test3");
+            File.WriteAllText(Path.Combine(dir, "xyz.txt"), "test3");*/
             //-------------------------------------------------
             //Excersie 2
             //-------------------------------------------------
@@ -110,14 +110,19 @@ namespace AutomationTraining_M7
             int[] n1 = new int[10] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
             Console.Write("\nBasic structure of LINQ : ");
-            Console.Write("\n---------------------------");
+            Console.Write("\n---------------------------\n");
 
             //Write Your code
+            var numbers = from number in n1
+                      select number;
+
+            foreach (var number in numbers)
+            {
+                System.Threading.Thread.Sleep(100);
+                Console.WriteLine(number);
+            }
+
             Console.ReadLine();
-
-
-
-
 
             //-------------------------------------------------
             //Excersie 4
@@ -128,11 +133,16 @@ namespace AutomationTraining_M7
             Console.Write("\n------------------------------------------------\n");
 
             //Write Your code
+            var days = from day in dayWeek
+                      select day;
+
+            foreach (var day in days)
+            {
+                System.Threading.Thread.Sleep(100);
+                Console.WriteLine(day);
+            }
+
             Console.ReadLine();
-
-
-
-
 
             //-------------------------------------------------
             //Excersie 5
@@ -143,6 +153,15 @@ namespace AutomationTraining_M7
             Console.Write("\n------------------------------------------------------------------------\n");
 
             //Write Your code
+            var arrange = from num in arr3
+                     select num;
+
+            foreach (var num in arrange)
+            {
+                System.Threading.Thread.Sleep(100);
+                Console.WriteLine($"Base: {num}, Square: {num * num}");
+            }
+
             Console.ReadLine();
 
         }
