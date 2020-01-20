@@ -16,7 +16,7 @@ namespace AutomationTraining_M7.Reporting
     class clsReportManager
     {
         private DateTime time = DateTime.Now;
-        private string strImagePath;
+        //private string strImagePath;
 
         public string fnReportPath()
         {
