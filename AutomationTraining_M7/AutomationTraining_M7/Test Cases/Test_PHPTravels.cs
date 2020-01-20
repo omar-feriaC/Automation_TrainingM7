@@ -22,20 +22,37 @@ namespace AutomationTraining_M7.Test_Cases
         [Test]
         public void Test_M9Exercise()
         {
-            //Init objects
-            objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
-            objPHP = new clsPHPTravels_LoginPage(driver);
-            //Login Action
-            Assert.AreEqual(true, driver.Title.Contains("Administator Login"), "The Login Page was not loaded correctly.");
-            clsPHPTravels_LoginPage.fnEnterEmail("admin@phptravels.com");
-            clsPHPTravels_LoginPage.fnEnterPassword("demoadmin");
-            clsPHPTravels_LoginPage.fnClickLoginButton();
-            clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
-            Assert.AreEqual(true, driver.Title.Contains("Dashboard"), "The Dashboard was not loaded correctly.");
-            clsPHPTravels_LoginPage.fnPrintStats();
-            objRM.fnAddStepLogScreen(objTest, driver, "Login done", "scr.png", "Pass");
-            clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
-            clsPHPTravels_LoginPage.fnPrintSidebarMenu();
+            try
+            {
+                //Init objects
+                objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
+                objPHP = new clsPHPTravels_LoginPage(driver);
+                
+                //Login Action
+                Assert.AreEqual(true, driver.Title.Contains("Administator Login"), "Login Page not loaded correctly.");
+                clsPHPTravels_LoginPage.fnEnterEmail("admin@phptravels.com");
+                clsPHPTravels_LoginPage.fnEnterPassword("demoadmin");
+                clsPHPTravels_LoginPage.fnClickLoginButton();
+                clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
+                Assert.AreEqual(true, driver.Title.Contains("Dashboard"), "The Dashboard was not loaded correctly.");
+                
+                //Locate and Print the stats of the page from the upper banner.
+                clsPHPTravels_LoginPage.fnPrintStats();
+                objRM.fnAddStepLogScreen(objTest, driver, "Login done", "Logged.png", "Pass");
+                clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
+                Assert.AreEqual(true, driver.Title.Contains("Dashboard"), "Home page not loaded correctly.");
+                objRM.fnAddStepLogScreen(objTest, driver, "Stats", "stats.png", "Pass");
+                
+                //Display the Side Menu and Sub Menues content and validate the sorting
+                clsPHPTravels_LoginPage.fnSideMenuBtn("Accounts".Trim());
+                Console.WriteLine("");
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in: \n" + ex.GetBaseException());
+                Assert.Fail();
+            }
         }
 
     }

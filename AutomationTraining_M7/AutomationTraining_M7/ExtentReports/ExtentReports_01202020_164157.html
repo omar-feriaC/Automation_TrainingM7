@@ -1,0 +1,644 @@
+
+
+
+<!DOCTYPE html>
+<html>
+	
+	<head>
+	<meta charset='utf-8' /> 
+	<meta name='robots' content='noodp, noydir' />
+	<meta name='viewport' content='width=device-width, initial-scale=1' />
+	
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css' />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+	<link href='https://cdn.rawgit.com/extent-framework/extent-github-cdn/8644a9c/v3html/css/extent.css' type='text/css' rel='stylesheet' />
+	
+	<title>Automation Framework Report</title>
+
+	<style type='text/css'>
+		/* json-tree */
+		.jstBracket,.jstComma,.jstValue{white-space:pre-wrap}.jstValue{font-size:10px;font-weight:400;font-family:"Lucida Console",Monaco,monospace}.jstProperty{color:#666;word-wrap:break-word}.jstBool{color:#2525CC}.jstNum{color:#D036D0}.jstNull{color:gray}.jstStr{color:#2DB669}.jstFold:after{content:' -';cursor:pointer}.jstExpand{white-space:normal}.jstExpand:after{content:' +';cursor:pointer}.jstFolded{white-space:normal!important}.jstHiddenBlock{display:none}
+		
+	</style>
+	
+	<script type="text/javascript">
+		/*! json-tree - v0.2.2 - 2017-09-25, MIT LICENSE */
+		var JSONTree=function(){var n={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#x27;","/":"&#x2F;"},t=0,r=0;this.create=function(n,t){return r+=1,N(u(n,0,!1),{class:"jstValue"})};var e=function(t){return t.replace(/[&<>'"]/g,function(t){return n[t]})},s=function(){return r+"_"+t++},u=function(n,t,r){if(null===n)return f(r?t:0);switch(typeof n){case"boolean":return l(n,r?t:0);case"number":return i(n,r?t:0);case"string":return o(n,r?t:0);default:return n instanceof Array?a(n,t,r):c(n,t,r)}},c=function(n,t,r){var e=s(),u=Object.keys(n).map(function(r){return j(r,n[r],t+1,!0)}).join(m()),c=[g("{",r?t:0,e),N(u,{id:e}),p("}",t)].join("\n");return N(c,{})},a=function(n,t,r){var e=s(),c=n.map(function(n){return u(n,t+1,!0)}).join(m());return[g("[",r?t:0,e),N(c,{id:e}),p("]",t)].join("\n")},o=function(n,t){var r=e(JSON.stringify(n));return N(v(r,t),{class:"jstStr"})},i=function(n,t){return N(v(n,t),{class:"jstNum"})},l=function(n,t){return N(v(n,t),{class:"jstBool"})},f=function(n){return N(v("null",n),{class:"jstNull"})},j=function(n,t,r){var s=v(e(JSON.stringify(n))+": ",r),c=N(u(t,r,!1),{});return N(s+c,{class:"jstProperty"})},m=function(){return N(",\n",{class:"jstComma"})},N=function(n,t){return d("span",t,n)},d=function(n,t,r){return"<"+n+Object.keys(t).map(function(n){return" "+n+'="'+t[n]+'"'}).join("")+">"+r+"</"+n+">"},g=function(n,t,r){return N(v(n,t),{class:"jstBracket"})+N("",{class:"jstFold",onclick:"JSONTree.toggle('"+r+"')"})};this.toggle=function(n){var t=document.getElementById(n),r=t.parentNode,e=t.previousElementSibling;""===t.className?(t.className="jstHiddenBlock",r.className="jstFolded",e.className="jstExpand"):(t.className="",r.className="",e.className="jstFold")};var p=function(n,t){return N(v(n,t),{})},v=function(n,t){return Array(2*t+1).join(" ")+n};return this}();
+	</script>
+</head>
+
+
+	<body class='extent default hide-overflow  dark'>
+		<div id='theme-selector' alt='Click to toggle theme. To enable by default, use theme configuration.' title='Click to toggle theme. To enable by default, use theme configuration.'>
+			<span><i class='material-icons'>desktop_windows</i></span>
+		</div>
+		
+		<nav>
+	<div class="nav-wrapper">
+		<a href="#!" class="brand-logo black"><img src="https://cdn.rawgit.com/extent-framework/extent-github-cdn/d74480e/commons/img/logo.png"></a>
+		<ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
+			<li class='waves-effect active'><a href='#!' view='test-view' onclick="configureView(0);chartsView('test');"><i class='material-icons'>dashboard</i></a></li>
+            			<li class='waves-effect'><a href='#!' onclick="configureView(-1);chartsView('dashboard');" view='dashboard-view'><i class='material-icons'>track_changes</i></a></li>
+		</ul>
+		<span class='report-name'>Extent Framework</span>
+		<span class='report-headline'></span>
+		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
+			<a href='#!'><span class='label blue darken-3 suite-start-time'>1/20/2020 4:41:57 PM</span></a>
+		</ul>
+	</div>
+</nav>
+
+		<!-- container -->
+		<div class='container'>
+			
+<div id='test-view' class='view'>
+	<section id='controls'>
+		<div class='controls grey lighten-4'>
+			<!-- test toggle -->
+			<div class='chip transparent'>
+				<a class='dropdown-button tests-toggle' data-activates='tests-toggle' data-constrainwidth='true' data-beloworigin='true' data-hover='true' href='#'>
+				<i class='material-icons'>warning</i> Status
+				</a>
+				<ul id='tests-toggle' class='dropdown-content'>
+					<li status='pass'><a href='#!'>Pass <i class='material-icons green-text'>check_circle</i></a></li>
+																														<li class='divider'></li>
+					<li status='clear' clear='true'><a href='#!'>Clear Filters <i class='material-icons'>clear</i></a></li>
+				</ul>
+			</div>
+			<!-- test toggle -->
+			<!-- category toggle -->
+			<!-- category toggle -->
+			<!-- clear filters -->
+			<div class='chip transparent hide'>
+				<a class='' id='clear-filters' alt='Clear Filters' title='Clear Filters'>
+				<i class='material-icons'>close</i> Clear
+				</a>
+			</div>
+			<!-- clear filters -->
+			<!-- enable dashboard -->
+			<div id='toggle-test-view-charts' class='chip transparent'>
+
+				<a class='pink-text' id='enable-dashboard' alt='Enable Dashboard' title='Enable Dashboard'>
+				<i class='material-icons'>track_changes</i> Dashboard
+				</a>
+			</div>
+			<!-- enable dashboard -->
+			<!-- search -->
+			<div class='chip transparent' alt='Search Tests' title='Search Tests'>
+				<a href="#" class='search-div'>
+				<i class='material-icons'>search</i> Search
+				</a>
+				<div class='input-field left hide'>
+					<input id='search-tests' type='text' class='validate browser-default' placeholder='Search Tests...'>
+				</div>
+			</div>
+			<!-- search -->
+		</div>
+	</section>
+	
+
+
+<div id='test-view-charts' class='subview-full'>
+    <div id='charts-row' class='row nm-v nm-h'>
+        <div class='col s12 m12 l12 np-h'>
+            <div class='card-panel nm-v'>
+                <div class='left panel-name'>Tests</div>
+                <div class='chart-box' style="max-height:94px;">
+                    <canvas id='parent-analysis' width='90' height='80'></canvas>
+                </div>
+                <div class='block text-small'>
+                    <span class='tooltipped' data-position='top' data-tooltip='100%'><span class='strong'>1</span> test passed</span>
+                </div>
+                <div class='block text-small'>
+                    <span class='tooltipped' data-position='top' data-tooltip='0%'><span class='strong'>0</span> failed,</span>
+					<span class='tooltipped' data-position='top' data-tooltip='0%'><span class='strong'>0</span> skipped, </span>
+					<span class='tooltipped' data-position='top' data-tooltip='0%'><span class='strong'>0</span> others</span>
+                </div>
+            </div>
+        </div>
+		    </div>
+    <div id="timeline-chart" class="row nm-v nm-h">
+        <div class="col s12 m12 l12 np-h">
+            <div class="card-panel">
+                <div class='left panel-name'>Timeline (seconds)</div>
+                <div class="chart-box" style="width:98%;max-height:145px;">
+                    <canvas id="timeline" height="120"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+	<div class='subview-left left'>
+		<div class='view-summary'>
+			<ul id='test-collection' class='test-collection'>
+				<li class='test displayed active  pass' status='pass' test-id='1'>
+					<div class='test-heading'>
+						<span class='test-name'>Test_M9Exercise</span>
+						<span class='test-time'>1/20/2020 4:42:14 PM</span>
+						<span class='test-status right pass'>Pass</span>
+					</div>
+					<div class='test-content hide'>
+						<div class='test-time-info'>
+							<span class='label start-time'>1/20/2020 4:42:14 PM</span>
+							<span class='label end-time'>1/20/2020 4:43:32 PM</span>
+							<span class='label time-taken grey lighten-1 white-text'>0h:1m:18s.023ms</span>
+						</div>
+							<div class='test-steps'>
+								<table class='bordered table-results'>
+									<thead>
+										<tr>
+											<th>Status</th>
+											<th>Timestamp</th>
+											<th>Details</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class='log' status='info'>
+											<td class='status info' title='Info' alt='Info'>
+												<i class='material-icons'>info_outline</i>
+											</td>
+											<td class='timestamp'>16:42:25</td>
+											<td class='step-details'>
+Total Admins 7																							</td>
+										</tr>
+										<tr class='log' status='info'>
+											<td class='status info' title='Info' alt='Info'>
+												<i class='material-icons'>info_outline</i>
+											</td>
+											<td class='timestamp'>16:42:25</td>
+											<td class='step-details'>
+Total Admins 7																							</td>
+										</tr>
+										<tr class='log' status='info'>
+											<td class='status info' title='Info' alt='Info'>
+												<i class='material-icons'>info_outline</i>
+											</td>
+											<td class='timestamp'>16:42:25</td>
+											<td class='step-details'>
+Total Suppliers 7																							</td>
+										</tr>
+										<tr class='log' status='info'>
+											<td class='status info' title='Info' alt='Info'>
+												<i class='material-icons'>info_outline</i>
+											</td>
+											<td class='timestamp'>16:42:25</td>
+											<td class='step-details'>
+Total Suppliers 7																							</td>
+										</tr>
+										<tr class='log' status='info'>
+											<td class='status info' title='Info' alt='Info'>
+												<i class='material-icons'>info_outline</i>
+											</td>
+											<td class='timestamp'>16:42:26</td>
+											<td class='step-details'>
+Total Customers 683																							</td>
+										</tr>
+										<tr class='log' status='info'>
+											<td class='status info' title='Info' alt='Info'>
+												<i class='material-icons'>info_outline</i>
+											</td>
+											<td class='timestamp'>16:42:26</td>
+											<td class='step-details'>
+Total Customers 683																							</td>
+										</tr>
+										<tr class='log' status='info'>
+											<td class='status info' title='Info' alt='Info'>
+												<i class='material-icons'>info_outline</i>
+											</td>
+											<td class='timestamp'>16:42:26</td>
+											<td class='step-details'>
+Total Guests 67																							</td>
+										</tr>
+										<tr class='log' status='info'>
+											<td class='status info' title='Info' alt='Info'>
+												<i class='material-icons'>info_outline</i>
+											</td>
+											<td class='timestamp'>16:42:26</td>
+											<td class='step-details'>
+Total Guests 67																							</td>
+										</tr>
+										<tr class='log' status='info'>
+											<td class='status info' title='Info' alt='Info'>
+												<i class='material-icons'>info_outline</i>
+											</td>
+											<td class='timestamp'>16:42:26</td>
+											<td class='step-details'>
+Total Bookings 148																							</td>
+										</tr>
+										<tr class='log' status='info'>
+											<td class='status info' title='Info' alt='Info'>
+												<i class='material-icons'>info_outline</i>
+											</td>
+											<td class='timestamp'>16:42:26</td>
+											<td class='step-details'>
+Total Bookings 148																							</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:42:26</td>
+											<td class='step-details'>
+Login done												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Logged.png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Logged.png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Logged.png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:42:27</td>
+											<td class='step-details'>
+Stats												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\stats.png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\stats.png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\stats.png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:42:29</td>
+											<td class='step-details'>
+Click on Menu: ACCOUNTS												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\ACCOUNTS.png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\ACCOUNTS.png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\ACCOUNTS.png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:42:32</td>
+											<td class='step-details'>
+Click on SubMenu: ADMINS												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\ADMINS.png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\ADMINS.png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\ADMINS.png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:42:37</td>
+											<td class='step-details'>
+Click on Column: ↓ First Name												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 2ff4ee1f-1179-424f-b40a-b4bf8e5163f9).png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 2ff4ee1f-1179-424f-b40a-b4bf8e5163f9).png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 2ff4ee1f-1179-424f-b40a-b4bf8e5163f9).png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:42:39</td>
+											<td class='step-details'>
+Click on Column: ↓ Last Name												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = e70d3f9c-7c34-4948-b789-1439777d48f6).png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = e70d3f9c-7c34-4948-b789-1439777d48f6).png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = e70d3f9c-7c34-4948-b789-1439777d48f6).png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:42:40</td>
+											<td class='step-details'>
+Click on Column: ↓ Email												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 9c8d479c-4c75-48af-a40e-b9132aea475a).png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 9c8d479c-4c75-48af-a40e-b9132aea475a).png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 9c8d479c-4c75-48af-a40e-b9132aea475a).png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:42:42</td>
+											<td class='step-details'>
+Click on Column: ↓ Active												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 4f6890f5-e652-4952-a13d-9926480580e0).png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 4f6890f5-e652-4952-a13d-9926480580e0).png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 4f6890f5-e652-4952-a13d-9926480580e0).png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:42:43</td>
+											<td class='step-details'>
+Click on Column: ↓ Last Login												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = e14cc088-3e84-4b2e-95b8-eb83a54fd1e4).png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = e14cc088-3e84-4b2e-95b8-eb83a54fd1e4).png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = e14cc088-3e84-4b2e-95b8-eb83a54fd1e4).png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:42:45</td>
+											<td class='step-details'>
+Click on Menu: ACCOUNTS												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\ACCOUNTS.png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\ACCOUNTS.png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\ACCOUNTS.png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:42:48</td>
+											<td class='step-details'>
+Click on SubMenu: SUPPLIERS												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\SUPPLIERS.png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\SUPPLIERS.png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\SUPPLIERS.png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:42:54</td>
+											<td class='step-details'>
+Click on Column: ↓ First Name												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = c7ce72b6-a885-42f5-a74e-98754e32490f).png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = c7ce72b6-a885-42f5-a74e-98754e32490f).png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = c7ce72b6-a885-42f5-a74e-98754e32490f).png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:42:55</td>
+											<td class='step-details'>
+Click on Column: ↓ Last Name												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = c1d1dcbd-166c-424b-8190-238bbb658c4b).png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = c1d1dcbd-166c-424b-8190-238bbb658c4b).png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = c1d1dcbd-166c-424b-8190-238bbb658c4b).png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:42:56</td>
+											<td class='step-details'>
+Click on Column: ↓ Email												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = cffe6845-9db0-4591-a924-6010381e5e04).png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = cffe6845-9db0-4591-a924-6010381e5e04).png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = cffe6845-9db0-4591-a924-6010381e5e04).png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:42:58</td>
+											<td class='step-details'>
+Click on Column: ↓ Active												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 46d4693e-0843-45c4-ae35-5cd35ff28ee9).png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 46d4693e-0843-45c4-ae35-5cd35ff28ee9).png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 46d4693e-0843-45c4-ae35-5cd35ff28ee9).png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:42:59</td>
+											<td class='step-details'>
+Click on Column: ↓ Last Login												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = c52035a5-d569-42a9-879f-56b09499c01c).png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = c52035a5-d569-42a9-879f-56b09499c01c).png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = c52035a5-d569-42a9-879f-56b09499c01c).png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:43:01</td>
+											<td class='step-details'>
+Click on Menu: ACCOUNTS												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\ACCOUNTS.png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\ACCOUNTS.png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\ACCOUNTS.png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:43:03</td>
+											<td class='step-details'>
+Click on SubMenu: CUSTOMERS												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\CUSTOMERS.png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\CUSTOMERS.png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\CUSTOMERS.png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:43:08</td>
+											<td class='step-details'>
+Click on Column: ↓ First Name												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 9171664b-44ec-4229-8d9a-56ea2b998af7).png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 9171664b-44ec-4229-8d9a-56ea2b998af7).png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 9171664b-44ec-4229-8d9a-56ea2b998af7).png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:43:09</td>
+											<td class='step-details'>
+Click on Column: ↓ Last Name												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 3629725f-06a0-4259-9ced-512e2af4ab06).png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 3629725f-06a0-4259-9ced-512e2af4ab06).png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 3629725f-06a0-4259-9ced-512e2af4ab06).png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:43:11</td>
+											<td class='step-details'>
+Click on Column: ↓ Email												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 01868920-f58e-467f-aa67-c18e077d7133).png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 01868920-f58e-467f-aa67-c18e077d7133).png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 01868920-f58e-467f-aa67-c18e077d7133).png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:43:12</td>
+											<td class='step-details'>
+Click on Column: ↓ Active												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = b2fef44f-ebf7-40fb-adfc-80e4798a1325).png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = b2fef44f-ebf7-40fb-adfc-80e4798a1325).png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = b2fef44f-ebf7-40fb-adfc-80e4798a1325).png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:43:14</td>
+											<td class='step-details'>
+Click on Column: ↓ Last Login												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 1c029141-d53c-4a5f-ad75-ee69ea463aeb).png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 1c029141-d53c-4a5f-ad75-ee69ea463aeb).png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 1c029141-d53c-4a5f-ad75-ee69ea463aeb).png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:43:15</td>
+											<td class='step-details'>
+Click on Menu: ACCOUNTS												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\ACCOUNTS.png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\ACCOUNTS.png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\ACCOUNTS.png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:43:17</td>
+											<td class='step-details'>
+Click on SubMenu: GUESTCUSTOMERS												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\GUESTCUSTOMERS.png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\GUESTCUSTOMERS.png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\GUESTCUSTOMERS.png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:43:23</td>
+											<td class='step-details'>
+Click on Column: ↓ First Name												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = ecfc70b2-24c4-4ed6-9877-2f2df2b57da6).png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = ecfc70b2-24c4-4ed6-9877-2f2df2b57da6).png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = ecfc70b2-24c4-4ed6-9877-2f2df2b57da6).png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:43:24</td>
+											<td class='step-details'>
+Click on Column: ↓ Last Name												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 8b9f6673-f859-40f2-8b9a-51b89c86e3fb).png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 8b9f6673-f859-40f2-8b9a-51b89c86e3fb).png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 8b9f6673-f859-40f2-8b9a-51b89c86e3fb).png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:43:26</td>
+											<td class='step-details'>
+Click on Column: ↓ Email												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 479f9091-86c9-4dd3-9c35-5161be7bb80c).png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 479f9091-86c9-4dd3-9c35-5161be7bb80c).png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 479f9091-86c9-4dd3-9c35-5161be7bb80c).png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:43:27</td>
+											<td class='step-details'>
+Click on Column: ↓ Active												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = eb6c9b74-3b30-4bd7-a502-fa12e56bcb89).png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = eb6c9b74-3b30-4bd7-a502-fa12e56bcb89).png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = eb6c9b74-3b30-4bd7-a502-fa12e56bcb89).png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:43:29</td>
+											<td class='step-details'>
+Click on Column: ↓ Last Login												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 47516bc4-49de-4814-8619-17da455502eb).png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 47516bc4-49de-4814-8619-17da455502eb).png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\Element (id = 47516bc4-49de-4814-8619-17da455502eb).png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:43:30</td>
+											<td class='step-details'>
+Click on Menu: ACCOUNTS												<img class='r-img' title='' onerror='this.style.display="none"' data-featherlight='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\ACCOUNTS.png' src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\ACCOUNTS.png' data-src='C:\Users\DanielEnriqueLunaRiv\Documents\Automation\Mod 9 Exc\Automation_TrainingM7\AutomationTraining_M7\AutomationTraining_M7\ExtentReports\Screenshots\ACCOUNTS.png'>											</td>
+										</tr>
+										<tr class='log' status='pass'>
+											<td class='status pass' title='Pass' alt='Pass'>
+												<i class='material-icons'>check_circle</i>
+											</td>
+											<td class='timestamp'>16:43:32</td>
+											<td class='step-details'>
+Test ended with Pass																							</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- subview left -->
+	<div class='subview-right left'>
+		<div class='view-summary'>
+			<div id='step-filters' class="right sr-filters">
+				<a class="btn-floating waves-effect waves-light green" status="pass" alt="pass" title="pass"><i class="material-icons">check_circle</i></a>
+				<a class="btn-floating waves-effect waves-light red" status="fail" alt="fail" title="fail"><i class="material-icons">cancel</i></a>
+				<a class="btn-floating waves-effect waves-light red darken-4" status="fatal" alt="fatal" title="fatal"><i class="material-icons">cancel</i></a>
+				<a class="btn-floating waves-effect waves-light pink text-lighten-1" status="error" alt="error" title="error"><i class="material-icons">error</i></a>
+				<a class="btn-floating waves-effect waves-light orange" alt="warning" status="warning" title="warning"><i class="material-icons">warning</i></a>
+				<a class="btn-floating waves-effect waves-light teal" status="skip" alt="skip" title="skip"><i class="material-icons">redo</i></a>
+				<a class="btn-floating waves-effect waves-light grey" status="clear" alt="Clear filters" title="Clear filters"><i class="material-icons">clear</i></a>
+			</div>
+			<h5 class='test-name'></h5>
+		</div>
+	</div>
+	<!-- subview right -->
+</div>
+<!-- test view -->
+
+			
+			<!-- category view -->
+			
+<!-- exception view -->
+			
+
+
+<div id='dashboard-view' class='view hide'>
+	<div class='card-panel transparent np-v'>
+		<h5>Dashboard</h5>
+
+		<div class='row'>
+			<div class='col s2'>
+				<div class='card-panel r'>
+          Tests
+          <div class='panel-lead'>1</div>
+				</div>
+			</div>
+			<div class='col s2'>
+				<div class='card-panel r'>
+          Steps
+          <div class='panel-lead'>0</div>
+				</div>
+			</div>
+			<div class='col s2'>
+				<div class='card-panel r'>
+					Start
+					<div class='panel-lead'>1/20/2020 4:41:57 PM</div>
+				</div>
+			</div>
+			<div class='col s2'>
+				<div class='card-panel r'>
+			 		End
+			 		<div class='panel-lead'>1/20/2020 4:43:44 PM</div>
+				</div>
+			</div>
+			<div class='col s2'>
+				<div class='card-panel r'>
+					Time Taken
+					<div class='panel-lead'>00:01:46.3995856</div>
+				</div>
+			</div>
+			<div class='col s4'>
+				<div class='card-panel dashboard-environment'>
+					<span class='right label cyan white-text'>Environment</span><p>&nbsp;</p>
+					<table>
+						<tr>
+							<th>Name</th>
+							<th>Value</th>
+						</tr>
+							<tr>
+								<td>Project Name:</td>
+								<td>Automation Framework</td>
+							</tr>
+							<tr>
+								<td>Application:</td>
+								<td>LinkedIn</td>
+							</tr>
+							<tr>
+								<td>Environment:</td>
+								<td>QAA</td>
+							</tr>
+							<tr>
+								<td>Browser:</td>
+								<td>Chrome</td>
+							</tr>
+							<tr>
+								<td>Date:</td>
+								<td>1/20/2020</td>
+							</tr>
+							<tr>
+								<td>Version:</td>
+								<td>v1.0</td>
+							</tr>
+					</table>
+				</div>
+			</div>
+					</div>
+	</div>
+</div>
+<!-- dashboard view -->
+
+			<!-- testrunner-logs view -->
+		</div>
+		<!-- container -->
+		<script>
+			var statusGroup = {
+                parentCount: 1,
+				passParent: 1,
+				failParent: 0,
+				fatalParent: 0,
+				errorParent: 0,
+				warningParent: 0,
+				skipParent: 0,
+				exceptionsParent: 0,
+				childCount: 0,
+				passChild: 0,
+				failChild: 0,
+				fatalChild: 0,
+				errorChild: 0,
+				warningChild: 0,
+				skipChild: 0,
+				infoChild: 0,
+				debugChild: 0,
+				exceptionsChild: 0,
+				grandChildCount: 0,
+				passGrandChild: 0,
+				failGrandChild: 0,
+				fatalGrandChild: 0,
+				errorGrandChild: 0,
+				warningGrandChild: 0,
+				skipGrandChild: 0,
+				infoGrandChild: 0,
+				debugGrandChild: 0,
+				exceptionsGrandChild: 0,
+			};
+		</script>
+			<script>
+				var timeline = { "Test_M9Exercise":78.0235375 };
+			</script>
+		<script src='https://cdn.rawgit.com/extent-framework/extent-github-cdn/c23457b/v3html/js/extent.js' type='text/javascript'></script>
+		<script type='text/javascript'>
+			
+		</script>
+	</body>
+</html>

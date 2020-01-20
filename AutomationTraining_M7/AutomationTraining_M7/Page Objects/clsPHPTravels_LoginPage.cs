@@ -1,4 +1,5 @@
 ﻿using AutomationTraining_M7.Base_Files;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
@@ -30,69 +31,6 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_TOTALCUSTOMERS_TXT = "//a[text()=' Total Customers ']";
         readonly static string STR_TOTALGUESTS_TXT = "//a[text()=' Total Guests ']";
         readonly static string STR_TOTALBOOKINGS_TXT = "//a[text()=' Total Bookings ']";
-        readonly static string STR_SIDEBAR_MENU = "//div[@class='social-sidebar']";
-        readonly static string STR_DASHBOARD_LNK = "//a[text()='Dashboard']";
-        readonly static string STR_UPDATES_LNK = "//a[text()='Updates']";
-        readonly static string STR_MODULES_LNK = "//a[text()='Modules']";
-        readonly static string STR_GENERAL_DD = "//a[text()=' General']";
-        readonly static string STR_GENERAL_MENU = "//ul[@id='menu-ui']";
-        readonly static string STR_GENSETTINGS_SUBM = "//li[text()='Settings']";
-        readonly static string STR_OCURRENCIES_SUBM = "//li[text()='Currencies']";
-        readonly static string STR_PYMTGTW_SUBM = "//li[text()='Payment Gateways']";
-        readonly static string STR_SOCIALCONN_SUBM = "//li[text()='Social Connections']";
-        readonly static string STR_WIDGETS_SUBM = "//li[text()='Widgets']";
-        readonly static string STR_SLIDERS_SUBM = "//li[text()='Sliders']";
-        readonly static string STR_EMAILTEMP_SUBM = "//li[text()='Email Templates']";
-        readonly static string STR_SMSAPISET_SUBM = "//li[text()='SMS API Settings']";
-        readonly static string STR_BACKUP_SUBM = "//li[text()='BackUp']";
-        readonly static string STR_ACCOUNTS_DD = "//a[text()=' Accounts                ']";
-        readonly static string STR_ACCOUNTS_MENU = "//ul[@id='ACCOUNTS']";
-        readonly static string STR_ADMINS_SUBM = "//li[text()='Admins']";
-        readonly static string STR_SUPPLIERS_SUBM = "//li[text()='Suppliers']";
-        readonly static string STR_CUSTOMERS_SUBM = "//li[text()='Customers']";
-        readonly static string STR_GUESTCUSTOMERS_SUBM = "//li[text()='GuestCustomers']";
-        readonly static string STR_CMS_DD = "//a[text()='CMS']";
-        readonly static string STR_CMS_MENU = "//ul[@id='CMS']";
-        readonly static string STR_PAGES_SUBM = "//li[text()='Pages']";
-        readonly static string STR_THHOTEL_DD = "//a[text()='Travelhope Hotels']";
-        readonly static string STR_THHOTEL_MENU = "//ul[@id='TravelhopeHotels']";
-        readonly static string STR_THHBOOKINGS_SUBM = "//ul[@id='TravelhopeHotels'][text()='Bookings']";
-        readonly static string STR_THHSETTINGS_SUBM = "//ul[@id='TravelhopeHotels'][text()='Settings']";
-        readonly static string STR_THFLIGHT_DD = "//a[text()='Travelhope Flights']";
-        readonly static string STR_THFLIGHT_MENU = "//ul[@id='TravelhopeFlights']";
-        readonly static string STR_THFBOOKINGS_SUBM = "//ul[@id='TravelhopeFlights'][text()='Bookings']";
-        readonly static string STR_THFSETTINGS_SUBM = "//ul[@id='TravelhopeFlights'][text()='Settings']";
-        readonly static string STR_TOURS_DD = "//a[text()='Tours']";
-        readonly static string STR_TOURS_MENU = "//ul[@id='Tours']";
-        readonly static string STR_TOURTOURS_SUBM = "//ul[@id='Tours'][text()='Tours']";
-        readonly static string STR_TOURADDNEW_SUBM = "//ul[@id='Tours'][text()='Add New']";
-        readonly static string STR_TOUREXTRAS_SUBM = "//ul[@id='Tours'][text()='Extras']";
-        readonly static string STR_TOURREVIEWS_SUBM = "//ul[@id='Tours'][text()='Reviews']";
-        readonly static string STR_TOURSETTINGS_SUBM = "//ul[@id='Tours'][text()='Settings']";
-        readonly static string STR_CARS_DD = "//a[text()='Cars']";
-        readonly static string STR_CARS_MENU = "//ul[@id='Cars']";
-        readonly static string STR_CARSCARS_SUBM = "//ul[@id='Cars'][text()='Cars']";
-        readonly static string STR_CARSEXTRAS_SUBM = "//ul[@id='Cars'][text()='Extras']";
-        readonly static string STR_CARSETTINGS_SUBM = "//ul[@id='Cars'][text()='Cars Settings']";
-        readonly static string STR_VISA_DD = "//a[text()='Visa']";
-        readonly static string STR_VISA_MENU = "//ul[@id='Ivisa']";
-        readonly static string STR_VISASETTINGS_SUBM = "//ul[@id='Ivisa'][text()='Settings']";
-        readonly static string STR_VISABOOKINS_SUBM = "//ul[@id='Ivisa'][text()='Bookins']";
-        readonly static string STR_BLOG_DD = "//a[text()='Blog']";
-        readonly static string STR_BLOG_MENU = "//ul[@id='Blog']";
-        readonly static string STR_BLOGPOST_SUBM = "//ul[@id='Blog'][text()='Posts']";
-        readonly static string STR_BLOGCATEGORIES_SUBM = "//ul[@id='Blog'][text()='Blog Categories']";
-        readonly static string STR_BLOGSETTINGS_SUBM = "//ul[@id='Blog'][text()='Blog Settings']";
-        readonly static string STR_LOCATIONS_DD = "//a[text()='Locations']";
-        readonly static string STR_LOCATIONS_MENU = "//ul[@id='Locations']";
-        readonly static string STR_LOCATIONLIST_SUBM = "//ul[@id='Locations'][text()='Locations List']";
-        readonly static string STR_OFFERS_DD = "//a[text()=' Offers']";
-        readonly static string STR_OFFERS_MENU = "//ul[@id='SPECIAL_OFFERS']";
-        readonly static string STR_MANAGEOFFERS_SUBM = "//ul[@id='SPECIAL_OFFERS'][text()='Manage Offers']";
-        readonly static string STR_OFFERSETTINGS_SUBM = "//ul[@id='SPECIAL_OFFERS'][text()='Offers Settings']";
-
-
-
 
         /*CONSTRUCTOR*/
         public clsPHPTravels_LoginPage(IWebDriver pobjDriver)
@@ -114,22 +52,6 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objTotCustomerTxt => _objDriver.FindElement(By.XPath(STR_TOTALCUSTOMERS_TXT));
         private static IWebElement objTotGuestTxt => _objDriver.FindElement(By.XPath(STR_TOTALGUESTS_TXT));
         private static IWebElement objTotBookTxt => _objDriver.FindElement(By.XPath(STR_TOTALBOOKINGS_TXT));
-        private static IWebElement objSidebarMenu => _objDriver.FindElement(By.XPath(STR_SIDEBAR_MENU));
-        private static IWebElement objGeneralDD => _objDriver.FindElement(By.XPath(STR_GENERAL_DD));
-        private static IWebElement objGenMenu => _objDriver.FindElement(By.XPath(STR_GENERAL_MENU));
-        private static IWebElement objAccountDD => _objDriver.FindElement(By.XPath(STR_ACCOUNTS_DD));
-        private static IWebElement objCMSDD => _objDriver.FindElement(By.XPath(STR_CMS_DD));
-        private static IWebElement objTHHotelDD => _objDriver.FindElement(By.XPath(STR_THHOTEL_DD));
-        private static IWebElement objTHFlightsDD => _objDriver.FindElement(By.XPath(STR_THFLIGHT_DD));
-        private static IWebElement objToursDD => _objDriver.FindElement(By.XPath(STR_TOURS_DD));
-        private static IWebElement objCarsDD => _objDriver.FindElement(By.XPath(STR_CARS_DD));
-        private static IWebElement objVisaDD => _objDriver.FindElement(By.XPath(STR_VISA_DD));
-        private static IWebElement objBlogDD => _objDriver.FindElement(By.XPath(STR_BLOG_DD));
-        private static IWebElement objLocationsDD => _objDriver.FindElement(By.XPath(STR_LOCATIONS_DD));
-        private static IWebElement objOffersDD => _objDriver.FindElement(By.XPath(STR_OFFERS_DD));
-
-
-
 
 
         /*METHODS/FUNCTIONS*/
@@ -204,34 +126,102 @@ namespace AutomationTraining_M7.Page_Objects
             objRM.fnAddStepLog(objTest, objTotBookTxt.Text, "Pass");
         }
 
-        private IWebElement GetSideBar()
+        //Get the desired menu and click it.
+        public static void fnClickSideMenu(string strMenuString)
         {
-            return objSidebarMenu;
+
+            IList<IWebElement> listSideMenu = driver.FindElements(By.XPath("//ul[@class='list-unstyled components']//child::li/a"));
+
+            foreach (IWebElement SideElement in listSideMenu)
+            {
+
+                if (SideElement.Text == strMenuString.ToUpper())
+                {
+                    SideElement.Click();
+                    objRM.fnAddStepLogScreen(objTest, driver, "Click on Menu: " + SideElement.Text, SideElement.Text + ".png", "Pass");
+                }
+            }
         }
 
-        public static void fnGeneral()
+        //Get a list of the sub menues.
+        public static IList<IWebElement> fnGetSubMenu()
         {
-            objGeneralDD.Click();
-            //Console.WriteLine(objGenMenu.Text);
-            objRM.fnAddStepLog(objTest, objGenMenu.Text, "Pass");
-        }
-        public static void fnPrintSidebarMenu()
-        {
-            objOffersDD.Click();
-            objLocationsDD.Click();
-            objBlogDD.Click();
-            objVisaDD.Click();
-            objCarsDD.Click();
-            objToursDD.Click();
-            objTHFlightsDD.Click();
-            objTHHotelDD.Click();
-            objCMSDD.Click();
-            objAccountDD.Click();
-            objGeneralDD.Click();
-            Console.WriteLine(objSidebarMenu.Text);
-            objRM.fnAddStepLog(objTest, objSidebarMenu.Text, "Pass");
+            IList<IWebElement> listSideSubMenu = driver.FindElements(By.XPath("//ul[@class='wow fadeIn animated list-unstyled collapse in']//child::li/a"));
+            return listSideSubMenu;
         }
 
+        public static IList<IWebElement> fnTableElementsPage()
+        {
+            IList<IWebElement> tableElements = driver.FindElements(By.XPath("//tr[@class='xcrud-th']//child::th"));
+            return tableElements;
+        }
+
+        //Go through the Sub Menu's content and validate the sorting.
+        public static void fnSideMenuBtn(string strMenuString)
+        {
+
+
+            fnClickSideMenu(strMenuString);
+            IList<IWebElement> listSideSubMenu1 = fnGetSubMenu();
+
+
+            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//ul[@class='wow fadeIn animated list-unstyled collapse in']")));
+            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//ul[@class='wow fadeIn animated list-unstyled collapse in']")));
+
+
+            for (int a = 0; a < listSideSubMenu1.Count; a++)
+            {
+
+
+                _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//ul[@class='wow fadeIn animated list-unstyled collapse in']")));
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//ul[@class='wow fadeIn animated list-unstyled collapse in']")));
+
+                IList<IWebElement> listSideSubMenu = fnGetSubMenu();
+                listSideSubMenu1 = listSideSubMenu;
+                objRM.fnAddStepLogScreen(objTest, driver, "Click on SubMenu: " + listSideSubMenu1[a].Text, listSideSubMenu1[a].Text + ".png", "Pass");
+                listSideSubMenu1[a].Click();
+
+
+                _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//tr[@class='xcrud-th']")));
+                _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//tr[@class='xcrud-th']")));
+
+                IList<IWebElement> tableElements = fnTableElementsPage();
+                int intTableElements = tableElements.Count();
+
+                for (int i = 0; i < intTableElements; i++)
+                {
+                    string valSortingBef = "";
+                    string valSortingAft = "";
+                    string valContains = "";
+                    _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//tr[@class='xcrud-th']//child::th")));
+                    _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//tr[@class='xcrud-th']//child::th")));
+
+
+                    valSortingBef = tableElements[i].GetAttribute("data-order");
+                    if (valSortingBef != null)
+                    {
+                        tableElements[i].Click();
+                        _driverWait.Until(ExpectedConditions.StalenessOf(tableElements[i]));
+
+                        tableElements = driver.FindElements(By.XPath("//tr[@class='xcrud-th']//child::th"));
+                        valSortingAft = tableElements[i].GetAttribute("data-order");
+                        _driverWait.Until(ExpectedConditions.ElementToBeClickable(tableElements[i]));
+                        valContains = tableElements[i].Text;
+                        if (valContains.Contains("↓"))
+                        {
+                            Assert.AreNotEqual(valSortingBef, valSortingAft);
+                            objRM.fnAddStepLogScreen(objTest, driver, "Click on Column: " + tableElements[i].Text, tableElements[i] + ".png", "Pass");
+                        }
+                    }
+
+
+
+                }
+                fnClickSideMenu(strMenuString);
+            }
+        }
+
+        
 
     }
 }
