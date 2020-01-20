@@ -25,6 +25,8 @@ namespace AutomationTraining_M7.Test_Cases
             //Init objects
             objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
             objPHP = new clsPHPTravels_LoginPage(driver);
+
+
             //Login Action
             Assert.IsTrue(driver.Title.Contains("Login"), "The Login Page was not loaded correctly.");
             clsPHPTravels_LoginPage.fnEnterEmail(ConfigurationManager.AppSettings.Get("email"));
@@ -33,26 +35,23 @@ namespace AutomationTraining_M7.Test_Cases
             clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
             Assert.IsTrue(driver.Title.Contains("Dash"), "The Dashboard was not loaded correctly.");
 
+            //Print Total Values
+
             List<string> strTotVal = clsPHPTravels_LoginPage.fnGetTotalsValuesTxt();
             foreach (var item in strTotVal)
             {
                 objRM.fnAddStepLog(objTest, item, "Pass");
             }
-            objRM.fnAddStepLogScreen(objTest, driver, "Click in Side Menu", "scr.png", "Pass");
+            objRM.fnAddStepLogScreen(objTest, driver, "Print Total Values", "scr.png", "Pass");
 
+            // Menu and Submenu
 
-            clsPHPTravels_LoginPage.fnClickLSideBarMenu();
-            objRM.fnAddStepLogScreen(objTest, driver, "Side Menu Bar", "scr1.png", "Pass");
-
-          //  objPHP.fnSelectMenuItem("Tours");
-          //  objRM.fnAddStepLogScreen(objTest, driver, "Visa Menu Bar", "scr2.png", "Pass");
-
-            objPHP.fnSelectMenuItem("General", "Settings");
-            objRM.fnAddStepLogScreen(objTest, driver, "Select menu item", "scr2.png", "Pass");
-
-            objPHP.fnClickSubmenus();
-            objRM.fnAddStepLogScreen(objTest, driver, "Account Menu", "scr2.png", "Pass");
-
+            objPHP.fnSelectMenuItem("Updates");
+            objPHP.fnSelectMenuItem("Accounts", "Admins");
+            objPHP.fnSelectMenuItem("Accounts", "Suppliers");            
+            objPHP.fnSelectMenuItem("Accounts", "Customers");            
+            objPHP.fnSelectMenuItem("Accounts", "GuestCustomers");
+        
         }
 
     }

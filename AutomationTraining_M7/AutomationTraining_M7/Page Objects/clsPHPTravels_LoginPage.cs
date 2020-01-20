@@ -10,13 +10,15 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Page_Objects
 {
-    class clsPHPTravels_LoginPage
+    class clsPHPTravels_LoginPage : BaseTest
     {
         /*ATTRIBUTES*/
         private static IWebDriver _objDriver;
         public WebDriverWait _driverWait;
         private static string strMenuItem;
         private static string strSubMenuItem;
+
+
         /*LOCATORS DESCRIPTION*/
         readonly static string STR_EMAIL_TXT = "email";
         readonly static string STR_PASSWORD_TXT = "password";
@@ -27,25 +29,28 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_UPDATES_SUB = "//span[text()='Updates']";
         readonly static string STR_SIDEBAR_MENU_DASH = "//ul[@id='social-sidebar-menu']//*[text()='Dashboard']";
         readonly static string STR_LIVE_CHAT_POPUP = "//button[@class='e1mwfyk10 lc-4rgplc e1m5b1js0']";
+
         static string STR_MENU_ITEM = $"(//ul[@id='social-sidebar-menu']/li//*[contains(text(),'{strMenuItem}')]//ancestor::li/a)[1]";
-        static string STR_SUBMENU_ITEM = $"//ul[@id='social-sidebar-menu']/li//*[contains(text(),'{strMenuItem}')]//ancestor::li/ul//*[text()='{strSubMenuItem}']";
-        readonly static string STR_ACCOUNTS_SUBMENU_ITEMS = $"//ul[@id='social-sidebar-menu']/li//*[contains(text(),'Accounts')]//ancestor::li/ul/li/a";
-        readonly static string STR_ACCOUNTS_MENU = "//a[@href='#ACCOUNTS']";
-        readonly static string STR_AC_ADMINS_SUBMENU = "//a[contains(text(), 'Admins')]";
-        readonly static string STR_AC_SUPPLIERS_SUBMENU = "//a[contains(text(), 'Suppliers')]";
-        readonly static string STR_AC_CUSTOMERS_SUBMENU = "//a[text()='Customers']";
-        readonly static string STR_AC_GUESTCUSTOMERS_SUBMENU = "//a[contains(text(), 'GuestCustomers')]";
-        readonly static string STR_FIRSTnAME_HEADER = "//th[contains(text(), 'First Name')]";
-        readonly static string STR_LASTNAME_HEADER = "//th[contains(text(), 'Last Name')]";
-        readonly static string STR_EMAIL_HEADER = "//th[contains(text(), 'Email')]";
-        readonly static string STR_ACTIVE_HEADER = "//th[contains(text(), 'Active')]";
-        readonly static string STR_LASTLOGIN_HEADER = "//th[contains(text(), 'Last Login')]";
+        static string STR_SUBMENU_ITEM = $"//ul[@id='social-sidebar-menu']/li//a[contains(text(),'{strSubMenuItem}')]";
+
+        readonly static string STR_ACCOUNTS_SUBMENU_ITEMS = "//ul[@id='social-sidebar-menu']/li//*[contains(text(),'Accounts')]//ancestor::li/ul/li/a";
+        readonly static string STR_FIRSTNAME_COL = "//table[@class='xcrud-list table table-striped table-hover']/tbody//following-sibling::tr/td[3]";
+        readonly static string STR_FIRSTNAME_BTN = "//th[contains(text(),'First Name')]";
+        readonly static string STR_LASTNAME_COL = "//table[@class='xcrud-list table table-striped table-hover']/tbody//following-sibling::tr/td[4]";
+        readonly static string STR_LASTNAME_BTN = "//th[contains(text(),'Last Name')]";
+        readonly static string STR_EMAIL_COL = "//table[@class='xcrud-list table table-striped table-hover']/tbody//following-sibling::tr/td[5]";
+        readonly static string STR_EMAIL_BTN = "//th[contains(text(),'Email')]";
+       
+
+
         /*CONSTRUCTOR*/
+
         public clsPHPTravels_LoginPage(IWebDriver pobjDriver)
         {
             _objDriver = pobjDriver;
             _driverWait = new WebDriverWait(_objDriver, new TimeSpan(0, 0, 40));
         }
+
         /*OBJECT DEFINITION*/
         private static IWebElement objEmailTxt => _objDriver.FindElement(By.Name(STR_EMAIL_TXT));
         private static IWebElement objPasswordTxt => _objDriver.FindElement(By.Name(STR_PASSWORD_TXT));
@@ -56,16 +61,29 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objSidebarMenuDash => _objDriver.FindElement(By.XPath(STR_SIDEBAR_MENU_DASH));
         private static IWebElement objUpdateSubMenu => _objDriver.FindElement(By.XPath(STR_UPDATES_SUB));
         private static IWebElement objLiveChatPopUp => _objDriver.FindElement(By.XPath(STR_LIVE_CHAT_POPUP));
+                     
+             
         private static IWebElement objMenuItem => _objDriver.FindElement(By.XPath(STR_MENU_ITEM));
         private static IWebElement objSubMenuItem => _objDriver.FindElement(By.XPath(STR_SUBMENU_ITEM));
-        private IList<IWebElement> objAccountsSubMenuItems => _objDriver.FindElements(By.XPath(STR_ACCOUNTS_SUBMENU_ITEMS));
+        private static IList<IWebElement> objFNameColLst => _objDriver.FindElements(By.XPath(STR_FIRSTNAME_COL));
+        private static IWebElement objFNameBtn => _objDriver.FindElement(By.XPath(STR_FIRSTNAME_BTN));
+        private static IList<IWebElement> objLNameColLst => _objDriver.FindElements(By.XPath(STR_LASTNAME_COL));
+        private static IWebElement objLNameBtn => _objDriver.FindElement(By.XPath(STR_LASTNAME_BTN));
+        private static IList<IWebElement> objEmailColLst => _objDriver.FindElements(By.XPath(STR_EMAIL_COL));
+        private static IWebElement objEmailBtn => _objDriver.FindElement(By.XPath(STR_EMAIL_BTN));
+        private static IList<IWebElement> objAccountsSubMenuLst => _objDriver.FindElements(By.XPath(STR_ACCOUNTS_SUBMENU_ITEMS));
+
+
 
         /*METHODS/FUNCTIONS*/
+
         //Email
         private IWebElement GetEmailField()
         {
             return objEmailTxt;
         }
+
+
         public static void fnEnterEmail(string pstrEmail)
         {
             clsDriver.fnWaitForElementToExist(By.Name(STR_EMAIL_TXT));
@@ -73,11 +91,15 @@ namespace AutomationTraining_M7.Page_Objects
             objEmailTxt.Clear();
             objEmailTxt.SendKeys(pstrEmail);
         }
-        //Password
+
+
+       // Password
         private IWebElement GetPasswordField()
         {
             return objPasswordTxt;
         }
+
+
         public static void fnEnterPassword(string pstrPass)
         {
             clsDriver.fnWaitForElementToExist(By.Name(STR_PASSWORD_TXT));
@@ -85,11 +107,15 @@ namespace AutomationTraining_M7.Page_Objects
             objPasswordTxt.Clear();
             objPasswordTxt.SendKeys(pstrPass);
         }
-        //Login Button
+
+
+       // Login Button
         private IWebElement GetLoginButton()
         {
             return objLoginBtn;
         }
+
+
         public static void fnClickLoginButton()
         {
             clsDriver.fnWaitForElementToExist(By.XPath(STR_LOGIN_BTN));
@@ -97,6 +123,8 @@ namespace AutomationTraining_M7.Page_Objects
             clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_LOGIN_BTN));
             objLoginBtn.Click();
         }
+
+
         /*Hamburger Button*/
         public static void fnWaitHamburgerMenu()
         {
@@ -104,6 +132,9 @@ namespace AutomationTraining_M7.Page_Objects
             clsDriver.fnWaitForElementToBeVisible(By.Id(STR_HAMBURGER_BTN));
             clsDriver.fnWaitForElementToBeClickable(By.Id(STR_HAMBURGER_BTN));
         }
+
+        ///Print total Values
+            
         public static List<string> fnGetTotalsValuesTxt()
         {
             IList<IWebElement> objGetTotalsValuesTx = _objDriver.FindElements(By.XPath("//*[@class='serverHeader__statsList']"));
@@ -115,57 +146,133 @@ namespace AutomationTraining_M7.Page_Objects
             }
             return strTotalValuesReport;
         }
+
+
         //SideBar Menu
-        private IWebElement GetSideBarMenu()
-        {
-            return objSidebarMenu;
-            //return objHamburuerBtn;
-        }
-        public static void fnClickLSideBarMenu()
-        {
-            //objLiveChatPopUp.Click();
-            if (!objSidebarMenuDash.Displayed)
-            {
-                objSidebarMenu.Click();
-            }
-            clsDriver.fnWaitForElementToExist(By.XPath(STR_SIDEBAR_MENU_DASH));
-            clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_SIDEBAR_MENU_DASH));
-            clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_SIDEBAR_MENU_DASH));
-            // objSidebarMenuDash.Click();
-            //objUpdateSubMenu.Click();
-            //objSidebarMenu.Click();          
-            //clsDriver.fnWaitForElementToExist(By.XPath(STR_SIDEBAR_MENU_DASH));
-            //clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_SIDEBAR_MENU_DASH));
-            //clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_SIDEBAR_MENU_DASH));
-            //objSidebarMenuDash.Click();
-        }
+
         public void fnSelectMenuItem(string pstrMenuItem)
         {
             strMenuItem = pstrMenuItem;
             STR_MENU_ITEM = $"(//ul[@id='social-sidebar-menu']/li//*[contains(text(),'{strMenuItem}')]//ancestor::li/a)[1]";
             objMenuItem.Click();
         }
+
+
         public void fnSelectMenuItem(string pstrMenuItem, string pstrSubMenuItem)
         {
             strMenuItem = pstrMenuItem;
             strSubMenuItem = pstrSubMenuItem;
+
             STR_MENU_ITEM = $"(//ul[@id='social-sidebar-menu']/li//*[contains(text(),'{strMenuItem}')]//ancestor::li/a)[1]";
-            STR_SUBMENU_ITEM = $"//ul[@id='social-sidebar-menu']/li//*[contains(text(),'{strMenuItem}')]//ancestor::li/ul//*[text()='{strSubMenuItem}']";
+            STR_SUBMENU_ITEM = $"//ul[@id='social-sidebar-menu']/li//a[contains(text(),'{strSubMenuItem}')]";
+
             objMenuItem.Click();
+            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_SUBMENU_ITEM)));
+            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_SUBMENU_ITEM)));
+            _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_SUBMENU_ITEM)));
             objSubMenuItem.Click();
+
         }
-        public void fnClickSubmenus()
+
+        //Submenu & Accoounts
+
+        public IList<IWebElement> GetAccountsSubMenuItems()
         {
-            STR_MENU_ITEM = $"(//ul[@id='social-sidebar-menu']/li//*[contains(text(),'Accounts')]//ancestor::li/a)[1]";
-            
-            foreach (var account in objAccountsSubMenuItems)
+            return objAccountsSubMenuLst;
+        }
+        public List<string> GetFirstNameColumnList()
+        {
+            List<string> lstToString = new List<string>();
+            foreach (var name in objFNameColLst)
             {
-                objMenuItem.Click();
-                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_MENU_ITEM));
-                clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_ACCOUNTS_SUBMENU_ITEMS));
-                account.Click();
-               
+                lstToString.Add(name.Text);
             }
+            return lstToString;
+        }
+        public void fnClickFirstNameButton()
+        {
+            objFNameBtn.Click();
+        }
+        public IWebElement GetFirstNameButton()
+        {
+            return objFNameBtn;
+        }
+        public List<string> GetLasttNameColumnList()
+        {
+            List<string> lstToString = new List<string>();
+            foreach (var name in objLNameColLst)
+            {
+                lstToString.Add(name.Text);
+            }
+            return lstToString;
+        }
+        public void fnClickLastNameButton()
+        {
+            objLNameBtn.Click();
+        }
+        public IWebElement GetLastNameButton()
+        {
+            return objLNameBtn;
+        }
+        public List<string> GetEmailColumnList()
+        {
+            List<string> lstToString = new List<string>();
+            foreach (var name in objEmailColLst)
+            {
+                lstToString.Add(name.Text);
+            }
+            return lstToString;
+        }
+        public void fnClickEmailButton()
+        {
+            objEmailBtn.Click();
+        }
+        public IWebElement GetEmailButton()
+        {
+            return objEmailBtn;
+        }
+        public List<string> fnSort(List<string> lstColumn, IWebElement objHeader)
+        {
+            IOrderedEnumerable<string> lstSorted;
+            switch (objHeader.GetAttribute("data-order"))
+            {
+                case "asc":
+                    lstSorted = from firstName in lstColumn
+                                orderby firstName descending 
+                                select firstName;
+                    break;
+
+                case "desc":
+                    lstSorted = from firstName in lstColumn
+                                orderby firstName ascending
+                                select firstName;
+                    break;
+                default:
+                    lstSorted = from firstName in lstColumn
+                                orderby firstName descending
+                                select firstName;
+                    break;
+            }
+
+            return lstSorted.ToList<string>();
+        }
+
+        public void fnWaitFirstNameListChange()
+        {
+            List<string> lstCurrent = GetFirstNameColumnList();
+            _driverWait.Until(condition => lstCurrent[2] != GetFirstNameColumnList()[2]);
+        }
+        public void fnWaitLastNameListChange()
+        {
+            List<string> lstCurrent = GetLasttNameColumnList();
+            _driverWait.Until(condition => lstCurrent[2] != GetLasttNameColumnList()[2]);
+        }
+        public void fnWaitEmailNameListChange()
+        {
+            List<string> lstCurrent = GetEmailColumnList();
+            _driverWait.Until(condition => lstCurrent[2] != GetEmailColumnList()[2]);
         }
     }
 }
+
+
