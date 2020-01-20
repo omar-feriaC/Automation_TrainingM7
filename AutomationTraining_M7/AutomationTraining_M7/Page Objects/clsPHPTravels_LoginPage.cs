@@ -143,6 +143,7 @@ namespace AutomationTraining_M7.Page_Objects
             {
                 strTotalValuesReport.Add(vList.Text);
                 Console.WriteLine(vList.Text);
+                objRM.fnAddStepLog(objTest, vList.Text, "Pass");
             }
             return strTotalValuesReport;
         }
@@ -167,6 +168,7 @@ namespace AutomationTraining_M7.Page_Objects
             STR_SUBMENU_ITEM = $"//ul[@id='social-sidebar-menu']/li//a[contains(text(),'{strSubMenuItem}')]";
 
             objMenuItem.Click();
+
             _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_SUBMENU_ITEM)));
             _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_SUBMENU_ITEM)));
             _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_SUBMENU_ITEM)));
@@ -260,7 +262,7 @@ namespace AutomationTraining_M7.Page_Objects
         public void fnWaitFirstNameListChange()
         {
             List<string> lstCurrent = GetFirstNameColumnList();
-            _driverWait.Until(condition => lstCurrent[2] != GetFirstNameColumnList()[2]);
+            _driverWait.Until(condition => lstCurrent[0] != GetFirstNameColumnList()[0]);
         }
         public void fnWaitLastNameListChange()
         {
@@ -271,6 +273,34 @@ namespace AutomationTraining_M7.Page_Objects
         {
             List<string> lstCurrent = GetEmailColumnList();
             _driverWait.Until(condition => lstCurrent[2] != GetEmailColumnList()[2]);
+        }
+
+        public void fnFNameSorting()
+        {
+            fnClickFirstNameButton();           
+            fnWaitFirstNameListChange();
+
+            fnClickFirstNameButton();
+            fnWaitFirstNameListChange();
+        }
+
+        public void fnLNameSorting()
+        {
+            fnClickLastNameButton();
+            fnWaitLastNameListChange();
+
+            fnClickLastNameButton();
+            fnWaitLastNameListChange();
+        }
+
+        public void fnEmailSorting()
+        {
+            fnClickEmailButton();
+            fnWaitEmailNameListChange();
+           
+            fnClickEmailButton();
+            fnWaitEmailNameListChange();
+           
         }
     }
 }
