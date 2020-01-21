@@ -77,7 +77,7 @@ namespace AutomationTraining_M7.Base_Files
         //TearDown After each test case
         public static void AfterTest()
         {
-            objRM.fnTestCaseResult(objTest, objExtent, driver);
+            objRM.fnTestCaseResult(objTest, objExtent, driver,"");
             driver.Close();
             driver.Quit();
         }

@@ -26,11 +26,12 @@ namespace AutomationTraining_M7.Test_Cases
             clsReportManager report = new clsReportManager();
             report.fnReportSetUp(BaseTest.objHtmlReporter, BaseTest.objExtent);
             /*URL for Webdriver*/
-
-
             //Init objects
             objPHP = new clsPHPTravels_LoginPage(driver);
+            // los busque todos los ejemplos 
+
             
+
             //Login Action
             //Assert.AreEqual(true, BaseTest.driver.Title.Contains("Administrador Login."), "The Login Page was not loaded correctly.");
             clsPHPTravels_LoginPage.fnEnterEmail("admin@phptravels.com");
