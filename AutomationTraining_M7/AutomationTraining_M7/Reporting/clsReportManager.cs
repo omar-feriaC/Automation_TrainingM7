@@ -57,7 +57,7 @@ namespace AutomationTraining_M7.Reporting
             return strLocalPath;
         }
 
-        public void fnTestCaseResult(ExtentTest pobjTest, ExtentReports pobjExtent, IWebDriver pobjDriver)
+        public void fnTestCaseResult(ExtentTest pobjTest, ExtentReports pobjExtent, IWebDriver pobjDriver,String strData)
         {
             var status = TestContext.CurrentContext.Result.Outcome.Status;
             var stacktrace = string.IsNullOrEmpty(TestContext.CurrentContext.Result.StackTrace)
@@ -80,6 +80,7 @@ namespace AutomationTraining_M7.Reporting
                     break;
                 case TestStatus.Passed:
                     logstatus = Status.Pass;
+                    pobjTest.Log(Status.Pass, strData);
                     break;
                 default:
                     logstatus = Status.Warning;

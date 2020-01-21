@@ -14,17 +14,16 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Test_Cases
 {
-    class Test_PHPTravels : BaseTest
+    class Test_PHPTravels_menu : BaseTest
     {
         clsPHPTravels_LoginPage objPHP;
-        clsPHPTravels_Main pageMain;
+        clsPHPTravels_Main_Menu pageMainMenu;
 
 
         [Test]
-        public void Test_M9Exercise()
+        public void Test_M9Exercise_Menu()
         {
-            clsReportManager report = new clsReportManager();
-            report.fnReportSetUp(BaseTest.objHtmlReporter, BaseTest.objExtent);
+
             /*URL for Webdriver*/
 
 
@@ -38,15 +37,10 @@ namespace AutomationTraining_M7.Test_Cases
             clsPHPTravels_LoginPage.fnClickLoginButton();
             clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
             //Assert.AreEqual(true, BaseTest.driver.Title.Contains("Dashboard."), "The Dashboard was not loaded correctly.");
-            pageMain = new clsPHPTravels_Main(driver);
-            Dictionary<string,string> listValues = pageMain.CreateReport();
-            foreach (KeyValuePair<string,string> keyText in listValues) 
-            {
-                string strText = keyText.Key +": "+ keyText.Value;
-                Assert.AreEqual(true,true);
-                report.fnTestCaseResult(BaseTest.objTest, BaseTest.objExtent, driver, strText);
-                //do magic 
-            }
+            pageMainMenu = new clsPHPTravels_Main_Menu(driver);
+            pageMainMenu.clsPHPTravels_Main_Menu_click("Modules","Menu");
+            pageMainMenu.clsPHPTravels_Main_Menu_click("Hotels", "SubMenu"); 
+
 
             // ExtentTest pobjTest, ExtentReports pobjExtent, IWebDriver pobjDriver
         }

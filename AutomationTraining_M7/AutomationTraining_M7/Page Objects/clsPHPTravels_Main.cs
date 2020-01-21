@@ -39,8 +39,8 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
         /*OBJECT DEFINITION*/
-        private static IWebElement objTotalAdmins = _objDriver.FindElement(By.Name(strTotalAdmins)); 
-        private static IWebElement objTotalSuppliers = _objDriver.FindElement(By.Name(strTotalSuppliers));
+        private static IWebElement objTotalAdmins = _objDriver.FindElement(By.XPath(strTotalAdmins)); 
+        private static IWebElement objTotalSuppliers = _objDriver.FindElement(By.XPath(strTotalSuppliers));
         private static IWebElement objTotalCustomerss = _objDriver.FindElement(By.XPath(strTotalCustomerss));
         private static IWebElement objTotalGuests = _objDriver.FindElement(By.XPath(strTotalGuests));
         private static IWebElement objTotalBookings = _objDriver.FindElement(By.XPath(strTotalBookings));
