@@ -51,34 +51,48 @@ namespace AutomationTraining_M7.Test_Cases
             objPHP.fnSelectMenuItem("Accounts", "Admins");
             objPHP.fnFNameSorting();
             objRM.fnAddStepLogScreen(objTest, driver, "Admins First Name Column Sort", "Admins_FName_Sort.png", "Pass");
+
             objPHP.fnLNameSorting();
             objRM.fnAddStepLogScreen(objTest, driver, "Admins Last Name Column Sort", "Admins_LName_Sort.png", "Pass");
+
             objPHP.fnEmailSorting();
             objRM.fnAddStepLogScreen(objTest, driver, "Admins Email Column Sort", "Admins_EMail_Sort.png", "Pass");
+
+
 
             objPHP.fnSelectMenuItem("Accounts", "Suppliers");
             objPHP.fnFNameSorting();
             objRM.fnAddStepLogScreen(objTest, driver, "Suppliers First Name Column Sort", "Suppliers_FName_Sort.png", "Pass");
+
             objPHP.fnLNameSorting();
             objRM.fnAddStepLogScreen(objTest, driver, "Suppliers Last Name Column Sort", "Suppliers_LName_Sort.png", "Pass");
+
             objPHP.fnEmailSorting();
             objRM.fnAddStepLogScreen(objTest, driver, "Suppliers Email Column Sort", "Suppliers_EMail_Sort.png", "Pass");
+
+
 
             objPHP.fnSelectMenuItem("Accounts", "Customers");
             objPHP.fnFNameSorting();
             objRM.fnAddStepLogScreen(objTest, driver, "Customers First Name Column Sort", "Customers_FName_Sort.png", "Pass");
+
             objPHP.fnLNameSorting();
             objRM.fnAddStepLogScreen(objTest, driver, "Customers Last Name Column Sort", "Customers_LName_Sort.png", "Pass");
+
             objPHP.fnEmailSorting();
             objRM.fnAddStepLogScreen(objTest, driver, "Customers Email Column Sort", "Customers_EMail_Sort.png", "Pass");
 
+
+
             objPHP.fnSelectMenuItem("Accounts", "GuestCustomers");
-            objPHP.fnFNameSorting();
-            objRM.fnAddStepLogScreen(objTest, driver, "GuestCustomers First Name Column Sort", "GuestCustomers_FName_Sort.png", "Pass");
-            objPHP.fnLNameSorting();
-            objRM.fnAddStepLogScreen(objTest, driver, "GuestCustomers Last Name Column Sort", "GuestCustomers_LName_Sort.png", "Pass");
-            objPHP.fnEmailSorting();
-            objRM.fnAddStepLogScreen(objTest, driver, "GuestCustomers Email Column Sort", "GuestCustomers_EMail_Sort.png", "Pass");
+            //objPHP.fnFNameSorting();
+            //objRM.fnAddStepLogScreen(objTest, driver, "GuestCustomers First Name Column Sort", "GuestCustomers_FName_Sort.png", "Pass");
+
+            //objPHP.fnLNameSorting();
+            //objRM.fnAddStepLogScreen(objTest, driver, "GuestCustomers Last Name Column Sort", "GuestCustomers_LName_Sort.png", "Pass");
+
+            //objPHP.fnEmailSorting();
+            //objRM.fnAddStepLogScreen(objTest, driver, "GuestCustomers Email Column Sort", "GuestCustomers_EMail_Sort.png", "Pass");
 
         }
 

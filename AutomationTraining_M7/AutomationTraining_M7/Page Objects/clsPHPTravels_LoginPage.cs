@@ -114,8 +114,7 @@ namespace AutomationTraining_M7.Page_Objects
         {
             return objLoginBtn;
         }
-
-
+        
         public static void fnClickLoginButton()
         {
             clsDriver.fnWaitForElementToExist(By.XPath(STR_LOGIN_BTN));
@@ -188,6 +187,16 @@ namespace AutomationTraining_M7.Page_Objects
             foreach (var name in objFNameColLst)
             {
                 lstToString.Add(name.Text);
+                //try
+                //{
+                //    _driverWait.Until(ExpectedConditions.StalenessOf(objFNameColLst[objFNameColLst.Count - 1]));
+                //    lstToString.Add(name.Text);
+                //}
+                //catch(StaleElementReferenceException)
+                //{
+                //    _driverWait.Until(ExpectedConditions.StalenessOf(objFNameColLst[objFNameColLst.Count - 1]));
+                //    lstToString.Add(name.Text);
+                //}
             }
             return lstToString;
         }
@@ -205,6 +214,17 @@ namespace AutomationTraining_M7.Page_Objects
             foreach (var name in objLNameColLst)
             {
                 lstToString.Add(name.Text);
+                
+                //try
+                //{
+                //    _driverWait.Until(ExpectedConditions.StalenessOf(objLNameColLst[objLNameColLst.Count - 1]));
+                //    lstToString.Add(name.Text);
+                //}
+                //catch (StaleElementReferenceException)
+                //{
+                //    _driverWait.Until(ExpectedConditions.StalenessOf(objLNameColLst[objLNameColLst.Count - 1]));
+                //    lstToString.Add(name.Text);
+                //}
             }
             return lstToString;
         }
@@ -262,17 +282,20 @@ namespace AutomationTraining_M7.Page_Objects
         public void fnWaitFirstNameListChange()
         {
             List<string> lstCurrent = GetFirstNameColumnList();
+            _driverWait.Until(ExpectedConditions.StalenessOf(objFNameColLst[0]));
             _driverWait.Until(condition => lstCurrent[0] != GetFirstNameColumnList()[0]);
         }
         public void fnWaitLastNameListChange()
         {
             List<string> lstCurrent = GetLasttNameColumnList();
-            _driverWait.Until(condition => lstCurrent[2] != GetLasttNameColumnList()[2]);
+            _driverWait.Until(ExpectedConditions.StalenessOf(objLNameColLst[0]));
+            _driverWait.Until(condition => lstCurrent[0] != GetLasttNameColumnList()[0]);
         }
         public void fnWaitEmailNameListChange()
         {
             List<string> lstCurrent = GetEmailColumnList();
-            _driverWait.Until(condition => lstCurrent[2] != GetEmailColumnList()[2]);
+            _driverWait.Until(ExpectedConditions.StalenessOf(objEmailColLst[0]));
+            _driverWait.Until(condition => lstCurrent[0] != GetEmailColumnList()[0]);
         }
 
         public void fnFNameSorting()
