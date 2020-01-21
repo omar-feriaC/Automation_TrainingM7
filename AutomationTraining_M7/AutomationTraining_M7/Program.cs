@@ -35,7 +35,7 @@ namespace AutomationTraining_M7
             
             foreach (int intSize in listStringsizes) 
             {
-                Console.Write("the size of the item {1} is {2} ", intItemNum.ToString(), intSize.ToString());
+                Console.WriteLine("the size of the item {0} is {1} ", intItemNum.ToString(), intSize.ToString());
                 intItemNum++;
             }
             //Write Your code Here
@@ -67,7 +67,7 @@ namespace AutomationTraining_M7
 
             foreach (FileInfo Filesize in listFilesizes)
             {
-                Console.Write("the size of the file {1} is {2} ", intItemNum.ToString(), Filesize.Length.ToString());
+                Console.WriteLine("the size of the file {0} is {1} ", intItemNum.ToString(), Filesize.Length.ToString());
                 intItemNum++;
             }
 
@@ -98,7 +98,7 @@ namespace AutomationTraining_M7
                 //-------------------------------------------------
                 //  The third part is the result.
                 //-------------------------------------------------
-                Console.Write("the size of the item {1} is {2} ", intItemNum.ToString(), intTemp.ToString());
+                Console.WriteLine("the size of the item {0} is {1} ", intItemNum.ToString(), intTemp.ToString());
                 intItemNum++;
             }
             intItemNum = 1;
@@ -107,7 +107,7 @@ namespace AutomationTraining_M7
 
             foreach (int intTemp in temptoo)
             {
-                Console.Write("the size of the item {1} is {2} ", intItemNum.ToString(), intTemp.ToString());
+                Console.WriteLine("the size of the item {0} is {1} ", intItemNum.ToString(), intTemp.ToString());
                 intItemNum++;
             }
             intItemNum = 1;
@@ -130,7 +130,7 @@ namespace AutomationTraining_M7
             List<string> listWeekNames = dayWeek.Select(s => s).ToList();
             foreach (string WeekName in listWeekNames)
             {
-                Console.Write("the size of the item {1} is {2} ", intItemNum.ToString(), WeekName);
+                Console.WriteLine("the size of the item {0} is {1} ", intItemNum.ToString(), WeekName);
                 intItemNum++;
             }
             //Write Your code
@@ -150,7 +150,7 @@ namespace AutomationTraining_M7
             List<int> listSquare = arr3.Select(x => x^2).ToList();
             foreach (int SquareVal in listSquare)
             {
-                Console.Write("the size of the item {1} is {2} ", intItemNum.ToString(), SquareVal.ToString());
+                Console.WriteLine("the size of the item {0} is {1} ", intItemNum.ToString(), SquareVal.ToString());
                 intItemNum++;
             }
 
