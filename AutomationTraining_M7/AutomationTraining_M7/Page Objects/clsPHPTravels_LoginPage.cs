@@ -18,6 +18,10 @@ namespace AutomationTraining_M7.Page_Objects
         /*ATTRIBUTES*/
         public static WebDriverWait _driverWait;
         private static IWebDriver _objDriver;
+        //private static IList<IWebElement> ListToCompare;
+        //private static IList<IWebElement> ListToCompareTo;
+        private static List<String> tableRowsBefore;
+        private static List<String> tableRowsAfter;
 
         /*LOCATORS DESCRIPTION*/
         readonly static string STR_EMAIL_TXT = "email";
@@ -134,9 +138,12 @@ namespace AutomationTraining_M7.Page_Objects
 
             
             fnClickSideMenu(strMenuString);
-            IList<IWebElement> listSideSubMenu1 = fnSubMenu();
-
             
+            IList<IWebElement> listSideSubMenu1 = fnSubMenu();
+            
+
+
+
                     _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//ul[@class='wow fadeIn animated list-unstyled collapse in']")));
                     _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//ul[@class='wow fadeIn animated list-unstyled collapse in']")));
             
@@ -172,20 +179,22 @@ namespace AutomationTraining_M7.Page_Objects
                             valSortingBef = tableElements[i].GetAttribute("data-order");
                             if (valSortingBef != null)
                             {
-                                IList<IWebElement> tableRowsBefore = fnColumnOrderAfter(i);
-                                var ListToCompare = tableRowsBefore.OrderBy(x => x.Text).ToList().ToString();
+                                tableRowsBefore = fnColumnOrderBefore(i+1);
+
+                                List<String> lstDataBefore = tableRowsBefore.OrderByDescending(x => x).ToList();
+                        valSortingAft = tableElements[i].GetAttribute("data-order");
                                 tableElements[i].Click();
                                 _driverWait.Until(ExpectedConditions.StalenessOf(tableElements[i]));
 
-                                tableElements = driver.FindElements(By.XPath("//tr[@class='xcrud-th']//child::th"));
+                                tableElements = fnTableElementsPage();
                                 valSortingAft = tableElements[i].GetAttribute("data-order");
                                 _driverWait.Until(ExpectedConditions.ElementToBeClickable(tableElements[i]));
                                 valContains = tableElements[i].Text;
                                 if (valContains.Contains("↓"))
                                 {
-                                    IList<IWebElement> tableRowsAfter = fnColumnOrderAfter(i);
-                                    var ListToCompareTo = tableRowsAfter.OrderBy(y => y.Text).ToList().ToString();
-                                    Assert.AreEqual(ListToCompare,ListToCompareTo);
+                                    tableRowsAfter = fnColumnOrderAfter(i+1);
+                                    _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//tr[@class='xcrud-th']//child::th")));
+                                    Assert.AreEqual(lstDataBefore, tableRowsAfter);
                                     Assert.AreNotEqual(valSortingBef, valSortingAft);
                                     objRM.fnAddStepLog(objTest, "Data validation on column: " + tableElements[i].Text+" is correct", "PASS");
                                     objRM.fnAddStepLog(objTest, "Click on Column: "+tableElements[i].Text, "PASS");
@@ -229,16 +238,29 @@ namespace AutomationTraining_M7.Page_Objects
             return tableElements;
         }
 
-        public static IList<IWebElement> fnColumnOrderBefore(int tableRow)
+        public static List<String> fnColumnOrderBefore(int tableRow)
         {
+
+            List<String> ListItem = new List<string>();
             IList<IWebElement> tableRows = driver.FindElements(By.XPath($"//tbody//tr//td[{tableRow}]"));
-            return tableRows;
+            for (int b=0; b<tableRows.Count; b++)
+            {
+                ListItem.Add(tableRows[b].Text);
+
+            }
+            return ListItem;
         }
 
-        public static IList<IWebElement> fnColumnOrderAfter(int tableRow)
+        public static List<String> fnColumnOrderAfter(int tableRow)
         {
+            List<String> ListItem = new List<string>();
             IList<IWebElement> tableRows = driver.FindElements(By.XPath($"//tbody//tr//td[{tableRow}]"));
-            return tableRows;
+            for (int b = 0; b < tableRows.Count; b++)
+            {
+                ListItem.Add(tableRows[b].Text);
+
+            }
+            return ListItem;
         }
 
     }
