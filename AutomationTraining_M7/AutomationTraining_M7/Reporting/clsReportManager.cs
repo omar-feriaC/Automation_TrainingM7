@@ -15,154 +15,58 @@ namespace AutomationTraining_M7.Reporting
 {
     class clsReportManager
     {
-        private DateTime time = DateTime.Now;
-        private string strImagePath;
 
-        public string fnReportPath()
+        public string fnGetReportPath()
         {
-            var strPath = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
-            var strActualPath = strPath.Substring(0, strPath.LastIndexOf("bin"));
-            var strProjectPath = new Uri(strActualPath).LocalPath;
-            Directory.CreateDirectory(strProjectPath.ToString() + "ExtentReports");
-            var strReportPath = strProjectPath + "ExtentReports\\ExtentReports_" + time.ToString("MMddyyyy_HHmmss") + ".html";
+            string strExecutionPath = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
+            string strBaseDirectory = strExecutionPath.Substring(0, strExecutionPath.IndexOf("bin"));
+            strBaseDirectory = new Uri(strBaseDirectory).LocalPath;
+
+            string strReportDirectory = strBaseDirectory + "ExtentReports";
+            if (!Directory.Exists(strReportDirectory))
+            {
+                Directory.CreateDirectory(strReportDirectory);
+            }
+
+            string strReportPath = strReportDirectory + "\\ExtentReport_" + DateTime.Now.ToString("MMddyyyy_HHmmss") + ".html";
+
             return strReportPath;
         }
 
-        //public void fnReportSetUp(ExtentHtmlReporter phtmlReporter, ExtentReports pExtent)
-        public void fnReportSetUp(ExtentV3HtmlReporter phtmlReporter, ExtentReports pExtent)
+        public void fnReportSetup(ExtentV3HtmlReporter htmlReporter, ExtentReports extent)
         {
-            phtmlReporter.Config.Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
-            phtmlReporter.Config.DocumentTitle = "Automation Framework Report";
-            pExtent.AttachReporter(phtmlReporter);
-            pExtent.AddSystemInfo("Project Name:", "Automation Framework");
-            pExtent.AddSystemInfo("Application:", "LinkedIn");
-            pExtent.AddSystemInfo("Environment:", "QAA");
-            pExtent.AddSystemInfo("Browser:", ConfigurationManager.AppSettings.Get("browser"));
-            pExtent.AddSystemInfo("Date:", time.ToShortDateString());
-            pExtent.AddSystemInfo("Version:", "v1.0");
+            htmlReporter.Config.DocumentTitle = "Automation Framework Report";
+            htmlReporter.Config.Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
+            htmlReporter.Config.ReportName = "Module 9 Exercise";
+
+            extent.AttachReporter(htmlReporter);
+
+            extent.AddSystemInfo("Project Name:", "Module 9 Exercise");
+            extent.AddSystemInfo("Application:", "WebPage");
+            extent.AddSystemInfo("Environment:", "QA");
+            extent.AddSystemInfo("Date:", DateTime.Now.ToShortDateString());
         }
 
-        public string fnCaptureImage(IWebDriver pobjDriver, string pstrScreenName)
+        public string fnCaptureImage(IWebDriver pobjDriver)
         {
-            /*Create SS directory*/
             ITakesScreenshot objITake = (ITakesScreenshot)pobjDriver;
-            Screenshot objSS = objITake.GetScreenshot();
-            var strSSPath = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
-            var strActualPath = strSSPath.Substring(0, strSSPath.LastIndexOf("bin"));
-            var strReportPath = new Uri(strActualPath).LocalPath;
-            Directory.CreateDirectory(strReportPath.ToString() + "ExtentReports\\Screenshots");
-            /*Save Image*/
-            var strFullPath = strSSPath.Substring(0, strSSPath.LastIndexOf("bin")) + "ExtentReports\\Screenshots\\" + pstrScreenName;
-            var strLocalPath = new Uri(strFullPath).LocalPath;
-            objSS.SaveAsFile(strLocalPath, ScreenshotImageFormat.Png);
-            return strLocalPath;
-        }
+            Screenshot objScreenshot = objITake.GetScreenshot();
 
-        public void fnTestCaseResult(ExtentTest pobjTest, ExtentReports pobjExtent, IWebDriver pobjDriver)
-        {
-            var status = TestContext.CurrentContext.Result.Outcome.Status;
-            var stacktrace = string.IsNullOrEmpty(TestContext.CurrentContext.Result.StackTrace)
-           ? "" : string.Format("{0}", TestContext.CurrentContext.Result.StackTrace);
-            Status logstatus;
-            switch (status)
+            string strExecutionPath = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
+            string strBaseDirectory = strExecutionPath.Substring(0, strExecutionPath.IndexOf("bin"));
+            strBaseDirectory = new Uri(strBaseDirectory).LocalPath;
+
+            string strScreenshotDirectory = strBaseDirectory + "ExtentReports\\Screenshots";
+            if (!Directory.Exists(strScreenshotDirectory))
             {
-                case TestStatus.Failed:
-                    logstatus = Status.Fail;
-                    //DateTime time = DateTime.Now;
-                    //string strFileName = "Screenshot_" + time.ToShortDateString() + ".png";
-                    string strFileName = "Screenshot_" + time.ToString("hh_mm_ss") + ".png";
-                    var strImagePath = fnCaptureImage(pobjDriver, strFileName);
-                    pobjTest.Log(Status.Fail, "Fail");
-                    pobjTest.Fail("Snapshot below: ", MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
-                    //pobjTest.Log(Status.Fail, "Snapshot below: " + pobjTest.AddScreenCaptureFromPath("Screenshots\\" + strFileName));
-                    break;
-                case TestStatus.Skipped:
-                    logstatus = Status.Skip;
-                    break;
-                case TestStatus.Passed:
-                    logstatus = Status.Pass;
-                    break;
-                default:
-                    logstatus = Status.Warning;
-                    Console.WriteLine("The status: " + status + " is not supported.");
-                    break;
-            }
-            pobjTest.Log(logstatus, "Test ended with " + logstatus + stacktrace);
-            pobjExtent.Flush();
-        }
-
-
-        public void fnAddStepLog(ExtentTest pobjTest, string pstrMessage, string pStatus)
-        {
-            pobjTest.Log(Status.Info, pstrMessage);
-            switch (pStatus.ToUpper())
-            {
-                case "PASS":
-                    pobjTest.Log(Status.Pass, pstrMessage);
-                    break;
-                case "ERROR":
-                    pobjTest.Log(Status.Error, pstrMessage);
-                    break;
-                case "SKIPT":
-                    pobjTest.Log(Status.Skip, pstrMessage);
-                    break;
-                case "WARNING":
-                    pobjTest.Log(Status.Warning, pstrMessage);
-                    break;
-                case "INFO":
-                    pobjTest.Log(Status.Info, pstrMessage);
-                    break;
-                case "FAIL":
-                    pobjTest.Log(Status.Fail, pstrMessage);
-                    break;
-                case "FATAL":
-                    pobjTest.Log(Status.Fatal, pstrMessage);
-                    break;
-                case "DEBUG":
-                    pobjTest.Log(Status.Debug, pstrMessage);
-                    break;
-                default:
-                    pobjTest.Log(Status.Info, pstrMessage);
-                    break;
+                Directory.CreateDirectory(strScreenshotDirectory);
             }
 
+            string strScreenshotPath = strScreenshotDirectory + $"\\{TestContext.CurrentContext.Test.Name}_{DateTime.Now.ToString("HHmmss")}.png";
+            objScreenshot.SaveAsFile(strScreenshotPath);
+
+            return strScreenshotPath;
+
         }
-
-        public void fnAddStepLogWithSnapshot(ExtentTest pobjTest, IWebDriver pobjDriver, string pstrMessage, string pstrImageName, string pStatus)
-        {
-            var strImagePath = fnCaptureImage(pobjDriver, pstrImageName);
-            switch (pStatus.ToUpper())
-            {
-                case "PASS":
-                    pobjTest.Pass(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
-                    break;
-                case "ERROR":
-                    pobjTest.Error(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
-                    break;
-                case "SKIPT":
-                    pobjTest.Skip(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
-                    break;
-                case "WARNING":
-                    pobjTest.Warning(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
-                    break;
-                case "INFO":
-                    pobjTest.Info(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
-                    break;
-                case "FAIL":
-                    pobjTest.Fail(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
-                    break;
-                case "FATAL":
-                    pobjTest.Fatal(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
-                    break;
-                case "DEBUG":
-                    pobjTest.Debug(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
-                    break;
-                default:
-                    pobjTest.Info(pstrMessage, MediaEntityBuilder.CreateScreenCaptureFromPath(strImagePath).Build());
-                    break;
-            }
-        }
-
-
     }
 }

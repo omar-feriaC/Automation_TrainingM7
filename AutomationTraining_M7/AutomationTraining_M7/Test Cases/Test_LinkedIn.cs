@@ -17,10 +17,10 @@ namespace AutomationTraining_M7.Test_Cases
     {
         LinkedIn_LoginPage objLogin;
 
-        [Test]
+       /* [Test]
         public void Login_LinkedIn()
         {
-            objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
+            objTestCase = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
             objLogin = new LinkedIn_LoginPage(driver);
             Assert.AreEqual(true, driver.Title.Contains("Login"), "Title not mach");
             LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
@@ -32,7 +32,7 @@ namespace AutomationTraining_M7.Test_Cases
         [Test]
         public void Login_LinkedIn2()
         {
-            objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
+            objTestCase = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
             objLogin = new LinkedIn_LoginPage(driver);
             Assert.AreEqual(true, driver.Title.Contains("Login"), "Title not mach");
             LinkedIn_LoginPage.fnEnterUserName(ConfigurationManager.AppSettings.Get("username"));
@@ -40,6 +40,6 @@ namespace AutomationTraining_M7.Test_Cases
             LinkedIn_LoginPage.fnClickSignInButton();
 
             Assert.Fail();
-        }
+        }*/
     }
 }
