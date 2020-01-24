@@ -29,15 +29,17 @@ namespace AutomationTraining_M7.Test_Cases
                 exTestStep = exTestCase.CreateNode("Login", "PHP Travels");
                 objPHP = new clsPHPTravels_LoginPage(driver);
                 //Login Action
-                Assert.AreEqual(true, driver.Title.Contains("Administator Login"), "The Login Page was not loaded correctly.");
+                Assert.AreEqual(true, driver.Title.Contains("Administator Login"), "The Login Page didn't load");
             clsPHPTravels_LoginPage.fnEnterEmail(ConfigurationManager.AppSettings.Get("email"));
             clsPHPTravels_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
             clsPHPTravels_LoginPage.fnClickLoginButton();
             clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
-            
+            strScreenshotPath = manager.fnCaptureImage(driver);
+            exTestStep.Log(AventStack.ExtentReports.Status.Info, "User logged in", MediaEntityBuilder.CreateScreenCaptureFromPath(strScreenshotPath).Build());
+            exTestStep.Pass("Login Pass");
 
             Assert.AreEqual(true, driver.Title.Contains("Dashboard"), "The Dashboard was not loaded correctly.");
-            
+
             //Total Links
             IList<IWebElement> ElementList = driver.FindElements(By.XPath("//ul[@class='serverHeader__statsList']//child::a"));
             foreach (IWebElement elementl in ElementList)
@@ -45,10 +47,16 @@ namespace AutomationTraining_M7.Test_Cases
                 Console.WriteLine(elementl.Text);
                 exTestStep.Log(Status.Info, elementl.Text);
             }
+            strScreenshotPath = manager.fnCaptureImage(driver);
+            exTestStep.Log(AventStack.ExtentReports.Status.Info, "Dashboard Info displayed", MediaEntityBuilder.CreateScreenCaptureFromPath(strScreenshotPath).Build());
+            exTestStep.Pass("Dasboard info displayed correctly");
 
             clsPHPTravels_LoginPage.fnGetMenuSubmenu("Accounts");
+            strScreenshotPath = manager.fnCaptureImage(driver);
+            exTestStep.Log(AventStack.ExtentReports.Status.Info, "Menu Sorted", MediaEntityBuilder.CreateScreenCaptureFromPath(strScreenshotPath).Build());
+            exTestStep.Pass("Menu Sorted");
 
-            
+
         }
 
     }
