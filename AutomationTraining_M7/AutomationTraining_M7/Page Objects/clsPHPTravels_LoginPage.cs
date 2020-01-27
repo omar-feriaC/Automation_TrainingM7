@@ -122,10 +122,10 @@ namespace AutomationTraining_M7.Page_Objects
 
         public static void fnClickAccounts()
         {
-            objAccountsBtn = _objDriver.FindElement(By.XPath(STR_ACCOUNTS_BTN));
             _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_ACCOUNTS_BTN)));
             _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_ACCOUNTS_BTN)));
-            _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath (STR_ACCOUNTS_BTN)));
+            _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_ACCOUNTS_BTN)));
+            objAccountsBtn = _objDriver.FindElement(By.XPath(STR_ACCOUNTS_BTN));
             objAccountsBtn.Click();
         }
 
@@ -133,6 +133,7 @@ namespace AutomationTraining_M7.Page_Objects
         {
             objSubMenuBtn = driver.FindElement(By.XPath(SubMenu));
             objSubMenuBtn.Click();
+            
         }
 
         //Account Subpages
@@ -143,11 +144,10 @@ namespace AutomationTraining_M7.Page_Objects
 
         public static void fnClickFirstNameHeader()
         {
-            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_FIRSTNAME_HEADER_DESC)));
-            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_FIRSTNAME_HEADER_DESC)));
-            _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_FIRSTNAME_HEADER_DESC)));
             objFirstNameHeader = _objDriver.FindElement(By.XPath(STR_FIRSTNAME_HEADER));
             objFirstNameHeader.Click();
+            clsDriver.fnWaitForElementToExist(By.XPath(STR_FIRSTNAME_HEADER_DESC));
+            clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_FIRSTNAME_HEADER_DESC));
         }
 
         private IWebElement LastNameHeader()
@@ -157,12 +157,12 @@ namespace AutomationTraining_M7.Page_Objects
 
         public static void fnClickLastNameHeader()
         {
-            clsDriver.fnWaitForElementToExist(By.XPath(STR_LASTNAME_HEADER_DESC));
-            clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LASTNAME_HEADER_DESC));
-            clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_LASTNAME_HEADER_DESC));
+
             objLastNameHeader = _objDriver.FindElement(By.XPath(STR_LASTNAME_HEADER));
             objLastNameHeader.Click();
-            
+            clsDriver.fnWaitForElementToExist(By.XPath(STR_LASTNAME_HEADER_DESC));
+            clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LASTNAME_HEADER_DESC));
+
 
         }
 
@@ -173,12 +173,11 @@ namespace AutomationTraining_M7.Page_Objects
 
         public static void fnClickEmailHeader()
         {
-            clsDriver.fnWaitForElementToExist(By.XPath(STR_EMAIL_HEADER_DESC));
-            clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_EMAIL_HEADER_DESC));
-            clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_EMAIL_HEADER_DESC));
             objEmailHeader = _objDriver.FindElement(By.XPath(STR_EMAIL_HEADER));
             objEmailHeader.Click();
-            
+            clsDriver.fnWaitForElementToExist(By.XPath(STR_EMAIL_HEADER_DESC));
+            clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_EMAIL_HEADER_DESC));
+
         }
 
         private IWebElement GetActiveHeader()
@@ -188,12 +187,11 @@ namespace AutomationTraining_M7.Page_Objects
 
         public static void fnClickActiveHeader()
         {
-            clsDriver.fnWaitForElementToExist(By.XPath(STR_ACTIVE_HEADER_DESC));
-            clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_ACTIVE_HEADER_DESC));
-            clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_ACTIVE_HEADER_DESC));
             objActiveHeader = _objDriver.FindElement(By.XPath(STR_ACTIVE_HEADER));
             objActiveHeader.Click();
-            
+            clsDriver.fnWaitForElementToExist(By.XPath(STR_ACTIVE_HEADER_DESC));
+            clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_ACTIVE_HEADER_DESC));
+
         }
 
         private IWebElement GetLastLoginHeader()
@@ -203,15 +201,14 @@ namespace AutomationTraining_M7.Page_Objects
 
         public static void fnClickLastLoginHeader()
         {
-            clsDriver.fnWaitForElementToExist(By.XPath(STR_LASTLOGIN_HEADER_DESC));
-            clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LASTLOGIN_HEADER_DESC));
-            clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_LASTLOGIN_HEADER_DESC));
             objLastLoginHeader = _objDriver.FindElement(By.XPath(STR_LASTLOGIN_HEADER));
             objLastLoginHeader.Click();
-            
+            clsDriver.fnWaitForElementToExist(By.XPath(STR_LASTLOGIN_HEADER_DESC));
+            clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LASTLOGIN_HEADER_DESC));
+
         }
 
-        public static void fnGetMenuSubmenu(string pstrMenuOption)
+        public static void fnGetSubmenu(string pstrMenuOption)
         {
             IList<IWebElement> ElementList = driver.FindElements(By.XPath("//a[contains(text()," + pstrMenuOption.ToUpper() + ")]"));
             if (ElementList.Count > 0)
@@ -236,7 +233,7 @@ namespace AutomationTraining_M7.Page_Objects
                     fnWaitHamburgerMenu();
 
 
-                    switch (i)
+                   switch (i)
                     {
                         case 0:
                             Assert.AreEqual(true, driver.Title.Contains("Admins Management"), "Page did not load correctly.");

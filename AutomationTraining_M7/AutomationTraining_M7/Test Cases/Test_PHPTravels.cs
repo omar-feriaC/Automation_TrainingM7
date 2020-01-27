@@ -51,7 +51,7 @@ namespace AutomationTraining_M7.Test_Cases
             exTestStep.Log(AventStack.ExtentReports.Status.Info, "Dashboard Info displayed", MediaEntityBuilder.CreateScreenCaptureFromPath(strScreenshotPath).Build());
             exTestStep.Pass("Dasboard info displayed correctly");
 
-            clsPHPTravels_LoginPage.fnGetMenuSubmenu("Accounts");
+            clsPHPTravels_LoginPage.fnGetSubmenu("Accounts");
             strScreenshotPath = manager.fnCaptureImage(driver);
             exTestStep.Log(AventStack.ExtentReports.Status.Info, "Menu Sorted", MediaEntityBuilder.CreateScreenCaptureFromPath(strScreenshotPath).Build());
             exTestStep.Pass("Menu Sorted");
