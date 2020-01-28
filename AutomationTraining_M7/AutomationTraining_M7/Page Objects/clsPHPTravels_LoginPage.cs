@@ -24,9 +24,6 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_LOGIN_BTN = "//span[text()='Login']";
         readonly static string STR_SIDEMENU = "//nav[@id='sidebar']";
         readonly static string STR_ACCOUNTS_MENU = "//a[@href='#ACCOUNTS']";
-        readonly static string STR_CLOSECHAT = "//button[@class='e1mwfyk10 lc-4rgplc e1m5b1js0']";
-        readonly static string STR_OPENCHAT = "//*[@class='lc-1r1l4b7 e5ibypu0']"; 
-        readonly static string STR_CHATTEXT = "//div[@class='lc-lpdesj e903lsu2 lc-r4kv7x-enter-done']";
         readonly static string STR_SUBMENU_ADMINS = "//ul/li/a[text()='Admins']";
         readonly static string STR_SUBMENU_CUSTOMERS = "//ul/li/a[text()='Customers']";
         readonly static string STR_SUBMENU_SUPPLIERS = "//ul/li/a[text()='Suppliers']";
@@ -47,9 +44,6 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objLoginBtn => driver.FindElement(By.XPath(STR_LOGIN_BTN));
         private static IWebElement objSidebarMenu => _objDriver.FindElement(By.XPath(STR_SIDEMENU));
         private static IWebElement objAccountsMenu => _objDriver.FindElement(By.XPath(STR_ACCOUNTS_MENU));
-        private static IWebElement objLiveChatCloseBtn => _objDriver.FindElement(By.XPath(STR_CLOSECHAT));
-        private static IWebElement objLiveChatOpenBtn => _objDriver.FindElement(By.XPath(STR_OPENCHAT));
-        private static IWebElement objLiveChatText => _objDriver.FindElement(By.XPath(STR_CHATTEXT));
         private static IWebElement objSubmenuAdmins => _objDriver.FindElement(By.XPath(STR_SUBMENU_ADMINS));
         private static IWebElement objSubMenuAdmins => _objDriver.FindElement(By.XPath(STR_SUBMENU_ADMINS));
         private static IWebElement objSubMenuSuppliers => _objDriver.FindElement(By.XPath(STR_SUBMENU_SUPPLIERS));
