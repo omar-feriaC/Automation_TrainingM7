@@ -118,23 +118,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base Files\BaseTest.cs" />
-    <Compile Include="Base Files\clsData.cs" />
     <Compile Include="Base Files\clsDriver.cs" />
-    <Compile Include="Base Files\clsLibData.cs" />
-    <Compile Include="FinalM7\CommissionEmployee.cs" />
-    <Compile Include="FinalM7\HourlyEmployee.cs" />
-    <Compile Include="FinalM7\IPayrollCalculator.cs" />
-    <Compile Include="FinalM7\SalaryEmployee.cs" />
     <Compile Include="Page Objects\clsPHPTravels_LoginPage.cs" />
-    <Compile Include="Page Objects\LinkedIn_LoginPage.cs" />
-    <Compile Include="Page Objects\LinkedIn_SearchPage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reporting\clsReportManager.cs" />
-    <Compile Include="Test Cases\Prueba1.cs" />
-    <Compile Include="Test Cases\Test_LinkedIn.cs" />
-    <Compile Include="Test Cases\Test_LinkedInSearch.cs" />
-    <Compile Include="Test Cases\Test_LinkedIn_DataDriven.cs" />
     <Compile Include="Test Cases\Test_PHPTravels.cs" />
   </ItemGroup>
   <ItemGroup>

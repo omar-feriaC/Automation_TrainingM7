@@ -1,11 +1,12 @@
 ﻿using AutomationTraining_M7.Base_Files;
 using AutomationTraining_M7.Page_Objects;
+using AutomationTraining_M7.Reporting;
 using AventStack.ExtentReports;
 using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Configuration;
 using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Test_Cases
@@ -21,16 +22,15 @@ namespace AutomationTraining_M7.Test_Cases
             //Init objects
             objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
             objPHP = new clsPHPTravels_LoginPage(driver);
-            //Login Action
-            Assert.AreEqual(true, driver.Title.Contains("Administator Login"), "The Login Page was not loaded correctly.");
-            clsPHPTravels_LoginPage.fnEnterEmail("admin@phptravels.com");
-            clsPHPTravels_LoginPage.fnEnterPassword("demoadmin");
-            clsPHPTravels_LoginPage.fnClickLoginButton();
-            clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
-            Assert.AreEqual(true, driver.Title.Contains("Dashboard"), "The Dashboard was not loaded correctly.");
-        
-        }
 
+            Assert.AreEqual(true, driver.Title.Contains("Administator Login"), "The Login Page was not loaded correctly.");
+            clsPHPTravels_LoginPage.fnEnterEmail(ConfigurationManager.AppSettings.Get("email"));
+            clsPHPTravels_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
+            clsPHPTravels_LoginPage.fnClickLoginButton();
+            clsPHPTravels_LoginPage.fnGetTotalsValuesTxt();
+            clsPHPTravels_LoginPage.fnClickAccountsMenu();
+
+        }
 
     }
 }
