@@ -33,7 +33,7 @@ namespace API_Test_Project
                 // Display the content.  
                 Console.WriteLine(responseFromServer);
             }
-
+            
             // Close the response.  
             response.Close();
 
