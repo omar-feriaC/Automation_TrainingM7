@@ -1,3 +1,0 @@
-Shape1: Trapezium
-Shape2: Cube
-NuGet : Serilog

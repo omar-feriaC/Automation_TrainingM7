@@ -1,3 +1,0 @@
-Shape1: Circle
-Shape2: Sphere
-NuGet : Newtonsoft.Json

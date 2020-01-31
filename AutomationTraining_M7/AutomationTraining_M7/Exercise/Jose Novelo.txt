@@ -1,3 +1,0 @@
-Shape1: Hexagon
-Shape2: Tetraedrom
-NuGet : Microsoft.EntityFrameworkCore

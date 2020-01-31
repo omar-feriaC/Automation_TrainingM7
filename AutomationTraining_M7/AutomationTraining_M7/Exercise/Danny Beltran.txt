@@ -1,3 +1,0 @@
-Shape1: Square
-Shape2: Cylinder
-NuGet : Microsoft.AspNet.WebApi

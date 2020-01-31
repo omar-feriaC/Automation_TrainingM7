@@ -1,3 +1,0 @@
-Shape1: Hexagon
-Shape2: Cylinder
-NuGet : EntityFramework

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutomationTraining_M7.M7_Review
+namespace AutomationTraining_M7.M7_Exercise
 {
-    class Square  
+    interface IShape
     {
     }
 }
