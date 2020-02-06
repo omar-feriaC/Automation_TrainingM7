@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace API_Test_Project
 {
-    class data
+    class Employee
     {
         public int id { get; set; }
         public string employee_name { get; set; }

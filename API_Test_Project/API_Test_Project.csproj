@@ -52,7 +52,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="data.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="Employee2.cs" />
+    <Compile Include="PostReponse.cs" />
+    <Compile Include="GetResponse.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

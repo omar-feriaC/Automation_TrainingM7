@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 
@@ -15,11 +16,11 @@ namespace API_Test_Project
         {
             // Create a request for the URL.
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://dummy.restapiexample.com/api/v1/employees");
-            HttpWebResponse response =(HttpWebResponse)request.GetResponse();
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
             //WebResponse response = request.GetResponse();
             // Console.WriteLine(((HttpWebResponse)response).StatusDescription);
-            List<data> employees = new List<data>();
+            GetResponse res = new GetResponse();
 
             using (Stream dataStream = response.GetResponseStream())
             {
@@ -27,20 +28,130 @@ namespace API_Test_Project
                 StreamReader reader = new StreamReader(dataStream);
                 // Read the content.  
                 string responseFromServer = reader.ReadToEnd();
-                responseFromServer = JsonConvert.SerializeObject(response.GetResponseStream());
-                employees.Add(JsonConvert.DeserializeObject<data>(responseFromServer));
+                res = JsonConvert.DeserializeObject<GetResponse>(responseFromServer);
 
                 // Display the content.  
-                Console.WriteLine(responseFromServer);
+                //Console.WriteLine(responseFromServer);
             }
-            
+
             // Close the response.  
             response.Close();
 
-            foreach(data employee in employees )
+            foreach (Employee employee in res.data)
             {
-                Console.WriteLine(employee.employee_name);
+                Console.WriteLine($"ID: {employee.id}  Name: {employee.employee_name}  Salary: {employee.employee_salary}  Age: {employee.employee_age}  Profile Image: {employee.profile_image}");
 
+            }
+        }
+
+        [TestMethod]
+        public void TestMethod2()
+        {
+                try
+                {
+                    string webAddr = "http://dummy.restapiexample.com/api/v1/create";
+
+                    var httpWebRequest = (HttpWebRequest)WebRequest.Create(webAddr);
+                    httpWebRequest.ContentType = "application/json; charset=utf-8";
+                    httpWebRequest.Method = "POST";
+
+                    using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                    {
+                        string json = "{ \"name\" : \"Carlos\", \"salary\" : \"123\" , \"age\" : 13 }";
+
+                        streamWriter.Write(json);
+                        streamWriter.Flush();
+                    }
+
+                    var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    {
+                        var responseText = streamReader.ReadToEnd();
+                        Console.WriteLine(responseText);
+
+                        //Now you have your response.
+                        //or false depending on information in the response     
+                    }
+                }
+                catch (WebException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+         }
+
+
+        [TestMethod]
+        public void TestMethod3()
+        {
+            try
+            {
+                string webAddr = "http://dummy.restapiexample.com/api/v1/delete/2";
+
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(webAddr);
+                httpWebRequest.Method = "DELETE";
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    var responseText = streamReader.ReadToEnd();
+                    Console.WriteLine(responseText);
+
+                    //Now you have your response.
+                    //or false depending on information in the response     
+                }
+            }
+            catch (WebException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        [TestMethod]
+        public void TestMethod4()
+        {
+            try
+            {
+                string webAddr = "http://dummy.restapiexample.com/api/v1/create";
+
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(webAddr);
+                httpWebRequest.ContentType = "application/json";
+                httpWebRequest.Method = "POST";
+
+                PostReponse res = new PostReponse();
+
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    string json = "{\"name\" : \"Carlos\", \"salary\" : \"123\" , \"age\" : 13}";
+
+                    streamWriter.Write(json);
+                    streamWriter.Flush();
+                }
+                              
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    string responseText = streamReader.ReadToEnd();
+                    Console.WriteLine(responseText);
+                    res = JsonConvert.DeserializeObject<PostReponse>(responseText);
+
+                    Console.WriteLine(res.data.id);
+                }
+
+                webAddr = $"http://dummy.restapiexample.com/api/v1/delete/{res.data.id}";
+                httpWebRequest = (HttpWebRequest)WebRequest.Create(webAddr);
+                httpWebRequest.Method = "DELETE";
+
+                httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    var responseText = streamReader.ReadToEnd();
+                    Console.WriteLine(responseText);
+ 
+                }
+            }
+            catch (WebException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
 
         }
