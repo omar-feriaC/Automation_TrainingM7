@@ -7,6 +7,7 @@ using APIExercise1.BaseFiles;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace APIExercise1
+
 {
     [TestClass]
     public class UnitTest1
