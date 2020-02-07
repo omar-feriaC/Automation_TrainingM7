@@ -5,13 +5,14 @@ using System.Net;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using NUnit.Framework;
 
 namespace API_Test_Project
 {
     [TestClass]
     public class UnitTest1
     {
-        [TestMethod]
+        [Test]
         public void TestMethod1()
         {
             // Create a request for the URL.
@@ -44,7 +45,7 @@ namespace API_Test_Project
             }
         }
 
-        [TestMethod]
+        [Test]
         public void TestMethod2()
         {
                 try
@@ -80,7 +81,7 @@ namespace API_Test_Project
          }
 
 
-        [TestMethod]
+        [Test]
         public void TestMethod3()
         {
             try
@@ -106,7 +107,7 @@ namespace API_Test_Project
             }
         }
 
-        [TestMethod]
+        [Test]
         public void TestMethod4()
         {
             try
