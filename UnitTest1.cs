@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using APIExercise1.BaseFiles;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace APIExercise1
 
@@ -12,7 +13,7 @@ namespace APIExercise1
     [TestClass]
     public class UnitTest1
     {
-        [TestMethod]
+        [Test]
         public void TestMethodAPIRequest()
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://dummy.restapiexample.com/api/v1/employees/");
@@ -38,7 +39,7 @@ namespace APIExercise1
             response.Close();
             readStream.Close();
         }
-        [TestMethod]
+        [Test]
         public void TestMethodAPIPost()
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://dummy.restapiexample.com/api/v1/create");
@@ -78,7 +79,7 @@ namespace APIExercise1
             readStream.Close();
         }
 
-        [TestMethod]
+        [Test]
         public void TestMethodAPIDelete()
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://dummy.restapiexample.com/api/v1/delete/2");
@@ -105,7 +106,7 @@ namespace APIExercise1
             response.Close();
             readStream.Close();
         }
-        [TestMethod]
+        [Test]
         public void TestMethodClassApi()
         {
             var myClassDummyApi = new clsDummyRestApi();
