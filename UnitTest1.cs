@@ -16,7 +16,7 @@ namespace APIExercise1
         [Test]
         public void TestMethodAPIRequest()
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://dummy.restapiexample.com/api/v1/employees/");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://dummy.restapiexample.com/api/v1/employees");
 
             // Set some reasonable limits on resources used by this request
             request.MaximumAutomaticRedirections = 4;
