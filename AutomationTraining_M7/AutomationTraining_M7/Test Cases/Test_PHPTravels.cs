@@ -23,33 +23,21 @@ namespace AutomationTraining_M7.Test_Cases
         [Test]
         public void Test_M9Exercise()
         {
-            clsReportManager report = new clsReportManager();
-            report.fnReportSetUp(BaseTest.objHtmlReporter, BaseTest.objExtent);
-            /*URL for Webdriver*/
-            //Init objects
             objPHP = new clsPHPTravels_LoginPage(driver);
-            // los busque todos los ejemplos 
-
-            
-
-            //Login Action
-            //Assert.AreEqual(true, BaseTest.driver.Title.Contains("Administrador Login."), "The Login Page was not loaded correctly.");
+            objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
             clsPHPTravels_LoginPage.fnEnterEmail("admin@phptravels.com");
             clsPHPTravels_LoginPage.fnEnterPassword("demoadmin");
             clsPHPTravels_LoginPage.fnClickLoginButton();
             clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
-            //Assert.AreEqual(true, BaseTest.driver.Title.Contains("Dashboard."), "The Dashboard was not loaded correctly.");
             pageMain = new clsPHPTravels_Main(driver);
             Dictionary<string,string> listValues = pageMain.CreateReport();
             foreach (KeyValuePair<string,string> keyText in listValues) 
             {
                 string strText = keyText.Key +": "+ keyText.Value;
                 Assert.AreEqual(true,true);
-                report.fnTestCaseResult(BaseTest.objTest, BaseTest.objExtent, driver, strText);
-                //do magic 
+                objRM.fnTestCaseResult(BaseTest.objTest, BaseTest.objExtent, driver, strText);
             }
 
-            // ExtentTest pobjTest, ExtentReports pobjExtent, IWebDriver pobjDriver
         }
 
     }

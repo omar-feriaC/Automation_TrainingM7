@@ -39,12 +39,11 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
         /*OBJECT DEFINITION*/
-        private static IWebElement objTotalAdmins = _objDriver.FindElement(By.XPath(strTotalAdmins)); 
-        private static IWebElement objTotalSuppliers = _objDriver.FindElement(By.XPath(strTotalSuppliers));
-        private static IWebElement objTotalCustomerss = _objDriver.FindElement(By.XPath(strTotalCustomerss));
-        private static IWebElement objTotalGuests = _objDriver.FindElement(By.XPath(strTotalGuests));
-        private static IWebElement objTotalBookings = _objDriver.FindElement(By.XPath(strTotalBookings));
-
+        private static IWebElement objTotalAdmins => _objDriver.FindElement(By.XPath(strTotalAdmins)); 
+        private static IWebElement objTotalSuppliers => _objDriver.FindElement(By.XPath(strTotalSuppliers));
+        private static IWebElement objTotalCustomerss => _objDriver.FindElement(By.XPath(strTotalCustomerss));
+        private static IWebElement objTotalGuests => _objDriver.FindElement(By.XPath(strTotalGuests));
+        private static IWebElement objTotalBookings => _objDriver.FindElement(By.XPath(strTotalBookings));
 
         /*METHODS/FUNCTIONS*/
 
@@ -57,10 +56,15 @@ namespace AutomationTraining_M7.Page_Objects
             lisValues.Add(strBookings, objTotalBookings.ToString());
             return lisValues;
         }
-
-       
- 
-
-
+        public static void fnPHPTravels_Main_Menu_click(string strMenuOpt, string strMenuSub)
+        {
+            string strSpace = "";
+            if (strMenuSub == "Menu")
+            {
+                strSpace = " ";
+            }
+            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//a[text()='" + strSpace + strMenuOpt + "']")));
+            _objDriver.FindElement(By.XPath("//a[text()='" + strSpace + strMenuOpt + "']")).Click();
+        }
     }
 }

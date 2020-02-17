@@ -34,11 +34,11 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
         /*OBJECT DEFINITION*/
-        private static IWebElement objEmailTxt = _objDriver.FindElement(By.Name(STR_EMAIL_TXT)); 
-        private static IWebElement objPasswordTxt = _objDriver.FindElement(By.Name(STR_PASSWORD_TXT));
-        private static IWebElement objRememberMeLnk = _objDriver.FindElement(By.XPath(STRREMEMBERME_LNK));
-        private static IWebElement objForgotPassLnk = _objDriver.FindElement(By.XPath(STR_FORGOTPASS_LNK));
-        private static IWebElement objLoginBtn = _objDriver.FindElement(By.XPath(STR_LOGIN_BTN));
+        private static IWebElement objEmailTxt => _objDriver.FindElement(By.Name(STR_EMAIL_TXT)); 
+        private static IWebElement objPasswordTxt => _objDriver.FindElement(By.Name(STR_PASSWORD_TXT));
+        private static IWebElement objRememberMeLnk => _objDriver.FindElement(By.XPath(STRREMEMBERME_LNK));
+        private static IWebElement objForgotPassLnk => _objDriver.FindElement(By.XPath(STR_FORGOTPASS_LNK));
+        private static IWebElement objLoginBtn => _objDriver.FindElement(By.XPath(STR_LOGIN_BTN));
 
 
         /*METHODS/FUNCTIONS*/

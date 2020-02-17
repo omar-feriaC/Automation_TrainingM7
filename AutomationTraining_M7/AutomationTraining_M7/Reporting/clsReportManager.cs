@@ -30,7 +30,7 @@ namespace AutomationTraining_M7.Reporting
         //public void fnReportSetUp(ExtentHtmlReporter phtmlReporter, ExtentReports pExtent)
         public void fnReportSetUp(ExtentV3HtmlReporter phtmlReporter, ExtentReports pExtent)
         {
-            phtmlReporter.Config.Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
+            //phtmlReporter.Config.Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
             phtmlReporter.Config.DocumentTitle = "Automation Framework Report";
             pExtent.AttachReporter(phtmlReporter);
             pExtent.AddSystemInfo("Project Name:", "Automation Framework");
