@@ -8,5 +8,6 @@ namespace AutomationTraining_M7.M7_Exercise
 {
     interface IShape
     {
+        //Attributes
     }
 }
