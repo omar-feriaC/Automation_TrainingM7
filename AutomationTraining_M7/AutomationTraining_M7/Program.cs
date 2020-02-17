@@ -1,4 +1,5 @@
 ﻿using AutomationTraining_M7.Base_Files;
+using AutomationTraining_M7.M7_Exercise.Jaime_Couoh_M7_Exercise;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
@@ -14,7 +15,18 @@ namespace AutomationTraining_M7
     {
         static void Main(string[] args)
         {
-            
+            Console.WriteLine("-----Square----");
+            clsSquare objSquare = new clsSquare(4, "Square");
+            objSquare.FnCalculateArea();
+            objSquare.FnCalculatePerimtr();
+            objSquare.DisplayInfo();
+
+            Console.WriteLine();
+            Console.WriteLine("-----Prism----");
+            clsPrism objPrism = new clsPrism(2,6, "Prism");
+            objPrism.FnCalculateVolume();
+            objPrism.DisplayInfo();
+                                               
             Console.ReadKey();
         }
     }

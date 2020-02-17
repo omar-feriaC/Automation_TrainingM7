@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.M7_Exercise.Jaime_Couoh_M7_Exercise
 {
-    class _2D_Shape : IShape
+    public class _2D_Shape : IShape
     {
         //Attributes from IShape
         public double dblArea { get; set; }

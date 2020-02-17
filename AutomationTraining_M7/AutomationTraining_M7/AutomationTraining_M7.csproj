@@ -61,6 +61,8 @@
     <Compile Include="Base Files\BaseTest.cs" />
     <Compile Include="M7_Exercise\Jaime_Couoh_M7_Exercise\2D_Shape.cs" />
     <Compile Include="M7_Exercise\Jaime_Couoh_M7_Exercise\3D_Shape.cs" />
+    <Compile Include="M7_Exercise\Jaime_Couoh_M7_Exercise\clsPrism.cs" />
+    <Compile Include="M7_Exercise\Jaime_Couoh_M7_Exercise\clsSquare.cs" />
     <Compile Include="M7_Exercise\Jaime_Couoh_M7_Exercise\IShape.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
