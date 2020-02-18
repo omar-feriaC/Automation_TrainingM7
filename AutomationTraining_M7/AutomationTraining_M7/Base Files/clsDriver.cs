@@ -21,7 +21,7 @@ namespace AutomationTraining_M7.Base_Files
         public clsDriver(IWebDriver pobjDriver)
         {
             _objDriver = pobjDriver;
-            _driverWait = new WebDriverWait(_objDriver, new TimeSpan(0, 0, 40));
+            _driverWait = new WebDriverWait(_objDriver, new TimeSpan(0, 0, 60));
         }
 
         /*METHODS*/
