@@ -23,7 +23,7 @@ namespace AutomationTraining_M7
             Linkedin_LoginPage.FnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
             Linkedin_LoginPage.fnClickSingInButton();
 
-            
+
             Console.ReadKey();
 
         }

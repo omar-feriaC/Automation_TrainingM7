@@ -17,12 +17,15 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_APPLY_BTN = "//button[@data-control-name='all_filters_apply']";
         readonly static string STR_SEARCH_BTN = "//div[@class='search-global-typeahead__controls']";
         readonly static string STR_SEARCH_TEXT = "//input[@placeholder='Search']";
-        readonly static string STR_PEOPLE_BTN = "//button[span[text()='People']]";
+        readonly static string STR_PEOPLE_BTN = "//span[text()='People']";
         readonly static string STR_ALLFILTERS_BTN = "//button[span[text()='All Filters']]";
         readonly static string STR_LANG_ENG_CB = "//label[text()='English' or text()='Ingles']";
         readonly static string STR_LANG_ESP_CB = "//label[text()='Spanish' or text()='Español']";
         readonly static string STR_MXREGION_CB = "//label[text()='Mexico' or text()='Mexico']";//
         readonly static string STR_SPREGION_CB = "//label[text()='Spain' or text()='España']";
+        readonly static string STR_SEARCHRESULTSNAME_SPAN = "(//span[@class='name actor-name'])[1]";
+        readonly static string STR_SEARCHRESULTSROLE_SPAN = "(//p[@class='subline-level-1 t-14 t-black t-normal search-result__truncate']//span[@dir='ltr'])[1]";
+        readonly static string STR_SEARCHRESULTSURL_A = "(//a[@class='search-result__result-link ember-view'])[1]";
 
         //CONSTRUCTOR
         public LinkedIn_SearchPage(IWebDriver pSrcDriver)
@@ -41,6 +44,10 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement ObjLangEng => _objDriver.FindElement(By.XPath(STR_LANG_ENG_CB));
         private static IWebElement ObjLangEsp => _objDriver.FindElement(By.XPath(STR_LANG_ESP_CB));
         private static IWebElement ObjApplyBtn => _objDriver.FindElement(By.XPath(STR_APPLY_BTN));
+        private static IWebElement objNameSpan => _objDriver.FindElement(By.XPath(STR_SEARCHRESULTSNAME_SPAN));
+        private static IWebElement objRoleSpan => _objDriver.FindElement(By.XPath(STR_SEARCHRESULTSROLE_SPAN));
+        private static IWebElement objUrlA => _objDriver.FindElement(By.XPath(STR_SEARCHRESULTSURL_A));
+
 
         //METHODS
         //CAPTCHA
@@ -155,7 +162,36 @@ namespace AutomationTraining_M7.Page_Objects
             ObjApplyBtn.Click();
         }
 
+        public static void fnApplyAllFiltersButton()
+        {
+            ObjApplyBtn.Click();
 
+        }
+        //
+        public static IWebElement GetNameSpan()
+        {
+            return objNameSpan;
+        }
+
+        public static IWebElement GetRoleSpan()
+        {
+            return objRoleSpan;
+        }
+
+        public static IWebElement GetUrlA()
+        {
+            return objUrlA;
+        }
+
+
+
+        public static void fnSearchTechnologies(string pstrSearchTech)
+        {
+
+            ObjSearchTxt.Clear();
+            ObjSearchTxt.SendKeys(pstrSearchTech);
+            ObjSearchTxt.SendKeys(Keys.Enter);
+
+        }
     }
-
 }

@@ -41,7 +41,7 @@ namespace AutomationTraining_M7.Test_Cases
                     if (frames[i].GetAttribute("role").ToString() == "presentation" | frames[i].GetAttribute("role").ToString() != "")
                     {
                         driver.SwitchTo().Frame(i);
-                        _DriverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 60));
+                        _DriverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 120));
                         objCheckbox = _DriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[@role='checkbox']")));
                         if (objCheckbox.Enabled) { objCheckbox.Click(); }
 
@@ -49,24 +49,70 @@ namespace AutomationTraining_M7.Test_Cases
                 }
             }
             // Set Filters
+            _DriverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 60));
+            objSearch = new LinkedIn_SearchPage(driver);
+
+            _DriverWait.Until(driver => driver.FindElement(By.XPath("//div[@class='search-global-typeahead__controls']")));
             LinkedIn_SearchPage.FnEnterSearchText("Jesus");
+
+            _DriverWait.Until(driver => driver.FindElement(By.XPath("//div[@class='search-global-typeahead__controls']")));
             LinkedIn_SearchPage.FnClickSearchBtn();
-            Thread.Sleep(6000);
+
+            _DriverWait.Until(driver => driver.FindElement(By.XPath("//button[span[text()='All Filters']]")));
             LinkedIn_SearchPage.FnSelectAllFilters();
-            Thread.Sleep(6000);
+
+            _DriverWait.Until(driver => driver.FindElement(By.XPath("//label[text()='Mexico' or text()='Mexico']")));
             LinkedIn_SearchPage.FnGetRegionMx();
+
+            _DriverWait.Until(driver => driver.FindElement(By.XPath("//label[text()='Spain' or text()='España']")));
             LinkedIn_SearchPage.FnGetRegionSP();
-            Thread.Sleep(6000);
+
+            _DriverWait.Until(driver => driver.FindElement(By.XPath("//label[text()='English' or text()='Ingles']")));
             LinkedIn_SearchPage.FnLanguageEng();
+
+            _DriverWait.Until(driver => driver.FindElement(By.XPath("//label[text()='Spanish' or text()='Español']")));
             LinkedIn_SearchPage.FnLanguageEsp();
+
+            _DriverWait.Until(driver => driver.FindElement(By.XPath("//button[@data-control-name='all_filters_apply']")));
             LinkedIn_SearchPage.FnClickApplyBtn();
 
             //Elements
-            foreach (string strValue in arrTechnologies)
+            foreach (string strtech in arrTechnologies)
             {
-                LinkedIn_SearchPage.FnEnterSearchText(strValue);
-                LinkedIn_SearchPage.FnClickSearchBtn();
+                _DriverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 60));
+                objSearch = new LinkedIn_SearchPage(driver);
+
+                _DriverWait.Until(driver => driver.FindElement(By.XPath("//input[@placeholder='Search']")));
+                LinkedIn_SearchPage.fnSearchTechnologies(strtech);
+
+
             }
+
+
+            _DriverWait.Until(driver => driver.FindElement(By.XPath("//span[text()='People']")));
+            LinkedIn_SearchPage.FnSelectPeople();
+
+            Console.WriteLine("************");
+
+            _DriverWait.Until(driver => driver.FindElement(By.XPath("(//span[@class='name actor-name'])[1]")));
+            Console.WriteLine("Name: " + LinkedIn_SearchPage.GetNameSpan().Text);
+
+            _DriverWait.Until(driver => driver.FindElement(By.XPath("(//p[@class='subline-level-1 t-14 t-black t-normal search-result__truncate']//span[@dir='ltr'])[1]")));
+            Console.WriteLine("Role: " + LinkedIn_SearchPage.GetRoleSpan().Text);
+
+            _DriverWait.Until(driver => driver.FindElement(By.XPath("(//a[@class='search-result__result-link ember-view'])[1]")));
+            Console.WriteLine("LinkedIn URL: " + LinkedIn_SearchPage.GetUrlA().GetAttribute("href"));
+
+            _DriverWait.Until(driver => driver.FindElement(By.XPath("(//span[@class='name actor-name'])[2]")));
+            Console.WriteLine("Name: " + LinkedIn_SearchPage.GetNameSpan().Text);
+
+            _DriverWait.Until(driver => driver.FindElement(By.XPath("(//p[@class='subline-level-1 t-14 t-black t-normal search-result__truncate']//span[@dir='ltr'])[2]")));
+            Console.WriteLine("Role: " + LinkedIn_SearchPage.GetRoleSpan().Text);
+
+            _DriverWait.Until(driver => driver.FindElement(By.XPath("(//a[@class='search-result__result-link ember-view'])[2]")));
+            Console.WriteLine("LinkedIn URL: " + LinkedIn_SearchPage.GetUrlA().GetAttribute("href"));
+
+
         }
     }
 }
