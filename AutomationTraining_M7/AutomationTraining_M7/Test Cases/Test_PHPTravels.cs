@@ -25,8 +25,8 @@ namespace AutomationTraining_M7.Test_Cases
         {
             objPHP = new clsPHPTravels_LoginPage(driver);
             objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
-            clsPHPTravels_LoginPage.fnEnterEmail("admin@phptravels.com");
-            clsPHPTravels_LoginPage.fnEnterPassword("demoadmin");
+            clsPHPTravels_LoginPage.fnEnterEmail(ConfigurationManager.AppSettings.Get("email"));
+            clsPHPTravels_LoginPage.fnEnterPassword(ConfigurationManager.AppSettings.Get("password"));
             clsPHPTravels_LoginPage.fnClickLoginButton();
             clsPHPTravels_LoginPage.fnWaitHamburgerMenu();
             pageMain = new clsPHPTravels_Main(driver);
