@@ -32,8 +32,25 @@ namespace AutomationTraining_M7
             Console.Write("\n------------------------------------------------------\n");
 
             //Write Your code Here
-            Console.ReadLine();
+            Console.Write("Provide the number (if enter a value different a number the program will be fail): ");
+            n = Convert.ToInt32(Console.ReadLine());
+            arr1 = new string[n];
+            Console.Write($"\nProvide {n} string for the array :\n");
 
+            for (i = 0; i < n; i++)
+            {
+                Console.Write($"String[{i}] : ");
+                arr1[i] = Console.ReadLine();
+            }
+
+            var strings = from element in arr1
+                          select element;
+            Console.WriteLine("\n");
+
+            foreach (var element in strings)
+            {
+                Console.WriteLine($"String: {element}, Length: {element.Length}");
+            }
 
 
 
@@ -46,9 +63,20 @@ namespace AutomationTraining_M7
             // abcd.txt, simple_file.txt and xyz.txt
 
             Console.Write("\nLINQ : Calculate the Size of File : ");
-            Console.Write("\n------------------------------------\n");
+            Console.Write("\n---------------------------------\n");
 
             //Write Your code
+            var files = from file in dirfiles
+                        select file;
+
+
+            foreach (var file in files)
+            {
+                FileInfo objFile = new FileInfo(file);
+                Console.WriteLine($"File Name: {objFile.Name} -  Size of the File: {objFile.Length} bytes ");
+
+            }
+
             Console.ReadLine();
 
 
@@ -65,12 +93,24 @@ namespace AutomationTraining_M7
             Console.Write("\n---------------------------");
 
             //Write Your code
+            var integers = from integer in n1
+                           select integer;
+            int d = 1;
+
+            Console.Write($"\nData Source : Array n1 ");
+            Console.Write($"\nQuery : from integer in n1 select integer; ");
+
+            Console.Write("\nQuery Execution :  \n");
+
+            foreach (var integer in integers)
+            {
+                Console.WriteLine($"Value {d}: {integer}");
+                d++;
+            }
+
             Console.ReadLine();
 
-
-
-
-
+                                          
             //-------------------------------------------------
             //Excersie 4
             //-------------------------------------------------
@@ -80,6 +120,16 @@ namespace AutomationTraining_M7
             Console.Write("\n------------------------------------------------\n");
 
             //Write Your code
+            int x = 1;
+            var days = from day in dayWeek
+                       select day;
+
+            foreach (var day in days)
+            {
+                Console.WriteLine($"Day{x}: {day}");
+                x++;
+            }
+
             Console.ReadLine();
 
 
@@ -95,6 +145,16 @@ namespace AutomationTraining_M7
             Console.Write("\n------------------------------------------------------------------------\n");
 
             //Write Your code
+            var numbers = from number in arr3
+                          select number;
+
+            foreach (var number in numbers)
+            {
+                Console.WriteLine($"Number: {number}, Square: {number * number}");
+
+
+            }
+                                 
             Console.ReadLine();
 
         }
