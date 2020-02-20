@@ -98,9 +98,9 @@ namespace AutomationTraining_M7
             int d = 1;
 
             Console.Write($"\nData Source : Array n1 ");
-            Console.Write($"\nQuery : from integer in n1 select integer; ");
+            Console.Write($"\nQuery : from integer in select integer; ");
 
-            Console.Write("\nQuery Execution :  \n");
+            Console.Write("\nQuery Execution :  \n ");
 
             foreach (var integer in integers)
             {
