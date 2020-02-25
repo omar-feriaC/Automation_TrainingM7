@@ -24,7 +24,7 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_REGIONMX_CB = "//label[text()='Mexico' or text()='México']";
         readonly static string STR_ADDCOUNTTRY_TEXT = "//input[@placeholder='Add a country/region'][@aria-label='Add a country/region']";
         readonly static string STR_SELECT_MEXICO_DD = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico' or 'México']";
-        readonly static string STR_CLEAR_FILTERS = "//button[@data-control-name='clear_filters']";
+        readonly static string STR_CLEAR_FILTERS = "//div[@id='inbug-nav-item']";
 
         //test
         /*CONSTRUCTOR*/
@@ -85,7 +85,7 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
         //People Checkbox
-        private IWebElement GetPeopleCB()
+        public static IWebElement GetPeopleCB()
         {
             return objPeopleBtn;
         }
