@@ -1,4 +1,5 @@
-﻿using AutomationTraining_M7.Page_Objects;
+﻿using AutomationTraining_M7.Base_Files;
+using AutomationTraining_M7.Page_Objects;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -18,6 +19,7 @@ namespace AutomationTraining_M7.Test_Cases
         //LinkedIn_LoginPage objLogin; -- DELETE
         public WebDriverWait _driverWait;
         LinkedIn_SearchPage objSearch;
+        clsDriver cls;
 
         [Test]
         public void Search_LinkedIn()
@@ -28,6 +30,7 @@ namespace AutomationTraining_M7.Test_Cases
 
             //Step# 1 .- Log In 
             objSearch = new LinkedIn_SearchPage(driver);
+            cls = new clsDriver(driver);
             Login_LinkedIn();
 
             //Step# 2 .- Verify if captcha exist
@@ -52,32 +55,51 @@ namespace AutomationTraining_M7.Test_Cases
                 }
             }
 
-            //Step# 3 .- Set Filters
             LinkedIn_SearchPage.fnEnterSearchText("");
             LinkedIn_SearchPage.fnClickSearchBtn();
-            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//button[span[text()='People' or text()='Gente']]")));
-            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[span[text()='People' or text()='Gente']]")));
-            _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[span[text()='People' or text()='Gente']]")));
+
+            string XPATH_PEOPLE = "//button[span[text()='People' or text()='Gente']]";
+            cls.fnWaitForElementToExist(By.XPath(XPATH_PEOPLE));
+            cls.fnWaitForElementToBeVisible(By.XPath(XPATH_PEOPLE));
+            cls.fnWaitForElementToBeClickable(By.XPath(XPATH_PEOPLE));
             LinkedIn_SearchPage.fnSelectPeople();
-            Thread.Sleep(5000);
+
+            string XPATH_ALLFILTERS = "//button[span[text()='All Filters' or text()='Todos los filtros']]";
+            cls.fnWaitForElementToExist(By.XPath(XPATH_ALLFILTERS));
+            cls.fnWaitForElementToBeVisible(By.XPath(XPATH_ALLFILTERS));
+            cls.fnWaitForElementToBeClickable(By.XPath(XPATH_ALLFILTERS));
             LinkedIn_SearchPage.fnSelectAllFilters();
-            Thread.Sleep(5000);
+
+            string XPATH_SELECTCOUNTRY = "//input[@placeholder='Add a country/region'][@aria-label='Add a country/region']";
+            cls.fnWaitForElementToExist(By.XPath(XPATH_SELECTCOUNTRY));
+            cls.fnWaitForElementToBeVisible(By.XPath(XPATH_SELECTCOUNTRY));
             LinkedIn_SearchPage.fnAddCountry("Mexico");
-            //LinkedIn_SearchPage.fnGetRegionMx();
-            Thread.Sleep(5000);
+
+            string XPATH_COUNTRY = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico' or 'México']";
+            cls.fnWaitForElementToExist(By.XPath(XPATH_COUNTRY));
+            cls.fnWaitForElementToBeVisible(By.XPath(XPATH_COUNTRY));
+            cls.fnWaitForElementToBeClickable(By.XPath(XPATH_COUNTRY));
             LinkedIn_SearchPage.fnSelectMexico();
-            Thread.Sleep(5000);
+
+            string XPATH_LANGUAGE = "//label[text()='English' or text()='Ingles']";
+            cls.fnWaitForElementToExist(By.XPath(XPATH_LANGUAGE));
+            cls.fnWaitForElementToBeVisible(By.XPath(XPATH_LANGUAGE));
+            cls.fnWaitForElementToBeClickable(By.XPath(XPATH_LANGUAGE));
             LinkedIn_SearchPage.fnLanguageEng();
-            Thread.Sleep(5000);
+
+            string XPATH_APPLYBUTTON = "//button[@data-control-name='all_filters_apply']";
+            cls.fnWaitForElementToExist(By.XPath(XPATH_APPLYBUTTON));
+            cls.fnWaitForElementToBeVisible(By.XPath(XPATH_APPLYBUTTON));
+            cls.fnWaitForElementToBeClickable(By.XPath(XPATH_APPLYBUTTON));
             LinkedIn_SearchPage.fnClickApplyBtn();
 
             //Step# 4 .- Search Elements
- /*           foreach (string strvalue in arrTechnologies)
-            {
-                LinkedIn_SearchPage.fnEnterSearchText(strvalue);
-                LinkedIn_SearchPage.fnClickSearchBtn();
-            }
-            */
+            /*           foreach (string strvalue in arrTechnologies)
+                       {
+                           LinkedIn_SearchPage.fnEnterSearchText(strvalue);
+                           LinkedIn_SearchPage.fnClickSearchBtn();
+                       }
+                       */
 
         }
     }
