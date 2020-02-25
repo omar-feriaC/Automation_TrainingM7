@@ -24,6 +24,7 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_REGIONMX_CB = "//label[text()='Mexico' or text()='México']";
         readonly static string STR_ADDCOUNTTRY_TEXT = "//input[@placeholder='Add a country/region'][@aria-label='Add a country/region']";
         readonly static string STR_SELECT_MEXICO_DD = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico' or 'México']";
+        readonly static string STR_CLEAR_FILTERS = "//button[@data-control-name='clear_filters']";
 
         //test
         /*CONSTRUCTOR*/
@@ -44,6 +45,7 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objApplyBtn => _ObjSrcDriver.FindElement(By.XPath(STR_APPLY_BTN));
         private static IWebElement objAddCountryTxt => _ObjSrcDriver.FindElement(By.XPath(STR_ADDCOUNTTRY_TEXT));
         private static IWebElement objSelectMexicoDD => _ObjSrcDriver.FindElement(By.XPath(STR_SELECT_MEXICO_DD));
+        private static IWebElement objClearFilters => _ObjSrcDriver.FindElement(By.XPath(STR_CLEAR_FILTERS));
 
 
         /*METHODS*/
@@ -126,6 +128,12 @@ namespace AutomationTraining_M7.Page_Objects
             objLangEngCb.Click();
         }
 
+        public static void fnSelectLanguage(string pstrLanguage)
+        {
+            IWebElement objLanguageOption = _ObjSrcDriver.FindElement(By.XPath($"//*[text()='{pstrLanguage}']"));
+            objLanguageOption.Click();
+        }
+
         //Language Espanish
         private IWebElement GetLanguageEsp()
         {
@@ -172,6 +180,16 @@ namespace AutomationTraining_M7.Page_Objects
         public static void fnSelectMexico()
         {
             objSelectMexicoDD.Click();
+        }
+
+        private IWebElement ClearFilters()
+        {
+            return objClearFilters;
+        }
+
+        public static void fnClearFilters()
+        {
+            objClearFilters.Click();
         }
     }
 }
