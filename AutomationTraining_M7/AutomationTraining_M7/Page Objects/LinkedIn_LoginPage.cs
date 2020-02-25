@@ -98,7 +98,6 @@ namespace AutomationTraining_M7.Page_Objects
                 Assert.Fail();
             }
 
-
         }
 
     }

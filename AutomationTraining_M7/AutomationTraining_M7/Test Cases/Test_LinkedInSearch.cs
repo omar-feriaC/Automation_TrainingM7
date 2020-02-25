@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -22,8 +23,8 @@ namespace AutomationTraining_M7.Test_Cases
         public void Search_LinkedIn()
         {
             //VARIABLES
-            string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol" };
-            string[] arrLanguages = { "Spanish", "English" };
+         //   string[] arrTechnologies = { "Java", "C#", "C++", "Pega", "Cobol" };
+            string[] arrLanguages = { "English" };
 
             //Step# 1 .- Log In 
             objSearch = new LinkedIn_SearchPage(driver);
@@ -52,27 +53,31 @@ namespace AutomationTraining_M7.Test_Cases
             }
 
             //Step# 3 .- Set Filters
-            LinkedIn_SearchPage.fnEnterSearchText("Java");
+            LinkedIn_SearchPage.fnEnterSearchText("");
             LinkedIn_SearchPage.fnClickSearchBtn();
+            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath("//button[span[text()='People' or text()='Gente']]")));
+            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[span[text()='People' or text()='Gente']]")));
+            _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[span[text()='People' or text()='Gente']]")));
             LinkedIn_SearchPage.fnSelectPeople();
             Thread.Sleep(5000);
             LinkedIn_SearchPage.fnSelectAllFilters();
             Thread.Sleep(5000);
-            LinkedIn_SearchPage.fnGetRegionMx();
+            LinkedIn_SearchPage.fnAddCountry("Mexico");
+            //LinkedIn_SearchPage.fnGetRegionMx();
+            Thread.Sleep(5000);
+            LinkedIn_SearchPage.fnSelectMexico();
             Thread.Sleep(5000);
             LinkedIn_SearchPage.fnLanguageEng();
-            Thread.Sleep(5000);
-            LinkedIn_SearchPage.fnLanguageEsp();
             Thread.Sleep(5000);
             LinkedIn_SearchPage.fnClickApplyBtn();
 
             //Step# 4 .- Search Elements
-            foreach (string strvalue in arrTechnologies)
+ /*           foreach (string strvalue in arrTechnologies)
             {
                 LinkedIn_SearchPage.fnEnterSearchText(strvalue);
                 LinkedIn_SearchPage.fnClickSearchBtn();
             }
-
+            */
 
         }
     }

@@ -16,10 +16,6 @@ namespace AutomationTraining_M7.Base_Files
 {
     class BaseTest
     {
-        //**************************************************
-        //*                V A R I A B L E S
-        //**************************************************
-
         /*Webdriver Intance*/
         public static clsDriver objclsDriver;
         public static IWebDriver driver;
@@ -32,12 +28,6 @@ namespace AutomationTraining_M7.Base_Files
         public static ExtentTest objTest; // Test object for Extent Reports
         //public static ExtentHtmlReporter objHtmlReporter; //Old Version of HTML
 
-
-
-        //**************************************************
-        //                  M E T H O D S 
-        //**************************************************
-        //OneTimeSetUp before each class test
         [OneTimeSetUp]
         public static void fnBeforeClass()
         {
@@ -88,9 +78,5 @@ namespace AutomationTraining_M7.Base_Files
             driver.FindElement(by).Clear();
             driver.FindElement(by).SendKeys(pstrText);
         }
-
-
-
-
     }
 }

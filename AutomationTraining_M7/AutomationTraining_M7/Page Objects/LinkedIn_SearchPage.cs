@@ -22,7 +22,10 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_LANG_ENG_CB = "//label[text()='English' or text()='Ingles']";
         readonly static string STR_LANG_ESP_CB = "//label[text()='Spanish' or text()='Español']";
         readonly static string STR_REGIONMX_CB = "//label[text()='Mexico' or text()='México']";
+        readonly static string STR_ADDCOUNTTRY_TEXT = "//input[@placeholder='Add a country/region'][@aria-label='Add a country/region']";
+        readonly static string STR_SELECT_MEXICO_DD = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico' or 'México']";
 
+        //test
         /*CONSTRUCTOR*/
         public LinkedIn_SearchPage(IWebDriver pobjSrcDriver)
         {
@@ -39,6 +42,8 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objLangEngCb => _ObjSrcDriver.FindElement(By.XPath(STR_LANG_ENG_CB));
         private static IWebElement objLangEspCb => _ObjSrcDriver.FindElement(By.XPath(STR_LANG_ESP_CB));
         private static IWebElement objApplyBtn => _ObjSrcDriver.FindElement(By.XPath(STR_APPLY_BTN));
+        private static IWebElement objAddCountryTxt => _ObjSrcDriver.FindElement(By.XPath(STR_ADDCOUNTTRY_TEXT));
+        private static IWebElement objSelectMexicoDD => _ObjSrcDriver.FindElement(By.XPath(STR_SELECT_MEXICO_DD));
 
 
         /*METHODS*/
@@ -143,5 +148,30 @@ namespace AutomationTraining_M7.Page_Objects
             objApplyBtn.Click();
         }
 
+
+        private IWebElement AddCountry()
+        {
+            return objAddCountryTxt;
+        }
+
+
+
+        public static void fnAddCountry(string pstrAddCountry)
+        {
+            objAddCountryTxt.Click();
+            objAddCountryTxt.Clear();
+            objAddCountryTxt.SendKeys(pstrAddCountry);
+        }
+
+        private IWebElement SelectMexico()
+        {
+            return objSelectMexicoDD;
+        }
+
+
+        public static void fnSelectMexico()
+        {
+            objSelectMexicoDD.Click();
+        }
     }
 }
