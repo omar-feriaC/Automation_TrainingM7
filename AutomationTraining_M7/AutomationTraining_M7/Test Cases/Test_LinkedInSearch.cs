@@ -88,7 +88,7 @@ namespace AutomationTraining_M7.Test_Cases
                 }
                 catch (StaleElementReferenceException)
                 {
-                    wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico' or 'México']")));
+                    //wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico' or 'México']")));
                     wait.Until(ExpectedConditions.StalenessOf(LinkedIn_SearchPage.SelectMexico()));
                     LinkedIn_SearchPage.fnSelectMexico();
                 }
@@ -118,21 +118,8 @@ namespace AutomationTraining_M7.Test_Cases
                     //wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_TOTAL_RESULTS_WO)));
                     IWebElement objSearchResult = driver.FindElement(By.XPath(listXpath));
                     objSearchResult.Click();
-                    //int c = b + 1;
-                    //Console.WriteLine(allSearchResults[c]);
-                    ////allSearchResults[b].Click();
-                    ////Console.WriteLine(allSearchResults.ElementAt(c).Text);
-                    //Console.WriteLine(allSearchResults[c].Text);
-                    //try
-                    //{
-                    //    allSearchResults.ElementAt(c).Click();
-                    //}
-                    //catch (StaleElementReferenceException)
-                    //{
-                    //    wait.Until(ExpectedConditions.StalenessOf(allSearchResults[c]));
-                    //    allSearchResults.ElementAt(c).Click();
-                    //}
                     wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='Información de contacto']")));
+                    LinkedIn_SearchPage.fnScrollDownToSkills();
                     LinkedIn_SearchPage.fnMemberInfo();
                     //Thread.Sleep(5000);
                     driver.Navigate().Back();
