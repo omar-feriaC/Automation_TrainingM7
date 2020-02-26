@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using AutomationTraining_M7.Base_Files;
 
 namespace AutomationTraining_M7.Test_Cases
 {
@@ -60,6 +61,7 @@ namespace AutomationTraining_M7.Test_Cases
                 objSearch = new LinkedIn_SearchPage(driver);
                 LinkedIn_SearchPage.fnEnterSearchText(arrLines[i]);
                 LinkedIn_SearchPage.fnClickSearchBtn();
+                ExportDataCsv file = new ExportDataCsv(arrLines[i]);
                 wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
                 wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[span[text()='People' or text()='Gente']]")));
                 wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[span[text()='People' or text()='Gente']]")));
@@ -89,6 +91,24 @@ namespace AutomationTraining_M7.Test_Cases
 
                 //Step# 7 .- Apply the Filters
                 LinkedIn_SearchPage.fnClickApplyBtn();
+                /*
+                 * //CODE TO  GET CANDIDATE DATA
+                 * file.Member.add(new Candidate
+                 * {
+                 *  ActorName = actorname.text;
+                 *  ProfileRole = profile.text;
+                 *  LinkedIn URL = linkedInUrl.text;
+                 *  LastJob = lastjob.text;
+                 *  ExperienceRole = experienceRoles.text;
+                 *  ExperienceCompany = experinceCompany.text;
+                 *  ExpereincePeriod = experiencePeriod.text;
+                 *  SkillsValidations = skillsValidations.text;
+                 *  ToolsTechnologies = toolsTechnologies.text;
+                 *  }
+                 * );
+                 * 
+                 * file.fnCreateFile();
+                 */
                 LinkedIn_SearchPage.fnClearFilters();
             }
 

@@ -28,6 +28,19 @@ namespace AutomationTraining_M7.Reporting
             return strReportPath;
         }
 
+        //Function to add a directiory
+
+        public string fnGetCSVPath()
+        {
+            var strPath = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
+            var strActualPath = strPath.Substring(0, strPath.LastIndexOf("bin"));
+            var strProjectPath = new Uri(strActualPath).LocalPath;
+            Directory.CreateDirectory(strProjectPath.ToString() + "CsvOutput");
+            var strReportPath = strProjectPath + "CsvOutput\\";
+            return strReportPath;
+        }
+
+
         //public void fnReportSetUp(ExtentHtmlReporter phtmlReporter, ExtentReports pExtent)
         public void fnReportSetUp(ExtentV3HtmlReporter phtmlReporter, ExtentReports pExtent)
         {

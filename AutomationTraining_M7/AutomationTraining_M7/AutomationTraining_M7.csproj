@@ -110,6 +110,9 @@
   <ItemGroup>
     <Compile Include="Base Files\BaseTest.cs" />
     <Compile Include="Base Files\clsDriver.cs" />
+    <Compile Include="Base Files\exportDataCsv.cs" />
+    <Compile Include="Base Files\technologiesHeader.cs" />
+    <Compile Include="Data Model\Candidates.cs" />
     <Compile Include="Page Objects\LinkedIn_LoginPage.cs" />
     <Compile Include="Page Objects\LinkedIn_SearchPage.cs" />
     <Compile Include="Program.cs" />
