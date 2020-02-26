@@ -12,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutomationTraining_M7.Base_Files;
 
+
 namespace AutomationTraining_M7.Test_Cases
 {
     class Test_LinkedInSearch : Test_LinkedIn
@@ -24,8 +25,8 @@ namespace AutomationTraining_M7.Test_Cases
         public void Search_LinkedIn()
         {
             //VARIABLES
-            string[] arrLines = System.IO.File.ReadAllLines(@"C:\Users\daniel.luna\Documents\Automation\Exc 2 Mod 8\Autom_TrngM7\AutomTrng_M7\technologies.txt");
-            string[] arrLanguages = { "English" };
+            string[] arrLines = System.IO.File.ReadAllLines(@"C:\Users\jose.cruz\Desktop\Automation\technologies.txt");
+            //string[] arrLanguages = { "English" };
 
             //Step# 1 .- Log In 
             objSearch = new LinkedIn_SearchPage(driver);
@@ -83,10 +84,47 @@ namespace AutomationTraining_M7.Test_Cases
                 LinkedIn_SearchPage.fnSelectAllFilters();
                 wait.Until(ExpectedConditions.ElementExists(By.XPath("//input[@placeholder='Add a country/region' or @placeholder='Añadir un país o región'][@aria-label='Add a country/region' or @aria-label='Añadir un país o región']")));
                 LinkedIn_SearchPage.fnAddCountry("Mexico");
-                LinkedIn_SearchPage.fnSelectMexico();
-                foreach (string language in arrLanguages)
+                wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico' or 'México']")));
+                LinkedIn_SearchPage.fnLanguageEng();
+                //foreach (string language in arrLanguages)
+                //{
+                //    LinkedIn_SearchPage.fnSelectLanguage(language);
+                //}
+
+                //Step# 7 .- Apply the Filters
+                LinkedIn_SearchPage.fnClickApplyBtn(); 
+
+                IList<IWebElement> allSearchResults = LinkedIn_SearchPage.fnAllResultPage();
+                Thread.Sleep(5000);
+
+                for(int b=0; b< allSearchResults.Count; b++)
                 {
-                    LinkedIn_SearchPage.fnSelectLanguage(language);
+
+                    Thread.Sleep(5000);
+                    //string listXpath = $"//span[@class='actor-name'][{b+2}]";
+                    string listXpath = $"(//span[@class='actor-name' or @class='name actor-name'])[{b + 1}]";
+
+                    Console.WriteLine("XPATH is: " + listXpath);
+                    string STR_TOTAL_RESULTS_WO = listXpath;
+                    //wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_TOTAL_RESULTS_WO)));
+                    IWebElement objSearchResult = driver.FindElement(By.XPath(listXpath));
+                    objSearchResult.Click();
+                    //int c = b + 1;
+                    //Console.WriteLine(allSearchResults[c]);
+                    ////allSearchResults[b].Click();
+                    ////Console.WriteLine(allSearchResults.ElementAt(c).Text);
+                    //Console.WriteLine(allSearchResults[c].Text);
+                    //try
+                    //{
+                    //    allSearchResults.ElementAt(c).Click();
+                    //}
+                    //catch (StaleElementReferenceException)
+                    //{
+                    //    wait.Until(ExpectedConditions.StalenessOf(allSearchResults[c]));
+                    //    allSearchResults.ElementAt(c).Click();
+                    //}
+                    Thread.Sleep(5000);
+                    driver.Navigate().Back();
                 }
 
                 //Step# 7 .- Apply the Filters

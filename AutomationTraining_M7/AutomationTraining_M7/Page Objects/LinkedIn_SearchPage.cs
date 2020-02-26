@@ -19,12 +19,14 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_SEARCH_TEXT = "//input[@placeholder='Search' or @placeholder='Buscar']";
         readonly static string STR_PEOPLE_BTN = "//button[span[text()='People' or text()='Gente']]";
         readonly static string STR_ALLFILTERS_BTN = "//button[span[text()='All Filters' or text()='Todos los filtros']]";
-        readonly static string STR_LANG_ENG_CB = "//label[text()='English' or text()='Ingles']";
+        readonly static string STR_LANG_ENG_CB = "//label[text()='English' or text()='Ingles' or text()='Inglés']";
         readonly static string STR_LANG_ESP_CB = "//label[text()='Spanish' or text()='Español']";
         readonly static string STR_REGIONMX_CB = "//label[text()='Mexico' or text()='México']";
-        readonly static string STR_ADDCOUNTTRY_TEXT = "//input[@placeholder='Add a country/region'][@aria-label='Add a country/region']";
+        readonly static string STR_ADDCOUNTTRY_TEXT = "//input[@placeholder='Add a country/region' or @placeholder='Añadir un país o región'][@aria-label='Add a country/region' or @aria-label='Añadir un país o región']";
         readonly static string STR_SELECT_MEXICO_DD = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico' or 'México']";
         readonly static string STR_CLEAR_FILTERS = "//div[@id='inbug-nav-item']";
+        //readonly static string STR_TOTAL_RESULTS_WO = "/html/body/div[5]/div[5]/div[4]/div/div[2]/div/div[2]/div/div/div/div/ul";
+        readonly static string STR_TOTAL_RESULTS_WO = "//ul[@class='search-results__list list-style-none ']/li/div/div[1]/div[2]/a/h3/span/span/span[1]";
 
         //test
         /*CONSTRUCTOR*/
@@ -46,6 +48,7 @@ namespace AutomationTraining_M7.Page_Objects
         private static IWebElement objAddCountryTxt => _ObjSrcDriver.FindElement(By.XPath(STR_ADDCOUNTTRY_TEXT));
         private static IWebElement objSelectMexicoDD => _ObjSrcDriver.FindElement(By.XPath(STR_SELECT_MEXICO_DD));
         private static IWebElement objClearFilters => _ObjSrcDriver.FindElement(By.XPath(STR_CLEAR_FILTERS));
+        //private static List<IWebElement> objAllResultsPage => _ObjSrcDriver.FindElements(By.XPath(STR_TOTAL_RESULTS_WO));
 
 
         /*METHODS*/
@@ -122,6 +125,10 @@ namespace AutomationTraining_M7.Page_Objects
         {
             return objLangEngCb;
         }
+        //private IWebElement GetAllResultsPage()
+        //{
+        //    return objAllResultsPage;
+        //}
 
         public static void fnLanguageEng()
         {
@@ -190,6 +197,16 @@ namespace AutomationTraining_M7.Page_Objects
         public static void fnClearFilters()
         {
             objClearFilters.Click();
+        }
+        public static IList<IWebElement> fnAllResultPage()
+        {
+            IList<IWebElement> objAllSearchResults = _ObjSrcDriver.FindElements(By.XPath(STR_TOTAL_RESULTS_WO));
+
+            return objAllSearchResults;
+        }
+        public void fnAllResultPage(IWebElement elementToSearch)
+        {
+            elementToSearch.Click();            
         }
     }
 }
