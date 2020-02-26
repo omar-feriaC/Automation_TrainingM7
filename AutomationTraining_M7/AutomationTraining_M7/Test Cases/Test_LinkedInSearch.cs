@@ -90,7 +90,7 @@ namespace AutomationTraining_M7.Test_Cases
                 //}
 
                 //Step# 7 .- Apply the Filters
-                LinkedIn_SearchPage.fnClickApplyBtn(); 
+                LinkedIn_SearchPage.fnClickApplyBtn();  
 
                 IList<IWebElement> allSearchResults = LinkedIn_SearchPage.fnAllResultPage();
                 Thread.Sleep(5000);
