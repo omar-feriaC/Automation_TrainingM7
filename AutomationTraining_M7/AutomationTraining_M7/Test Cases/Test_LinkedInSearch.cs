@@ -85,7 +85,17 @@ namespace AutomationTraining_M7.Test_Cases
                 LinkedIn_SearchPage.fnSelectAllFilters();
                 wait.Until(ExpectedConditions.ElementExists(By.XPath("//input[@placeholder='Add a country/region' or @placeholder='Añadir un país o región'][@aria-label='Add a country/region' or @aria-label='Añadir un país o región']")));
                 LinkedIn_SearchPage.fnAddCountry("Mexico");
-                wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico' or 'México']")));
+                try
+                {
+                    LinkedIn_SearchPage.fnSelectMexico();
+                }
+                catch (StaleElementReferenceException)
+                {
+                    wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico' or 'México']")));
+                    wait.Until(ExpectedConditions.StalenessOf(LinkedIn_SearchPage.SelectMexico()));
+                    LinkedIn_SearchPage.fnSelectMexico();
+                }
+                //wait.Until(ExpectedConditions.ElementExists(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico' or 'México']")));
                 LinkedIn_SearchPage.fnLanguageEng();
                 //foreach (string language in arrLanguages)
                 //{
@@ -105,7 +115,8 @@ namespace AutomationTraining_M7.Test_Cases
                 for(int b=0; b< allSearchResults.Count; b++)
                 {
 
-                    Thread.Sleep(5000);
+                    //Thread.Sleep(5000);
+                    wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath($"(//span[@class='actor-name' or @class='name actor-name'])[{b + 1}]")));
                     //string listXpath = $"//span[@class='actor-name'][{b+2}]";
                     string listXpath = $"(//span[@class='actor-name' or @class='name actor-name'])[{b + 1}]";
 
@@ -128,7 +139,9 @@ namespace AutomationTraining_M7.Test_Cases
                     //    wait.Until(ExpectedConditions.StalenessOf(allSearchResults[c]));
                     //    allSearchResults.ElementAt(c).Click();
                     //}
-                    Thread.Sleep(5000);
+                    wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='Información de contacto']")));
+                    LinkedIn_SearchPage.fnMemberInfo();
+                    //Thread.Sleep(5000);
                     driver.Navigate().Back();
 
                     //Export ifno to CSV file
