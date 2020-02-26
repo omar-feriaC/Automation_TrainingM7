@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Data_Model
 {
-    class Candidates
+    public class Candidates
     {
         public string ActorName {get; set;}
         public string ProfileRole { get; set; }

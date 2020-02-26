@@ -18,7 +18,7 @@ namespace AutomationTraining_M7.Base_Files
         public ExportDataCsv(string pstrTechnologies)
         {
             FileName = $"{pstrTechnologies}_{DateTime.Now.ToString("MMddyyyy_HHmmss")}.csv";
-            Header = "";
+            Header = "Actor Name,Profile/Role,LinkedIn URL,Last Job,Experience Role,Experience Company,Experience Period,Skills and Validations, Tools and technologies";
             Member = new List<Candidates>();
         }
 
@@ -28,13 +28,7 @@ namespace AutomationTraining_M7.Base_Files
             file.WriteLine(Header);
             foreach (Candidates candidate in Member)
             {
-                file.WriteLine($"Actor Name: {candidate.ActorName}");
-                file.WriteLine($"Profile/Role: {candidate.ProfileRole}");
-                file.WriteLine($"LinkedIn URL: {candidate.LinkedInUrl}");
-                file.WriteLine($"Actor Name: {candidate.LastJob}");
-                file.WriteLine($"Experience: Role: {candidate.ExperienceRole},  Company: {candidate.ExperienceCompany},  Period:{candidate.ExperiencePeriod}");
-                file.WriteLine($"Skills and Validations: {candidate.SkillsValidations}");
-                file.WriteLine($"Tools and technologies: {candidate.ToolsTechnologies}");                
+                file.WriteLine($"{candidate.ActorName},{candidate.ProfileRole},{candidate.LinkedInUrl},{candidate.LastJob},{candidate.ExperienceRole},{candidate.ExperienceCompany},{candidate.ExperiencePeriod},{candidate.SkillsValidations},{candidate.ToolsTechnologies}");                              
             }
             file.Close();
         }

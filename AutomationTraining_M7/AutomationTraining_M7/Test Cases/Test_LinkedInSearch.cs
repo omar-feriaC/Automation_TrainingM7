@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using AutomationTraining_M7.Base_Files;
+using AutomationTraining_M7.Data_Model;
 
 
 namespace AutomationTraining_M7.Test_Cases
@@ -25,7 +26,7 @@ namespace AutomationTraining_M7.Test_Cases
         public void Search_LinkedIn()
         {
             //VARIABLES
-            string[] arrLines = System.IO.File.ReadAllLines(@"C:\Users\jose.cruz\Desktop\Automation\technologies.txt");
+            string[] arrLines = System.IO.File.ReadAllLines(@"C: \Users\hector.castillo.AT\Desktop\technologies.txt");
             //string[] arrLanguages = { "English" };
 
             //Step# 1 .- Log In 
@@ -92,7 +93,11 @@ namespace AutomationTraining_M7.Test_Cases
                 //}
 
                 //Step# 7 .- Apply the Filters
-                LinkedIn_SearchPage.fnClickApplyBtn(); 
+                LinkedIn_SearchPage.fnClickApplyBtn();
+
+               
+
+
 
                 IList<IWebElement> allSearchResults = LinkedIn_SearchPage.fnAllResultPage();
                 Thread.Sleep(5000);
@@ -125,29 +130,29 @@ namespace AutomationTraining_M7.Test_Cases
                     //}
                     Thread.Sleep(5000);
                     driver.Navigate().Back();
+
+                    //Export ifno to CSV file
+                    //CODE TO  GET CANDIDATE DATA
+                    file.Member.Add(new Candidates
+                    {
+                        ActorName = "hector test",
+                        ProfileRole = "testststs",
+                        LinkedInUrl = "tsetset.com",
+                        LastJob = "test1",
+                        ExperienceRole = "test01",
+                        ExperienceCompany = "test02",
+                        ExperiencePeriod = "test03",
+                        SkillsValidations = "test04",
+                        ToolsTechnologies = "test05"
+                    });
                 }
 
-                //Step# 7 .- Apply the Filters
-                LinkedIn_SearchPage.fnClickApplyBtn();
-                /*
-                 * //CODE TO  GET CANDIDATE DATA
-                 * file.Member.add(new Candidate
-                 * {
-                 *  ActorName = actorname.text;
-                 *  ProfileRole = profile.text;
-                 *  LinkedIn URL = linkedInUrl.text;
-                 *  LastJob = lastjob.text;
-                 *  ExperienceRole = experienceRoles.text;
-                 *  ExperienceCompany = experinceCompany.text;
-                 *  ExpereincePeriod = experiencePeriod.text;
-                 *  SkillsValidations = skillsValidations.text;
-                 *  ToolsTechnologies = toolsTechnologies.text;
-                 *  }
-                 * );
-                 * 
-                 * file.fnCreateFile();
-                 */
+                file.fnCreateFile();
+
                 LinkedIn_SearchPage.fnClearFilters();
+               
+            
+                
             }
 
             
