@@ -33,11 +33,11 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_TOTAL_RESULTS_WO = "//ul[@class='search-results__list list-style-none ']/li/div/div[1]/div[2]/a/h3/span/span/span[1]";
         readonly static string STR_NAME = "//li[@class='inline t-24 t-black t-normal break-words']";
         readonly static string STR_ROLE = "//h2[@class='mt1 t-18 t-black t-normal']";
-        readonly static string STR_LAST_JOB = "(//div[@class='pv-entity__summary-info pv-entity__summary-info--background-section '])[1]";
+        readonly static string STR_LAST_JOB = "(//div[contains(@class,'pv-entity__summary-info pv-entity__summary-info--background-section')])[1]";
         readonly static string STR_EXPERIENCE = "//section[@id='experience-section']";
         readonly static string STR_SHOW_MORE_BTN = "//button[@data-control-name='skill_details']";
         readonly static string STR_SKILLS = "//ol[@class='pv-skill-categories-section__top-skills pv-profile-section__section-info section-info pb1']";
-        readonly static string STR_TOOLS = "(//ol[@class='pv-skill-category-list__skills_list list-style-none'])[1]";
+        readonly static string STR_TOOLS = "//div[@class='pv-skill-category-list pv-profile-section__section-info mb6 ember-view']/h3[text()='Herramientas y tecnologías']/following-sibling::ol";
 
         //test
         /*CONSTRUCTOR*/
@@ -85,7 +85,7 @@ namespace AutomationTraining_M7.Page_Objects
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             //js.ExecuteScript("window.scrollTo(50, document.body.scrollHeight/3)");
-            js.ExecuteScript("window.scrollBy(0,20)");
+            js.ExecuteScript("window.scrollBy(0,50)");
         }
 
         //public static void fnScrollElement(By by) 
@@ -115,7 +115,6 @@ namespace AutomationTraining_M7.Page_Objects
                 Console.WriteLine();
                 objURL.Add(_ObjSrcDriver.Url);
                 Console.WriteLine("URL: " + objURL[i]);
-                //wait.Until(ExpectedConditions.ElementExists(By.XPath("(//div[@class='pv-entity__summary-info pv-entity__summary-info--background-section '])[1]")));
                 Console.WriteLine();
                 do
                 {
@@ -136,6 +135,7 @@ namespace AutomationTraining_M7.Page_Objects
                     height = _ObjSrcDriver.Manage().Window.Size.Height;
                     try
                     {
+
                         GetShowMore();
                         objShowMore.Click();
                         break;
@@ -146,20 +146,7 @@ namespace AutomationTraining_M7.Page_Objects
                     }
                 }
                 while (actual < height);
-                //actions.MoveToElement(objShowMore);
-                //actions.Perform();
                 wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_SHOW_MORE_BTN)));
-                //objShowMore.Click();
-                //try
-                //{
-                //    objShowMore.Click();
-                //}
-                //catch (ElementClickInterceptedException)
-                //{
-                //    actions.MoveToElement(objShowMore);
-                //    actions.Perform();
-                //    objShowMore.Click();
-                //}
                 wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_SKILLS)));
                 if (objSkills[i].Displayed) { Console.WriteLine("Skills and Validations: " + objSkills[i].Text); } else { Console.WriteLine("Skills and Validations: Info does not exists."); };
                 Console.WriteLine();
