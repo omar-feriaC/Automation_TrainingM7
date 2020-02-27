@@ -55,7 +55,6 @@ namespace AutomationTraining_M7.Test_Cases
                 using (FileStream fs = File.Create(filepath))
                 {
                     byte[] file = new UTF8Encoding(true).GetBytes("Replace this text with the list of technologies you want to search candidates for.");
-                    // Add some information to the file.
                     fs.Write(file, 0, file.Length);
                 }
                 Console.WriteLine($"The input file for tech nologies was not found, please go to {filepath} and update the file contents.");
@@ -121,6 +120,7 @@ namespace AutomationTraining_M7.Test_Cases
                 LinkedIn_SearchPage.fnAddCountry("Mexico");
                 try
                 {
+                    wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico' or text()='México']")));
                     LinkedIn_SearchPage.fnSelectMexico();
                 }
                 catch (StaleElementReferenceException)

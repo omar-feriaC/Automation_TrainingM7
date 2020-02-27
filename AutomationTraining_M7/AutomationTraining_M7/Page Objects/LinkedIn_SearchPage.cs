@@ -36,7 +36,7 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_LAST_JOB = "(//div[@class='pv-entity__summary-info pv-entity__summary-info--background-section '])[1]";
         readonly static string STR_EXPERIENCE = "//ul[@class='pv-profile-section__section-info section-info pv-profile-section__section-info--has-more']";
         readonly static string STR_SHOW_MORE_BTN = "//button[@class='pv-profile-section__card-action-bar pv-skills-section__additional-skills artdeco-container-card-action-bar artdeco-button artdeco-button--tertiary artdeco-button--3 artdeco-button--fluid']";
-        readonly static string STR_SKILLS = "//ol[@class='pv-skill-categories-section__top-skills pv-profile-section__section-info section-info pb1']";
+        readonly static string STR_SKILLS = "//*[@class='pv-profile-section pv-skill-categories-section artdeco-container-card ember-view']";
         readonly static string STR_TOOLS = "(//ol[@class='pv-skill-category-list__skills_list list-style-none'])[1]";
 
         //test
@@ -85,6 +85,7 @@ namespace AutomationTraining_M7.Page_Objects
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             //js.ExecuteScript("window.scrollTo(50, document.body.scrollHeight)");
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='Información de contacto']")));
             IWebElement fnElementExists = driver.FindElement(By.XPath(STR_SKILLS));
             js.ExecuteScript("arguments[0].scrollIntoView(); ", fnElementExists);
             //js.ExecuteScript("window.scrollBy(0,10)");
@@ -280,6 +281,7 @@ namespace AutomationTraining_M7.Page_Objects
 
         public static void fnSelectMexico()
         {
+            
             objSelectMexicoDD.Click();
         }
 
