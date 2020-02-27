@@ -34,8 +34,8 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_NAME = "//li[@class='inline t-24 t-black t-normal break-words']";
         readonly static string STR_ROLE = "//h2[@class='mt1 t-18 t-black t-normal']";
         readonly static string STR_LAST_JOB = "(//div[@class='pv-entity__summary-info pv-entity__summary-info--background-section '])[1]";
-        readonly static string STR_EXPERIENCE = "//ul[@class='pv-profile-section__section-info section-info pv-profile-section__section-info--has-more']";
-        readonly static string STR_SHOW_MORE_BTN = "//button[@class='pv-profile-section__card-action-bar pv-skills-section__additional-skills artdeco-container-card-action-bar artdeco-button artdeco-button--tertiary artdeco-button--3 artdeco-button--fluid']";
+        readonly static string STR_EXPERIENCE = "//section[@id='experience-section']";
+        readonly static string STR_SHOW_MORE_BTN = "//button[@data-control-name='skill_details']";
         readonly static string STR_SKILLS = "//ol[@class='pv-skill-categories-section__top-skills pv-profile-section__section-info section-info pb1']";
         readonly static string STR_TOOLS = "(//ol[@class='pv-skill-category-list__skills_list list-style-none'])[1]";
 
@@ -84,17 +84,17 @@ namespace AutomationTraining_M7.Page_Objects
         public static void fnScrollDownToSkills()
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            //js.ExecuteScript("window.scrollTo(50, document.body.scrollHeight)");
-            js.ExecuteScript("window.scrollBy(0,10)");
+            //js.ExecuteScript("window.scrollTo(50, document.body.scrollHeight/3)");
+            js.ExecuteScript("window.scrollBy(0,20)");
         }
 
-        public static void fnScrollElement(By by) 
-        {
-            do {
-                fnScrollDownToSkills(
-            }
-            while (fnElemetExit(By by));
-        }
+        //public static void fnScrollElement(By by) 
+        //{
+        //    do {
+        //        fnScrollDownToSkills(
+        //    }
+        //    while (fnElemetExit(By by));
+        //}
 
 
 
@@ -105,7 +105,8 @@ namespace AutomationTraining_M7.Page_Objects
 
             for (int i = 0; i < objName.Count; i++)
             {
-
+                int height = _ObjSrcDriver.Manage().Window.Size.Height;
+                int actual = 0;
                 wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
                 Actions actions = new Actions(_ObjSrcDriver);
                 Console.WriteLine("Name: " + objName[i].Text);
@@ -131,9 +132,34 @@ namespace AutomationTraining_M7.Page_Objects
                 do
                 {
                     fnScrollDownToSkills();
+                    actual += 10;
+                    height = _ObjSrcDriver.Manage().Window.Size.Height;
+                    try
+                    {
+                        GetShowMore();
+                        objShowMore.Click();
+                        break;
+                    }
+                    catch(Exception)
+                    {
+                        continue;
+                    }
                 }
-                while (!objShowMore.Displayed);
-                objShowMore.Click();
+                while (actual < height);
+                //actions.MoveToElement(objShowMore);
+                //actions.Perform();
+                wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_SHOW_MORE_BTN)));
+                //objShowMore.Click();
+                //try
+                //{
+                //    objShowMore.Click();
+                //}
+                //catch (ElementClickInterceptedException)
+                //{
+                //    actions.MoveToElement(objShowMore);
+                //    actions.Perform();
+                //    objShowMore.Click();
+                //}
                 wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_SKILLS)));
                 if (objSkills[i].Displayed) { Console.WriteLine("Skills and Validations: " + objSkills[i].Text); } else { Console.WriteLine("Skills and Validations: Info does not exists."); };
                 Console.WriteLine();

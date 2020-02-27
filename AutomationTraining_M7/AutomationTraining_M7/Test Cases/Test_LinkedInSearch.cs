@@ -26,7 +26,7 @@ namespace AutomationTraining_M7.Test_Cases
         public void Search_LinkedIn()
         {
             //VARIABLES
-            string[] arrLines = System.IO.File.ReadAllLines(@"C: \Users\hector.castillo.AT\Desktop\technologies.txt");
+            string[] arrLines = System.IO.File.ReadAllLines(@"C:\Users\daniel.luna\Documents\Automation\M12_Final_Exam\technologies.txt");
             //string[] arrLanguages = { "English" };
 
             //Step# 1 .- Log In 
@@ -66,7 +66,7 @@ namespace AutomationTraining_M7.Test_Cases
                 ExportDataCsv file = new ExportDataCsv(arrLines[i]);
                 wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
                 wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[span[text()='People' or text()='Gente']]")));
-                wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[span[text()='People' or text()='Gente']]")));
+                //wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[span[text()='People' or text()='Gente']]")));
 
                 //Step# 4 .- Selecting People button
                 try
