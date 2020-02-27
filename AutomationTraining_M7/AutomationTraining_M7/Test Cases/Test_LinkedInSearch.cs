@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -26,9 +27,45 @@ namespace AutomationTraining_M7.Test_Cases
         public void Search_LinkedIn()
         {
             //VARIABLES
-            string[] arrLines = System.IO.File.ReadAllLines(@"C: \Users\hector.castillo.AT\Desktop\technologies.txt");
-            //string[] arrLanguages = { "English" };
+            //Path to technologies file
+            string userpath = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName;
+            if (Environment.OSVersion.Version.Major >= 6)
+            {
+                userpath = Directory.GetParent(userpath).ToString();
+            }
 
+            string filepath = userpath + "\\Documents\\technologies.txt";
+            //Check if the file exists, if not create it and write alert
+            if(File.Exists(filepath))
+            {
+                Console.WriteLine($"File was found, the content is:\n{filepath}");
+                String fileContent = System.IO.File.ReadAllText(filepath);
+                if (fileContent.Equals("Replace this text with the list of technologies you want to search candidates for."))
+                {
+                    Console.WriteLine("File has no technologies to search, please replace them.");
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine($"File is valid.");
+                }
+            }
+            else
+            {
+                using (FileStream fs = File.Create(filepath))
+                {
+                    byte[] file = new UTF8Encoding(true).GetBytes("Replace this text with the list of technologies you want to search candidates for.");
+                    // Add some information to the file.
+                    fs.Write(file, 0, file.Length);
+                }
+                Console.WriteLine($"The input file for tech nologies was not found, please go to {filepath} and update the file contents.");
+                
+                return;
+            }
+            
+            string[] arrLines = System.IO.File.ReadAllLines(filepath);
+            //string[] arrLines = System.IO.File.ReadAllLines(userpath + "\\Documents\\technologies.txt");
+            //string[] arrLanguages = { "English" };
             //Step# 1 .- Log In 
             objSearch = new LinkedIn_SearchPage(driver);
             Login_LinkedIn();
@@ -50,7 +87,6 @@ namespace AutomationTraining_M7.Test_Cases
                         wait = new WebDriverWait(driver, new TimeSpan(0, 0, 60));
                         objCheckbox = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[@role='checkbox']")));
                         if (objCheckbox.Enabled) { objCheckbox.Click(); }
-                        
                     }
                 }
             }
@@ -58,8 +94,6 @@ namespace AutomationTraining_M7.Test_Cases
             //Step# 3 .- Set Filters
             for (int i = 0; i < arrLines.Length; i++)
             {
-
-
                 objSearch = new LinkedIn_SearchPage(driver);
                 LinkedIn_SearchPage.fnEnterSearchText(arrLines[i]);
                 LinkedIn_SearchPage.fnClickSearchBtn();
@@ -104,10 +138,6 @@ namespace AutomationTraining_M7.Test_Cases
 
                 //Step# 7 .- Apply the Filters
                 LinkedIn_SearchPage.fnClickApplyBtn();
-
-               
-
-
 
                 IList<IWebElement> allSearchResults = LinkedIn_SearchPage.fnAllResultPage();
                 Thread.Sleep(5000);

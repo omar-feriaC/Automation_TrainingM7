@@ -85,9 +85,12 @@ namespace AutomationTraining_M7.Page_Objects
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             //js.ExecuteScript("window.scrollTo(50, document.body.scrollHeight)");
-            js.ExecuteScript("window.scrollBy(0,10)");
-        }
+            IWebElement fnElementExists = driver.FindElement(By.XPath(STR_SKILLS));
+            js.ExecuteScript("arguments[0].scrollIntoView(); ", fnElementExists);
+            //js.ExecuteScript("window.scrollBy(0,10)");
 
+        }
+        /*
         public static void fnScrollElement(By by) 
         {
             do {
@@ -95,7 +98,7 @@ namespace AutomationTraining_M7.Page_Objects
             }
             while (fnElemetExit(By by));
         }
-
+        */
 
 
 
