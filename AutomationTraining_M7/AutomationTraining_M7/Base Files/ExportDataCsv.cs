@@ -28,9 +28,10 @@ namespace AutomationTraining_M7.Base_Files
             file.WriteLine(Header);
             foreach (Candidates candidate in Member)
             {
-                file.WriteLine($"{candidate.ActorName},{candidate.ProfileRole},{candidate.LinkedInUrl},{candidate.LastJob},{candidate.ExperienceRole},{candidate.ExperienceCompany},{candidate.ExperiencePeriod},{candidate.SkillsValidations},{candidate.ToolsTechnologies}");                              
+                file.WriteLine($"\"{candidate.ActorName}\", \"{candidate.ProfileRole}\", \"{ candidate.LinkedInUrl}\", \"{candidate.LastJob}\", \"{candidate.ExperienceRole}\", \"{ candidate.ExperienceCompany}\", \"{candidate.ExperiencePeriod}\", \"{candidate.SkillsValidations}\", \"{candidate.ToolsTechnologies}\"");
             }
             file.Close();
+                       
         }
     }
 }

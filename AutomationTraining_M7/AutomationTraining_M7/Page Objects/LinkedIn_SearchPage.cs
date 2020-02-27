@@ -1,4 +1,5 @@
 ﻿using AutomationTraining_M7.Base_Files;
+using AutomationTraining_M7.Data_Model;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
@@ -27,7 +28,7 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_LANG_ESP_CB = "//label[text()='Spanish' or text()='Español']";
         readonly static string STR_REGIONMX_CB = "//label[text()='Mexico' or text()='México']";
         readonly static string STR_ADDCOUNTTRY_TEXT = "//input[@placeholder='Add a country/region' or @placeholder='Añadir un país o región'][@aria-label='Add a country/region' or @aria-label='Añadir un país o región']";
-        readonly static string STR_SELECT_MEXICO_DD = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico' or text()='México']";
+        readonly static string STR_SELECT_MEXICO_DD = "//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico' or text()='México']";        
         readonly static string STR_CLEAR_FILTERS = "//div[@id='inbug-nav-item']";
         //readonly static string STR_TOTAL_RESULTS_WO = "/html/body/div[5]/div[5]/div[4]/div/div[2]/div/div[2]/div/div/div/div/ul";
         readonly static string STR_TOTAL_RESULTS_WO = "//ul[@class='search-results__list list-style-none ']/li/div/div[1]/div[2]/a/h3/span/span/span[1]";
@@ -99,9 +100,10 @@ namespace AutomationTraining_M7.Page_Objects
 
 
 
-        public static void fnMemberInfo()
+        public static List<Candidates> fnMemberInfo()
         {
             List<string> objURL = new List<string>();
+            List<Candidates> ListInfoCandidates = new List<Candidates>();
 
             for (int i = 0; i < objName.Count; i++)
             {
@@ -166,7 +168,23 @@ namespace AutomationTraining_M7.Page_Objects
                 wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_TOOLS)));
                 if (objTools[i].Displayed) { Console.WriteLine("Tools and Technologies: " + objTools[i].Text); } else { Console.WriteLine("Tools and Technologies: Info does not exists."); };
                 Console.WriteLine("____________________________________________________");
+
+                //Export ifno to CSV file
+                //CODE TO  GET CANDIDATE DATA
+                ListInfoCandidates.Add(new Candidates
+                {
+                    ActorName = objName[i].Text,
+                    ProfileRole = "testststs",
+                    LinkedInUrl = "tsetset.com",
+                    LastJob = "test1",
+                    ExperienceRole = "test01",
+                    ExperienceCompany = "test02",
+                    ExperiencePeriod = "test03",
+                    SkillsValidations = "test04",
+                    ToolsTechnologies = "test05"
+                });
             }
+            return ListInfoCandidates;
         }
 
         //Captcha
