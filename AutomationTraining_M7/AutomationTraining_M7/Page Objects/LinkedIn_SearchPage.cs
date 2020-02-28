@@ -281,6 +281,7 @@ namespace AutomationTraining_M7.Page_Objects
         public static void fnClickApplyBtn()
         {
             objApplyBtn.Click();
+            //wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_TOTAL_RESULTS_WO)));
         }
 
 
