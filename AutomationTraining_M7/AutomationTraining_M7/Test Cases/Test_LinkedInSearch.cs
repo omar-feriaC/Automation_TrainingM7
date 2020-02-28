@@ -33,8 +33,6 @@ namespace AutomationTraining_M7.Test_Cases
                 userpath = Directory.GetParent(userpath).ToString();
             }
 
-
-
             string filepath = userpath + "\\Documents\\technologies.txt";
             //Check if the file exists, if not create it and write alert
             if (File.Exists(filepath))
@@ -95,8 +93,6 @@ namespace AutomationTraining_M7.Test_Cases
             //Step# 3 .- Set Filters
             for (int i = 0; i < arrLines.Length; i++)
             {
-
-
                 objSearch = new LinkedIn_SearchPage(driver);
                 LinkedIn_SearchPage.fnEnterSearchText(arrLines[i]);
                 LinkedIn_SearchPage.fnClickSearchBtn();
@@ -143,10 +139,6 @@ namespace AutomationTraining_M7.Test_Cases
                 //Step# 7 .- Apply the Filters
                 LinkedIn_SearchPage.fnClickApplyBtn();
 
-               
-
-
-
                 IList<IWebElement> allSearchResults = LinkedIn_SearchPage.fnAllResultPage();
                 Thread.Sleep(5000);
 
@@ -165,23 +157,20 @@ namespace AutomationTraining_M7.Test_Cases
                     objSearchResult.Click();
                     wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='Información de contacto']")));
                     LinkedIn_SearchPage.fnScrollDownToSkills();
-                    LinkedIn_SearchPage.fnMemberInfo();
+                    file.Member.Add(LinkedIn_SearchPage.fnMemberInfo());
                     //Thread.Sleep(5000);
+
                     driver.Navigate().Back();
-
-                   
+    
                 }
-                file.Member = LinkedIn_SearchPage.fnMemberInfo();
-                file.fnCreateFile(LinkedIn_SearchPage.fnMemberInfo());
 
-                LinkedIn_SearchPage.fnClearFilters();
-               
-            
+                //    file.Member = LinkedIn_SearchPage.fnMemberInfo();
+
+                file.fnCreateFile(file.Member);
                 
+                LinkedIn_SearchPage.fnClearFilters();
+                       
             }
-
-            
-
         }
     }
 }

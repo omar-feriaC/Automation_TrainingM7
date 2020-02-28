@@ -13,8 +13,6 @@ namespace AutomationTraining_M7.Data_Model
         public string LinkedInUrl { get; set; }
         public string LastJob { get; set; }
         public string Experience { get; set; }
-       // public string ExperienceCompany { get; set; }
-        //public string ExperiencePeriod { get; set; }
         public string SkillsValidations { get; set; }
         public string ToolsTechnologies { get; set; }
 
