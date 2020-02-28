@@ -161,14 +161,12 @@ namespace AutomationTraining_M7.Page_Objects
                 ListInfoCandidates.Add(new Candidates
                 {
                     ActorName = objName[i].Text,
-                    ProfileRole = "testststs",
-                    LinkedInUrl = "tsetset.com",
-                    LastJob = "test1",
-                    ExperienceRole = "test01",
-                    ExperienceCompany = "test02",
-                    ExperiencePeriod = "test03",
-                    SkillsValidations = "test04",
-                    ToolsTechnologies = "test05"
+                    ProfileRole = objRole[i].Text,
+                    LinkedInUrl = objURL[i],
+                    LastJob = objLastJob[i].Text,
+                    Experience = objExp[i].Text,                   
+                    SkillsValidations = objSkills[i].Text,
+                    ToolsTechnologies = objTools[i].Text
                 });
             }
             return ListInfoCandidates;

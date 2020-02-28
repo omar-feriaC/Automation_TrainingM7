@@ -12,7 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutomationTraining_M7.Base_Files;
 using AutomationTraining_M7.Data_Model;
-
+using System.IO;
 
 namespace AutomationTraining_M7.Test_Cases
 {
@@ -26,7 +26,44 @@ namespace AutomationTraining_M7.Test_Cases
         public void Search_LinkedIn()
         {
             //VARIABLES
-            string[] arrLines = System.IO.File.ReadAllLines(@"C:\Users\hector.castillo.AT\Desktop\technologies.txt");
+            //Path to technologies file
+            string userpath = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName;
+            if (Environment.OSVersion.Version.Major >= 6)
+            {
+                userpath = Directory.GetParent(userpath).ToString();
+            }
+
+
+
+            string filepath = userpath + "\\Documents\\technologies.txt";
+            //Check if the file exists, if not create it and write alert
+            if (File.Exists(filepath))
+            {
+                Console.WriteLine($"File was found, the content is:\n{filepath}");
+                String fileContent = System.IO.File.ReadAllText(filepath);
+                if (fileContent.Equals("Replace this text with the list of technologies you want to search candidates for."))
+                {
+                    Console.WriteLine("File has no technologies to search, please replace them.");
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine($"File is valid.");
+                }
+            }
+            else
+            {
+                using (FileStream fs = File.Create(filepath))
+                {
+                    byte[] file = new UTF8Encoding(true).GetBytes("Replace this text with the list of technologies you want to search candidates for.");
+                    fs.Write(file, 0, file.Length);
+                }
+                Console.WriteLine($"The input file for tech nologies was not found, please go to {filepath} and update the file contents.");
+
+                return;
+            }
+
+            string[] arrLines = System.IO.File.ReadAllLines(filepath);
             //string[] arrLanguages = { "English" };
 
             //Step# 1 .- Log In 
@@ -87,6 +124,7 @@ namespace AutomationTraining_M7.Test_Cases
                 LinkedIn_SearchPage.fnAddCountry("Mexico");
                 try
                 {
+                    wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='search-basic-typeahead search-vertical-typeahead ember-view']//*[@class='basic-typeahead__selectable ember-view']//span[text()= 'Mexico' or text()='México']")));
                     LinkedIn_SearchPage.fnSelectMexico();
                 }
                 catch (StaleElementReferenceException)
@@ -134,7 +172,7 @@ namespace AutomationTraining_M7.Test_Cases
                    
                 }
                 file.Member = LinkedIn_SearchPage.fnMemberInfo();
-                file.fnCreateFile();
+                file.fnCreateFile(LinkedIn_SearchPage.fnMemberInfo());
 
                 LinkedIn_SearchPage.fnClearFilters();
                
