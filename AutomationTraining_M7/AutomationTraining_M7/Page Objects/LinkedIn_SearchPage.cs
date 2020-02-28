@@ -1,5 +1,6 @@
 ﻿using AutomationTraining_M7.Base_Files;
 using AutomationTraining_M7.Data_Model;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
@@ -39,6 +40,7 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_SHOW_MORE_BTN = "//button[@data-control-name='skill_details']";
         readonly static string STR_SKILLS = "//ol[@class='pv-skill-categories-section__top-skills pv-profile-section__section-info section-info pb1']";
         readonly static string STR_TOOLS = "//div[@class='pv-skill-category-list pv-profile-section__section-info mb6 ember-view']/h3[text()='Herramientas y tecnologías']/following-sibling::ol";
+        readonly static string STR_LAST_PROFILE = "(//span[@class='name actor-name'])[10]";
 
         //test
         /*CONSTRUCTOR*/
@@ -68,8 +70,10 @@ namespace AutomationTraining_M7.Page_Objects
         private static IList<IWebElement> objExp => _ObjSrcDriver.FindElements(By.XPath(STR_EXPERIENCE));
         private static IList<IWebElement> objSkills => _ObjSrcDriver.FindElements(By.XPath(STR_SKILLS));
         private static IList<IWebElement> objTools => _ObjSrcDriver.FindElements(By.XPath(STR_TOOLS));
-
+        private static IWebElement objLProfileBtn => _ObjSrcDriver.FindElement(By.XPath(STR_LAST_PROFILE));
         /*METHODS*/
+
+
 
         //Get Member Info
         public static IList<IWebElement> GetLastJob()
@@ -97,13 +101,19 @@ namespace AutomationTraining_M7.Page_Objects
         //    while (fnElemetExit(By by));
         //}
 
-
+        //EDSP
+        public static void fnScrollUp()
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("window.scrollBy(0,-200)");
+        }
 
 
         public static Candidates fnMemberInfo()
         {
             List<string> objURL = new List<string>();
             Candidates InfoCandidate = new Candidates();
+            //objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
 
             for (int i = 0; i < objName.Count; i++)
             {
@@ -112,11 +122,14 @@ namespace AutomationTraining_M7.Page_Objects
                 wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
                 Actions actions = new Actions(_ObjSrcDriver);
                 Console.WriteLine("Name: " + objName[i].Text);
+                
                 Console.WriteLine();
                 Console.WriteLine("Role: " + objRole[i].Text);
+                
                 Console.WriteLine();
                 objURL.Add(_ObjSrcDriver.Url);
                 Console.WriteLine("URL: " + objURL[i]);
+                
                 Console.WriteLine();
                 do
                 {
@@ -127,9 +140,11 @@ namespace AutomationTraining_M7.Page_Objects
                 wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_LAST_JOB)));
                 if (objLastJob[i].Displayed) { Console.WriteLine("Last Job: " + objLastJob[i].Text); } else { Console.WriteLine("Last Job: Info does not exists."); };
                 Console.WriteLine();
+                
                 wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_EXPERIENCE)));
                 if (objExp[i].Displayed) { Console.WriteLine("Experience: " + objExp[i].Text); } else { Console.WriteLine("Experience: Info does not exists."); };
                 Console.WriteLine();
+                bool flag = false;
                 do
                 {
                     fnScrollDownToSkills();
@@ -140,6 +155,7 @@ namespace AutomationTraining_M7.Page_Objects
 
                         GetShowMore();
                         objShowMore.Click();
+                        flag = true;
                         break;
                     }
                     catch(Exception)
@@ -147,13 +163,15 @@ namespace AutomationTraining_M7.Page_Objects
                         continue;
                     }
                 }
-                while (actual < height);
+                while (actual < height  && flag == false);
                 wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_SHOW_MORE_BTN)));
                 wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_SKILLS)));
                 if (objSkills[i].Displayed) { Console.WriteLine("Skills and Validations: " + objSkills[i].Text); } else { Console.WriteLine("Skills and Validations: Info does not exists."); };
                 Console.WriteLine();
+                
                 wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_TOOLS)));
                 if (objTools[i].Displayed) { Console.WriteLine("Tools and Technologies: " + objTools[i].Text); } else { Console.WriteLine("Tools and Technologies: Info does not exists."); };
+                
                 Console.WriteLine("____________________________________________________");
 
                 //Export ifno to CSV file
@@ -321,9 +339,31 @@ namespace AutomationTraining_M7.Page_Objects
         }
         public static IList<IWebElement> fnAllResultPage()
         {
-            IList<IWebElement> objAllSearchResults = _ObjSrcDriver.FindElements(By.XPath(STR_TOTAL_RESULTS_WO));
+            bool flag;
+            do
+            {
+                fnScrollDownToSkills();
+                try
+                {
+                    GetElement(By.XPath(STR_LAST_PROFILE));
+                    flag = true;
+                    break;
+                }
+                catch (NoSuchElementException)
+                {
+                    flag = false;
+                    continue;
+                }
+            }
+            while (!flag);
 
+            IList<IWebElement> objAllSearchResults = _ObjSrcDriver.FindElements(By.XPath(STR_TOTAL_RESULTS_WO));
             return objAllSearchResults;
+        }
+
+        public static IWebElement GetElement(By by)
+        {
+            return _ObjSrcDriver.FindElement(by);
         }
         public void fnAllResultPage(IWebElement elementToSearch)
         {

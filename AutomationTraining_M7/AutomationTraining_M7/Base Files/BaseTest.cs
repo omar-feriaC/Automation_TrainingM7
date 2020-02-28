@@ -22,7 +22,7 @@ namespace AutomationTraining_M7.Base_Files
         /*URL for Webdriver*/
         private static string strBrowserName = ConfigurationManager.AppSettings.Get("url");
         /*Extent Reports Framework*/
-        public static clsReportManager objRM = new clsReportManager();
+        public static clsReportManager objRM;
         public static ExtentV3HtmlReporter objHtmlReporter; //Add information in HTML
         public static ExtentReports objExtent; //Extent Reports Object
         public static ExtentTest objTest; // Test object for Extent Reports
@@ -31,6 +31,7 @@ namespace AutomationTraining_M7.Base_Files
         [OneTimeSetUp]
         public static void fnBeforeClass()
         {
+            objRM = new clsReportManager();
             /*Init ExtentHtmlReporter object*/
             if (objHtmlReporter == null)
             {

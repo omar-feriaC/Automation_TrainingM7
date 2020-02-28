@@ -35,55 +35,63 @@ namespace AutomationTraining_M7.Base_Files
                 IWorkbook workbook = application.Workbooks.Create(1);
                 IWorksheet sheet = workbook.Worksheets[0];
 
-                int i = 1;
+                int i = 2;
+
+                sheet["A1"].Text = "Actor Name";
+                sheet["A1"].CellStyle.Font.Bold = true;
+                sheet["A1"].CellStyle.VerticalAlignment = ExcelVAlign.VAlignCenter;
+
+                sheet["B1"].Text = "Profile Role";
+                sheet["B1"].CellStyle.Font.Bold = true;
+                sheet["B1"].CellStyle.VerticalAlignment = ExcelVAlign.VAlignCenter;
+
+                sheet["C1"].Text = "LinkedIn Url";
+                sheet["C1"].CellStyle.Font.Bold = true;
+                sheet["C1"].CellStyle.VerticalAlignment = ExcelVAlign.VAlignCenter;
+
+                sheet["D1"].Text = "Last Job";
+                sheet["D1"].CellStyle.Font.Bold = true;
+                sheet["D1"].CellStyle.VerticalAlignment = ExcelVAlign.VAlignCenter;
+
+                sheet["E1"].Text = "Experience";
+                sheet["E1"].CellStyle.Font.Bold = true;
+                sheet["E1}"].CellStyle.VerticalAlignment = ExcelVAlign.VAlignCenter;
+
+                sheet["F1"].Text = "Skill Validations";
+                sheet["F1"].CellStyle.Font.Bold = true;
+                sheet["F1"].CellStyle.VerticalAlignment = ExcelVAlign.VAlignCenter;
+                
+                sheet["G1"].Text = "Tools Technologies";
+                sheet["G1"].CellStyle.Font.Bold = true;
+                sheet["G1"].CellStyle.VerticalAlignment = ExcelVAlign.VAlignCenter;
 
                 foreach (Candidates candidate in plstCan)
                 {
-                    sheet[$"A{i}"].Text = "Actor Name";
-                    sheet[$"A{i}"].CellStyle.Font.Bold = true;
-                    sheet[$"A{i + 1}"].Text = candidate.ActorName;
+                    
+                    sheet[$"A{i}"].Text = candidate.ActorName;
                     sheet[$"A{i}"].CellStyle.VerticalAlignment = ExcelVAlign.VAlignCenter;
-                    sheet[$"A{i + 1}"].CellStyle.VerticalAlignment = ExcelVAlign.VAlignCenter;
 
-                    sheet[$"B{i}"].Text = "Profile Role";
-                    sheet[$"B{i}"].CellStyle.Font.Bold = true;
-                    sheet[$"B{i + 1}"].Text = candidate.ProfileRole;
+                    sheet[$"B{i}"].Text = candidate.ProfileRole;
                     sheet[$"B{i}"].CellStyle.VerticalAlignment = ExcelVAlign.VAlignCenter;
-                    sheet[$"B{i + 1}"].CellStyle.VerticalAlignment = ExcelVAlign.VAlignCenter;
 
-                    sheet[$"C{i}"].Text = "LinkedIn Url";
-                    sheet[$"C{i}"].CellStyle.Font.Bold = true;
-                    sheet[$"C{i + 1}"].Text = candidate.LinkedInUrl;
+                    sheet[$"C{i}"].Text = candidate.LinkedInUrl;
                     sheet[$"C{i}"].CellStyle.VerticalAlignment = ExcelVAlign.VAlignCenter;
-                    sheet[$"C{i + 1}"].CellStyle.VerticalAlignment = ExcelVAlign.VAlignCenter;
 
-                    sheet[$"D{i}"].Text = "Last Job";
-                    sheet[$"D{i}"].CellStyle.Font.Bold = true;
-                    sheet[$"D{i + 1}"].Text = candidate.LastJob;
+                    sheet[$"D{i}"].Text = candidate.LastJob;
                     sheet[$"D{i}"].CellStyle.VerticalAlignment = ExcelVAlign.VAlignCenter;
-                    sheet[$"D{i + 1}"].CellStyle.VerticalAlignment = ExcelVAlign.VAlignCenter;
 
-                    sheet[$"E{i}"].Text = "Experience";
-                    sheet[$"E{i}"].CellStyle.Font.Bold = true;
-                    sheet[$"E{i + 1}"].Text = candidate.Experience;
+                    sheet[$"E{i}"].Text = candidate.Experience;
                     sheet[$"E{i}"].CellStyle.VerticalAlignment = ExcelVAlign.VAlignCenter;
-                    sheet[$"E{i + 1}"].CellStyle.VerticalAlignment = ExcelVAlign.VAlignCenter;
 
-                    sheet[$"F{i}"].Text = "Skill Validations";
-                    sheet[$"F{i}"].CellStyle.Font.Bold = true;
-                    sheet[$"F{i + 1}"].Text = candidate.SkillsValidations;
+                    sheet[$"F{i}"].Text = candidate.SkillsValidations;
                     sheet[$"F{i}"].CellStyle.VerticalAlignment = ExcelVAlign.VAlignCenter;
-                    sheet[$"F{i + 1}"].CellStyle.VerticalAlignment = ExcelVAlign.VAlignCenter;
 
-                    sheet[$"G{i}"].Text = "Tools Technologies";
-                    sheet[$"G{i}"].CellStyle.Font.Bold = true;
-                    sheet[$"G{i + 1}"].Text = candidate.ToolsTechnologies;
+                    sheet[$"G{i}"].Text = candidate.ToolsTechnologies;
                     sheet[$"G{i}"].CellStyle.VerticalAlignment = ExcelVAlign.VAlignCenter;
-                    sheet[$"G{i + 1}"].CellStyle.VerticalAlignment = ExcelVAlign.VAlignCenter;
 
                     sheet.UsedRange.AutofitColumns();
 
-                    i += 2;
+                    i += 1;
                 }
 
                 Stream excelStream = File.Create(Path.GetFullPath(fnGetCSVPath() + FileName));
