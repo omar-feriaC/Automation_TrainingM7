@@ -153,8 +153,26 @@ namespace AutomationTraining_M7.Test_Cases
                 for(int b=0; b< allSearchResults.Count; b++)
                 {
 
-                    //Thread.Sleep(5000);
-                    wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath($"(//span[@class='actor-name' or @class='name actor-name'])[{b + 1}]")));
+                    
+                        wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath($"(//span[@class='actor-name' or @class='name actor-name'])[1]")));
+                        bool flag;
+                        do
+                        {
+                            LinkedIn_SearchPage.fnScrollDownToSkills();
+                            try
+                            {
+                                LinkedIn_SearchPage.GetElement(By.XPath($"(//span[@class='actor-name' or @class='name actor-name'])[{b + 1}]"));
+                                flag = true;
+                                break;
+                            }
+                            catch (NoSuchElementException)
+                            {
+                                flag = false;
+                                continue;
+                            }
+                        }
+                        while (!flag);
+                    
                     //string listXpath = $"//span[@class='actor-name'][{b+2}]";
                     string listXpath = $"(//span[@class='actor-name' or @class='name actor-name'])[{b + 1}]";
 
@@ -162,8 +180,31 @@ namespace AutomationTraining_M7.Test_Cases
                     string STR_TOTAL_RESULTS_WO = listXpath;
                     //wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_TOTAL_RESULTS_WO)));
                     IWebElement objSearchResult = driver.FindElement(By.XPath(listXpath));
-                    objSearchResult.Click();
-                    wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='Información de contacto']")));
+                    
+                    try
+                    {                      
+                        objSearchResult.Click();
+                    }
+                    catch(ElementClickInterceptedException)
+                    {
+                        bool displayedFlag;
+                            do
+                            {
+                                LinkedIn_SearchPage.fnScrollUp();
+                                try
+                                {
+                                    objSearchResult.Click();
+                                    break;
+                                }
+                                catch (ElementClickInterceptedException)
+                                {
+                                    displayedFlag = false;
+                                    continue;
+                                }
+                            }
+                            while (!displayedFlag);
+                    }
+                    wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='Información de contacto' or text()='Contact info']")));
                     LinkedIn_SearchPage.fnScrollDownToSkills();
                     LinkedIn_SearchPage.fnMemberInfo();
                     //Thread.Sleep(5000);

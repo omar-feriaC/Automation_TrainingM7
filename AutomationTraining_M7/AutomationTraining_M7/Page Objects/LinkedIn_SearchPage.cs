@@ -38,8 +38,9 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_EXPERIENCE = "//section[@id='experience-section']";
         readonly static string STR_SHOW_MORE_BTN = "//button[@data-control-name='skill_details']";
         readonly static string STR_SKILLS = "//ol[@class='pv-skill-categories-section__top-skills pv-profile-section__section-info section-info pb1']";
-        readonly static string STR_TOOLS = "//div[@class='pv-skill-category-list pv-profile-section__section-info mb6 ember-view']/h3[text()='Herramientas y tecnologías']/following-sibling::ol";
-
+        readonly static string STR_TOOLS = "//div[@class='pv-skill-category-list pv-profile-section__section-info mb6 ember-view']/h3[text()='Herramientas y tecnologías' or text()='Tools & Technologies']/following-sibling::ol";
+        //EDSP
+        readonly static string STR_LAST_PROFILE = "(//span[@class='name actor-name'])[10]";
         //test
         /*CONSTRUCTOR*/
         public LinkedIn_SearchPage(IWebDriver pobjSrcDriver)
@@ -68,7 +69,8 @@ namespace AutomationTraining_M7.Page_Objects
         private static IList<IWebElement> objExp => _ObjSrcDriver.FindElements(By.XPath(STR_EXPERIENCE));
         private static IList<IWebElement> objSkills => _ObjSrcDriver.FindElements(By.XPath(STR_SKILLS));
         private static IList<IWebElement> objTools => _ObjSrcDriver.FindElements(By.XPath(STR_TOOLS));
-
+        //EDSP
+        private static IWebElement objLProfileBtn => _ObjSrcDriver.FindElement(By.XPath(STR_LAST_PROFILE));
         /*METHODS*/
 
         //Get Member Info
@@ -89,6 +91,7 @@ namespace AutomationTraining_M7.Page_Objects
             js.ExecuteScript("window.scrollBy(0,50)");
         }
 
+
         //public static void fnScrollElement(By by) 
         //{
         //    do {
@@ -97,7 +100,12 @@ namespace AutomationTraining_M7.Page_Objects
         //    while (fnElemetExit(By by));
         //}
 
-
+        //EDSP
+        public static void fnScrollUp()
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("window.scrollBy(0,-200)"); 
+        }
 
 
         public static List<Candidates> fnMemberInfo()
@@ -320,10 +328,38 @@ namespace AutomationTraining_M7.Page_Objects
         }
         public static IList<IWebElement> fnAllResultPage()
         {
-            IList<IWebElement> objAllSearchResults = _ObjSrcDriver.FindElements(By.XPath(STR_TOTAL_RESULTS_WO));
+            bool flag;
+            do
+            {
+                fnScrollDownToSkills();
+                try
+                {
+                    GetElement(By.XPath(STR_LAST_PROFILE));
+                    flag = true;
+                    break;
+                }
+                catch (NoSuchElementException)
+                {
+                    flag = false;
+                    continue;
+                }
+            }
+            while (!flag);
 
+            IList<IWebElement> objAllSearchResults = _ObjSrcDriver.FindElements(By.XPath(STR_TOTAL_RESULTS_WO));
             return objAllSearchResults;
         }
+
+        private static object GetElement()
+        {
+            throw new NotImplementedException();
+        }
+
+        public static IWebElement GetElement(By by)
+        {
+            return _ObjSrcDriver.FindElement(by);
+        }
+
         public void fnAllResultPage(IWebElement elementToSearch)
         {
             elementToSearch.Click();            
