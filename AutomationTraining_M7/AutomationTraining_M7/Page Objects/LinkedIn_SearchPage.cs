@@ -108,10 +108,10 @@ namespace AutomationTraining_M7.Page_Objects
         }
 
 
-        public static List<Candidates> fnMemberInfo()
+        public static Candidates fnMemberInfo()
         {
             List<string> objURL = new List<string>();
-            List<Candidates> ListInfoCandidates = new List<Candidates>();
+            Candidates InfoCandidate = new Candidates();
 
             for (int i = 0; i < objName.Count; i++)
             {
@@ -166,7 +166,7 @@ namespace AutomationTraining_M7.Page_Objects
 
                 //Export ifno to CSV file
                 //CODE TO  GET CANDIDATE DATA
-                ListInfoCandidates.Add(new Candidates
+                InfoCandidate = new Candidates
                 {
                     ActorName = objName[i].Text,
                     ProfileRole = objRole[i].Text,
@@ -175,9 +175,9 @@ namespace AutomationTraining_M7.Page_Objects
                     Experience = objExp[i].Text,                   
                     SkillsValidations = objSkills[i].Text,
                     ToolsTechnologies = objTools[i].Text
-                });
+                };
             }
-            return ListInfoCandidates;
+            return InfoCandidate;
         }
 
         //Captcha
@@ -289,6 +289,7 @@ namespace AutomationTraining_M7.Page_Objects
         public static void fnClickApplyBtn()
         {
             objApplyBtn.Click();
+            //wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_TOTAL_RESULTS_WO)));
         }
 
 
