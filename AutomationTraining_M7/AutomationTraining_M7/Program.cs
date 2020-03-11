@@ -6,14 +6,14 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AutomationTraining_M7
 {
-    class Program : BaseTest
+    class Program
     {
         //Delegates
         delegate void LambdasNoParams(); //(1)
@@ -21,143 +21,137 @@ namespace AutomationTraining_M7
 
         static void Main(string[] args)
         {
-            DataTable myTable;
 
+            
+            //Exercise 1
+            
+            string[] arr1;
+            int n, i;
 
+            Console.Write("\nLINQ : Print the lenght of the strings in the array : ");
+            Console.Write("\n------------------------------------------------------\n");
 
-            /*F I L E   H A N D L I N G*/
+            //Write Your code Here
 
-
-            string strFileName = @"C:\TempAuto\TempAuto123.txt";
-            FileInfo objFile = new FileInfo(strFileName);
-
-            using (StreamWriter sw = objFile.CreateText())
+            Console.Write("Input number of strings to  store in the array :");
+            n = Convert.ToInt32(Console.ReadLine());
+            arr1 = new string[n];
+            Console.Write("\nInput {0} strings for the array  :\n", n);
+            for (i = 0; i < n; i++)
             {
-                sw.WriteLine("Test1");
-                sw.WriteLine("Test2");
-                sw.WriteLine("Test3");
-                sw.WriteLine("Test4");
-                sw.WriteLine("Test5");
-                sw.WriteLine("Test6");
+                Console.Write("Element[{0}] : ", i);
+                arr1[i] = Console.ReadLine();
             }
 
-            using (StreamReader sr = new StreamReader(strFileName))
+            var words = from word in arr1
+                        select word;
+
+            foreach (var word in words)
             {
-                string strValue = "";
-                while ((strValue = sr.ReadLine()) != null)
+                Console.WriteLine("Word: {0}, Length: {1}", word, word.Length);
+            }
+
+
+            Console.ReadLine();
+           
+            //Exercise 2
+            
+            string[] dirfiles = Directory.GetFiles("C:/Users/Mau/Documents/MauricioG_M10");
+            
+
+            Console.Write("\nLINQ : Calculate the Size of File : ");
+            Console.Write("\n------------------------------------\n");
+
+            //Write Your code
+            if (dirfiles.Count() > 0)
+            {
+                Console.WriteLine("Number of files: " + dirfiles.Count());
+
+                var files = from file in dirfiles
+                            select file;
+
+                foreach (var file in files)
                 {
-                    Console.WriteLine(strValue);
+                    long size = new FileInfo(file).Length;
+
+                    Console.WriteLine("File Name: {0}, Size in bytes: {1}", file
+                        , size);
+
                 }
+
+            }
+
+            Console.ReadLine();
+
+
+            
+            //Exercise 3
+            
+            //  The first part is Data source.
+            int[] n1 = new int[10] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+            Console.WriteLine("Basic structure of LINQ : ");
+            Console.WriteLine("---------------------------");
+
+            //Write Your code
+
+            //The Second part is LINQ Query creation.
+
+            var numbers = from number in n1
+                          select number;
+
+            // The third part is Query execution.
+
+            Console.WriteLine("Array contains the following numbers:");
+
+            foreach (var number in numbers)
+            {
+                Console.WriteLine("{0}", number);
+            }
+
+            Console.ReadLine();
+
+
+            
+            //Exercise 4
+            
+            string[] dayWeek = new string[] { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+
+            Console.WriteLine("LINQ : Display the name of the days of a week : ");
+            Console.WriteLine("------------------------------------------------");
+
+            //Write Your code
+            var days = from day in dayWeek
+                       select day;
+
+            foreach (var day in days)
+            {
+                Console.WriteLine("Day of the week: {0}", day);
             }
 
 
-            Console.ReadKey();
+            Console.ReadLine();
 
 
+            
+            //Exercise 5
+            
+            var arr3 = new[] { 3, 9, 2, 8, 6, 5 };
 
+            Console.Write("\nLINQ : Print the number and its square from an array: ");
+            Console.Write("\n------------------------------------------------------------------------\n");
 
-
-
-
-
-            /* D A T A B A S E*/
-            clsData objData = new clsData();
-            clsLibData objLibData = new clsLibData();
-            objLibData.fnInitConnection();
-
-
-            myTable =  objLibData.fnExecuteQueryData2("select * from UserCredentials");
-            if (myTable != null && myTable.Rows.Count > 0)
+            //Write Your code
+            var squares = from square in arr3
+                          select square;
+            foreach (var square in squares)
             {
-                //Iterate each row in Table
-                foreach (DataRow row in myTable.Rows)
-                {
-                    if (row["SetValue"].ToString().Trim() == "3")
-                    {
-                        string username = row["UserName"].ToString().Trim();
-                        string password = row["Password"].ToString().Trim();
-                    }
-
-                  
-                }
+                double sqr = Math.Pow(square, 2);
+                Console.WriteLine("Number: {0}. Square from number: {1}", square, sqr);
             }
 
+            Console.ReadLine();
 
-            objLibData.fnExecuteQueryData("select * from Tbl_Users");
-            objLibData.fnExecuteQueryData("select * from Tbl_Users");
-            objData.fnExecuteQueryData("select * from Tbl_Users");
-
-
-
-
-
-
-            /*L A M B D A */
-
-            //********************************************************
-            // Case 1
-            //********************************************************
-            LambdasWithNoParameter();
-            Console.WriteLine("//********************************************************");
-
-
-            //********************************************************
-            // Case 2
-            //********************************************************
-            List<int> list = new List<int>() { 1, 2, 3, 4, 5, 6 };
-            List<int> evenNumbers = list.FindAll(x => (x % 2) == 0);
-
-            foreach (var num in evenNumbers)
-            {
-                Console.WriteLine("{0} ", num);
-            }
-            Console.WriteLine("//********************************************************");
-
-
-            //********************************************************
-            // Case 3
-            //********************************************************
-            List<int> numbers = new List<int>() { 1,2,3,4,5,6,7,8,9,10 };
-            List<int> oddNumbers = numbers.FindAll(x => x % 2 != 0).ToList();
-            List<int> evenNumbers2 = numbers.FindAll(x => x % 2 == 0).ToList();
-            Console.WriteLine("List of Odd Numbers is");
-            foreach (int ab in oddNumbers)
-            {
-                Console.WriteLine(ab);
-            }
-            Console.WriteLine("List of Even Numbers is");
-            foreach (int ab in evenNumbers2)
-            {
-                Console.WriteLine(ab);
-            }
-            Console.WriteLine("//********************************************************");
-
-
-            //********************************************************
-            // Case 4
-            //********************************************************
-            List<int> numbers2 = new List<int>() { 1,2,3,4,5,6,7,8,9,10 };
-            foreach (int ab in numbers2.Where(x =>
-            {
-                Console.WriteLine("Number is {0}", x);
-                Console.WriteLine("Sqrt of Value is: {0}", Math.Sqrt(x));
-                return x % 3 == 0 || x % 5 == 0;
-            }))
-            {
-                Console.WriteLine("Returned Number is {0}", ab);
-            }
-            Console.WriteLine("//********************************************************");
-
-
-            Console.ReadKey();
-
-        }
-
-        //(1) No parameters
-        public static void LambdasWithNoParameter()
-        {
-            LambdasNoParams noparams = () => Console.WriteLine(" Hello!!!");
-            noparams();
         }
     }
 
