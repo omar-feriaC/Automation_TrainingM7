@@ -138,13 +138,27 @@ namespace AutomationTraining_M7.Page_Objects
                 }
                 while (objLastJob.Count == 0);
                 wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_LAST_JOB)));
-                if (objLastJob[i].Displayed) { Console.WriteLine("Last Job: " + objLastJob[i].Text); } else { Console.WriteLine("Last Job: Info does not exists."); };
+                try 
+                { 
+                    Console.WriteLine("Last Job: " + objLastJob[i].Text); 
+                }
+                catch(Exception)
+                {
+                    continue;
+                }
                 Console.WriteLine();
                 
                 wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_EXPERIENCE)));
-                if (objExp[i].Displayed) { Console.WriteLine("Experience: " + objExp[i].Text); } else { Console.WriteLine("Experience: Info does not exists."); };
+                try 
+                { 
+                    Console.WriteLine("Experience: " + objExp[i].Text); 
+                }
+                catch(Exception)
+                {
+                    continue;
+                }
+
                 Console.WriteLine();
-                bool flag = false;
                 do
                 {
                     fnScrollDownToSkills();
@@ -155,7 +169,6 @@ namespace AutomationTraining_M7.Page_Objects
 
                         GetShowMore();
                         objShowMore.Click();
-                        flag = true;
                         break;
                     }
                     catch(Exception)
@@ -163,14 +176,28 @@ namespace AutomationTraining_M7.Page_Objects
                         continue;
                     }
                 }
-                while (actual < height  && flag == false);
+                while (actual < height);
                 wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_SHOW_MORE_BTN)));
                 wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_SKILLS)));
-                if (objSkills[i].Displayed) { Console.WriteLine("Skills and Validations: " + objSkills[i].Text); } else { Console.WriteLine("Skills and Validations: Info does not exists."); };
+                try 
+                { 
+                    Console.WriteLine("Skills and Validations: " + objSkills[i].Text); 
+                }
+                catch(Exception)
+                {
+                    continue;
+                }
                 Console.WriteLine();
                 
                 wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_TOOLS)));
-                if (objTools[i].Displayed) { Console.WriteLine("Tools and Technologies: " + objTools[i].Text); } else { Console.WriteLine("Tools and Technologies: Info does not exists."); };
+                try 
+                { 
+                    Console.WriteLine("Tools and Technologies: " + objTools[i].Text); 
+                }
+                catch(Exception)
+                {
+                    continue;
+                }
                 
                 Console.WriteLine("____________________________________________________");
 
