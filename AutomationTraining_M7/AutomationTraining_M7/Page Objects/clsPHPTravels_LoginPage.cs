@@ -1,4 +1,5 @@
 ﻿using AutomationTraining_M7.Base_Files;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
@@ -10,89 +11,98 @@ using System.Threading.Tasks;
 
 namespace AutomationTraining_M7.Page_Objects
 {
-    class clsPHPTravels_LoginPage
+    class clsPHPTravels_LoginPage : BaseTest
     {
-        /*ATTRIBUTES*/
+        // ATTRIBUTES
         public static WebDriverWait _driverWait;
         private static IWebDriver _objDriver;
-
-        /*LOCATORS DESCRIPTION*/
+        // LOCATORS DESCRIPTION
         readonly static string STR_EMAIL_TXT = "email";
-        readonly static string STR_EMAIL_TXT2 = "email";
         readonly static string STR_PASSWORD_TXT = "password";
-        readonly static string STRREMEMBERME_LNK = "///label[@class='checkbox']";
-        readonly static string STRREMEMBERME_LNK2 = "//label[@class='checkbox']";
-        readonly static string STR_FORGOTPASS_LNK = "//*[text()='Forget Password']";
-        readonly static string STR_LOGIN_BTN = "//span[text()='Login']";
+        public static string STR_LOGIN_BTN = "//span[text()='Login']";
         readonly static string STR_HAMBURGER_BTN = "sidebarCollapse";
-
-        /*CONSTRUCTOR*/
+        readonly static string STR_ADMIN_LBL = "(//a[i[@class='fa fa-user']])[1]";
+        readonly static string STR_SUPPLIER_LBL = "(//a[i[@class='fa fa-user']])[2]";
+        readonly static string STR_CUSTOMER_LBL = "(//a[i[@class='fa fa-users']])[1]";
+        readonly static string STR_GUEST_LBL = "(//a[i[@class='fa fa-users']])[2]";
+        readonly static string STR_BOOKING_LBL = "//a[i[@class='fa fa-tag']]";
+        // CONSTRUCTOR
         public clsPHPTravels_LoginPage(IWebDriver pobjDriver)
         {
             _objDriver = pobjDriver;
             _driverWait = new WebDriverWait(_objDriver, new TimeSpan(0, 0, 40));
         }
-
-        /*OBJECT DEFINITION*/
-        private static IWebElement objEmailTxt = driver.FindElement(By.Name(STR_EMAIL_TXT)); 
-        private static IWebElement objPasswordTxt = driver.FindElement(By.Name(STR_PASSWORD_TXT));
-        private static IWebElement objRememberMeLnk = driver.FindElement(By.XPath(STRREMEMBERME_LNK));
-        private static IWebElement objForgotPassLnk = driver.FindElement(By.XPath(STR_FORGOTPASS_LNK));
-        private static IWebElement objLoginBtn = driver.FindElement(By.XPath(STR_LOGIN_BTN));
-
-
+        // OBJECT DEFINITION
+        private static IWebElement objEmailTxt => driver.FindElement(By.Name(STR_EMAIL_TXT));
+        private static IWebElement objPasswordTxt => driver.FindElement(By.Name(STR_PASSWORD_TXT));
+        private static IWebElement objLoginBtn => driver.FindElement(By.XPath(STR_LOGIN_BTN));
+        private static IWebElement objAdminLbl => driver.FindElement(By.XPath(STR_ADMIN_LBL));
+        private static IWebElement objSupplierLbl => driver.FindElement(By.XPath(STR_SUPPLIER_LBL));
+        private static IWebElement objCustomerLbl => driver.FindElement(By.XPath(STR_CUSTOMER_LBL));
+        private static IWebElement objGuestLbl => driver.FindElement(By.XPath(STR_GUEST_LBL));
+        private static IWebElement objBookingLbl => driver.FindElement(By.XPath(STR_BOOKING_LBL));
         /*METHODS/FUNCTIONS*/
-
         //Email
-        private IWebElement GetEmailField()
-        {
-            return objEmailTxt;
-        }
-
         public static void fnEnterEmail(string pstrEmail)
         {
             clsDriver.fnWaitForElementToExist(By.Name(STR_EMAIL_TXT));
             clsDriver.fnWaitForElementToBeVisible(By.Name(STR_EMAIL_TXT));
+            clsDriver.fnWaitForElementToBeClickable(By.Name(STR_EMAIL_TXT));
             objEmailTxt.Clear();
             objEmailTxt.SendKeys(pstrEmail);
         }
-
         //Password
         private IWebElement GetPasswordField()
         {
             return objPasswordTxt;
         }
-
         public static void fnEnterPassword(string pstrPass)
         {
-            _driverWait.Until(ExpectedConditions.ElementExists(By.Name(STR_PASSWORD_TXT)));
-            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.Name(STR_PASSWORD_TXT)));
+            clsDriver.fnWaitForElementToExist(By.Name(STR_PASSWORD_TXT));
+            clsDriver.fnWaitForElementToBeVisible(By.Name(STR_PASSWORD_TXT));
+            clsDriver.fnWaitForElementToBeClickable(By.Name(STR_PASSWORD_TXT));
             objPasswordTxt.Clear();
             objPasswordTxt.SendKeys(pstrPass);
         }
-
         //Login Button
         private IWebElement GetLoginButton()
         {
-            return objRememberMeLnk;
+            return objLoginBtn;
         }
-
         public static void fnClickLoginButton()
         {
-            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_LOGIN_BTN)));
-            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_LOGIN_BTN)));
-            _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_LOGIN_BTN)));
+            clsDriver.fnWaitForElementToExist(By.XPath(STR_LOGIN_BTN));
+            clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LOGIN_BTN));
+            clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_LOGIN_BTN));
             objLoginBtn.Click();
         }
-
-        /*Hamburger Button*/
+        //Hamburger Button
         public static void fnWaitHamburgerMenu()
         {
-            _driverWait.Until(ExpectedConditions.ElementExists(By.Id(STR_HAMBURGER_BTN)));
-            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.Id(STR_HAMBURGER_BTN)));
-            _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.Id(STR_HAMBURGER_BTN)));
+            clsDriver.fnWaitForElementToExist(By.Id(STR_HAMBURGER_BTN));
+            clsDriver.fnWaitForElementToBeVisible(By.Id(STR_HAMBURGER_BTN));
+            clsDriver.fnWaitForElementToBeClickable(By.Id(STR_HAMBURGER_BTN));
         }
-
-
+        //Print Labels on the Dashboard
+        public static IWebElement GetAdminLbl()
+        {
+            return objAdminLbl;
+        }
+        public static IWebElement GetSupplierLbl()
+        {
+            return objSupplierLbl;
+        }
+        public static IWebElement GetGuestLbl()
+        {
+            return objGuestLbl;
+        }
+        public static IWebElement GetCustomerLbl()
+        {
+            return objCustomerLbl;
+        }
+        public static IWebElement GetBookingLbl()
+        {
+            return objBookingLbl;
+        }
     }
 }
