@@ -4,6 +4,7 @@ using AventStack.ExtentReports;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,11 +17,13 @@ namespace AutomationTraining_M7.Test_Cases
 {
     class Test_PHPTravels : BaseTest
     {
-        [Test]
+        clsPHPTravels_LoginPage objPHP1;
+        [Test, Order(0)]
         public void Test_M9Exercise()
         {
             //Init objects
             objTest = objExtent.CreateTest(TestContext.CurrentContext.Test.Name);
+            objPHP1 = new clsPHPTravels_LoginPage(driver);
             //Login Action
             Assert.IsTrue(driver.Title.Contains("Login"), "The Login Page was not loaded correctly.");
             clsPHPTravels_LoginPage.fnEnterEmail(ConfigurationManager.AppSettings.Get("email"));
@@ -42,23 +45,20 @@ namespace AutomationTraining_M7.Test_Cases
             objTest.Log(Status.Info, (clsPHPTravels_LoginPage.GetBookingLbl().Text));
             // Display side menu and side sub menus content with sorting validation
             clsPHPTravels_AdminPage.fnSelectMenuItem("Accounts", "Admins");
-            Thread.Sleep(TimeSpan.FromSeconds(10));
-            objRM.fnAddLogStepScreen(objTest, driver, "Accounts", "Accounts.png", "Pass");
-            clsPHPTravels_AdminPage.fnClickFistNameSort();
-            Thread.Sleep(TimeSpan.FromSeconds(20));
+            clsPHPTravels_AdminPage.fnSortTable();
+            objRM.fnAddLogStepScreen(objTest, driver, "Accounts", "Admins.png", "Pass");
+            clsPHPTravels_AdminPage.fnSelectMenuItem("Accounts", "Suppliers");
+            clsPHPTravels_AdminPage.fnSortTable();
+            objRM.fnAddLogStepScreen(objTest, driver, "Suppliers", "Suppliers.png", "Pass");
             objRM.fnAddLogStepScreen(objTest, driver, "AdminsFirstName", "AdminsFirstName.png", "Pass");
-            clsPHPTravels_AdminPage.fnClickLastNameSort();
-            Thread.Sleep(TimeSpan.FromSeconds(20));
-            objRM.fnAddLogStepScreen(objTest, driver, "AdminsLastName", "AdminsLastName.png", "Pass");
-            clsPHPTravels_AdminPage.fnClickEmail();
-            Thread.Sleep(TimeSpan.FromSeconds(20));
-            objRM.fnAddLogStepScreen(objTest, driver, "AdminsEmail", "AdminsEmail.png", "Pass");
-            clsPHPTravels_AdminPage.fnClickActive();
-            Thread.Sleep(TimeSpan.FromSeconds(20));
-            objRM.fnAddLogStepScreen(objTest, driver, "AdminsActive", "AdminsActive.png", "Pass");
-            clsPHPTravels_AdminPage.fnClickLastLogin();
-            Thread.Sleep(TimeSpan.FromSeconds(20));
-            objRM.fnAddLogStepScreen(objTest, driver, "AdminsLastLogin", "AdminsLastLogin.png", "Pass");
+            clsPHPTravels_AdminPage.fnSelectMenuItem("Accounts", "Customers");
+            clsPHPTravels_AdminPage.fnSortTable();
+            objRM.fnAddLogStepScreen(objTest, driver, "Customers", "Customers.png", "Pass");
+            objRM.fnAddLogStepScreen(objTest, driver, "AdminsFirstName", "AdminsFirstName.png", "Pass");
+            clsPHPTravels_AdminPage.fnSelectMenuItem("Accounts", "GuestCustomers");
+            clsPHPTravels_AdminPage.fnSortTable();
+            objRM.fnAddLogStepScreen(objTest, driver, "GuestCustomers", "GuestCustomers.png", "Pass");
+            objRM.fnAddLogStepScreen(objTest, driver, "AdminsGuestCustomers", "AdminsGuestCustomers.png", "Pass");
         }
     }
 }
