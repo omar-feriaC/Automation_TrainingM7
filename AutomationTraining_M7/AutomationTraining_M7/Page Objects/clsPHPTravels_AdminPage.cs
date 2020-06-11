@@ -24,10 +24,10 @@ namespace AutomationTraining_M7.Page_Objects
         readonly static string STR_SUBMENUCUSTOMERS = STR_MENUACCOUNT + "//a[text()='Customers']";
         readonly static string STR_SUBMENUGUESTC = STR_MENUACCOUNT + "//a[text()='GuestCustomers']";
         readonly static string STR_FIRSTNAME = "//th[text()= 'First Name' or text()= '↓ First Name' or text()= '↑ First Name']";
-        readonly static string STR_LASTNAME = "//th[text()= 'Last Name']";
-        readonly static string STR_EMAIL = "//th[text()= 'Email']";
-        readonly static string STR_ACTIVE = "//th[text()= 'Active']";
-        readonly static string STR_LASTLOGIN = "//th[text()= 'Last Login']";
+        readonly static string STR_LASTNAME = "//th[text()= 'Last Name' or text()= '↓ Last Name' or text()= '↑ Last Name']";
+        readonly static string STR_EMAIL = "//th[text()= 'Email' or text()= '↓ Email' or text()= '↑ Email']";
+        readonly static string STR_ACTIVE = "//th[text()= 'Active' or text()= '↓ Active' or text()= '↑ Active']";
+        readonly static string STR_LASTLOGIN = "//th[text()= 'Last Login' or text()= '↓ Last Login' or text()= '↑ Last Login']";
         readonly static string STR_COLUMN = "//tr[@class='xcrud-th']//th[contains(@class,'xcrud-column xcrud-action')]";
 
         // Constructor
@@ -77,7 +77,71 @@ namespace AutomationTraining_M7.Page_Objects
                 objFistName.Click();
             }
         }
-        public static void fnSortTable()
+        public static void fnClickLastNameSort()
+        {
+            clsDriver.fnWaitForElementToExist(By.XPath(STR_LASTNAME));
+            clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LASTNAME));
+            clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_LASTNAME));
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(12);
+            try
+            {
+                objLastName.Click();
+            }
+            catch (StaleElementReferenceException)
+            {
+                _driverWait.Until(ExpectedConditions.StalenessOf(driver.FindElement(By.XPath(STR_LASTNAME))));
+                objLastName.Click();
+            }
+        }
+        public static void fnClickActiveSort()
+        {
+            clsDriver.fnWaitForElementToExist(By.XPath(STR_ACTIVE));
+            clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_ACTIVE));
+            clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_ACTIVE));
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(12);
+            try
+            {
+                objActive.Click();
+            }
+            catch (StaleElementReferenceException)
+            {
+                _driverWait.Until(ExpectedConditions.StalenessOf(driver.FindElement(By.XPath(STR_ACTIVE))));
+                objActive.Click();
+            }
+        }
+        public static void fnClickEmail()
+        {
+            clsDriver.fnWaitForElementToExist(By.XPath(STR_EMAIL));
+            clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_EMAIL));
+            clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_EMAIL));
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(12);
+            try
+            {
+                objActive.Click();
+            }
+            catch (StaleElementReferenceException)
+            {
+                _driverWait.Until(ExpectedConditions.StalenessOf(driver.FindElement(By.XPath(STR_EMAIL))));
+                objActive.Click();
+            }
+        }
+        public static void fnClickLastLoginSort()
+        {
+            clsDriver.fnWaitForElementToExist(By.XPath(STR_LASTLOGIN));
+            clsDriver.fnWaitForElementToBeVisible(By.XPath(STR_LASTLOGIN));
+            clsDriver.fnWaitForElementToBeClickable(By.XPath(STR_LASTLOGIN));
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(12);
+            try
+            {
+                objLastLogin.Click();
+            }
+            catch (StaleElementReferenceException)
+            {
+                _driverWait.Until(ExpectedConditions.StalenessOf(driver.FindElement(By.XPath(STR_LASTLOGIN))));
+                objLastLogin.Click();
+            }
+        }
+        public static void fnSortFirstName()
         {
             _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_COLUMN)));
             _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_COLUMN)));
@@ -105,6 +169,194 @@ namespace AutomationTraining_M7.Page_Objects
                     objRM.fnAddLogStepScreen(objTest, driver, "First Name Order By Desc", "FistNameDesc.png", "Pass");
                 }
                 fnClickFistNameSort();
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(12);
+                _driverWait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.ClassName("xcrud-overlay")));
+                string DataOrder2;
+                try
+                {
+                    DataOrder2 = objColumnLst[Q].GetAttribute("data-order");
+                }
+                catch (StaleElementReferenceException)
+                {
+                    DataOrder2 = objColumnLst[Q].GetAttribute("data-order");
+                }
+                if (DataOrder2 == "asc")
+                {
+                    Console.WriteLine("Column " + ColumnName + "Orders by Asc Properly");
+                    objRM.fnAddLogStep(objTest, "Column " + ColumnName + "Orders by Asc Properly", "Pass");
+                    objRM.fnAddLogStepScreen(objTest, driver, "First Name Order By Asc", "FistNameAsc.png", "Pass");
+                }
+            }
+        }
+        public static void fnSortLastName()
+        {
+            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_COLUMN)));
+            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_COLUMN)));
+            _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_COLUMN)));
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(12);
+            _driverWait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.XPath(STR_COLUMN)));
+            for (int Q = 0; Q < objColumnLst.Count; Q++)
+            {
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(12);
+                _driverWait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.ClassName("xcrud-overlay")));
+                string DataOrder = objColumnLst[Q].GetAttribute("data-order");
+                string ColumnName;
+                try
+                {
+                    ColumnName = objColumnLst[Q].Text;
+                }
+                catch (StaleElementReferenceException)
+                {
+                    ColumnName = objColumnLst[Q].Text;
+                }
+                if (DataOrder == "desc")
+                {
+                    Console.WriteLine("Column " + ColumnName + "Orders by Desc Properly");
+                    objRM.fnAddLogStep(objTest, "Column " + ColumnName + "Orders by Desc Properly", "Pass");
+                    objRM.fnAddLogStepScreen(objTest, driver, "First Name Order By Desc", "FistNameDesc.png", "Pass");
+                }
+                fnClickLastNameSort();
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(12);
+                _driverWait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.ClassName("xcrud-overlay")));
+                string DataOrder2;
+                try
+                {
+                    DataOrder2 = objColumnLst[Q].GetAttribute("data-order");
+                }
+                catch (StaleElementReferenceException)
+                {
+                    DataOrder2 = objColumnLst[Q].GetAttribute("data-order");
+                }
+                if (DataOrder2 == "asc")
+                {
+                    Console.WriteLine("Column " + ColumnName + "Orders by Asc Properly");
+                    objRM.fnAddLogStep(objTest, "Column " + ColumnName + "Orders by Asc Properly", "Pass");
+                    objRM.fnAddLogStepScreen(objTest, driver, "First Name Order By Asc", "FistNameAsc.png", "Pass");
+                }
+            }
+        }
+        public static void fnSortEmail()
+        {
+            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_COLUMN)));
+            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_COLUMN)));
+            _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_COLUMN)));
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(12);
+            _driverWait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.XPath(STR_COLUMN)));
+            for (int Q = 0; Q < objColumnLst.Count; Q++)
+            {
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(12);
+                _driverWait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.ClassName("xcrud-overlay")));
+                string DataOrder = objColumnLst[Q].GetAttribute("data-order");
+                string ColumnName;
+                try
+                {
+                    ColumnName = objColumnLst[Q].Text;
+                }
+                catch (StaleElementReferenceException)
+                {
+                    ColumnName = objColumnLst[Q].Text;
+                }
+                if (DataOrder == "desc")
+                {
+                    Console.WriteLine("Column " + ColumnName + "Orders by Desc Properly");
+                    objRM.fnAddLogStep(objTest, "Column " + ColumnName + "Orders by Desc Properly", "Pass");
+                    objRM.fnAddLogStepScreen(objTest, driver, "First Name Order By Desc", "FistNameDesc.png", "Pass");
+                }
+                fnClickEmail();
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(12);
+                _driverWait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.ClassName("xcrud-overlay")));
+                string DataOrder2;
+                try
+                {
+                    DataOrder2 = objColumnLst[Q].GetAttribute("data-order");
+                }
+                catch (StaleElementReferenceException)
+                {
+                    DataOrder2 = objColumnLst[Q].GetAttribute("data-order");
+                }
+                if (DataOrder2 == "asc")
+                {
+                    Console.WriteLine("Column " + ColumnName + "Orders by Asc Properly");
+                    objRM.fnAddLogStep(objTest, "Column " + ColumnName + "Orders by Asc Properly", "Pass");
+                    objRM.fnAddLogStepScreen(objTest, driver, "First Name Order By Asc", "FistNameAsc.png", "Pass");
+                }
+            }
+        }
+        public static void fnSortActive()
+        {
+            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_COLUMN)));
+            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_COLUMN)));
+            _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_COLUMN)));
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(12);
+            _driverWait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.XPath(STR_COLUMN)));
+            for (int Q = 0; Q < objColumnLst.Count; Q++)
+            {
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(12);
+                _driverWait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.ClassName("xcrud-overlay")));
+                string DataOrder = objColumnLst[Q].GetAttribute("data-order");
+                string ColumnName;
+                try
+                {
+                    ColumnName = objColumnLst[Q].Text;
+                }
+                catch (StaleElementReferenceException)
+                {
+                    ColumnName = objColumnLst[Q].Text;
+                }
+                if (DataOrder == "desc")
+                {
+                    Console.WriteLine("Column " + ColumnName + "Orders by Desc Properly");
+                    objRM.fnAddLogStep(objTest, "Column " + ColumnName + "Orders by Desc Properly", "Pass");
+                    objRM.fnAddLogStepScreen(objTest, driver, "First Name Order By Desc", "FistNameDesc.png", "Pass");
+                }
+                fnClickActiveSort();
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(12);
+                _driverWait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.ClassName("xcrud-overlay")));
+                string DataOrder2;
+                try
+                {
+                    DataOrder2 = objColumnLst[Q].GetAttribute("data-order");
+                }
+                catch (StaleElementReferenceException)
+                {
+                    DataOrder2 = objColumnLst[Q].GetAttribute("data-order");
+                }
+                if (DataOrder2 == "asc")
+                {                    Console.WriteLine("Column " + ColumnName + "Orders by Asc Properly");
+                    objRM.fnAddLogStep(objTest, "Column " + ColumnName + "Orders by Asc Properly", "Pass");
+                    objRM.fnAddLogStepScreen(objTest, driver, "First Name Order By Asc", "FistNameAsc.png", "Pass");
+                }
+            }
+        }
+
+        public static void fnSortLastLogin()
+        {
+            _driverWait.Until(ExpectedConditions.ElementExists(By.XPath(STR_COLUMN)));
+            _driverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(STR_COLUMN)));
+            _driverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(STR_COLUMN)));
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(12);
+            _driverWait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.XPath(STR_COLUMN)));
+            for (int Q = 0; Q < objColumnLst.Count; Q++)
+            {
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(12);
+                _driverWait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.ClassName("xcrud-overlay")));
+                string DataOrder = objColumnLst[Q].GetAttribute("data-order");
+                string ColumnName;
+                try
+                {
+                    ColumnName = objColumnLst[Q].Text;
+                }
+                catch (StaleElementReferenceException)
+                {
+                    ColumnName = objColumnLst[Q].Text;
+                }
+                if (DataOrder == "desc")
+                {
+                    Console.WriteLine("Column " + ColumnName + "Orders by Desc Properly");
+                    objRM.fnAddLogStep(objTest, "Column " + ColumnName + "Orders by Desc Properly", "Pass");
+                    objRM.fnAddLogStepScreen(objTest, driver, "First Name Order By Desc", "FistNameDesc.png", "Pass");
+                }
+                fnClickLastLoginSort();
                 driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(12);
                 _driverWait.Until(ExpectedConditions.InvisibilityOfElementLocated(By.ClassName("xcrud-overlay")));
                 string DataOrder2;

@@ -18,7 +18,7 @@ namespace AutomationTraining_M7.Test_Cases
     class Test_PHPTravels : BaseTest
     {
         clsPHPTravels_LoginPage objPHP1;
-        [Test, Order(0)]
+        [Test]
         public void Test_M9Exercise()
         {
             //Init objects
@@ -45,18 +45,34 @@ namespace AutomationTraining_M7.Test_Cases
             objTest.Log(Status.Info, (clsPHPTravels_LoginPage.GetBookingLbl().Text));
             // Display side menu and side sub menus content with sorting validation
             clsPHPTravels_AdminPage.fnSelectMenuItem("Accounts", "Admins");
-            clsPHPTravels_AdminPage.fnSortTable();
+            clsPHPTravels_AdminPage.fnSortFirstName();
+            clsPHPTravels_AdminPage.fnSortLastName();
+            clsPHPTravels_AdminPage.fnSortEmail();
+            clsPHPTravels_AdminPage.fnSortActive();
+            clsPHPTravels_AdminPage.fnSortLastLogin();
             objRM.fnAddLogStepScreen(objTest, driver, "Accounts", "Admins.png", "Pass");
             clsPHPTravels_AdminPage.fnSelectMenuItem("Accounts", "Suppliers");
-            clsPHPTravels_AdminPage.fnSortTable();
+            clsPHPTravels_AdminPage.fnSortFirstName();
+            clsPHPTravels_AdminPage.fnSortLastName();
+            clsPHPTravels_AdminPage.fnSortEmail();
+            clsPHPTravels_AdminPage.fnSortActive();
+            clsPHPTravels_AdminPage.fnSortLastLogin();
             objRM.fnAddLogStepScreen(objTest, driver, "Suppliers", "Suppliers.png", "Pass");
             objRM.fnAddLogStepScreen(objTest, driver, "AdminsFirstName", "AdminsFirstName.png", "Pass");
             clsPHPTravels_AdminPage.fnSelectMenuItem("Accounts", "Customers");
-            clsPHPTravels_AdminPage.fnSortTable();
+            clsPHPTravels_AdminPage.fnSortFirstName();
+            clsPHPTravels_AdminPage.fnSortLastName();
+            clsPHPTravels_AdminPage.fnSortEmail();
+            clsPHPTravels_AdminPage.fnSortActive();
+            clsPHPTravels_AdminPage.fnSortLastLogin();
             objRM.fnAddLogStepScreen(objTest, driver, "Customers", "Customers.png", "Pass");
             objRM.fnAddLogStepScreen(objTest, driver, "AdminsFirstName", "AdminsFirstName.png", "Pass");
             clsPHPTravels_AdminPage.fnSelectMenuItem("Accounts", "GuestCustomers");
-            clsPHPTravels_AdminPage.fnSortTable();
+            clsPHPTravels_AdminPage.fnSortFirstName();
+            clsPHPTravels_AdminPage.fnSortLastName();
+            clsPHPTravels_AdminPage.fnSortEmail();
+            clsPHPTravels_AdminPage.fnSortActive();
+            clsPHPTravels_AdminPage.fnSortLastLogin();
             objRM.fnAddLogStepScreen(objTest, driver, "GuestCustomers", "GuestCustomers.png", "Pass");
             objRM.fnAddLogStepScreen(objTest, driver, "AdminsGuestCustomers", "AdminsGuestCustomers.png", "Pass");
         }
