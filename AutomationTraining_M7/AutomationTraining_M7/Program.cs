@@ -6,14 +6,19 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+//M10_Exercise_Jorge_Pilotzi
 using System.IO;
+
+using System.Data;
+//master
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AutomationTraining_M7
 {
-    class Program
+  
+    class Program : BaseTest
     {
         //Delegates
         delegate void LambdasNoParams(); //(1)
@@ -21,6 +26,76 @@ namespace AutomationTraining_M7
 
         static void Main(string[] args)
         {
+            DataTable myTable;
+
+
+
+            /*F I L E   H A N D L I N G*/
+
+
+            string strFileName = @"C:\TempAuto\TempAuto123.txt";
+            FileInfo objFile = new FileInfo(strFileName);
+
+            using (StreamWriter sw = objFile.CreateText())
+            {
+                sw.WriteLine("Test1");
+                sw.WriteLine("Test2");
+                sw.WriteLine("Test3");
+                sw.WriteLine("Test4");
+                sw.WriteLine("Test5");
+                sw.WriteLine("Test6");
+            }
+
+            using (StreamReader sr = new StreamReader(strFileName))
+            {
+                string strValue = "";
+                while ((strValue = sr.ReadLine()) != null)
+                {
+                    Console.WriteLine(strValue);
+                }
+            }
+
+
+            Console.ReadKey();
+
+
+
+
+
+
+
+
+            /* D A T A B A S E*/
+            clsData objData = new clsData();
+            clsLibData objLibData = new clsLibData();
+            objLibData.fnInitConnection();
+
+
+            myTable =  objLibData.fnExecuteQueryData2("select * from UserCredentials");
+            if (myTable != null && myTable.Rows.Count > 0)
+            {
+                //Iterate each row in Table
+                foreach (DataRow row in myTable.Rows)
+                {
+                    if (row["SetValue"].ToString().Trim() == "3")
+                    {
+                        string username = row["UserName"].ToString().Trim();
+                        string password = row["Password"].ToString().Trim();
+                    }
+
+                  
+                }
+            }
+
+
+            objLibData.fnExecuteQueryData("select * from Tbl_Users");
+            objLibData.fnExecuteQueryData("select * from Tbl_Users");
+            objData.fnExecuteQueryData("select * from Tbl_Users");
+
+
+
+
+
 
             //-------------------------------------------------
             //Excersie 1
